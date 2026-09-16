@@ -1,6 +1,8 @@
 import asyncio
+import json
 import os
 import pickle
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -48,11 +50,38 @@ class ServeApiTests(unittest.TestCase):
         self.tmp.cleanup()
 
     def test_health_with_test_client(self):
-        with TestClient(app) as client:
-            response = client.get("/health")
+        script = """
+import json
+from fastapi.testclient import TestClient
+from src.serve import app
 
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json(), {"status": "ok", "model_version": "v14"})
+with TestClient(app) as client:
+    response = client.get("/health")
+
+print("HEALTH_RESULT=" + json.dumps({"status_code": response.status_code, "body": response.json()}))
+"""
+        try:
+            completed = subprocess.run(
+                [sys.executable, "-c", script],
+                cwd=ROOT_DIR,
+                env=os.environ.copy(),
+                capture_output=True,
+                text=True,
+                timeout=10,
+                check=False,
+            )
+        except subprocess.TimeoutExpired as exc:
+            self.fail(f"TestClient /health timed out after {exc.timeout} seconds")
+
+        self.assertEqual(completed.returncode, 0, completed.stderr)
+        result_line = next(
+            (line for line in completed.stdout.splitlines() if line.startswith("HEALTH_RESULT=")),
+            None,
+        )
+        self.assertIsNotNone(result_line, completed.stdout)
+        payload = json.loads(result_line.removeprefix("HEALTH_RESULT="))
+        self.assertEqual(payload["status_code"], 200)
+        self.assertEqual(payload["body"], {"status": "ok", "model_version": "v14"})
 
     def test_predict_with_async_client(self):
         async def run_request():

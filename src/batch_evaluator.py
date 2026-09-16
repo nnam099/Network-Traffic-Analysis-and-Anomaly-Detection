@@ -12,6 +12,7 @@ import pandas as pd
 import torch
 
 from artifact_validator import validate_artifact_contract
+from ids.dataset import normalize_labels
 from inference_runtime import (
     ground_truth_verdict,
     hybrid_score_from_meta,
@@ -35,6 +36,12 @@ class IDSArtifacts:
 
 def load_ids_artifacts(model_path: str, pipeline_path: str, model_version: str = "v14") -> IDSArtifacts:
     model_version = model_version.strip().lower()
+    if model_version == "v15":
+        raise ValueError(
+            "v15 disabled: runtime does not implement KNN/ood_ensemble scoring used at evaluation time"
+        )
+    if model_version != "v14":
+        raise ValueError(f"unsupported runtime model version: {model_version}")
     train_mod = __import__(f"ids_{model_version}_unswnb15", fromlist=["IDSModel"])
     IDSModel = train_mod.IDSModel
 
@@ -223,10 +230,22 @@ def summarize_scores(
         summary["recall_per_class"] = evaluation.get("recall_per_class", {})
         summary["ood_detection_rate"] = evaluation.get("ood_detection_rate")
         if bool(normal_mask.any()):
-            normal_zd = scores.loc[normal_mask.values, "is_zeroday"]
-            summary["normal_false_positive_rate"] = round(float(normal_zd.mean()), 6)
-            summary["false_positive_rate"] = summary["normal_false_positive_rate"]
-            summary["normal_false_positive_count"] = int(normal_zd.sum())
+            normal_scores = scores.loc[normal_mask.values]
+            normal_ood = normal_scores["is_zeroday"].astype(bool)
+            normal_classifier_alert = normal_scores["classifier_class"].astype(str).str.strip().str.lower() != "normal"
+            normal_alert = normal_ood | normal_classifier_alert
+            normal_overlap = normal_ood & normal_classifier_alert
+            normal_verdict_alert = normal_scores["predicted_class"].isin(["Known-Attack", "Zero-Day Candidate"])
+            if not normal_alert.equals(normal_verdict_alert):
+                raise ValueError("predicted_class is inconsistent with the OOD/classifier alert union")
+            summary["normal_ood_fpr"] = round(float(normal_ood.mean()), 6)
+            summary["normal_alert_fpr"] = round(float(normal_alert.mean()), 6)
+            summary["known_classifier_fpr"] = round(float(normal_classifier_alert.mean()), 6)
+            summary["normal_ood_classifier_overlap_rate"] = round(float(normal_overlap.mean()), 6)
+            summary["normal_ood_false_positive_count"] = int(normal_ood.sum())
+            summary["normal_alert_false_positive_count"] = int(normal_alert.sum())
+            summary["known_classifier_false_positive_count"] = int(normal_classifier_alert.sum())
+            summary["normal_ood_classifier_overlap_count"] = int(normal_overlap.sum())
             summary["normal_count"] = int(normal_mask.sum())
         if bool(attack_mask.any()):
             attack_known = scores.loc[attack_mask.values, "predicted_class"].isin(["Known-Attack", "Zero-Day Candidate"])
@@ -354,10 +373,10 @@ def _labeled_evaluation(
     class_names: list[str] | None = None,
     zero_day_labels: list[str] | None = None,
 ) -> dict[str, Any]:
-    labels_text = labels.astype(str)
+    labels_text = _canonical_label_series(labels)
     truth_verdict = truth_verdict.astype(str)
-    known_classes = {str(item) for item in (class_names or [])}
-    zero_day_set = {str(item) for item in (zero_day_labels or [])}
+    known_classes = set(_canonical_label_series(pd.Series(class_names or [], dtype=str)))
+    zero_day_set = set(_canonical_label_series(pd.Series(zero_day_labels or [], dtype=str)))
     comparable_mask = truth_verdict.isin(["Normal", "Known-Attack"])
     predicted_attack = scores["predicted_class"].isin(["Known-Attack", "Zero-Day Candidate"])
     predicted_verdict = pd.Series(np.where(predicted_attack, "Known-Attack", "Normal"), index=scores.index)
@@ -410,6 +429,11 @@ def _labeled_evaluation(
             out["zero_day_recall_per_family"] = family_recall
 
     return out
+
+
+def _canonical_label_series(labels: pd.Series) -> pd.Series:
+    frame = labels.rename("attack_cat").to_frame()
+    return normalize_labels(frame)["attack_cat"]
 
 
 def _threshold_profile(thresholds: dict[str, Any]) -> dict[str, Any]:

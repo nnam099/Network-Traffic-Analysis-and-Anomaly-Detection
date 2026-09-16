@@ -251,6 +251,38 @@ class CoreSmokeTests(unittest.TestCase):
         self.assertGreater(sampler_weights[2], sampler_weights[1])
         self.assertGreater(sampler_weights[3], sampler_weights[2])
 
+    def test_normal_idx_matches_label_encoder(self):
+        from torch.utils.data import DataLoader, TensorDataset
+
+        from ids.trainer import eval_epoch, normal_class_index
+
+        encoder = LabelEncoder().fit(["Normal", "DoS", "Exploits", "Reconnaissance", "Generic"])
+        normal_idx = normal_class_index(encoder.classes_)
+
+        self.assertEqual(encoder.inverse_transform([normal_idx])[0], "Normal")
+        self.assertNotEqual(normal_idx, 0)
+
+        labels = torch.tensor([normal_idx, normal_idx, 0, 1, 2, 4], dtype=torch.long)
+        logits = torch.full((len(labels), len(encoder.classes_)), -4.0)
+        logits[torch.arange(len(labels)), labels] = 4.0
+        loader = DataLoader(TensorDataset(logits, labels), batch_size=3, shuffle=False)
+
+        class FixedLogitModel(torch.nn.Module):
+            def forward(self, values):
+                return values, values
+
+        metrics = eval_epoch(FixedLogitModel(), loader, "cpu", normal_idx=normal_idx)
+        self.assertAlmostEqual(metrics["auc"], 1.0)
+
+    def test_runtime_rejects_v15_until_scoring_parity(self):
+        from batch_evaluator import load_ids_artifacts
+
+        with self.assertRaisesRegex(
+            ValueError,
+            "v15 disabled: runtime does not implement KNN/ood_ensemble scoring used at evaluation time",
+        ):
+            load_ids_artifacts("missing.pth", "missing.pkl", model_version="v15")
+
     def test_environment_check_does_not_expose_secret_values(self):
         from scripts.check_environment import assess_readiness, collect_environment, python_version_status
 
@@ -966,7 +998,9 @@ class CoreSmokeTests(unittest.TestCase):
         )
 
         self.assertEqual(summary["accuracy"], 1.0)
-        self.assertEqual(summary["false_positive_rate"], 0.0)
+        self.assertEqual(summary["normal_ood_fpr"], 0.0)
+        self.assertEqual(summary["normal_alert_fpr"], 0.0)
+        self.assertEqual(summary["known_classifier_fpr"], 0.0)
         self.assertEqual(summary["ood_detection_rate"], 1.0)
         self.assertEqual(summary["recall_per_class"]["Normal"]["recall"], 1.0)
         self.assertEqual(summary["recall_per_class"]["DoS"]["recall"], 0.5)

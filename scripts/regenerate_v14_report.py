@@ -16,6 +16,7 @@ if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
 from batch_evaluator import load_ids_artifacts, preprocess_raw_df, run_batch_scores, summarize_scores  # noqa: E402
+from ids.dataset import normalize_labels  # noqa: E402
 from inference_runtime import ground_truth_verdict, zero_day_decision  # noqa: E402
 
 
@@ -91,6 +92,12 @@ def main() -> int:
         "calibrated_threshold_evaluation": calibrated,
         "normalization_report": normalization_report,
         "threshold_profile": summary.get("threshold_profile", {}),
+        "metric_definitions": {
+            "normal_ood_fpr": "Share of labeled Normal rows flagged as OOD/zero-day candidates.",
+            "normal_alert_fpr": "Share of labeled Normal rows receiving any attack alert after classifier and OOD decisions.",
+            "known_classifier_fpr": "Share of labeled Normal rows classified as a known attack class before OOD override.",
+            "normal_ood_classifier_overlap_rate": "Share of labeled Normal rows counted in both OOD and known-classifier false positives.",
+        },
         "plots": plots,
         "limitations_and_safety": {
             "zero_day_candidate_meaning": "OOD hypothesis for analyst review; not a confirmed novel attack.",
@@ -104,10 +111,18 @@ def main() -> int:
     print(f"Report: {args.output_json}")
     print(f"Rows: {summary.get('rows', 0):,}")
     print(f"Accuracy: {summary.get('accuracy')}")
-    print(f"Normal FPR: {summary.get('false_positive_rate')}")
+    print(f"Normal OOD FPR: {summary.get('normal_ood_fpr')}")
+    print(f"Normal alert FPR: {summary.get('normal_alert_fpr')}")
+    print(f"Known-classifier FPR: {summary.get('known_classifier_fpr')}")
+    print(
+        "Normal OOD/classifier overlap: "
+        f"{summary.get('normal_ood_classifier_overlap_count')} rows "
+        f"({summary.get('normal_ood_classifier_overlap_rate')})"
+    )
     print(f"OOD detection rate: {summary.get('ood_detection_rate')}")
     if calibrated:
-        print(f"Calibrated normal FPR: {calibrated.get('normal_false_positive_rate')}")
+        print(f"Calibrated normal OOD FPR: {calibrated.get('normal_ood_fpr')}")
+        print(f"Calibrated normal alert FPR: {calibrated.get('normal_alert_fpr')}")
         print(f"Calibrated OOD detection rate: {calibrated.get('ood_detection_rate')}")
     return 0
 
@@ -183,10 +198,23 @@ def calibrated_threshold_summary(
         thresholds=thresholds,
     )
     decisions = pd.Series(decisions.astype(bool), index=scores.index)
-    truth = raw_df[label_col].map(ground_truth_verdict) if label_col in raw_df.columns else pd.Series([], dtype=str)
-    labels = raw_df[label_col].astype(str) if label_col in raw_df.columns else pd.Series([], dtype=str)
+    if label_col in raw_df.columns:
+        label_frame = raw_df[label_col].rename("attack_cat").to_frame()
+        labels = normalize_labels(label_frame)["attack_cat"]
+        truth = labels.map(ground_truth_verdict)
+    else:
+        truth = pd.Series([], dtype=str)
+        labels = pd.Series([], dtype=str)
     normal_mask = truth == "Normal"
-    zd_mask = labels.isin(set(zero_day_labels))
+    zero_day_frame = pd.Series(zero_day_labels, name="attack_cat", dtype=str).to_frame()
+    canonical_zero_day_labels = set(normalize_labels(zero_day_frame)["attack_cat"])
+    zd_mask = labels.isin(canonical_zero_day_labels)
+    normal_ood = decisions.loc[normal_mask.values]
+    normal_classifier_alert = (
+        scores.loc[normal_mask.values, "classifier_class"].astype(str).str.strip().str.lower() != "normal"
+    )
+    normal_alert = normal_ood | normal_classifier_alert
+    normal_overlap = normal_ood & normal_classifier_alert
     return {
         "profile_path": display_path(profile_path),
         "target_fpr": profile.get("target_fpr"),
@@ -194,9 +222,13 @@ def calibrated_threshold_summary(
         "decision_rule": rule,
         "zero_day_count": int(decisions.sum()),
         "zero_day_rate": round(float(decisions.mean()), 6),
-        "normal_false_positive_rate": round(float(decisions.loc[normal_mask.values].mean()), 6)
+        "normal_ood_fpr": round(float(normal_ood.mean()), 6) if bool(normal_mask.any()) else None,
+        "normal_alert_fpr": round(float(normal_alert.mean()), 6) if bool(normal_mask.any()) else None,
+        "known_classifier_fpr": round(float(normal_classifier_alert.mean()), 6) if bool(normal_mask.any()) else None,
+        "normal_ood_classifier_overlap_rate": round(float(normal_overlap.mean()), 6)
         if bool(normal_mask.any())
         else None,
+        "normal_ood_classifier_overlap_count": int(normal_overlap.sum()) if bool(normal_mask.any()) else None,
         "ood_detection_rate": round(float(decisions.loc[zd_mask.values].mean()), 6) if bool(zd_mask.any()) else None,
         "thresholds": thresholds,
         "tradeoff_note": "Lower FPR can reduce OOD recall; validate the chosen target_fpr against analyst capacity.",

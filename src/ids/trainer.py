@@ -50,8 +50,16 @@ def train_epoch(model, loader, optimizer, criterion, device):
     return {'loss': tot_loss/ntot, 'acc': ncorr/ntot}
 
 
+def normal_class_index(label_names):
+    """Return the encoded index for Normal without assuming encoder order."""
+    names = [str(name) for name in label_names]
+    if 'Normal' not in names:
+        raise ValueError('label mapping must include Normal')
+    return names.index('Normal')
+
+
 @torch.no_grad()
-def eval_epoch(model, loader, device):
+def eval_epoch(model, loader, device, normal_idx):
     model.eval()
     all_probs, all_labels = [], []
     for X, y in loader:
@@ -60,8 +68,8 @@ def eval_epoch(model, loader, device):
         all_labels.append(y.numpy())
     probs  = np.concatenate(all_probs)
     labels = np.concatenate(all_labels)
-    binary = (labels != 0).astype(int)
-    score  = 1 - probs[:,0]
+    binary = (labels != normal_idx).astype(int)
+    score  = 1 - probs[:,normal_idx]
     try:    auc = roc_auc_score(binary, score)
     except: auc = 0.5
     return {'auc':auc, 'acc':(probs.argmax(1)==labels).mean()}
@@ -119,7 +127,11 @@ def log_top_confusions(model, loader, device, label_names=None, epoch=None, top_
     return rows
 
 
-def train(model, loaders, args, criterion, device, label_names=None):
+def train(model, loaders, args, criterion, device, label_names=None, normal_idx=None):
+    if normal_idx is None:
+        if label_names is None:
+            raise ValueError('normal_idx or label_names is required for validation AUC')
+        normal_idx = normal_class_index(label_names)
     optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=1e-4)
     def warmup_cos(ep):
         warmup=5
@@ -136,7 +148,7 @@ def train(model, loaders, args, criterion, device, label_names=None):
     for ep in range(1, args.epochs+1):
         t0  = time.time()
         trm = train_epoch(model, loaders['train'], optimizer, criterion, device)
-        vam = eval_epoch(model,  loaders['val'],   device)
+        vam = eval_epoch(model, loaders['val'], device, normal_idx)
         log_top_confusions(model, loaders['val'], device, label_names=label_names, epoch=ep, top_k=2)
         sched.step()
         is_best = vam['auc'] > best_auc
@@ -162,13 +174,14 @@ def train(model, loaders, args, criterion, device, label_names=None):
 class Trainer:
     """Thin object wrapper around the existing IDS v14 training loop."""
 
-    def __init__(self, model, loaders, args, criterion, device, label_names=None):
+    def __init__(self, model, loaders, args, criterion, device, label_names=None, normal_idx=None):
         self.model = model
         self.loaders = loaders
         self.args = args
         self.criterion = criterion
         self.device = device
         self.label_names = label_names
+        self.normal_idx = normal_idx
 
     def run(self):
         return train(
@@ -178,6 +191,7 @@ class Trainer:
             self.criterion,
             self.device,
             label_names=self.label_names,
+            normal_idx=self.normal_idx,
         )
 
 

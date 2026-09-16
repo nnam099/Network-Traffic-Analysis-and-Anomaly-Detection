@@ -20,6 +20,7 @@ if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
 from batch_evaluator import load_ids_artifacts, preprocess_raw_df, run_batch_scores  # noqa: E402
+from ids.dataset import normalize_labels  # noqa: E402
 from inference_runtime import ground_truth_verdict  # noqa: E402
 
 
@@ -142,7 +143,8 @@ def main() -> int:
 def _labels(raw_df: pd.DataFrame, label_col: str | None) -> pd.DataFrame | None:
     if not label_col or label_col not in raw_df.columns:
         return None
-    label = raw_df[label_col].astype(str)
+    label_frame = raw_df[label_col].rename("attack_cat").to_frame()
+    label = normalize_labels(label_frame)["attack_cat"]
     truth = label.map(ground_truth_verdict)
     return pd.DataFrame({"label": label, "truth": truth})
 
@@ -234,7 +236,9 @@ def _method_metrics(
         out["auprc"] = round(float(average_precision_score(target[comparable], values[comparable])), 6)
 
     if zero_day_labels:
-        zd_mask = eval_mask & labels["label"].isin(set(zero_day_labels)).to_numpy()
+        zero_day_frame = pd.Series(zero_day_labels, name="attack_cat", dtype=str).to_frame()
+        canonical_zero_day_labels = set(normalize_labels(zero_day_frame)["attack_cat"])
+        zd_mask = eval_mask & labels["label"].isin(canonical_zero_day_labels).to_numpy()
         if zd_mask.any():
             out["ood_detection_rate"] = round(float(decisions[zd_mask].mean()), 6)
     return out

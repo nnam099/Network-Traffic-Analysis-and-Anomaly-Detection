@@ -1,6 +1,6 @@
 {
   "calibrated_threshold_evaluation": null,
-  "input_csv": "data/UNSW_NB15_testing-set.csv",
+  "input_csv": "data/UNSW_NB15_training-set.csv",
   "known_cats": [
     "Normal",
     "DoS",
@@ -12,6 +12,12 @@
     "regeneration_note": "This report evaluates the current saved v14 artifacts. It does not retrain model weights.",
     "required_validation": "Confirm suspicious rows with SIEM, firewall, endpoint and packet evidence.",
     "zero_day_candidate_meaning": "OOD hypothesis for analyst review; not a confirmed novel attack."
+  },
+  "metric_definitions": {
+    "known_classifier_fpr": "Share of labeled Normal rows classified as a known attack class before OOD override.",
+    "normal_alert_fpr": "Share of labeled Normal rows receiving any attack alert after classifier and OOD decisions.",
+    "normal_ood_classifier_overlap_rate": "Share of labeled Normal rows counted in both OOD and known-classifier false positives.",
+    "normal_ood_fpr": "Share of labeled Normal rows flagged as OOD/zero-day candidates."
   },
   "metrics": {
     "accuracy": 0.915222,
@@ -27,7 +33,7 @@
     "evaluation": {
       "classifier_accuracy_known": 0.735961,
       "detection_accuracy": 0.915222,
-      "ood_detection_rate": 0.332681,
+      "ood_detection_rate": 0.36054,
       "recall_per_class": {
         "DoS": {
           "recall": 0.207355,
@@ -56,6 +62,10 @@
           "recall": 0.58,
           "support": 2000
         },
+        "Backdoors": {
+          "recall": 0.702749,
+          "support": 1746
+        },
         "Fuzzers": {
           "recall": 0.299659,
           "support": 18184
@@ -70,16 +80,21 @@
         }
       }
     },
-    "false_positive_rate": 0.039821,
     "ground_truth_distribution": {
       "Known-Attack": 119341,
       "Normal": 56000
     },
+    "known_classifier_false_positive_count": 10123,
+    "known_classifier_fpr": 0.180768,
     "label_column": "attack_cat",
+    "normal_alert_false_positive_count": 10572,
+    "normal_alert_fpr": 0.188786,
     "normal_count": 56000,
-    "normal_false_positive_count": 2230,
-    "normal_false_positive_rate": 0.039821,
-    "ood_detection_rate": 0.332681,
+    "normal_ood_classifier_overlap_count": 1781,
+    "normal_ood_classifier_overlap_rate": 0.031804,
+    "normal_ood_false_positive_count": 2230,
+    "normal_ood_fpr": 0.039821,
+    "ood_detection_rate": 0.36054,
     "recall_per_class": {
       "DoS": {
         "recall": 0.207355,
@@ -105,28 +120,28 @@
     "rows": 175341,
     "score_distribution": {
       "ae_re": {
-        "max": 1.5527302026748657,
-        "mean": 0.11084447801113129,
-        "min": 0.031507138162851334,
-        "p50": 0.083094522356987,
-        "p90": 0.1708279252052307,
-        "p95": 0.22186808288097382,
-        "p99": 0.5054258108139038
+        "max": 1.5527299642562866,
+        "mean": 0.1108444556593895,
+        "min": 0.031507112085819244,
+        "p50": 0.08309473842382431,
+        "p90": 0.17082786560058594,
+        "p95": 0.22186772525310516,
+        "p99": 0.5054261088371277
       },
       "fv_cluster": {
         "max": 0.9401403665542603,
         "mean": 0.4069284200668335,
-        "min": 0.06129096820950508,
-        "p50": 0.39317911863327026,
-        "p90": 0.6371803879737854,
+        "min": 0.06129048019647598,
+        "p50": 0.3931795060634613,
+        "p90": 0.6371800899505615,
         "p95": 0.6775435209274292,
-        "p99": 0.7545640468597412
+        "p99": 0.7545639276504517
       },
       "hybrid": {
         "max": 0.9999796748161316,
         "mean": 0.5143148899078369,
-        "min": 0.04557293653488159,
-        "p50": 0.37314364314079285,
+        "min": 0.04557293280959129,
+        "p50": 0.3731432557106018,
         "p90": 0.997196614742279,
         "p95": 0.9984166026115417,
         "p99": 0.999271810054779
@@ -134,20 +149,20 @@
       "max_prob": {
         "max": 0.9916322827339172,
         "mean": 0.7331206798553467,
-        "min": 0.2290794402360916,
-        "p50": 0.8368105888366699,
-        "p90": 0.9628241062164307,
+        "min": 0.22907957434654236,
+        "p50": 0.8368107676506042,
+        "p90": 0.9628242254257202,
         "p95": 0.9646154046058655,
         "p99": 0.9704697728157043
       },
       "softmax": {
-        "max": 0.7709205746650696,
-        "mean": 0.26687926054000854,
+        "max": 0.7709203958511353,
+        "mean": 0.26687929034233093,
         "min": 0.008367717266082764,
-        "p50": 0.16318941116333008,
+        "p50": 0.16318923234939575,
         "p90": 0.6068910360336304,
-        "p95": 0.6495389342308044,
-        "p99": 0.6905859112739563
+        "p95": 0.649539053440094,
+        "p99": 0.6905856728553772
       }
     },
     "threshold_profile": {
@@ -251,7 +266,7 @@
     },
     "softmax": 0.5248144865036011
   },
-  "updated_at": "2026-05-29T16:26:36Z",
+  "updated_at": "2026-09-16T11:31:18Z",
   "version": "v14.0",
   "zd_cats": [
     "Fuzzers",

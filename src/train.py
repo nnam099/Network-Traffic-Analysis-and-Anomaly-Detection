@@ -1,18 +1,27 @@
 """Entry point for IDS v14 UNSW-NB15 training, evaluation, artifact export and plotting."""
 
-import os, json, pickle
+import os, json, pickle, time
 import numpy as np
 import torch
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import RobustScaler, LabelEncoder
 
 from ids.config import CFG, get_config, seed_everything
-from ids.dataset import load_unsw_csvs, clean_df, prepare_splits, make_loaders
+from ids.dataset import (
+    ZERO_DAY_ATTACK_CATS,
+    assert_training_isolation,
+    load_official_unsw_splits,
+    make_loaders,
+    prepare_official_splits,
+)
 from ids.models import IDSModel
 from ids.losses import IDSLoss
-from ids.trainer import train
+from ids.trainer import normal_class_index, train
 from ids.evaluator import (
     _batch_scores,
+    add_hybrid_scores,
+    collect_ood_scores,
+    evaluate_zero_day_from_scores,
     fit_hybrid_meta_learner,
     build_centroids,
     calibrate,
@@ -29,7 +38,8 @@ from ids.plots import (
     plot_threshold_drift,
 )
 
-def save_artifacts(model, splits, thresholds, history, centroids, save_dir, hybrid_meta=None):
+def save_artifacts(model, splits, thresholds, history, centroids, save_dir,
+                   hybrid_meta=None, research_protocol=None):
     os.makedirs(save_dir, exist_ok=True)
 
     pth_path = os.path.join(save_dir, 'ids_v14_model.pth')
@@ -48,6 +58,7 @@ def save_artifacts(model, splits, thresholds, history, centroids, save_dir, hybr
         'hybrid_meta':      hybrid_meta,
         'history':          history,
         'version':          'v14.0',
+        'research_protocol': research_protocol,
     }, pth_path)
     print(f'  Model weights -> {pth_path}')
 
@@ -66,6 +77,7 @@ def save_artifacts(model, splits, thresholds, history, centroids, save_dir, hybr
         'n_features':    splits['n_features'],
         'n_classes':     splits['n_classes'],
         'version':       'v14.0',
+        'research_protocol': research_protocol,
     }
     with open(pkl_path,'wb') as f:
         pickle.dump(pipeline, f)
@@ -104,8 +116,9 @@ def parse_class_weight_overrides(value, label_names):
 # MAIN PIPELINE
 # ═══════════════════════════════════════════════════════════════
 def run_full(args):
+    run_started = time.perf_counter()
     print('\n'+'='*70)
-    print('IDS v14.0 - Hybrid GradBP+AE  |  UNSW-NB15')
+    print('IDS v14.0 - leakage-resistant LOFO evaluation | UNSW-NB15')
     print('='*70)
 
     seed_everything(args.seed)
@@ -113,16 +126,36 @@ def run_full(args):
     os.makedirs(args.save_dir, exist_ok=True)
     os.makedirs(args.plot_dir, exist_ok=True)
 
-    print('\n[1/8] Loading data...')
-    df = load_unsw_csvs(args.data_dir)
-    df = clean_df(df)
+    print('\n[1/8] Loading explicit official data roles...')
+    data_roles = load_official_unsw_splits(
+        args.data_dir,
+        train_files=getattr(args, 'train_files', '') or None,
+        calibration_files=getattr(args, 'calibration_files', '') or None,
+        test_files=getattr(args, 'test_files', '') or None,
+    )
 
-    print('\n[2/8] Preparing splits...')
-    splits = prepare_splits(df, seed=args.seed,
-                            zd_augment=getattr(args,'zd_augment_factor',1))
+    print('\n[2/8] Preparing grouped 70/10/10/10 splits...')
+    splits = prepare_official_splits(
+        data_roles['train'],
+        data_roles['test'],
+        calibration_df=data_roles['calibration'],
+        seed=args.seed,
+    )
+    print(
+        f'  Backbone train {len(splits["X_train"]):,} | '
+        f'Validation {len(splits["X_val"]):,} | '
+        f'Meta-known {len(splits["X_meta_known"]):,} | '
+        f'Calibration {len(splits["X_calibration"]):,}'
+    )
+    print(
+        f'  Official known test {len(splits["X_test"]):,} | '
+        f'Train OOD {len(splits["X_ood_train"]):,} | '
+        f'Official OOD test {len(splits["X_ood_test"]):,}'
+    )
 
     le = splits['label_encoder']
     label_names = list(le.classes_)
+    normal_idx = normal_class_index(label_names)
     dos_idx = None
     recon_idx = None
     if 'DoS' in label_names:
@@ -168,111 +201,224 @@ def run_full(args):
     )
 
     print('\n[5/8] Training...')
-    model, history = train(model, loaders, args, criterion, device, label_names=label_names)
-
-    print('\n[6/8] Building centroids + calibrating thresholds...')
-    hybrid_meta = fit_hybrid_meta_learner(
-        model, splits['X_val'], splits['X_zd'], device, seed=args.seed,
+    model, history = train(
+        model,
+        loaders,
+        args,
+        criterion,
+        device,
+        label_names=label_names,
+        normal_idx=normal_idx,
     )
-    centroids  = build_centroids(model, splits['X_train'], splits['y_train'],
-                                  n_clusters=args.n_clusters, device=device,
-                                  seed=args.seed)
-    thresholds = calibrate(model, splits['X_val'], splits['y_val'],
-                           args.target_fpr, device, centroids,
-                           hybrid_meta=hybrid_meta)
-    thresholds['hybrid_meta'] = hybrid_meta
 
-    normal_idx  = label_names.index('Normal') if 'Normal' in label_names else 0
-    model.eval()
-    re_val = []
-    with torch.no_grad():
-        for i in range(0,len(splits['X_val']),512):
-            x = torch.FloatTensor(splits['X_val'][i:i+512]).to(device)
-            re_val.append(model.ae.recon_error(x).cpu().numpy())
-    re_val = np.concatenate(re_val)
-    re_thr = float(np.quantile(re_val, 1-args.target_fpr))
-    threshold_trace = None
-    final_ae_threshold = float(thresholds.get('ae_re', re_thr))
-    if getattr(args, 'adaptive_threshold', False):
-        threshold_trace = compute_adaptive_threshold_trace(
-            model, splits['X_test'], splits['y_test'], normal_idx,
-            re_val, args.target_fpr, device,
+    print('\n[6/8] Building centroids and collecting target-independent scores...')
+    centroids = build_centroids(
+        model,
+        splits['X_train'],
+        splits['y_train'],
+        n_clusters=args.n_clusters,
+        device=device,
+        seed=args.seed,
+    )
+    known_base_scores = collect_ood_scores(model, splits['X_test'], device, centroids)
+    ood_base_scores = collect_ood_scores(model, splits['X_ood_test'], device, centroids)
+
+    print('\n[7/8] Evaluating official test with five leave-one-family-out folds...')
+    clf_res = evaluate_classifier(
+        model, splits['X_test'], splits['y_test'], label_names, device
+    )
+    known_unseen = splits['test_unseen_fingerprint_mask']
+    clf_sensitivity = evaluate_classifier(
+        model,
+        splits['X_test'][known_unseen],
+        splits['y_test'][known_unseen],
+        label_names,
+        device,
+    )
+
+    def slice_scores(scores, mask):
+        return {name: np.asarray(values)[mask] for name, values in scores.items()}
+
+    normal_calibration = splits['y_calibration'] == normal_idx
+    if not bool(normal_calibration.any()):
+        raise AssertionError('calibration split contains no Normal rows')
+
+    fold_reports = {}
+    fold_artifacts = {}
+    all_assertions = dict(splits['isolation_assertions'])
+    for target_family in ZERO_DAY_ATTACK_CATS:
+        print(f'\n{"-"*70}\nLOFO target family: {target_family}\n{"-"*70}')
+        surrogate_mask = splits['y_ood_train'] != target_family
+        target_mask = splits['y_ood_test'] == target_family
+        if not bool(target_mask.any()):
+            raise AssertionError(f'official test has no target OOD rows for {target_family}')
+        fold_assertions = assert_training_isolation(
+            splits,
+            target_family=target_family,
+            surrogate_labels=splits['y_ood_train'][surrogate_mask],
         )
-        final_ae_threshold = float(threshold_trace['final_threshold'])
-        thresholds['ae_re'] = final_ae_threshold
-        re_thr = final_ae_threshold
-        print(f'\n  Adaptive AE threshold final={final_ae_threshold:.6f}')
-    p_thr  = 0.5
-
-    print('\n[7/8] Evaluating...')
-    clf_res     = evaluate_classifier(model, splits['X_test'], splits['y_test'],
-                                       label_names, device)
-    clf_res['y_test'] = splits['y_test']
-
-    zd_res = evaluate_zero_day(
-        model, splits['X_test'], splits['y_test'],
-        splits['X_zd'],          splits['y_zd'],
-        thresholds, centroids, device, hybrid_meta=hybrid_meta,
-    )
-
-    print('\n[8/8] Saving & plotting...')
-    pth_p, pkl_p = save_artifacts(
-        model, splits, thresholds, history, centroids, args.save_dir,
-        hybrid_meta=hybrid_meta,
-    )
-
-    plot_training_curve(history, os.path.join(args.plot_dir,'v14_training_curve.png'))
-    plot_soc_decision_space(model, splits['X_test'], splits['y_test'],
-        splits['X_zd'], p_thr, re_thr, device,
-        os.path.join(args.plot_dir,'v14_decision_space.png'), label_names,
-        seed=args.seed)
-
-    per_cls_zd   = zd_res.get('_per_class',{})
-    zd_cls_order = sorted(per_cls_zd.keys())
-    plot_per_class_proper(label_names, splits['y_test'], clf_res['preds'],
-        per_cls_zd, zd_cls_order,
-        os.path.join(args.plot_dir,'v14_per_class_detection.png'), normal_idx=normal_idx)
-    plot_roc_curves(zd_res, os.path.join(args.plot_dir,'v14_roc_curves.png'))
-    plot_confusion_matrix(splits['y_test'], clf_res['preds'], label_names,
-                          os.path.join(args.plot_dir,'v14_confusion_matrix.png'))
-    if threshold_trace is not None:
-        plot_threshold_drift(
-            threshold_trace,
-            os.path.join(args.plot_dir, 'v14_threshold_drift.png'),
+        all_assertions['target_family_excluded_from_surrogate'] = bool(
+            fold_assertions['target_family_excluded_from_surrogate']
         )
 
-    best_zd_auc = max((v['auc'] for k,v in zd_res.items()
-                       if not k.startswith('_') and 'auc' in v), default=0.)
+        hybrid_meta = fit_hybrid_meta_learner(
+            model,
+            splits['X_meta_known'],
+            splits['X_ood_train'][surrogate_mask],
+            device,
+            seed=args.seed,
+        )
+        thresholds = calibrate(
+            model,
+            splits['X_calibration'][normal_calibration],
+            args.target_fpr,
+            device,
+            centroids,
+            hybrid_meta=hybrid_meta,
+        )
+        thresholds['hybrid_meta'] = hybrid_meta
+        known_scores = add_hybrid_scores(known_base_scores, hybrid_meta)
+        target_scores = add_hybrid_scores(
+            slice_scores(ood_base_scores, target_mask), hybrid_meta
+        )
+        target_labels = splits['y_ood_test'][target_mask]
+        official_result = evaluate_zero_day_from_scores(
+            known_scores,
+            target_scores,
+            target_labels,
+            thresholds,
+            selected_method='hybrid',
+        )
 
-    results_dir = os.path.abspath(os.path.join(args.save_dir, '..', 'results'))
-    os.makedirs(results_dir, exist_ok=True)
-    summary = {
-        'version': 'v14.0',
-        'known_auc': float(clf_res['auc']),
-        'best_zd_auc': float(best_zd_auc),
-        'best_zd_method': zd_res.get('_best_method'),
-        'n_features': int(splits['n_features']),
-        'n_classes': int(splits['n_classes']),
-        'n_epochs': len(history),
-        'thresholds': thresholds,
-        'hybrid_meta': hybrid_meta,
-        'final_ae_threshold': final_ae_threshold,
-        'known_cats': splits['known_cats'],
-        'zd_cats': splits['zd_cats'],
+        target_unseen = splits['ood_test_unseen_fingerprint_mask'][target_mask]
+        sensitivity_result = evaluate_zero_day_from_scores(
+            slice_scores(known_scores, known_unseen),
+            slice_scores(target_scores, target_unseen),
+            target_labels[target_unseen],
+            thresholds,
+            selected_method='hybrid',
+        )
+        official_family = official_result['_per_class'][target_family]
+        sensitivity_family = sensitivity_result['_per_class'].get(
+            target_family, {'support': 0, 'recall': None}
+        )
+        fold_reports[target_family] = {
+            'selected_method': 'hybrid',
+            'official_test': {
+                'support': official_family['support'],
+                'recall': float(official_family['recall']),
+                'auroc': float(official_result['hybrid']['auc']),
+            },
+            'unseen_fingerprint_sensitivity': {
+                'support': int(sensitivity_family['support']),
+                'recall': (
+                    None if sensitivity_family['recall'] is None
+                    else float(sensitivity_family['recall'])
+                ),
+                'auroc': float(sensitivity_result['hybrid']['auc']),
+                'known_support': int(known_unseen.sum()),
+                'note': (
+                    'Exact training-feature fingerprints were excluded. This is '
+                    'not a temporal-generalization benchmark.'
+                ),
+            },
+            'surrogate_families': [
+                family for family in ZERO_DAY_ATTACK_CATS if family != target_family
+            ],
+            'surrogate_support': int(surrogate_mask.sum()),
+            'assertions': fold_assertions,
+        }
+        fold_artifacts[target_family] = {
+            'hybrid_meta': hybrid_meta,
+            'thresholds': thresholds,
+        }
+
+    print('\n[8/8] Saving seed report and research artifacts...')
+    research_protocol = {
+        'name': 'official_70_10_10_10_lofo',
+        'seed': int(args.seed),
+        'selected_method': 'hybrid',
+        'folds': fold_artifacts,
+        'assertions': all_assertions,
     }
-    with open(os.path.join(results_dir, 'ids_v14_results.json'), 'w', encoding='utf-8') as f:
-        json.dump(summary, f, indent=2, default=str)
+    pth_path, pipeline_path = save_artifacts(
+        model,
+        splits,
+        thresholds={},
+        history=history,
+        centroids=centroids,
+        save_dir=args.save_dir,
+        hybrid_meta=None,
+        research_protocol=research_protocol,
+    )
+    os.makedirs(args.plot_dir, exist_ok=True)
+    plot_training_curve(history, os.path.join(args.plot_dir, 'v14_training_curve.png'))
+    plot_confusion_matrix(
+        splits['y_test'],
+        clf_res['preds'],
+        label_names,
+        os.path.join(args.plot_dir, 'v14_confusion_matrix.png'),
+    )
+
+    elapsed_seconds = time.perf_counter() - run_started
+    default_report = os.path.abspath(
+        os.path.join(args.save_dir, '..', 'results', f'step2_seed_{args.seed}_lofo.json')
+    )
+    report_path = getattr(args, 'report_path', '') or default_report
+    os.makedirs(os.path.dirname(os.path.abspath(report_path)), exist_ok=True)
+    report = {
+        'version': 'v14.0-step2',
+        'protocol': 'official_70_10_10_10_lofo',
+        'seed': int(args.seed),
+        'elapsed_seconds': float(elapsed_seconds),
+        'elapsed_hours': float(elapsed_seconds / 3600.0),
+        'n_epochs': len(history),
+        'n_features': int(splits['n_features']),
+        'known_cats': splits['known_cats'],
+        'ood_cats': splits['zd_cats'],
+        'assertions': all_assertions,
+        'split_rows': {
+            'backbone_train': len(splits['X_train']),
+            'validation': len(splits['X_val']),
+            'meta_known': len(splits['X_meta_known']),
+            'calibration': len(splits['X_calibration']),
+            'official_test_known': len(splits['X_test']),
+            'official_train_ood': len(splits['X_ood_train']),
+            'official_test_ood': len(splits['X_ood_test']),
+        },
+        'official_test_known_auc': float(clf_res['auc']),
+        'unseen_fingerprint_known_auc': float(clf_sensitivity['auc']),
+        'shared_official_fingerprint_count': int(
+            splits['shared_official_fingerprint_count']
+        ),
+        'folds': fold_reports,
+        'sensitivity_analysis_note': (
+            'Rows whose exact raw-feature fingerprint appears in official training '
+            'are excluded. This is not a temporal-generalization benchmark because '
+            'the pre-split CSVs contain no timestamps or flow identifiers.'
+        ),
+        'model_path': pth_path,
+        'pipeline_path': pipeline_path,
+    }
+    with open(report_path, 'w', encoding='utf-8') as handle:
+        json.dump(report, handle, indent=2, default=str)
 
     print(f'\n{"="*70}')
-    print('FINAL SUMMARY - IDS v14.0')
+    print(f'FINAL SUMMARY - STEP 2 SEED {args.seed}')
     print(f'{"="*70}')
-    print(f'  Known AUC   : {clf_res["auc"]:.4f}')
-    print(f'  Best ZD AUC : {best_zd_auc:.4f}')
-    print(f'  Model .pth  : {pth_p}')
-    print(f'  Pipeline    : {pkl_p}')
+    for family, values in fold_reports.items():
+        official = values['official_test']
+        print(
+            f'  {family:<16} recall={official["recall"]:.4f} '
+            f'AUROC={official["auroc"]:.4f} support={official["support"]:,}'
+        )
+    print(f'  Assertions: {all_assertions}')
+    print(f'  Elapsed   : {elapsed_seconds/3600.0:.3f} hours')
+    print(f'  Report    : {report_path}')
+    print(f'  Model     : {pth_path}')
+    print(f'  Pipeline  : {pipeline_path}')
     print(f'{"="*70}')
-
-    return model, zd_res, history
+    return model, report, history
 
 
 # ═══════════════════════════════════════════════════════════════
@@ -338,7 +484,15 @@ def run_demo(args):
                            dos_class_idx=dos_idx_demo,
                            seed=getattr(args, 'seed', 42))
     label_names = [f'Class_{i}' for i in range(n_cls)]
-    model, history = train(model, loaders, args, criterion, device, label_names=label_names)
+    model, history = train(
+        model,
+        loaders,
+        args,
+        criterion,
+        device,
+        label_names=label_names,
+        normal_idx=0,
+    )
 
     hybrid_meta = fit_hybrid_meta_learner(
         model, X_va, X_zd, device, seed=getattr(args, 'seed', 42),
@@ -346,7 +500,7 @@ def run_demo(args):
     centroids  = build_centroids(model, X_tr, y_tr, 10, device,
                                  seed=getattr(args, 'seed', 42))
     thresholds = calibrate(
-        model, X_va, y_va, args.target_fpr, device, centroids,
+        model, X_va[y_va == 0], args.target_fpr, device, centroids,
         hybrid_meta=hybrid_meta,
     )
     thresholds['hybrid_meta'] = hybrid_meta

@@ -21,6 +21,7 @@ Main flow:
 ## Current Status
 
 - v14 is the operational default because local artifacts exist in `checkpoints/`.
+- v15 training code remains available for experiments, but v15 runtime selection is disabled until KNN/OOD-ensemble scoring has offline/runtime parity tests.
 - Runtime dependencies are pinned in `requirements.txt`; smoke-check dependency ranges are in `requirements-smoke.txt`; developer tooling is in `requirements-dev.txt`.
 - `scripts/smoke_check.py` passes locally with 57 tests, with the v15 artifact smoke test skipped until v15 artifacts exist.
 - Smoke coverage includes artifact contract validation, threshold metadata validation, artifact manifest hashing, duplicate feature-name rejection, environment readiness checks, export config handling, checkpoint metadata patch logic, SQLite alert store persistence, CSV input guardrails, CSV normalization quality checks, dashboard preprocessing/context contracts, dashboard UI helper contracts, AI context selection, alert queue filtering, top-N batch alert selection, alert entity enrichment, lightweight correlation, time-window incident grouping, labeled evaluation reporting, API edge cases, Recon/DoS prototype separation, LLM fallback behavior, MITRE mapping and v14 artifact loading.
@@ -28,7 +29,7 @@ Main flow:
 - A Windows GitHub Actions smoke workflow is available at `.github/workflows/smoke.yml`.
 - A scheduled and PR-triggered dependency audit workflow is available at `.github/workflows/dependency-audit.yml`.
 - A Dockerfile is available for FastAPI inference on port `8080`.
-- v14 artifact evaluation has been regenerated from Kaggle-trained artifacts on `UNSW_NB15_testing-set.csv`; `results/ids_v14_results.json` reports `91.52%` detection accuracy, `3.98%` normal false-positive rate, `33.27%` OOD detection rate and the active threshold profile.
+- The checked-in v14 report contains historical values of `91.52%` detection accuracy, `3.98%` normal OOD false-positive rate and `33.27%` OOD detection rate. These values have known methodology limitations described below and must not be treated as final benchmark results.
 
 ## Features
 
@@ -201,7 +202,7 @@ Important environment variables:
 
 | Variable | Meaning |
 | --- | --- |
-| `IDS_MODEL_VERSION` | `v14` or `v15` |
+| `IDS_MODEL_VERSION` | Runtime model version. Only `v14` is enabled; `v15` is training-only until scoring parity is implemented. |
 | `IDS_MODEL_PATH` | Path to model `.pth` |
 | `IDS_PIPELINE_PATH` | Path to pipeline `.pkl` |
 | `IDS_DATA_DIR` | Dataset directory |
@@ -433,7 +434,7 @@ python -m pip_audit -r requirements-dev.txt
 Evaluate the current saved v14 artifacts without retraining:
 
 ```powershell
-python scripts/regenerate_v14_report.py --csv-path data\UNSW_NB15_testing-set.csv --label-col attack_cat
+python scripts/regenerate_v14_report.py --csv-path data\UNSW_NB15_training-set.csv --label-col attack_cat
 ```
 
 This refreshes `results/ids_v14_results.json` and writes evaluation plots in `plots/`:
@@ -442,8 +443,17 @@ This refreshes `results/ids_v14_results.json` and writes evaluation plots in `pl
 - `v14_eval_score_distribution.png`
 - `v14_eval_known_class_recall.png`
 
-The report includes detection accuracy, known-class recall, OOD detection rate, normal false-positive rate and the active threshold profile. The current Kaggle-trained v14 artifacts use 66 features and report about `91.52%` detection accuracy, `3.98%` normal false-positive rate and `33.27%` OOD detection rate on `UNSW_NB15_testing-set.csv`.
+The report separates Normal-row false positives into `normal_ood_fpr` (flagged as OOD), `known_classifier_fpr` (classified as a known attack) and `normal_alert_fpr` (either path creates an alert). It also includes detection accuracy, known-class recall, OOD detection rate and the active threshold profile. The current Kaggle-trained v14 artifacts use 66 features. The checked-in metrics are retained only as a historical artifact report and will be replaced after the leakage-safe data and OOD splits are implemented and the model is retrained.
 If `checkpoints/local_thresholds.json` exists, the report also includes a calibrated-threshold what-if section. Keep this file local and regenerate it for the active model; stale threshold profiles from older artifacts can override the saved thresholds in the dashboard.
+
+### Known limitations of current v14 metrics
+
+- Fixed in the current artifact regeneration: dataset labels now use one canonical mapping (`Backdoor` becomes `Backdoors`), so all five configured OOD families contribute to the reported `36.05%` OOD detection rate.
+- Fixed in the current artifact regeneration: Normal false positives are separated into `3.98%` OOD FPR, `18.08%` known-classifier FPR and `18.88%` total alert FPR. Exactly `1,781 / 56,000` Normal rows (`3.18%`) are in both component groups; total alert FPR is their union and does not double-count that overlap.
+- Still unresolved until the leakage-safe Step 2 retraining: the historical hybrid meta-learner was fitted with target `X_zd` rows, so the reported OOD result is not a strict zero-shot estimate.
+- Still unresolved until Step 2: thresholds were not calibrated exclusively on a dedicated, representative validation/calibration split, and the historical data loader could combine official training and testing CSV files before random splitting.
+- The saved pipeline was produced with scikit-learn 1.6.1. A 2,048-row A/B check found byte-identical `RobustScaler.transform()` output under 1.6.1 and 1.9.1, but reproducible deployment should still load artifacts with their pinned training dependencies.
+- Therefore `91.52%` accuracy, `36.05%` OOD detection rate and the three Normal FPR values describe the current saved artifact only. They are not leakage-free benchmark results and must not be presented as final model performance.
 
 ## Evaluate and Calibrate CSV Drift
 
@@ -455,11 +465,11 @@ score distribution report and can calibrate a local threshold profile.
 python scripts/evaluate_csv.py "path\to\Tuesday-WorkingHours.pcap_ISCX.csv" --scores-csv
 ```
 
-If the CSV has a benign/attack label column, calibrate thresholds from benign
-rows at the requested false-positive rate:
+If a dedicated calibration/validation CSV has a benign/attack label column,
+calibrate thresholds from its benign rows at the requested false-positive rate:
 
 ```powershell
-python scripts/evaluate_csv.py "path\to\Tuesday-WorkingHours.pcap_ISCX.csv" `
+python scripts/evaluate_csv.py "data\calibration\representative-benign-validation.csv" `
   --label-col Label `
   --calibrate-thresholds `
   --target-fpr 0.01 `
@@ -471,10 +481,11 @@ present. Override with `IDS_THRESHOLD_PROFILE` if you want to test another
 profile. Local profiles use vote-based OOD candidate decisions by default, so a row
 must cross multiple calibrated signals instead of only the hybrid score.
 
-Current local calibration example:
+Calibration and final reporting must use different files. Never calibrate on the
+final test set used for published metrics:
 
 ```powershell
-python scripts/evaluate_csv.py data\UNSW_NB15_testing-set.csv --label-col attack_cat --calibrate-thresholds --target-fpr 0.05
+python scripts/evaluate_csv.py data\calibration\UNSW_NB15_calibration.csv --label-col attack_cat --calibrate-thresholds --target-fpr 0.05
 python scripts/regenerate_v14_report.py --csv-path data\UNSW_NB15_testing-set.csv --label-col attack_cat
 ```
 
@@ -578,7 +589,7 @@ For demo and runtime procedures, see [docs/operations.md](docs/operations.md).
 - Zero-day results depend strongly on feature quality, scaler compatibility and threshold calibration. Recalibrate thresholds on representative benign traffic before operational demos that claim realistic SOC precision.
 - Real-world CSV normalization is approximate when directional counters or timing fields are missing.
 - LLM triage is optional decision support and must not be treated as the detection engine or a final verdict.
-- v15 is experimental until v15 artifacts are trained/exported and smoke-tested.
+- v15 is training-only and runtime-disabled until its KNN/OOD-ensemble scoring has offline/runtime parity tests.
 - The dashboard is not hardened for production deployment: no authentication, no realtime packet capture and no deployment security controls.
 
 ## License

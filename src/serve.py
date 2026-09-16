@@ -21,7 +21,11 @@ from batch_evaluator import IDSArtifacts, load_ids_artifacts, preprocess_raw_df,
 from ids.evaluator import predict_with_uncertainty
 from inference_runtime import assess_normalization_quality, risk_score
 
-MODEL_VERSION = "v14"
+MODEL_VERSION = os.getenv("IDS_MODEL_VERSION", "v14").strip().lower()
+if MODEL_VERSION != "v14":
+    raise RuntimeError(
+        "v15 disabled: runtime does not implement KNN/ood_ensemble scoring used at evaluation time"
+    )
 LOW_CONFIDENCE_ENTROPY = 1.5
 
 

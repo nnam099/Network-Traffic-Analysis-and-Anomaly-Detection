@@ -424,7 +424,13 @@ CSV_SESSION_RAW_MAX_ROWS = int(os.getenv("IDS_DASHBOARD_SESSION_RAW_MAX_ROWS", "
 
 # v14 is the operational default because this repo currently ships v14 artifacts.
 MODEL_VERSION = os.getenv("IDS_MODEL_VERSION", "v14").strip().lower()
-if MODEL_VERSION not in {"v14", "v15"}:
+if MODEL_VERSION == "v15":
+    st.warning(
+        "v15 disabled: runtime does not implement KNN/ood_ensemble scoring used at evaluation time. "
+        "Fallback ve v14."
+    )
+    MODEL_VERSION = "v14"
+elif MODEL_VERSION != "v14":
     st.warning(f"IDS_MODEL_VERSION khong hop le: {MODEL_VERSION}. Fallback ve v14.")
     MODEL_VERSION = "v14"
 

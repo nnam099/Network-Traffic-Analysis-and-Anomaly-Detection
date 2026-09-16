@@ -3,7 +3,9 @@
 from ids.config import CFG, get_config, resolve_paths, seed_everything
 from ids.dataset import (
     KNOWN_ATTACK_CATS, ZERO_DAY_ATTACK_CATS, UNSW_RAW_COLUMNS, SKIP_FILES,
-    FlowDS, _find_unsw_csvs, load_unsw_csvs, normalize_labels,
+    FlowDS, _find_unsw_csvs, load_unsw_csvs, load_official_unsw_splits,
+    normalize_labels, validate_declared_classes, feature_fingerprints,
+    prepare_official_splits, assert_training_isolation,
     _encode_categorical_features, _get_numeric_features, engineer_features,
     clean_df, prepare_splits, make_loaders,
 )
@@ -11,7 +13,7 @@ from ids.models import ResBlock, IDSBackbone, ProjectionHead, AutoEncoder, IDSMo
 from ids.losses import FocalLoss, SupConLoss, IDSLoss
 from ids.trainer import (
     train_epoch, eval_epoch, _collect_loader_predictions, _format_class_name,
-    log_top_confusions, Trainer, train,
+    log_top_confusions, normal_class_index, Trainer, train,
 )
 from ids.threshold import AdaptiveThreshold, static_threshold
 from ids.evaluator import (
