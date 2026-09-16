@@ -2,7 +2,10 @@ from __future__ import annotations
 
 import os
 
-import streamlit as st
+try:
+    import streamlit as st
+except ModuleNotFoundError:
+    st = None
 
 
 def render_setup_status(

@@ -2,7 +2,10 @@ from __future__ import annotations
 
 from typing import Any
 
-import streamlit as st
+try:
+    import streamlit as st
+except ModuleNotFoundError:
+    st = None
 
 
 SAFETY_COPY = (
@@ -12,6 +15,8 @@ SAFETY_COPY = (
 
 
 def render_safety_notice(level: str = "info") -> None:
+    if st is None:
+        raise RuntimeError("streamlit is required to render the dashboard safety notice")
     if level == "warning":
         st.warning(SAFETY_COPY)
     else:

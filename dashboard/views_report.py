@@ -3,7 +3,10 @@ from __future__ import annotations
 import json
 from typing import Any
 
-import streamlit as st
+try:
+    import streamlit as st
+except ModuleNotFoundError:
+    st = None
 
 from ui_safety import attach_report_safety_note
 

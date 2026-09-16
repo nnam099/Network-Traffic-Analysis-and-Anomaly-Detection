@@ -4,7 +4,10 @@ from collections.abc import Callable
 
 import numpy as np
 import pandas as pd
-import streamlit as st
+try:
+    import streamlit as st
+except ModuleNotFoundError:
+    st = None
 
 from dashboard_runtime import (
     build_time_window_incidents,

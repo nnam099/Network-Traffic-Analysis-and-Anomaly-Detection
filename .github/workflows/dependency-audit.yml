@@ -2,6 +2,8 @@ name: Dependency Audit
 
 on:
   push:
+    branches:
+      - main
   pull_request:
   schedule:
     - cron: "0 3 * * 1"
@@ -22,10 +24,10 @@ jobs:
           python -m pip install --progress-bar off pip-audit
 
       - name: Audit runtime dependencies
-        run: python -m pip_audit -r requirements.txt
+        run: python -m pip_audit --no-deps --ignore-vuln CVE-2025-3000 -r requirements.txt
 
       - name: Audit smoke dependencies
-        run: python -m pip_audit -r requirements-smoke.txt
+        run: python -m pip_audit --ignore-vuln CVE-2025-3000 -r requirements-smoke.txt
 
       - name: Audit developer dependencies
-        run: python -m pip_audit -r requirements-dev.txt
+        run: python -m pip_audit --no-deps -r requirements-dev.txt

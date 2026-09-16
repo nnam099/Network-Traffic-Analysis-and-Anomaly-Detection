@@ -1,7 +1,10 @@
 from __future__ import annotations
 
 import pandas as pd
-import streamlit as st
+try:
+    import streamlit as st
+except ModuleNotFoundError:
+    st = None
 
 from ui_safety import render_safety_notice
 
