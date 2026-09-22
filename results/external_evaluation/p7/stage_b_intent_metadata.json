@@ -1,0 +1,15 @@
+{
+  "artifact_type": "P7_STAGE_B_EXECUTION_INTENT_METADATA",
+  "created_at_utc": "2026-09-22T07:29:36Z",
+  "expected_official_test_source_hash": "734fe6642edf758f7c94d7d9149426b49d202fe8e7bf0bef47392489c3c0a559",
+  "git_commit": "081b9fc0fdb64c3bc330a55f3cc93985155802e5",
+  "git_tree_status": "clean",
+  "official_test_accessed": false,
+  "official_test_hash_source_artifact": "results/data_quality/p3/official_test_external_audit.json",
+  "official_test_hash_source_artifact_sha256": "38833343810d182f33e479080355f9bd101d69f81a46a8072e0f616bbd6c0947",
+  "official_test_hash_source_field": "source_dataset_hashes.official_test_sha256",
+  "p7_protocol_hash": "d8d88c95a3ca238b5295b29da7bffd9aa12781be575d2e4d38f6f7469933a244",
+  "repository_revision": "081b9fc0fdb64c3bc330a55f3cc93985155802e5",
+  "scientific_protocol_unchanged": true,
+  "stage_b_evaluator_source_hash": "695cc0be6d2bf173c89b44948a3e7875b0ffa058deaa0ac7898c133568172a4a"
+}
