@@ -1,0 +1,65 @@
+{
+  "version": "structured-scientific-model-input-v1",
+  "p3_collection_sha256": "1443746a4f024b3d7c1569ba9bbd31987933b5f9e2fb0ce6507ba5e57ddbab21",
+  "schema_version": "scientific-feature-schema-v2",
+  "components": [
+    {
+      "name": "continuous",
+      "shape": [
+        "batch",
+        58
+      ],
+      "source_dtype": "numpy.float64",
+      "model_dtype": "torch.float64"
+    },
+    {
+      "name": "proto",
+      "shape": [
+        "batch"
+      ],
+      "model_dtype": "torch.int64"
+    },
+    {
+      "name": "service",
+      "shape": [
+        "batch"
+      ],
+      "model_dtype": "torch.int64"
+    },
+    {
+      "name": "state",
+      "shape": [
+        "batch"
+      ],
+      "model_dtype": "torch.int64"
+    }
+  ],
+  "continuous_contract": {
+    "preprocessing": "P3 frozen fold-local RobustScaler; no clipping",
+    "source": "post-P3-audit scaled NumPy float64",
+    "framework_boundary": "copy to torch.float64 without numerical conversion",
+    "float64_to_float32": "PROHIBITED in P4 baseline; requires a newly versioned collision audit",
+    "nan_inf": "fail closed",
+    "continuous_feature_count": 58
+  },
+  "categorical_contract": {
+    "fields": [
+      "proto",
+      "service",
+      "state"
+    ],
+    "separate_embedding_tables": true,
+    "pad_index": 0,
+    "pad_use": "reserved; not emitted for tabular rows",
+    "oov_index": 1,
+    "known_indices": "contiguous from 2",
+    "unseen_behavior": "one dedicated OOV embedding per feature",
+    "modulo_hashing": false,
+    "python_hash": false,
+    "test_vocabulary_expansion": false,
+    "identity_caveat": "Distinct unseen tokens intentionally share a model OOV representation, but remain distinct in canonical/audit metadata."
+  },
+  "audit_metadata": "never passed into neural tensors",
+  "generic_flat_tensor_accepted": false,
+  "training_performed": false
+}

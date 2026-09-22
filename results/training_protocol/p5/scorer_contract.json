@@ -1,0 +1,30 @@
+{
+  "candidates": [
+    {
+      "caveat": "head confidence is not a validated zero-day detector",
+      "fit_role": null,
+      "id": "negative_max_softmax",
+      "requires": "temporary known-family head",
+      "score": "1 - max softmax(logits)"
+    },
+    {
+      "centroid_policy": "one float64 mean per known family, sorted class order",
+      "fit_role": "train",
+      "id": "nearest_centroid_l2",
+      "requires": "frozen 32-D representation",
+      "score": "minimum Euclidean distance to known-family means"
+    }
+  ],
+  "model_or_architecture_selection": "not authorized in initial P5",
+  "selected_family": null,
+  "selection_executed_in_initial_p5": false,
+  "selection_metric": "development AUROC: surrogate_ood positive, meta_known negative",
+  "selection_roles": [
+    "meta_known",
+    "surrogate_ood"
+  ],
+  "selection_tie_break": "nearest_centroid_l2 on exact tie",
+  "selection_time": "after checkpoint and scorer parameters freeze, before calibration",
+  "surrogate_composition": "all four non-target OOD families from frozen P3 manifest; no resampling",
+  "version": "p5-scorer-candidates-v1"
+}

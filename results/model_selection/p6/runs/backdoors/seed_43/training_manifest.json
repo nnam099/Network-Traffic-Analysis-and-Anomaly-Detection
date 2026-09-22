@@ -1,0 +1,96 @@
+{
+  "checkpoint_reference_sha256": "4cfbf5385949100d34a223b360af103fe79ed831c37042259a31c40620316a95",
+  "checkpoint_state_sha256": "db97f91a7d2c0338d01ddf58d9b4a11b425b00a166fb4c86bb6fbfe59cabd75b",
+  "development_only": true,
+  "environment": {
+    "cuda_seed": null,
+    "cuda_version": "13.0",
+    "deterministic_algorithms": true,
+    "device": "cpu",
+    "hardware": "x86_64",
+    "numpy": "2.5.3",
+    "numpy_seed": null,
+    "platform": "Linux-7.0.13+parrot7-amd64-x86_64-with-glibc2.41",
+    "python": "3.13.5",
+    "python_seed": null,
+    "pytorch_seed": null,
+    "source_commit": "64945aee859f2d8b650cb14ec6ad60aba55c89d9",
+    "torch": "2.14.0+cu130"
+  },
+  "epoch_history": [
+    {
+      "development_val_cross_entropy": 0.21915725592764976,
+      "epoch": 1
+    },
+    {
+      "development_val_cross_entropy": 0.20300935833723635,
+      "epoch": 2
+    },
+    {
+      "development_val_cross_entropy": 0.19326946920447943,
+      "epoch": 3
+    },
+    {
+      "development_val_cross_entropy": 0.18991299615887883,
+      "epoch": 4
+    },
+    {
+      "development_val_cross_entropy": 0.18774008728948036,
+      "epoch": 5
+    },
+    {
+      "development_val_cross_entropy": 0.17706175951499498,
+      "epoch": 6
+    },
+    {
+      "development_val_cross_entropy": 0.1728996245741644,
+      "epoch": 7
+    },
+    {
+      "development_val_cross_entropy": 0.1762258310041951,
+      "epoch": 8
+    }
+  ],
+  "identity_counts": {
+    "calibration": 8286,
+    "meta_known": 8287,
+    "surrogate_ood": 16197,
+    "target_development_held_out": 403,
+    "train": 57807,
+    "val": 8288
+  },
+  "model_seed": 10043,
+  "official_test_access": false,
+  "optimizer_config": {
+    "batch_size": 512,
+    "class_weighting": "none",
+    "gradient_clip_norm": 1.0,
+    "learning_rate": 0.001,
+    "max_epochs": 8,
+    "min_delta": 0.0,
+    "optimizer": "AdamW",
+    "patience": 2,
+    "scheduler": "none",
+    "weight_decay": 0.01
+  },
+  "optimizer_steps": 1384,
+  "p3_manifest_sha256": "a894bcb16a52b14742d44daf53de935ae4ac82f95b0581ef84d25f0e7fd40f29",
+  "p4_model_config_sha256": "dc1711d3a0edc8d24c9907998d224171086de5fcda938c44286bfac77232cd51",
+  "p5_source_hash": "965fc36ed9e8a2e262cb4e555805c9b05e91f2e4b3a66564c012d514ee9a7952",
+  "p5_training_config_sha256": "d2760152bce8b91e1bc166e13a9908be5c291332b00201c7c45b19bc1a92a5b5",
+  "p6_source_hash": "0a74854d8ecf5a4dd692e438ddfe6fd8ba5981020f49ad04192257ae0e3a71af",
+  "role_counts": {
+    "calibration": 12649,
+    "meta_known": 12649,
+    "surrogate_ood": 17908,
+    "target_development_held_out": 406,
+    "train": 88551,
+    "val": 12650
+  },
+  "selected_epoch": 7,
+  "split_seed": 43,
+  "target": "Backdoors",
+  "true_target_access": false,
+  "validation_selection_value": 0.1728996245741644,
+  "version": "p6-frozen-p5-training-manifest-v1"
+}

@@ -1,0 +1,114 @@
+{
+  "version": "test-blind-scientific-data-protocol-v1",
+  "phase": "development frozen before official test open",
+  "official_test_consulted": false,
+  "source_dataset_hashes": {
+    "official_train_sha256": "bec7dd5ec88dc2a0ccc7a07879d338395ed7421750f675fd0339e07dfe0648fa"
+  },
+  "code_commit_sha": "64945aee859f2d8b650cb14ec6ad60aba55c89d9",
+  "code_source_sha256": {
+    "src/ids/dataset.py": "db692926c393db06cf687ce82e8bb1a24ac6a0b69a3e9cb39c813a552b058207",
+    "src/ids/target_isolation.py": "7414fefeed6f9425deaa7f8cb9b971dee5e25a33d05efdb22a782378542b8390",
+    "src/ids/preprocessing_p1.py": "280d39a4e637c4a01a912a3d367cf3d421391b6265b024b2d73954c6ced5be78",
+    "src/ids/collision_audit.py": "53f7ee39f0fdad3d9efb534937e4a0a4893642616ab94a72054adcd12cd70723",
+    "src/ids/p2_protocol.py": "ff2504b1edbd064022743ad8f54ad82e10a727ee245c0bd5015a5b95840a7919",
+    "src/ids/p3_protocol.py": "62885776875581ddf103f02acbd4e7aa32038364caebef747162ab76c1408aed",
+    "scripts/audit_p3_test_blind.py": "abd12abd0c9a2fb75fbcffc63669279db2b8ee31fbc67b09af70e9faefb8f73b"
+  },
+  "canonical_contract_version": "canonical-model-features-v1",
+  "schema_version": "scientific-feature-schema-v2",
+  "schema_sha256": "f3ecf12891e5b0d9b5e1fe38a22c23720a71eaf1d5a47b763911df363b3b36d7",
+  "train_ambiguity_report_sha256": "f64dba4eace33faca510df0a167e6bbea1753bd52a9c55da66725e8be471f13a",
+  "cells": [
+    {
+      "target": "Fuzzers",
+      "seed": 42,
+      "manifest_filename": "manifests/fuzzers_seed42.json.gz",
+      "manifest_sha256": "9606db75e0efd7e82312678864f34653838c338f97c8f299da3c71f6b2e4be2a"
+    },
+    {
+      "target": "Fuzzers",
+      "seed": 43,
+      "manifest_filename": "manifests/fuzzers_seed43.json.gz",
+      "manifest_sha256": "89c9dc3eb0ab8bd3162c259622e51a601466cc7a68de70ce5a46f798c4ba1bd7"
+    },
+    {
+      "target": "Fuzzers",
+      "seed": 44,
+      "manifest_filename": "manifests/fuzzers_seed44.json.gz",
+      "manifest_sha256": "a9684e92b8f26d81dc932705951f5264496f7254b29e74fb2097ecdf801258fb"
+    },
+    {
+      "target": "Analysis",
+      "seed": 42,
+      "manifest_filename": "manifests/analysis_seed42.json.gz",
+      "manifest_sha256": "1b2c6401d2e2dc8814a1cb0ca5815d86de0f78436ac7525b0cc2c02dbd4935fc"
+    },
+    {
+      "target": "Analysis",
+      "seed": 43,
+      "manifest_filename": "manifests/analysis_seed43.json.gz",
+      "manifest_sha256": "dabe2182439cf6ef57676afbdc63a7a073a466621b51e4537f1b3544e57639cb"
+    },
+    {
+      "target": "Analysis",
+      "seed": 44,
+      "manifest_filename": "manifests/analysis_seed44.json.gz",
+      "manifest_sha256": "55d2f26ffe78ae0c63a335235c4a5e2ac6c844327a90fef209a730106dc3c3d6"
+    },
+    {
+      "target": "Backdoors",
+      "seed": 42,
+      "manifest_filename": "manifests/backdoors_seed42.json.gz",
+      "manifest_sha256": "a5102cacd57d1299d6ce6b8fd85fa25dd525fd4be22c1f4132336c751c3fe06a"
+    },
+    {
+      "target": "Backdoors",
+      "seed": 43,
+      "manifest_filename": "manifests/backdoors_seed43.json.gz",
+      "manifest_sha256": "a894bcb16a52b14742d44daf53de935ae4ac82f95b0581ef84d25f0e7fd40f29"
+    },
+    {
+      "target": "Backdoors",
+      "seed": 44,
+      "manifest_filename": "manifests/backdoors_seed44.json.gz",
+      "manifest_sha256": "6a0e15ce8a9cbad1c6aaee787ac31c250103c91e27dc8ed5e8191caff3631b41"
+    },
+    {
+      "target": "Shellcode",
+      "seed": 42,
+      "manifest_filename": "manifests/shellcode_seed42.json.gz",
+      "manifest_sha256": "3d3c1dd0232bc7db96d048016b0a06b403ac4dd7353bb1c053407a86eaa4a851"
+    },
+    {
+      "target": "Shellcode",
+      "seed": 43,
+      "manifest_filename": "manifests/shellcode_seed43.json.gz",
+      "manifest_sha256": "41039f85ca4877cbaa3c90dd70f91f939dcc2de80ee9274f6864475940f9d08c"
+    },
+    {
+      "target": "Shellcode",
+      "seed": 44,
+      "manifest_filename": "manifests/shellcode_seed44.json.gz",
+      "manifest_sha256": "1d0d60756892a247a8dd8097bc9e3ee8ffa2e92a418edfa9cf6f989397df20f1"
+    },
+    {
+      "target": "Worms",
+      "seed": 42,
+      "manifest_filename": "manifests/worms_seed42.json.gz",
+      "manifest_sha256": "04b2b1e86dcd43ecb93c19981f522b097d9f6591227e514e21d2a615a92f74cd"
+    },
+    {
+      "target": "Worms",
+      "seed": 43,
+      "manifest_filename": "manifests/worms_seed43.json.gz",
+      "manifest_sha256": "dc05fd316a89583cc4109759a9e8796745b6bf9712930662b2ed4706259a10dc"
+    },
+    {
+      "target": "Worms",
+      "seed": 44,
+      "manifest_filename": "manifests/worms_seed44.json.gz",
+      "manifest_sha256": "19047256d426fcb3c39af55757a9db8019aa42d31b67a78734638f98929c67f2"
+    }
+  ]
+}

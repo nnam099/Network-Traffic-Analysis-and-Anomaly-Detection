@@ -1,0 +1,11 @@
+{
+  "external_scores_computed": false,
+  "official_test_loaded": false,
+  "protocol_sha256": "d8d88c95a3ca238b5295b29da7bffd9aa12781be575d2e4d38f6f7469933a244",
+  "source_code_sha256": "89b4ff7ff9cb96b380d06bf2400eb473405112dc3e93c7c4cb2b54dcf345dac9",
+  "stage_b_executed": false,
+  "status": "P7_PREREGISTERED",
+  "synthetic_test_command": "python -m pytest -q -p no:cacheprovider tests/test_p7_external_protocol.py",
+  "synthetic_tests_passed": true,
+  "upstream_aggregate_sha256": "b78aabd4cc656556120564f2f63bee5971326cbcb0f3f0a0cd204d9be039d6e1"
+}

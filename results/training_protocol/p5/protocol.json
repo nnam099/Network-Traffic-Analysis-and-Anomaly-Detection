@@ -1,0 +1,31 @@
+{
+  "failure_criteria": [
+    "P3/P4 hash mismatch",
+    "role or identity overlap",
+    "non-train source",
+    "target/surrogate in fit",
+    "float32 or nonfinite tensor",
+    "non-deterministic rerun beyond 1e-12",
+    "official-test access",
+    "checkpoint provenance mismatch"
+  ],
+  "first_objective": "known_family_cross_entropy",
+  "future_model_selection": "checkpoint by val loss; scorer by meta_known versus fixed surrogate; threshold by calibration known-only; official test later only",
+  "objective_comparison": {
+    "continuous_reconstruction": "deferred: presupposes reconstruction error as anomaly signal",
+    "metric_representation": "deferred: deterministic pair mining and extra choices not yet justified",
+    "supervised_known_family": "selected: one CE loss, temporary head, auditable labels; no OOD claim"
+  },
+  "official_test_access": false,
+  "p3_collection_sha256": "1443746a4f024b3d7c1569ba9bbd31987933b5f9e2fb0ce6507ba5e57ddbab21",
+  "p4_required_status": "MODEL_INTERFACE_PASS",
+  "stage_a_status": "P5_PROTOCOL_PASS only after all 15 dry runs",
+  "stage_c_status": "P5_SMOKE_PASS only after reproducibility verification",
+  "stages": [
+    "A: 15 dry runs, no optimizer",
+    "B: one Fuzzers/42/10042 smoke run",
+    "C: identical Fuzzers/42/10042 rerun and parameter comparison"
+  ],
+  "test_effectiveness_claim": false,
+  "version": "p5-development-training-protocol-v1"
+}

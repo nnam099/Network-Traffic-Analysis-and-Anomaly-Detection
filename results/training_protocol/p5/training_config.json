@@ -1,0 +1,37 @@
+{
+  "amp": false,
+  "backbone": "p4-structured-mlp-embedding-representation-v1",
+  "batch_size": 512,
+  "class_order": [
+    "Normal",
+    "DoS",
+    "Exploits",
+    "Reconnaissance",
+    "Generic"
+  ],
+  "class_weighting": "none",
+  "dataloader": "single_process_numpy_PCG64_epoch_permutation",
+  "deterministic_algorithms": true,
+  "device": "cpu",
+  "dtype": "torch.float64",
+  "early_stopping_metric": "sample_mean_val_cross_entropy",
+  "gradient_clip_norm": 1.0,
+  "initialization": "pytorch_default_after_model_seed",
+  "learning_rate": 0.001,
+  "max_epochs": 8,
+  "min_delta": 0.0,
+  "model_seed_rule": "10000 + split_seed",
+  "objective": "known_family_cross_entropy",
+  "optimizer": "AdamW",
+  "patience": 2,
+  "scheduler": "none",
+  "smoke_cell": {
+    "model_seed": 10042,
+    "split_seed": 42,
+    "target": "Fuzzers"
+  },
+  "temporary_head": "linear_32_to_5_float64",
+  "tie_break": "lowest_epoch_exact_tie",
+  "version": "p5-known-family-ce-v1",
+  "weight_decay": 0.01
+}

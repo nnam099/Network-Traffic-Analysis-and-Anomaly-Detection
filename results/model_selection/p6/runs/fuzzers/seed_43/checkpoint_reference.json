@@ -1,0 +1,13 @@
+{
+  "checkpoint_file_sha256": "8a0a5edc4900b6c41667190640fe89a2c92338ac2e2e765b3bb5556d36e1fbc0",
+  "checkpoint_state_sha256": "db97f91a7d2c0338d01ddf58d9b4a11b425b00a166fb4c86bb6fbfe59cabd75b",
+  "model_seed": 10043,
+  "p3_manifest_sha256": "89c9dc3eb0ab8bd3162c259622e51a601466cc7a68de70ce5a46f798c4ba1bd7",
+  "p4_model_config_sha256": "f99d5584539642b64cbebc48a72815af9c40f7bd2f987203b931c82c77ef5d08",
+  "p5_training_config_sha256": "d2760152bce8b91e1bc166e13a9908be5c291332b00201c7c45b19bc1a92a5b5",
+  "p6_source_hash": "0a74854d8ecf5a4dd692e438ddfe6fd8ba5981020f49ad04192257ae0e3a71af",
+  "path": "results/model_selection/p6/runs/fuzzers/seed_43/checkpoint.pt",
+  "split_seed": 43,
+  "target": "Fuzzers",
+  "version": "p6-checkpoint-reference-v1"
+}

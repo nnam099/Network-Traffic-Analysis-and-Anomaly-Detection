@@ -1,0 +1,219 @@
+{
+  "version": "post-freeze-official-test-exclusive-categories-v1",
+  "precedence": [
+    "TRAIN-CONFLICT-RELATED",
+    "TEST-INTERNAL-AMBIGUOUS",
+    "DEVELOPMENT-OVERLAP",
+    "CLEAN"
+  ],
+  "all_original_test_rows": 82332,
+  "category_rows": {
+    "CLEAN": 69315,
+    "DEVELOPMENT-OVERLAP": 3875,
+    "TEST-INTERNAL-AMBIGUOUS": 6482,
+    "TRAIN-CONFLICT-RELATED": 2660
+  },
+  "category_unique_identities": {
+    "CLEAN": 52283,
+    "DEVELOPMENT-OVERLAP": 953,
+    "TEST-INTERNAL-AMBIGUOUS": 474,
+    "TRAIN-CONFLICT-RELATED": 236
+  },
+  "test_internal_ambiguous_groups": 575,
+  "per_family": {
+    "Normal": {
+      "CLEAN": {
+        "rows": 35524,
+        "unique_canonical_identities": 33662
+      },
+      "DEVELOPMENT-OVERLAP": {
+        "rows": 1244,
+        "unique_canonical_identities": 444
+      },
+      "TEST-INTERNAL-AMBIGUOUS": {
+        "rows": 8,
+        "unique_canonical_identities": 6
+      },
+      "TRAIN-CONFLICT-RELATED": {
+        "rows": 224,
+        "unique_canonical_identities": 94
+      }
+    },
+    "DoS": {
+      "CLEAN": {
+        "rows": 1170,
+        "unique_canonical_identities": 1149
+      },
+      "DEVELOPMENT-OVERLAP": {
+        "rows": 11,
+        "unique_canonical_identities": 11
+      },
+      "TEST-INTERNAL-AMBIGUOUS": {
+        "rows": 1804,
+        "unique_canonical_identities": 443
+      },
+      "TRAIN-CONFLICT-RELATED": {
+        "rows": 1104,
+        "unique_canonical_identities": 115
+      }
+    },
+    "Exploits": {
+      "CLEAN": {
+        "rows": 7931,
+        "unique_canonical_identities": 7041
+      },
+      "DEVELOPMENT-OVERLAP": {
+        "rows": 11,
+        "unique_canonical_identities": 10
+      },
+      "TEST-INTERNAL-AMBIGUOUS": {
+        "rows": 2176,
+        "unique_canonical_identities": 460
+      },
+      "TRAIN-CONFLICT-RELATED": {
+        "rows": 1014,
+        "unique_canonical_identities": 98
+      }
+    },
+    "Reconnaissance": {
+      "CLEAN": {
+        "rows": 2268,
+        "unique_canonical_identities": 2213
+      },
+      "DEVELOPMENT-OVERLAP": {
+        "rows": 879,
+        "unique_canonical_identities": 217
+      },
+      "TEST-INTERNAL-AMBIGUOUS": {
+        "rows": 201,
+        "unique_canonical_identities": 174
+      },
+      "TRAIN-CONFLICT-RELATED": {
+        "rows": 148,
+        "unique_canonical_identities": 99
+      }
+    },
+    "Generic": {
+      "CLEAN": {
+        "rows": 17123,
+        "unique_canonical_identities": 3379
+      },
+      "DEVELOPMENT-OVERLAP": {
+        "rows": 1695,
+        "unique_canonical_identities": 239
+      },
+      "TEST-INTERNAL-AMBIGUOUS": {
+        "rows": 27,
+        "unique_canonical_identities": 15
+      },
+      "TRAIN-CONFLICT-RELATED": {
+        "rows": 26,
+        "unique_canonical_identities": 24
+      }
+    },
+    "Fuzzers": {
+      "CLEAN": {
+        "rows": 4777,
+        "unique_canonical_identities": 4317
+      },
+      "DEVELOPMENT-OVERLAP": {
+        "rows": 23,
+        "unique_canonical_identities": 20
+      },
+      "TEST-INTERNAL-AMBIGUOUS": {
+        "rows": 1137,
+        "unique_canonical_identities": 420
+      },
+      "TRAIN-CONFLICT-RELATED": {
+        "rows": 125,
+        "unique_canonical_identities": 81
+      }
+    },
+    "Analysis": {
+      "CLEAN": {
+        "rows": 58,
+        "unique_canonical_identities": 58
+      },
+      "DEVELOPMENT-OVERLAP": {
+        "rows": 0,
+        "unique_canonical_identities": 0
+      },
+      "TEST-INTERNAL-AMBIGUOUS": {
+        "rows": 605,
+        "unique_canonical_identities": 380
+      },
+      "TRAIN-CONFLICT-RELATED": {
+        "rows": 14,
+        "unique_canonical_identities": 8
+      }
+    },
+    "Backdoors": {
+      "CLEAN": {
+        "rows": 57,
+        "unique_canonical_identities": 57
+      },
+      "DEVELOPMENT-OVERLAP": {
+        "rows": 0,
+        "unique_canonical_identities": 0
+      },
+      "TEST-INTERNAL-AMBIGUOUS": {
+        "rows": 522,
+        "unique_canonical_identities": 288
+      },
+      "TRAIN-CONFLICT-RELATED": {
+        "rows": 4,
+        "unique_canonical_identities": 1
+      }
+    },
+    "Shellcode": {
+      "CLEAN": {
+        "rows": 364,
+        "unique_canonical_identities": 364
+      },
+      "DEVELOPMENT-OVERLAP": {
+        "rows": 12,
+        "unique_canonical_identities": 12
+      },
+      "TEST-INTERNAL-AMBIGUOUS": {
+        "rows": 1,
+        "unique_canonical_identities": 1
+      },
+      "TRAIN-CONFLICT-RELATED": {
+        "rows": 1,
+        "unique_canonical_identities": 1
+      }
+    },
+    "Worms": {
+      "CLEAN": {
+        "rows": 43,
+        "unique_canonical_identities": 43
+      },
+      "DEVELOPMENT-OVERLAP": {
+        "rows": 0,
+        "unique_canonical_identities": 0
+      },
+      "TEST-INTERNAL-AMBIGUOUS": {
+        "rows": 1,
+        "unique_canonical_identities": 1
+      },
+      "TRAIN-CONFLICT-RELATED": {
+        "rows": 0,
+        "unique_canonical_identities": 0
+      }
+    }
+  },
+  "overlapping_condition_counts": {
+    "train_conflict_and_test_internal_ambiguous": 2327,
+    "development_overlap_and_test_internal_ambiguous": 2006
+  },
+  "source_dataset_hashes": {
+    "official_test_sha256": "734fe6642edf758f7c94d7d9149426b49d202fe8e7bf0bef47392489c3c0a559"
+  },
+  "development_freeze_sha256": "1443746a4f024b3d7c1569ba9bbd31987933b5f9e2fb0ce6507ba5e57ddbab21",
+  "primary_evaluation_surface": "official-test-clean",
+  "diagnostic_surfaces": [
+    "official-test-development-overlap",
+    "official-test-internal-ambiguous",
+    "official-test-train-conflict-related"
+  ]
+}

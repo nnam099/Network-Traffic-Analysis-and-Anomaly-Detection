@@ -1,0 +1,107 @@
+{
+  "checkpoint_path": "results/training_protocol/p5/checkpoints/p5-fuzzers-s42-m10042-smoke-a.pt",
+  "checkpoint_sha256": "e1a27f9ac7e2e0fefe334be148245dd5b9d7bee9efa2e898b13a741d3718ff6c",
+  "checkpoint_state_sha256": "ddeafc584ec0b6700cd51d31b8df8d079798cf0bc2209eea9cfcd2ca06470b40",
+  "development_metrics": {
+    "val_cross_entropy": 0.17087050841069767
+  },
+  "environment": {
+    "cuda_seed": 10042,
+    "cuda_version": "13.0",
+    "deterministic_algorithms": true,
+    "device": "cpu",
+    "hardware": "x86_64",
+    "numpy": "2.5.3",
+    "numpy_seed": 10042,
+    "platform": "Linux-7.0.13+parrot7-amd64-x86_64-with-glibc2.41",
+    "python": "3.13.5",
+    "python_seed": 10042,
+    "pytorch_seed": 10042,
+    "source_commit": "64945aee859f2d8b650cb14ec6ad60aba55c89d9",
+    "torch": "2.14.0+cu130"
+  },
+  "epoch_history": [
+    {
+      "development_val_cross_entropy": 0.22815354295153084,
+      "epoch": 1
+    },
+    {
+      "development_val_cross_entropy": 0.21059529402759042,
+      "epoch": 2
+    },
+    {
+      "development_val_cross_entropy": 0.21146140682711043,
+      "epoch": 3
+    },
+    {
+      "development_val_cross_entropy": 0.19902827528392972,
+      "epoch": 4
+    },
+    {
+      "development_val_cross_entropy": 0.18620831286141734,
+      "epoch": 5
+    },
+    {
+      "development_val_cross_entropy": 0.18774563013476303,
+      "epoch": 6
+    },
+    {
+      "development_val_cross_entropy": 0.17655502851964067,
+      "epoch": 7
+    },
+    {
+      "development_val_cross_entropy": 0.17087050841069767,
+      "epoch": 8
+    }
+  ],
+  "identity_counts": {
+    "calibration": 8285,
+    "meta_known": 8287,
+    "surrogate_ood": 1998,
+    "target_development_held_out": 14602,
+    "train": 57808,
+    "val": 8288
+  },
+  "model_seed": 10042,
+  "official_test_access": false,
+  "optimizer_config": {
+    "batch_size": 512,
+    "gradient_clip_norm": 1.0,
+    "learning_rate": 0.001,
+    "max_epochs": 8,
+    "optimizer": "AdamW",
+    "weight_decay": 0.01
+  },
+  "optimizer_steps": 1384,
+  "p3_manifest_sha256": "9606db75e0efd7e82312678864f34653838c338f97c8f299da3c71f6b2e4be2a",
+  "p4_model_config_sha256": "1529f434ad53f2a0e2e21f8d497d1bae57d6a5d123c7a2e4ebe5faa34807c343",
+  "role_counts": {
+    "calibration": 12649,
+    "meta_known": 12649,
+    "surrogate_ood": 2208,
+    "target_development_held_out": 16106,
+    "train": 88551,
+    "val": 12650
+  },
+  "run_id": "p5-fuzzers-s42-m10042-smoke-a",
+  "scaler_sha256": "9a4c4f683245ce234a02d8a031868a4a5f974e4763ef3294ac0e77c9ffd538c8",
+  "scientific_effectiveness_claim": false,
+  "selected_epoch": 8,
+  "selection_rule": "minimum development val cross entropy; exact tie -> earliest epoch",
+  "source_hash": "965fc36ed9e8a2e262cb4e555805c9b05e91f2e4b3a66564c012d514ee9a7952",
+  "source_hashes": {
+    "scripts/train_p5_development.py": "a579de93e1d7d041b72f8edc3976697beea0dfd6113e5d46790858800af53769",
+    "src/ids/p4_model_interface.py": "7b954bff83cad4c32a9a99ab1ca0b8c15cc8135d538521119a9e181415eaa33b",
+    "src/ids/p5_training.py": "cc137f041edb66e6df9a4323fae9608ed602dd2ede2d44defbbb36679cf2d805"
+  },
+  "split_seed": 42,
+  "target": "Fuzzers",
+  "training_config_sha256": "d2760152bce8b91e1bc166e13a9908be5c291332b00201c7c45b19bc1a92a5b5",
+  "validation_selection_value": 0.17087050841069767,
+  "version": "p5-smoke-run-v1",
+  "vocabulary_sha256": {
+    "proto": "e13b947ee69e88dbf5c3a993bd00398a20bd6a57a2659d916a370c9573505f1f",
+    "service": "259a52d4aa6a52b64b19ce84b22799574b1f56f75908c6cfa18a8abb051990c9",
+    "state": "817feb2caf76023382ba107e48aa2211e7043a74ceae99ddc203444840689165"
+  }
+}

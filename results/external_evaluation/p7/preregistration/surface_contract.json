@@ -1,0 +1,31 @@
+{
+  "diagnostic_only": {
+    "DEVELOPMENT-OVERLAP": "CONTAMINATED DIAGNOSTIC — NOT EXTERNAL",
+    "TEST-INTERNAL-AMBIGUOUS": "AMBIGUOUS-LABEL DIAGNOSTIC; descriptive scores only",
+    "TRAIN-CONFLICT-RELATED": "TRAIN-CONFLICT DIAGNOSTIC"
+  },
+  "diagnostic_order": [
+    "DEVELOPMENT-OVERLAP",
+    "TEST-INTERNAL-AMBIGUOUS",
+    "TRAIN-CONFLICT-RELATED"
+  ],
+  "diagnostics_allowed_only_after_primary_hash_freeze": true,
+  "merge_diagnostics_into_primary": false,
+  "primary": "CLEAN",
+  "primary_presentation_name": "official-test-clean",
+  "small_n_interpretation": "Uncertainty summaries are not proof of statistical power or broad population representativeness.",
+  "small_n_label": "SMALL-N EXTERNAL TARGET",
+  "small_n_support_from_prior_audit": {
+    "Analysis": 58,
+    "Backdoors": 57,
+    "Fuzzers": 4317,
+    "Shellcode": 364,
+    "Worms": 43
+  },
+  "small_n_targets": [
+    "Analysis",
+    "Backdoors",
+    "Worms"
+  ],
+  "version": "p7-test-surfaces-v1"
+}

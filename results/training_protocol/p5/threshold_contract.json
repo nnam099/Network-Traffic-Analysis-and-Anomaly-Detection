@@ -1,0 +1,18 @@
+{
+  "calibration_design_selected_by_meta_or_test": false,
+  "fit_role": "calibration",
+  "fitted": false,
+  "interpretation": "target-independent known-only calibration; no guaranteed population FPR",
+  "known_only": true,
+  "numpy_method": "higher",
+  "prerequisites": [
+    "frozen checkpoint",
+    "frozen scorer family",
+    "frozen scorer parameters"
+  ],
+  "quantile": 0.99,
+  "rule": "anomaly score > 0.99 quantile of known calibration scores is flagged",
+  "surrogate_allowed": false,
+  "target_allowed": false,
+  "version": "p5-known-only-quantile-v1"
+}

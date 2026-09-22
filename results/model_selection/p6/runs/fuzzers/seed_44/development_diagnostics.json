@@ -1,0 +1,62 @@
+{
+  "label": "DEVELOPMENT_DIAGNOSTIC_ONLY",
+  "roles": {
+    "calibration": {
+      "identity_alert_fraction": 0.014965001206854936,
+      "identity_count": 8286,
+      "identity_score_summary": {
+        "count": 8286,
+        "max": 0.6888333561316837,
+        "mean": 0.09130179041982105,
+        "min": 1.8455300861752733e-05
+      },
+      "row_alert_fraction": 0.00996126175982291,
+      "row_count": 12649,
+      "row_score_summary": {
+        "count": 12649,
+        "max": 0.6888333561316837,
+        "mean": 0.061685774280948076,
+        "min": 1.8455300861752733e-05
+      }
+    },
+    "meta_known": {
+      "identity_alert_fraction": 0.01641124653071075,
+      "identity_count": 8287,
+      "identity_score_summary": {
+        "count": 8287,
+        "max": 0.7215478317746408,
+        "mean": 0.09100703117914867,
+        "min": 1.8217361446692948e-05
+      },
+      "row_alert_fraction": 0.010909953355996522,
+      "row_count": 12649,
+      "row_score_summary": {
+        "count": 12649,
+        "max": 0.7215478317746408,
+        "mean": 0.061297304988885366,
+        "min": 1.8217361446692948e-05
+      }
+    },
+    "surrogate_ood": {
+      "identity_alert_fraction": 0.16016016016016016,
+      "identity_count": 1998,
+      "identity_score_summary": {
+        "count": 1998,
+        "max": 0.69869439703079,
+        "mean": 0.3206268629247643,
+        "min": 0.0010599523592861315
+      },
+      "row_alert_fraction": 0.14990942028985507,
+      "row_count": 2208,
+      "row_score_summary": {
+        "count": 2208,
+        "max": 0.69869439703079,
+        "mean": 0.30963632829195137,
+        "min": 0.0010599523592861315
+      }
+    }
+  },
+  "selected_scorer": "negative_max_softmax",
+  "threshold": 0.540855742832999,
+  "used_for_fitting_or_selection": false
+}

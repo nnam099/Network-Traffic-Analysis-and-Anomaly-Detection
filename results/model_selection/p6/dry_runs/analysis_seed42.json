@@ -1,0 +1,89 @@
+{
+  "model_seed": 10042,
+  "official_test_access": false,
+  "optimizer_created": false,
+  "p3_manifest_sha256": "1b2c6401d2e2dc8814a1cb0ca5815d86de0f78436ac7525b0cc2c02dbd4935fc",
+  "p4_model_config_sha256": "4d24b6e83cd93455493fad0891590e58c8e39e4afadb36bcd54704620dd08a6e",
+  "p5_source_hash": "965fc36ed9e8a2e262cb4e555805c9b05e91f2e4b3a66564c012d514ee9a7952",
+  "p5_training_config_sha256": "d2760152bce8b91e1bc166e13a9908be5c291332b00201c7c45b19bc1a92a5b5",
+  "p6_source_files": {
+    "scripts/run_p6_selection.py": "1e45fcd7948b6e24ba544b4263ab9036e1c85b1726a090a33c611782220b2a92",
+    "scripts/train_p5_development.py": "a579de93e1d7d041b72f8edc3976697beea0dfd6113e5d46790858800af53769",
+    "src/ids/p4_model_interface.py": "7b954bff83cad4c32a9a99ab1ca0b8c15cc8135d538521119a9e181415eaa33b",
+    "src/ids/p5_training.py": "cc137f041edb66e6df9a4323fae9608ed602dd2ede2d44defbbb36679cf2d805",
+    "src/ids/p6_selection.py": "af21e7bc38379da943b29bffbd70afbeca643a6740330cc7f6095303eed16eeb"
+  },
+  "p6_source_hash": "0a74854d8ecf5a4dd692e438ddfe6fd8ba5981020f49ad04192257ae0e3a71af",
+  "role_counts": {
+    "calibration": {
+      "canonical_identities": 8285,
+      "label_counts": {
+        "DoS": 252,
+        "Exploits": 2009,
+        "Generic": 3968,
+        "Normal": 5560,
+        "Reconnaissance": 860
+      },
+      "rows": 12649
+    },
+    "meta_known": {
+      "canonical_identities": 8287,
+      "label_counts": {
+        "DoS": 252,
+        "Exploits": 2009,
+        "Generic": 3968,
+        "Normal": 5560,
+        "Reconnaissance": 860
+      },
+      "rows": 12649
+    },
+    "surrogate_ood": {
+      "canonical_identities": 16207,
+      "label_counts": {
+        "Backdoors": 406,
+        "Fuzzers": 16106,
+        "Shellcode": 1126,
+        "Worms": 117
+      },
+      "rows": 17755
+    },
+    "target_development_held_out": {
+      "canonical_identities": 393,
+      "label_counts": {
+        "Analysis": 559
+      },
+      "rows": 559
+    },
+    "train": {
+      "canonical_identities": 57808,
+      "label_counts": {
+        "DoS": 1762,
+        "Exploits": 14067,
+        "Generic": 27777,
+        "Normal": 38923,
+        "Reconnaissance": 6022
+      },
+      "rows": 88551
+    },
+    "val": {
+      "canonical_identities": 8288,
+      "label_counts": {
+        "DoS": 252,
+        "Exploits": 2009,
+        "Generic": 3968,
+        "Normal": 5561,
+        "Reconnaissance": 860
+      },
+      "rows": 12650
+    }
+  },
+  "scorer_candidates": [
+    "negative_max_softmax",
+    "nearest_centroid_l2"
+  ],
+  "selection_unit": "canonical_identity_mean",
+  "split_seed": 42,
+  "status": "DRY_RUN_PASS",
+  "target": "Analysis",
+  "target_held_out_access": false
+}

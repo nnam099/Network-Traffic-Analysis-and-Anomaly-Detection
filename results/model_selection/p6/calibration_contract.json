@@ -1,0 +1,12 @@
+{
+  "decision": "score > threshold",
+  "fit_role": "calibration",
+  "interpretation": "known-only calibration operating point, not target-optimized; nominal 1% upper tail does not guarantee future 1% FPR",
+  "known_only": true,
+  "numpy_method": "higher",
+  "quantile": 0.99,
+  "score_equals_threshold": "known-side",
+  "surrogate_allowed": false,
+  "target_allowed": false,
+  "version": "p6-calibration-contract-v1"
+}

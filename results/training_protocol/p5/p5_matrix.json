@@ -1,0 +1,160 @@
+{
+  "cells": [
+    {
+      "model_seed": 10042,
+      "p3_manifest_sha256": "9606db75e0efd7e82312678864f34653838c338f97c8f299da3c71f6b2e4be2a",
+      "p4_model_config_sha256": "1529f434ad53f2a0e2e21f8d497d1bae57d6a5d123c7a2e4ebe5faa34807c343",
+      "split_seed": 42,
+      "status": "DRY_RUN_PASS",
+      "target": "Fuzzers"
+    },
+    {
+      "model_seed": 10043,
+      "p3_manifest_sha256": "89c9dc3eb0ab8bd3162c259622e51a601466cc7a68de70ce5a46f798c4ba1bd7",
+      "p4_model_config_sha256": "f99d5584539642b64cbebc48a72815af9c40f7bd2f987203b931c82c77ef5d08",
+      "split_seed": 43,
+      "status": "DRY_RUN_PASS",
+      "target": "Fuzzers"
+    },
+    {
+      "model_seed": 10044,
+      "p3_manifest_sha256": "a9684e92b8f26d81dc932705951f5264496f7254b29e74fb2097ecdf801258fb",
+      "p4_model_config_sha256": "72cc18364d49789b4483835ff311151f1db46459413adeeca1d90049fd10e770",
+      "split_seed": 44,
+      "status": "DRY_RUN_PASS",
+      "target": "Fuzzers"
+    },
+    {
+      "model_seed": 10042,
+      "p3_manifest_sha256": "1b2c6401d2e2dc8814a1cb0ca5815d86de0f78436ac7525b0cc2c02dbd4935fc",
+      "p4_model_config_sha256": "4d24b6e83cd93455493fad0891590e58c8e39e4afadb36bcd54704620dd08a6e",
+      "split_seed": 42,
+      "status": "DRY_RUN_PASS",
+      "target": "Analysis"
+    },
+    {
+      "model_seed": 10043,
+      "p3_manifest_sha256": "dabe2182439cf6ef57676afbdc63a7a073a466621b51e4537f1b3544e57639cb",
+      "p4_model_config_sha256": "a0b15da14081a105dd683e0869f8de96f7b9895fad9365cc8f2b1635b9ee5272",
+      "split_seed": 43,
+      "status": "DRY_RUN_PASS",
+      "target": "Analysis"
+    },
+    {
+      "model_seed": 10044,
+      "p3_manifest_sha256": "55d2f26ffe78ae0c63a335235c4a5e2ac6c844327a90fef209a730106dc3c3d6",
+      "p4_model_config_sha256": "020f0383ec9eb99e1eb9d9f2d3642b74154c8a3268511fe055b381c3b37db0d7",
+      "split_seed": 44,
+      "status": "DRY_RUN_PASS",
+      "target": "Analysis"
+    },
+    {
+      "model_seed": 10042,
+      "p3_manifest_sha256": "a5102cacd57d1299d6ce6b8fd85fa25dd525fd4be22c1f4132336c751c3fe06a",
+      "p4_model_config_sha256": "f47e0c3df52c0ae0a1957b01250579bae6ec2cec732705d42cebf0e8c67aa336",
+      "split_seed": 42,
+      "status": "DRY_RUN_PASS",
+      "target": "Backdoors"
+    },
+    {
+      "model_seed": 10043,
+      "p3_manifest_sha256": "a894bcb16a52b14742d44daf53de935ae4ac82f95b0581ef84d25f0e7fd40f29",
+      "p4_model_config_sha256": "dc1711d3a0edc8d24c9907998d224171086de5fcda938c44286bfac77232cd51",
+      "split_seed": 43,
+      "status": "DRY_RUN_PASS",
+      "target": "Backdoors"
+    },
+    {
+      "model_seed": 10044,
+      "p3_manifest_sha256": "6a0e15ce8a9cbad1c6aaee787ac31c250103c91e27dc8ed5e8191caff3631b41",
+      "p4_model_config_sha256": "b2bae421b43bfa18fdbf0380381e46df71d92cd1c41ff9b76676be1be802a89c",
+      "split_seed": 44,
+      "status": "DRY_RUN_PASS",
+      "target": "Backdoors"
+    },
+    {
+      "model_seed": 10042,
+      "p3_manifest_sha256": "3d3c1dd0232bc7db96d048016b0a06b403ac4dd7353bb1c053407a86eaa4a851",
+      "p4_model_config_sha256": "84f395c1f1aabf404b11f846342e3fdb1c8b26ebd1ea838b9ee2b2405f40e8c4",
+      "split_seed": 42,
+      "status": "DRY_RUN_PASS",
+      "target": "Shellcode"
+    },
+    {
+      "model_seed": 10043,
+      "p3_manifest_sha256": "41039f85ca4877cbaa3c90dd70f91f939dcc2de80ee9274f6864475940f9d08c",
+      "p4_model_config_sha256": "7a2536f1e1d484f9d33948a025c64b46a90e0812adfada79d1687961c1863f92",
+      "split_seed": 43,
+      "status": "DRY_RUN_PASS",
+      "target": "Shellcode"
+    },
+    {
+      "model_seed": 10044,
+      "p3_manifest_sha256": "1d0d60756892a247a8dd8097bc9e3ee8ffa2e92a418edfa9cf6f989397df20f1",
+      "p4_model_config_sha256": "98496f5bde0806dbbd543ab0d543638b2022abde9d593023d35725b2ce9fdd02",
+      "split_seed": 44,
+      "status": "DRY_RUN_PASS",
+      "target": "Shellcode"
+    },
+    {
+      "model_seed": 10042,
+      "p3_manifest_sha256": "04b2b1e86dcd43ecb93c19981f522b097d9f6591227e514e21d2a615a92f74cd",
+      "p4_model_config_sha256": "55d380c4e4aef9f98c8444d3e8ca8ae22cd09977560c2b42a3368a485cbdc6f6",
+      "split_seed": 42,
+      "status": "DRY_RUN_PASS",
+      "target": "Worms"
+    },
+    {
+      "model_seed": 10043,
+      "p3_manifest_sha256": "dc05fd316a89583cc4109759a9e8796745b6bf9712930662b2ed4706259a10dc",
+      "p4_model_config_sha256": "d324560691172de5977cbecf49c36aa0792c899d45ed52bad11746c3e1df4db0",
+      "split_seed": 43,
+      "status": "DRY_RUN_PASS",
+      "target": "Worms"
+    },
+    {
+      "model_seed": 10044,
+      "p3_manifest_sha256": "19047256d426fcb3c39af55757a9db8019aa42d31b67a78734638f98929c67f2",
+      "p4_model_config_sha256": "8cc284987c4280503165bdab811981479973942745f9fc038f42fbe5f74c913f",
+      "split_seed": 44,
+      "status": "DRY_RUN_PASS",
+      "target": "Worms"
+    }
+  ],
+  "dry_run_optimizer_steps": 0,
+  "official_test_access": false,
+  "p3_collection_sha256": "1443746a4f024b3d7c1569ba9bbd31987933b5f9e2fb0ce6507ba5e57ddbab21",
+  "reproducibility_check": {
+    "bitwise_state_equal": true,
+    "checkpoint_file_hash_equal": false,
+    "max_absolute_parameter_difference": 0.0,
+    "selected_epoch": 8,
+    "status": "P5_SMOKE_PASS"
+  },
+  "scientific_effectiveness_claim": false,
+  "smoke_optimizer_steps": 2768,
+  "smoke_run": "completed; development-only, no effectiveness claim",
+  "smoke_runs": {
+    "p5-fuzzers-s42-m10042-smoke-a": {
+      "checkpoint_sha256": "e1a27f9ac7e2e0fefe334be148245dd5b9d7bee9efa2e898b13a741d3718ff6c",
+      "checkpoint_state_sha256": "ddeafc584ec0b6700cd51d31b8df8d079798cf0bc2209eea9cfcd2ca06470b40",
+      "optimizer_steps": 1384,
+      "selected_epoch": 8
+    },
+    "p5-fuzzers-s42-m10042-smoke-b": {
+      "checkpoint_sha256": "7de32297d854d4843f4fbff3bedaef6b9e5defb832676c00fed0e2557ab1ad0c",
+      "checkpoint_state_sha256": "ddeafc584ec0b6700cd51d31b8df8d079798cf0bc2209eea9cfcd2ca06470b40",
+      "optimizer_steps": 1384,
+      "selected_epoch": 8
+    }
+  },
+  "source_hash": "965fc36ed9e8a2e262cb4e555805c9b05e91f2e4b3a66564c012d514ee9a7952",
+  "source_hashes": {
+    "scripts/train_p5_development.py": "a579de93e1d7d041b72f8edc3976697beea0dfd6113e5d46790858800af53769",
+    "src/ids/p4_model_interface.py": "7b954bff83cad4c32a9a99ab1ca0b8c15cc8135d538521119a9e181415eaa33b",
+    "src/ids/p5_training.py": "cc137f041edb66e6df9a4323fae9608ed602dd2ede2d44defbbb36679cf2d805"
+  },
+  "status": "P5_SMOKE_PASS",
+  "training_config_sha256": "d2760152bce8b91e1bc166e13a9908be5c291332b00201c7c45b19bc1a92a5b5",
+  "version": "p5-training-protocol-matrix-v1"
+}

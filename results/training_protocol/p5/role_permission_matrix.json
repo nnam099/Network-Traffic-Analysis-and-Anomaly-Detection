@@ -1,0 +1,79 @@
+{
+  "operations": {
+    "checkpoint_selection": {
+      "calibration": false,
+      "meta_known": false,
+      "official_test": false,
+      "surrogate_ood": false,
+      "target_development_held_out": false,
+      "train": false,
+      "val": true
+    },
+    "final_external_evaluation": {
+      "calibration": false,
+      "meta_known": false,
+      "official_test": false,
+      "surrogate_ood": false,
+      "target_development_held_out": false,
+      "train": false,
+      "val": false
+    },
+    "gradient_fit": {
+      "calibration": false,
+      "meta_known": false,
+      "official_test": false,
+      "surrogate_ood": false,
+      "target_development_held_out": false,
+      "train": true,
+      "val": false
+    },
+    "scaler_vocabulary_fit": {
+      "calibration": false,
+      "meta_known": false,
+      "official_test": false,
+      "surrogate_ood": false,
+      "target_development_held_out": false,
+      "train": true,
+      "val": false
+    },
+    "scorer_family_selection": {
+      "calibration": false,
+      "meta_known": true,
+      "official_test": false,
+      "surrogate_ood": true,
+      "target_development_held_out": false,
+      "train": false,
+      "val": false
+    },
+    "scorer_parameter_fit": {
+      "calibration": false,
+      "meta_known": false,
+      "official_test": false,
+      "surrogate_ood": false,
+      "target_development_held_out": false,
+      "train": true,
+      "val": false
+    },
+    "threshold_fit": {
+      "calibration": true,
+      "meta_known": false,
+      "official_test": false,
+      "surrogate_ood": false,
+      "target_development_held_out": false,
+      "train": false,
+      "val": false
+    }
+  },
+  "roles": [
+    "train",
+    "val",
+    "meta_known",
+    "calibration",
+    "surrogate_ood",
+    "target_development_held_out",
+    "official_test"
+  ],
+  "source_file_policy": "only exact official training CSV; hash checked; no test file opened",
+  "target_policy": "held-out target and its canonical identities forbidden for all fitting",
+  "version": "p5-role-permissions-v1"
+}

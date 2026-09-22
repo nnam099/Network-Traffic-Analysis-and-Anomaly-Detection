@@ -1,0 +1,35 @@
+{
+  "confidence_level": 0.95,
+  "failure_if_fewer_valid": true,
+  "interval_quantile_method": "linear",
+  "interval_tails": [
+    0.025,
+    0.975
+  ],
+  "invalid_replicate": "discard only mathematically undefined metric; count and report",
+  "method": "stratified bootstrap separately within positive/negative canonical identities",
+  "metrics": [
+    "AUROC",
+    "Average Precision",
+    "TPR",
+    "FPR"
+  ],
+  "minimum_valid_replicates": 1900,
+  "replicates": 2000,
+  "rng": "NumPy PCG64",
+  "seed_order": [
+    42,
+    43,
+    44
+  ],
+  "seed_rule": "700000 + 100*target_index + split_seed",
+  "small_n_caution": "A finite confidence interval does not imply adequate sample size or broad population representativeness.",
+  "target_order": [
+    "Fuzzers",
+    "Analysis",
+    "Backdoors",
+    "Shellcode",
+    "Worms"
+  ],
+  "version": "p7-stratified-identity-bootstrap-v1"
+}

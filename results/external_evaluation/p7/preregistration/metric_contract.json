@@ -1,0 +1,39 @@
+{
+  "f1_zero_division": 0.0,
+  "frozen_operating_point_metrics": [
+    "TPR",
+    "FPR",
+    "specificity",
+    "precision",
+    "F1",
+    "balanced_accuracy",
+    "TP",
+    "FP",
+    "TN",
+    "FN"
+  ],
+  "identity_label": "unique already-audited CLEAN attack_cat; conflict fails",
+  "identity_score": "arithmetic mean of row scores",
+  "main_threshold_independent_metric": "identity AUROC",
+  "negative": "CLEAN identities of the five frozen known/background families only",
+  "no_pooled_cross_target_metric": true,
+  "other_ood_families_in_primary": false,
+  "other_threshold_independent_metrics": [
+    "identity Average Precision"
+  ],
+  "positive": "CLEAN identities of the cell's true target family only",
+  "precision_zero_division": 0.0,
+  "primary_scientific_question": "For each frozen target x seed detector, distinguish CLEAN official-test canonical identities of that target from CLEAN known/background identities.",
+  "primary_unit": "canonical_identity",
+  "row_level_diagnostics": [
+    "AUROC",
+    "Average Precision",
+    "TPR",
+    "FPR"
+  ],
+  "row_level_label": "ROW-LEVEL DIAGNOSTIC",
+  "score_orientation": "higher is more OOD-like",
+  "seed_handling": "three distinct cells; descriptive mean, sample SD, min, max; no raw pooling",
+  "threshold_decision": "score > frozen P6 threshold",
+  "version": "p7-identity-metrics-v1"
+}

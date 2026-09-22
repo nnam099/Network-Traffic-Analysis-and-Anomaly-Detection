@@ -1,0 +1,85 @@
+{
+  "candidate_statistics": {
+    "nearest_centroid_l2": {
+      "meta_known_identities": {
+        "count": 8287,
+        "max": 6.8869565022148125,
+        "mean": 2.8592206090124104,
+        "min": 0.37850804323959214
+      },
+      "meta_known_rows": {
+        "count": 12649,
+        "max": 6.8869565022148125,
+        "mean": 2.2371485112267946,
+        "min": 0.37850804323959214
+      },
+      "surrogate_development_identity_auroc": 0.8032007863618583,
+      "surrogate_development_row_auroc_diagnostic": 0.8638683039293781,
+      "surrogate_ood_identities": {
+        "count": 16483,
+        "max": 6.532587948348901,
+        "mean": 4.080939009372192,
+        "min": 1.0218783447107724
+      },
+      "surrogate_ood_rows": {
+        "count": 18197,
+        "max": 6.532587948348901,
+        "mean": 4.0947817615709186,
+        "min": 1.0218783447107724
+      }
+    },
+    "negative_max_softmax": {
+      "meta_known_identities": {
+        "count": 8287,
+        "max": 0.7215478317746408,
+        "mean": 0.09100703117914867,
+        "min": 1.8217361446692948e-05
+      },
+      "meta_known_rows": {
+        "count": 12649,
+        "max": 0.7215478317746408,
+        "mean": 0.061297304988885366,
+        "min": 1.8217361446692948e-05
+      },
+      "surrogate_development_identity_auroc": 0.7535613353325239,
+      "surrogate_development_row_auroc_diagnostic": 0.8274396918576151,
+      "surrogate_ood_identities": {
+        "count": 16483,
+        "max": 0.7497064332630123,
+        "mean": 0.2058451838345103,
+        "min": 0.00025252822386923057
+      },
+      "surrogate_ood_rows": {
+        "count": 18197,
+        "max": 0.7497064332630123,
+        "mean": 0.20024700451116667,
+        "min": 0.00025252822386923057
+      }
+    }
+  },
+  "checkpoint_state_sha256": "e2ae9b5494ad5587e056f1fe68bccf430ef1473173c03ec61ad056516a9e0a79",
+  "development_diagnostic_only": true,
+  "interpretation": "Surrogate-based scorer selection estimates development discrimination against the predefined surrogate unknown families only. It does not establish performance on the held-out target family.",
+  "known_label": 0,
+  "meta_known_identity_count": 8287,
+  "model_seed": 10044,
+  "p3_manifest_sha256": "19047256d426fcb3c39af55757a9db8019aa42d31b67a78734638f98929c67f2",
+  "p4_model_config_sha256": "8cc284987c4280503165bdab811981479973942745f9fc038f42fbe5f74c913f",
+  "p5_training_config_sha256": "d2760152bce8b91e1bc166e13a9908be5c291332b00201c7c45b19bc1a92a5b5",
+  "score_orientation": "higher means more OOD-like",
+  "selected_checkpoint": "results/model_selection/p6/runs/worms/seed_44/checkpoint.pt",
+  "selected_epoch": 6,
+  "selected_scorer": "nearest_centroid_l2",
+  "selection_margin_centroid_minus_softmax": 0.049639451029334425,
+  "selection_statistic": "SURROGATE DEVELOPMENT AUROC",
+  "selection_unit": "canonical_identity_mean",
+  "source_hash": "0a74854d8ecf5a4dd692e438ddfe6fd8ba5981020f49ad04192257ae0e3a71af",
+  "split_seed": 44,
+  "surrogate_identity_count": 16483,
+  "surrogate_label": 1,
+  "target": "Worms",
+  "tie_break_used": false,
+  "tie_preference": "nearest_centroid_l2",
+  "tie_tolerance": 1e-12,
+  "version": "p6-scorer-selection-v1"
+}

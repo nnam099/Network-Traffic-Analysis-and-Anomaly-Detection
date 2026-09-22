@@ -1,0 +1,13 @@
+{
+  "checkpoint_file_sha256": "0c82f00b0d16eea5a87d32eec27666c5cbc7dd5d0e72842a6070eb1aed35a6b0",
+  "checkpoint_state_sha256": "db97f91a7d2c0338d01ddf58d9b4a11b425b00a166fb4c86bb6fbfe59cabd75b",
+  "model_seed": 10043,
+  "p3_manifest_sha256": "a894bcb16a52b14742d44daf53de935ae4ac82f95b0581ef84d25f0e7fd40f29",
+  "p4_model_config_sha256": "dc1711d3a0edc8d24c9907998d224171086de5fcda938c44286bfac77232cd51",
+  "p5_training_config_sha256": "d2760152bce8b91e1bc166e13a9908be5c291332b00201c7c45b19bc1a92a5b5",
+  "p6_source_hash": "0a74854d8ecf5a4dd692e438ddfe6fd8ba5981020f49ad04192257ae0e3a71af",
+  "path": "results/model_selection/p6/runs/backdoors/seed_43/checkpoint.pt",
+  "split_seed": 43,
+  "target": "Backdoors",
+  "version": "p6-checkpoint-reference-v1"
+}

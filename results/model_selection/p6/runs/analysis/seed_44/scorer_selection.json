@@ -1,0 +1,85 @@
+{
+  "candidate_statistics": {
+    "nearest_centroid_l2": {
+      "meta_known_identities": {
+        "count": 8287,
+        "max": 6.8869565022148125,
+        "mean": 2.8592206090124104,
+        "min": 0.37850804323959214
+      },
+      "meta_known_rows": {
+        "count": 12649,
+        "max": 6.8869565022148125,
+        "mean": 2.2371485112267946,
+        "min": 0.37850804323959214
+      },
+      "surrogate_development_identity_auroc": 0.8104156115467911,
+      "surrogate_development_row_auroc_diagnostic": 0.869465103535555,
+      "surrogate_ood_identities": {
+        "count": 16207,
+        "max": 6.532587948348901,
+        "mean": 4.109473532557334,
+        "min": 1.0218783447107724
+      },
+      "surrogate_ood_rows": {
+        "count": 17755,
+        "max": 6.532587948348901,
+        "mean": 4.125710115512072,
+        "min": 1.0218783447107724
+      }
+    },
+    "negative_max_softmax": {
+      "meta_known_identities": {
+        "count": 8287,
+        "max": 0.7215478317746408,
+        "mean": 0.09100703117914867,
+        "min": 1.8217361446692948e-05
+      },
+      "meta_known_rows": {
+        "count": 12649,
+        "max": 0.7215478317746408,
+        "mean": 0.061297304988885366,
+        "min": 1.8217361446692948e-05
+      },
+      "surrogate_development_identity_auroc": 0.7499194329629277,
+      "surrogate_development_row_auroc_diagnostic": 0.8253181457483012,
+      "surrogate_ood_identities": {
+        "count": 16207,
+        "max": 0.7497064332630128,
+        "mean": 0.20032118339156174,
+        "min": 0.00025252822386923057
+      },
+      "surrogate_ood_rows": {
+        "count": 17755,
+        "max": 0.7497064332630128,
+        "mean": 0.1953945351578592,
+        "min": 0.00025252822386923057
+      }
+    }
+  },
+  "checkpoint_state_sha256": "e2ae9b5494ad5587e056f1fe68bccf430ef1473173c03ec61ad056516a9e0a79",
+  "development_diagnostic_only": true,
+  "interpretation": "Surrogate-based scorer selection estimates development discrimination against the predefined surrogate unknown families only. It does not establish performance on the held-out target family.",
+  "known_label": 0,
+  "meta_known_identity_count": 8287,
+  "model_seed": 10044,
+  "p3_manifest_sha256": "55d2f26ffe78ae0c63a335235c4a5e2ac6c844327a90fef209a730106dc3c3d6",
+  "p4_model_config_sha256": "020f0383ec9eb99e1eb9d9f2d3642b74154c8a3268511fe055b381c3b37db0d7",
+  "p5_training_config_sha256": "d2760152bce8b91e1bc166e13a9908be5c291332b00201c7c45b19bc1a92a5b5",
+  "score_orientation": "higher means more OOD-like",
+  "selected_checkpoint": "results/model_selection/p6/runs/analysis/seed_44/checkpoint.pt",
+  "selected_epoch": 6,
+  "selected_scorer": "nearest_centroid_l2",
+  "selection_margin_centroid_minus_softmax": 0.06049617858386336,
+  "selection_statistic": "SURROGATE DEVELOPMENT AUROC",
+  "selection_unit": "canonical_identity_mean",
+  "source_hash": "0a74854d8ecf5a4dd692e438ddfe6fd8ba5981020f49ad04192257ae0e3a71af",
+  "split_seed": 44,
+  "surrogate_identity_count": 16207,
+  "surrogate_label": 1,
+  "target": "Analysis",
+  "tie_break_used": false,
+  "tie_preference": "nearest_centroid_l2",
+  "tie_tolerance": 1e-12,
+  "version": "p6-scorer-selection-v1"
+}

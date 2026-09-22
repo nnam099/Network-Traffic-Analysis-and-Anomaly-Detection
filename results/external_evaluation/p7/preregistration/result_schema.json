@@ -1,0 +1,35 @@
+{
+  "diagnostic_directories": [
+    "development_overlap",
+    "test_internal_ambiguous",
+    "train_conflict_related"
+  ],
+  "post_primary_clean_score_summaries": "diagnostics/clean_score_summary/",
+  "primary_hash": "primary/primary_hash.txt",
+  "primary_matrix": "primary/p7_primary_matrix.json",
+  "primary_per_cell_files": [
+    "external_counts.json",
+    "primary_identity_metrics.json",
+    "row_diagnostics.json",
+    "confusion.json",
+    "oov_audit.json",
+    "provenance.json"
+  ],
+  "provenance_required": [
+    "p3_collection_sha256",
+    "p3_manifest_sha256",
+    "p4_model_config_sha256",
+    "p5_training_config_sha256",
+    "checkpoint_file_sha256",
+    "checkpoint_state_sha256",
+    "p6_scorer_state_sha256",
+    "p6_calibration_artifact_sha256",
+    "p7_protocol_sha256",
+    "official_test_source_sha256",
+    "official_test_clean_surface_sha256",
+    "source_code_sha256"
+  ],
+  "status_on_complete": "P7_EXTERNAL_EVALUATION_COMPLETE",
+  "status_on_failure": "P7_EXTERNAL_EVAL_BLOCKED",
+  "version": "p7-external-result-schema-v1"
+}

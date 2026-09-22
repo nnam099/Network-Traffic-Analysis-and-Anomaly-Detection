@@ -1,0 +1,121 @@
+{
+  "version": "p4-legacy-compatibility-audit-v1",
+  "categories": [
+    "SAFE",
+    "MUST-REFACTOR",
+    "LEGACY-ONLY",
+    "BLOCKING"
+  ],
+  "entries": [
+    {
+      "path": "src/ids/models.py",
+      "pattern": "def forward\\(self, x\\)",
+      "category": "LEGACY-ONLY",
+      "matching_lines": [
+        29,
+        52,
+        78
+      ],
+      "rationale": "v14 flat-tensor models remain available only for historical/demo artifacts."
+    },
+    {
+      "path": "src/train.py",
+      "pattern": "from ids\\.models import IDSModel",
+      "category": "BLOCKING",
+      "matching_lines": [
+        21
+      ],
+      "rationale": "The legacy training entry point must never be used for schema V2."
+    },
+    {
+      "path": "src/ids/dataset.py",
+      "pattern": "astype\\(np\\.float32\\)",
+      "category": "LEGACY-ONLY",
+      "matching_lines": [
+        184,
+        318,
+        537,
+        901,
+        902,
+        903,
+        904,
+        945
+      ],
+      "rationale": "Legacy flat preprocessing casts before its old model boundary."
+    },
+    {
+      "path": "src/ids/target_isolation.py",
+      "pattern": "P0_FEATURE_COUNT = 61",
+      "category": "LEGACY-ONLY",
+      "matching_lines": [
+        48
+      ],
+      "rationale": "Immutable P0/P1 audit contract; not a P4 neural interface."
+    },
+    {
+      "path": "src/artifact_validator.py",
+      "pattern": "checkpoint",
+      "category": "LEGACY-ONLY",
+      "matching_lines": [
+        22,
+        24,
+        31,
+        32,
+        38,
+        41,
+        42,
+        51,
+        67,
+        68,
+        69,
+        70,
+        73,
+        75,
+        76,
+        87,
+        98,
+        101,
+        138,
+        140,
+        141,
+        145
+      ],
+      "rationale": "Existing checkpoint validation covers old artifact families only."
+    },
+    {
+      "path": "src/batch_evaluator.py",
+      "pattern": "feature_names",
+      "category": "MUST-REFACTOR",
+      "matching_lines": [
+        30,
+        69,
+        82,
+        94,
+        114
+      ],
+      "rationale": "Future schema-V2 runtime evaluation needs a structured adapter."
+    },
+    {
+      "path": "src/ids/p2_protocol.py",
+      "pattern": "scientific-feature-schema-v2",
+      "category": "SAFE",
+      "matching_lines": [
+        26
+      ],
+      "rationale": "Data audit defines separated continuous and categorical semantics."
+    },
+    {
+      "path": "src/ids/p4_model_interface.py",
+      "pattern": "flat tensors are forbidden",
+      "category": "SAFE",
+      "matching_lines": [
+        255
+      ],
+      "rationale": "P4 structured path rejects legacy flat tensors at runtime."
+    }
+  ],
+  "p4_forbidden_legacy_imports": [],
+  "blocking_code_isolated_from_p4": true,
+  "legacy_checkpoint_migration_performed": false,
+  "conclusion": "Historical flat paths are retained but are not imported by P4. src/train.py is BLOCKING if reused for scientific-feature-schema-v2."
+}

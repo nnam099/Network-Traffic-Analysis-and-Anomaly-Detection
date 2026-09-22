@@ -1,0 +1,21 @@
+{
+  "information_flow": [
+    "train -> representation and centroids",
+    "val -> checkpoint",
+    "meta_known + surrogate_ood -> scorer family",
+    "calibration -> known-only threshold",
+    "official test/target -> forbidden"
+  ],
+  "official_test_access": false,
+  "scientific_effectiveness_claim": false,
+  "stages": [
+    "A: 15 dry validations, no training",
+    "B: Fuzzers/42/10042 pilot scorer selection",
+    "C: identical pilot rerun, then known-only calibration twice",
+    "D: all 15 independent cells with no adaptive changes"
+  ],
+  "training_contract": "exact frozen P5 settings and architecture, no search",
+  "true_target_access": false,
+  "upstream_status": "P5_SMOKE_PASS",
+  "version": "p6-identity-scorer-selection-v1"
+}

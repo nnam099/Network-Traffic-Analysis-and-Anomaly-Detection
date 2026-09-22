@@ -1,0 +1,3707 @@
+{
+  "version": "test-blind-scientific-data-protocol-v1",
+  "status": "DATA PROTOCOL APPROVED FOR MODEL-DESIGN PHASE",
+  "neural_training_performed": false,
+  "threshold_tuning_performed": false,
+  "scientific_performance_metrics_generated": false,
+  "official_test_opened_only_after_development_freeze": true,
+  "development_freeze_sha256": "1443746a4f024b3d7c1569ba9bbd31987933b5f9e2fb0ce6507ba5e57ddbab21",
+  "development_freeze_artifact": "development_freeze.json",
+  "official_test_external_audit_artifact": "official_test_external_audit.json",
+  "historical_738_artifact": "historical_738_investigation.json",
+  "schema_sha256": "f3ecf12891e5b0d9b5e1fe38a22c23720a71eaf1d5a47b763911df363b3b36d7",
+  "cells": [
+    {
+      "target": "Fuzzers",
+      "seed": 42,
+      "development_rows_before_ambiguity_exclusion": 175341,
+      "train_only_ambiguous_groups_excluded": 1772,
+      "train_only_ambiguous_rows_excluded": 30528,
+      "development_rows_after_ambiguity_exclusion": 144813,
+      "target_rows_held_out_from_fit": 16106,
+      "target_identity_groups_purged": 14602,
+      "known_rows_removed_by_target_identity_purge": 0,
+      "surrogate_rows_removed_by_target_identity_purge": 0,
+      "role_rows": {
+        "train": 88551,
+        "val": 12650,
+        "meta_known": 12649,
+        "calibration": 12649,
+        "surrogate_ood": 2208
+      },
+      "role_canonical_intersections": {
+        "train__val": 0,
+        "train__meta_known": 0,
+        "train__calibration": 0,
+        "train__surrogate_ood": 0,
+        "val__meta_known": 0,
+        "val__calibration": 0,
+        "val__surrogate_ood": 0,
+        "meta_known__calibration": 0,
+        "meta_known__surrogate_ood": 0,
+        "calibration__surrogate_ood": 0
+      },
+      "model_input_audit": {
+        "gate": {
+          "gate": "PASS",
+          "severity": "PASS",
+          "fail_reasons": [],
+          "same_role_same_label_policy": "REPORT ONLY",
+          "same_role_cross_label_policy": "CRITICAL FAIL; unresolved ambiguity; no label selection"
+        },
+        "canonical_role_intersections": {
+          "train__val": 0,
+          "train__meta_known": 0,
+          "train__calibration": 0,
+          "train__surrogate_ood": 0,
+          "val__meta_known": 0,
+          "val__calibration": 0,
+          "val__surrogate_ood": 0,
+          "meta_known__calibration": 0,
+          "meta_known__surrogate_ood": 0,
+          "calibration__surrogate_ood": 0
+        },
+        "canonical_target_intersections": {
+          "train": 0,
+          "val": 0,
+          "meta_known": 0,
+          "calibration": 0,
+          "surrogate_ood": 0
+        },
+        "collision_taxonomy": {
+          "count_unit": "unique fingerprints per category/pair; overlapping categories are not additive",
+          "same_role": {
+            "train": {
+              "same_label_fingerprints": 4724,
+              "same_label_duplicate_rows_beyond_first": 30743,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "val": {
+              "same_label_fingerprints": 682,
+              "same_label_duplicate_rows_beyond_first": 4362,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "meta_known": {
+              "same_label_fingerprints": 683,
+              "same_label_duplicate_rows_beyond_first": 4362,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "calibration": {
+              "same_label_fingerprints": 682,
+              "same_label_duplicate_rows_beyond_first": 4364,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "surrogate_ood": {
+              "same_label_fingerprints": 138,
+              "same_label_duplicate_rows_beyond_first": 210,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "target": {
+              "same_label_fingerprints": 1067,
+              "same_label_duplicate_rows_beyond_first": 1504,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            }
+          },
+          "cross_role_pairs": {
+            "train__val": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__meta_known": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__meta_known": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "calibration__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "calibration__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "surrogate_ood__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            }
+          },
+          "cross_role_same_label_fingerprints_unique": 0,
+          "cross_role_cross_label_fingerprints_unique": 0,
+          "target_vs_fit": 0,
+          "target_vs_roles": {
+            "train": 0,
+            "val": 0,
+            "meta_known": 0,
+            "calibration": 0,
+            "surrogate_ood": 0
+          }
+        },
+        "model_input_cross_identity_before_scaling": 0,
+        "model_input_cross_identity_final": 0,
+        "new_scaling_merges": 0,
+        "new_dtype_conversion_merges": 0
+      },
+      "vocabulary_provenance": {
+        "source": "official_train target-purged backbone train",
+        "sha256": "8a840d79bd83d3770be3fded4fa4cf6ea7fdefce6e9f8ffa57b3d46e8c13ef88",
+        "sizes": {
+          "proto": 6,
+          "service": 13,
+          "state": 8
+        }
+      },
+      "scaler_provenance": {
+        "source": "official_train target-purged backbone train",
+        "center_scale_sha256": "9a4c4f683245ce234a02d8a031868a4a5f974e4763ef3294ac0e77c9ffd538c8",
+        "fit_row_count": 88551
+      },
+      "development_manifest_sha256": "9606db75e0efd7e82312678864f34653838c338f97c8f299da3c71f6b2e4be2a",
+      "development_gate": "PASS",
+      "development_fail_reasons": [],
+      "official_test_support": {
+        "target_family": "Fuzzers",
+        "target": {
+          "original_rows": 6062,
+          "clean_rows": 4777,
+          "development_overlap_rows": 23,
+          "test_internal_ambiguous_rows": 1137,
+          "train_conflict_related_rows": 125,
+          "ambiguous_rows": 1262,
+          "clean_unique_canonical_identities": 4317,
+          "percentage_clean_retained": 78.80237545364567
+        },
+        "known_background": {
+          "original_rows": 74588,
+          "clean_rows": 64016,
+          "development_overlap_rows": 3840,
+          "test_internal_ambiguous_rows": 4216,
+          "train_conflict_related_rows": 2516,
+          "ambiguous_rows": 6732,
+          "clean_unique_canonical_identities": 47444,
+          "percentage_clean_retained": 85.82613825280205
+        }
+      },
+      "post_freeze_official_test_model_input_audit": {
+        "frozen_model_input_version": "continuous-float64-categorical-opaque-id-v1",
+        "official_test_rows": 82332,
+        "clean_test_rows": 69315,
+        "cross_identity_model_input_collision_rows_all_test": 0,
+        "cross_identity_model_input_collision_unique_fingerprints_all_test": 0,
+        "cross_identity_model_input_collision_rows_clean_test": 0,
+        "cross_identity_model_input_collision_unique_fingerprints_clean_test": 0,
+        "official_test_used_for_parameter_fit": false
+      },
+      "official_test_clean_target_rows": 4777,
+      "official_test_clean_known_background_rows": 64016,
+      "support_review_required": false,
+      "support_note": "Structural support count only; statistical power not inferred.",
+      "data_protocol_status": "DATA_PROTOCOL_PASS"
+    },
+    {
+      "target": "Fuzzers",
+      "seed": 43,
+      "development_rows_before_ambiguity_exclusion": 175341,
+      "train_only_ambiguous_groups_excluded": 1772,
+      "train_only_ambiguous_rows_excluded": 30528,
+      "development_rows_after_ambiguity_exclusion": 144813,
+      "target_rows_held_out_from_fit": 16106,
+      "target_identity_groups_purged": 14602,
+      "known_rows_removed_by_target_identity_purge": 0,
+      "surrogate_rows_removed_by_target_identity_purge": 0,
+      "role_rows": {
+        "train": 88551,
+        "val": 12650,
+        "meta_known": 12649,
+        "calibration": 12649,
+        "surrogate_ood": 2208
+      },
+      "role_canonical_intersections": {
+        "train__val": 0,
+        "train__meta_known": 0,
+        "train__calibration": 0,
+        "train__surrogate_ood": 0,
+        "val__meta_known": 0,
+        "val__calibration": 0,
+        "val__surrogate_ood": 0,
+        "meta_known__calibration": 0,
+        "meta_known__surrogate_ood": 0,
+        "calibration__surrogate_ood": 0
+      },
+      "model_input_audit": {
+        "gate": {
+          "gate": "PASS",
+          "severity": "PASS",
+          "fail_reasons": [],
+          "same_role_same_label_policy": "REPORT ONLY",
+          "same_role_cross_label_policy": "CRITICAL FAIL; unresolved ambiguity; no label selection"
+        },
+        "canonical_role_intersections": {
+          "train__val": 0,
+          "train__meta_known": 0,
+          "train__calibration": 0,
+          "train__surrogate_ood": 0,
+          "val__meta_known": 0,
+          "val__calibration": 0,
+          "val__surrogate_ood": 0,
+          "meta_known__calibration": 0,
+          "meta_known__surrogate_ood": 0,
+          "calibration__surrogate_ood": 0
+        },
+        "canonical_target_intersections": {
+          "train": 0,
+          "val": 0,
+          "meta_known": 0,
+          "calibration": 0,
+          "surrogate_ood": 0
+        },
+        "collision_taxonomy": {
+          "count_unit": "unique fingerprints per category/pair; overlapping categories are not additive",
+          "same_role": {
+            "train": {
+              "same_label_fingerprints": 4724,
+              "same_label_duplicate_rows_beyond_first": 30744,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "val": {
+              "same_label_fingerprints": 683,
+              "same_label_duplicate_rows_beyond_first": 4362,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "meta_known": {
+              "same_label_fingerprints": 682,
+              "same_label_duplicate_rows_beyond_first": 4362,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "calibration": {
+              "same_label_fingerprints": 682,
+              "same_label_duplicate_rows_beyond_first": 4363,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "surrogate_ood": {
+              "same_label_fingerprints": 138,
+              "same_label_duplicate_rows_beyond_first": 210,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "target": {
+              "same_label_fingerprints": 1067,
+              "same_label_duplicate_rows_beyond_first": 1504,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            }
+          },
+          "cross_role_pairs": {
+            "train__val": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__meta_known": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__meta_known": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "calibration__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "calibration__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "surrogate_ood__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            }
+          },
+          "cross_role_same_label_fingerprints_unique": 0,
+          "cross_role_cross_label_fingerprints_unique": 0,
+          "target_vs_fit": 0,
+          "target_vs_roles": {
+            "train": 0,
+            "val": 0,
+            "meta_known": 0,
+            "calibration": 0,
+            "surrogate_ood": 0
+          }
+        },
+        "model_input_cross_identity_before_scaling": 0,
+        "model_input_cross_identity_final": 0,
+        "new_scaling_merges": 0,
+        "new_dtype_conversion_merges": 0
+      },
+      "vocabulary_provenance": {
+        "source": "official_train target-purged backbone train",
+        "sha256": "bcb976065632835edf1b47a1af61990230ac4ca90f026f715d391b9419907130",
+        "sizes": {
+          "proto": 7,
+          "service": 13,
+          "state": 9
+        }
+      },
+      "scaler_provenance": {
+        "source": "official_train target-purged backbone train",
+        "center_scale_sha256": "2be04e0f883a436946559bf219c218c1e07f8a62dc951868bbf206c811a12c92",
+        "fit_row_count": 88551
+      },
+      "development_manifest_sha256": "89c9dc3eb0ab8bd3162c259622e51a601466cc7a68de70ce5a46f798c4ba1bd7",
+      "development_gate": "PASS",
+      "development_fail_reasons": [],
+      "official_test_support": {
+        "target_family": "Fuzzers",
+        "target": {
+          "original_rows": 6062,
+          "clean_rows": 4777,
+          "development_overlap_rows": 23,
+          "test_internal_ambiguous_rows": 1137,
+          "train_conflict_related_rows": 125,
+          "ambiguous_rows": 1262,
+          "clean_unique_canonical_identities": 4317,
+          "percentage_clean_retained": 78.80237545364567
+        },
+        "known_background": {
+          "original_rows": 74588,
+          "clean_rows": 64016,
+          "development_overlap_rows": 3840,
+          "test_internal_ambiguous_rows": 4216,
+          "train_conflict_related_rows": 2516,
+          "ambiguous_rows": 6732,
+          "clean_unique_canonical_identities": 47444,
+          "percentage_clean_retained": 85.82613825280205
+        }
+      },
+      "post_freeze_official_test_model_input_audit": {
+        "frozen_model_input_version": "continuous-float64-categorical-opaque-id-v1",
+        "official_test_rows": 82332,
+        "clean_test_rows": 69315,
+        "cross_identity_model_input_collision_rows_all_test": 0,
+        "cross_identity_model_input_collision_unique_fingerprints_all_test": 0,
+        "cross_identity_model_input_collision_rows_clean_test": 0,
+        "cross_identity_model_input_collision_unique_fingerprints_clean_test": 0,
+        "official_test_used_for_parameter_fit": false
+      },
+      "official_test_clean_target_rows": 4777,
+      "official_test_clean_known_background_rows": 64016,
+      "support_review_required": false,
+      "support_note": "Structural support count only; statistical power not inferred.",
+      "data_protocol_status": "DATA_PROTOCOL_PASS"
+    },
+    {
+      "target": "Fuzzers",
+      "seed": 44,
+      "development_rows_before_ambiguity_exclusion": 175341,
+      "train_only_ambiguous_groups_excluded": 1772,
+      "train_only_ambiguous_rows_excluded": 30528,
+      "development_rows_after_ambiguity_exclusion": 144813,
+      "target_rows_held_out_from_fit": 16106,
+      "target_identity_groups_purged": 14602,
+      "known_rows_removed_by_target_identity_purge": 0,
+      "surrogate_rows_removed_by_target_identity_purge": 0,
+      "role_rows": {
+        "train": 88551,
+        "val": 12650,
+        "meta_known": 12649,
+        "calibration": 12649,
+        "surrogate_ood": 2208
+      },
+      "role_canonical_intersections": {
+        "train__val": 0,
+        "train__meta_known": 0,
+        "train__calibration": 0,
+        "train__surrogate_ood": 0,
+        "val__meta_known": 0,
+        "val__calibration": 0,
+        "val__surrogate_ood": 0,
+        "meta_known__calibration": 0,
+        "meta_known__surrogate_ood": 0,
+        "calibration__surrogate_ood": 0
+      },
+      "model_input_audit": {
+        "gate": {
+          "gate": "PASS",
+          "severity": "PASS",
+          "fail_reasons": [],
+          "same_role_same_label_policy": "REPORT ONLY",
+          "same_role_cross_label_policy": "CRITICAL FAIL; unresolved ambiguity; no label selection"
+        },
+        "canonical_role_intersections": {
+          "train__val": 0,
+          "train__meta_known": 0,
+          "train__calibration": 0,
+          "train__surrogate_ood": 0,
+          "val__meta_known": 0,
+          "val__calibration": 0,
+          "val__surrogate_ood": 0,
+          "meta_known__calibration": 0,
+          "meta_known__surrogate_ood": 0,
+          "calibration__surrogate_ood": 0
+        },
+        "canonical_target_intersections": {
+          "train": 0,
+          "val": 0,
+          "meta_known": 0,
+          "calibration": 0,
+          "surrogate_ood": 0
+        },
+        "collision_taxonomy": {
+          "count_unit": "unique fingerprints per category/pair; overlapping categories are not additive",
+          "same_role": {
+            "train": {
+              "same_label_fingerprints": 4724,
+              "same_label_duplicate_rows_beyond_first": 30744,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "val": {
+              "same_label_fingerprints": 683,
+              "same_label_duplicate_rows_beyond_first": 4362,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "meta_known": {
+              "same_label_fingerprints": 682,
+              "same_label_duplicate_rows_beyond_first": 4362,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "calibration": {
+              "same_label_fingerprints": 682,
+              "same_label_duplicate_rows_beyond_first": 4363,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "surrogate_ood": {
+              "same_label_fingerprints": 138,
+              "same_label_duplicate_rows_beyond_first": 210,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "target": {
+              "same_label_fingerprints": 1067,
+              "same_label_duplicate_rows_beyond_first": 1504,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            }
+          },
+          "cross_role_pairs": {
+            "train__val": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__meta_known": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__meta_known": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "calibration__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "calibration__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "surrogate_ood__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            }
+          },
+          "cross_role_same_label_fingerprints_unique": 0,
+          "cross_role_cross_label_fingerprints_unique": 0,
+          "target_vs_fit": 0,
+          "target_vs_roles": {
+            "train": 0,
+            "val": 0,
+            "meta_known": 0,
+            "calibration": 0,
+            "surrogate_ood": 0
+          }
+        },
+        "model_input_cross_identity_before_scaling": 0,
+        "model_input_cross_identity_final": 0,
+        "new_scaling_merges": 0,
+        "new_dtype_conversion_merges": 0
+      },
+      "vocabulary_provenance": {
+        "source": "official_train target-purged backbone train",
+        "sha256": "8a840d79bd83d3770be3fded4fa4cf6ea7fdefce6e9f8ffa57b3d46e8c13ef88",
+        "sizes": {
+          "proto": 6,
+          "service": 13,
+          "state": 8
+        }
+      },
+      "scaler_provenance": {
+        "source": "official_train target-purged backbone train",
+        "center_scale_sha256": "579738638fa17f91bbbdd3c43a9562b3c1f8f9e79b9acd3c7dcb53b4547f52aa",
+        "fit_row_count": 88551
+      },
+      "development_manifest_sha256": "a9684e92b8f26d81dc932705951f5264496f7254b29e74fb2097ecdf801258fb",
+      "development_gate": "PASS",
+      "development_fail_reasons": [],
+      "official_test_support": {
+        "target_family": "Fuzzers",
+        "target": {
+          "original_rows": 6062,
+          "clean_rows": 4777,
+          "development_overlap_rows": 23,
+          "test_internal_ambiguous_rows": 1137,
+          "train_conflict_related_rows": 125,
+          "ambiguous_rows": 1262,
+          "clean_unique_canonical_identities": 4317,
+          "percentage_clean_retained": 78.80237545364567
+        },
+        "known_background": {
+          "original_rows": 74588,
+          "clean_rows": 64016,
+          "development_overlap_rows": 3840,
+          "test_internal_ambiguous_rows": 4216,
+          "train_conflict_related_rows": 2516,
+          "ambiguous_rows": 6732,
+          "clean_unique_canonical_identities": 47444,
+          "percentage_clean_retained": 85.82613825280205
+        }
+      },
+      "post_freeze_official_test_model_input_audit": {
+        "frozen_model_input_version": "continuous-float64-categorical-opaque-id-v1",
+        "official_test_rows": 82332,
+        "clean_test_rows": 69315,
+        "cross_identity_model_input_collision_rows_all_test": 0,
+        "cross_identity_model_input_collision_unique_fingerprints_all_test": 0,
+        "cross_identity_model_input_collision_rows_clean_test": 0,
+        "cross_identity_model_input_collision_unique_fingerprints_clean_test": 0,
+        "official_test_used_for_parameter_fit": false
+      },
+      "official_test_clean_target_rows": 4777,
+      "official_test_clean_known_background_rows": 64016,
+      "support_review_required": false,
+      "support_note": "Structural support count only; statistical power not inferred.",
+      "data_protocol_status": "DATA_PROTOCOL_PASS"
+    },
+    {
+      "target": "Analysis",
+      "seed": 42,
+      "development_rows_before_ambiguity_exclusion": 175341,
+      "train_only_ambiguous_groups_excluded": 1772,
+      "train_only_ambiguous_rows_excluded": 30528,
+      "development_rows_after_ambiguity_exclusion": 144813,
+      "target_rows_held_out_from_fit": 559,
+      "target_identity_groups_purged": 393,
+      "known_rows_removed_by_target_identity_purge": 0,
+      "surrogate_rows_removed_by_target_identity_purge": 0,
+      "role_rows": {
+        "train": 88551,
+        "val": 12650,
+        "meta_known": 12649,
+        "calibration": 12649,
+        "surrogate_ood": 17755
+      },
+      "role_canonical_intersections": {
+        "train__val": 0,
+        "train__meta_known": 0,
+        "train__calibration": 0,
+        "train__surrogate_ood": 0,
+        "val__meta_known": 0,
+        "val__calibration": 0,
+        "val__surrogate_ood": 0,
+        "meta_known__calibration": 0,
+        "meta_known__surrogate_ood": 0,
+        "calibration__surrogate_ood": 0
+      },
+      "model_input_audit": {
+        "gate": {
+          "gate": "PASS",
+          "severity": "PASS",
+          "fail_reasons": [],
+          "same_role_same_label_policy": "REPORT ONLY",
+          "same_role_cross_label_policy": "CRITICAL FAIL; unresolved ambiguity; no label selection"
+        },
+        "canonical_role_intersections": {
+          "train__val": 0,
+          "train__meta_known": 0,
+          "train__calibration": 0,
+          "train__surrogate_ood": 0,
+          "val__meta_known": 0,
+          "val__calibration": 0,
+          "val__surrogate_ood": 0,
+          "meta_known__calibration": 0,
+          "meta_known__surrogate_ood": 0,
+          "calibration__surrogate_ood": 0
+        },
+        "canonical_target_intersections": {
+          "train": 0,
+          "val": 0,
+          "meta_known": 0,
+          "calibration": 0,
+          "surrogate_ood": 0
+        },
+        "collision_taxonomy": {
+          "count_unit": "unique fingerprints per category/pair; overlapping categories are not additive",
+          "same_role": {
+            "train": {
+              "same_label_fingerprints": 4724,
+              "same_label_duplicate_rows_beyond_first": 30743,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "val": {
+              "same_label_fingerprints": 682,
+              "same_label_duplicate_rows_beyond_first": 4362,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "meta_known": {
+              "same_label_fingerprints": 683,
+              "same_label_duplicate_rows_beyond_first": 4362,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "calibration": {
+              "same_label_fingerprints": 682,
+              "same_label_duplicate_rows_beyond_first": 4364,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "surrogate_ood": {
+              "same_label_fingerprints": 1104,
+              "same_label_duplicate_rows_beyond_first": 1548,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "target": {
+              "same_label_fingerprints": 101,
+              "same_label_duplicate_rows_beyond_first": 166,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            }
+          },
+          "cross_role_pairs": {
+            "train__val": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__meta_known": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__meta_known": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "calibration__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "calibration__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "surrogate_ood__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            }
+          },
+          "cross_role_same_label_fingerprints_unique": 0,
+          "cross_role_cross_label_fingerprints_unique": 0,
+          "target_vs_fit": 0,
+          "target_vs_roles": {
+            "train": 0,
+            "val": 0,
+            "meta_known": 0,
+            "calibration": 0,
+            "surrogate_ood": 0
+          }
+        },
+        "model_input_cross_identity_before_scaling": 0,
+        "model_input_cross_identity_final": 0,
+        "new_scaling_merges": 0,
+        "new_dtype_conversion_merges": 0
+      },
+      "vocabulary_provenance": {
+        "source": "official_train target-purged backbone train",
+        "sha256": "8a840d79bd83d3770be3fded4fa4cf6ea7fdefce6e9f8ffa57b3d46e8c13ef88",
+        "sizes": {
+          "proto": 6,
+          "service": 13,
+          "state": 8
+        }
+      },
+      "scaler_provenance": {
+        "source": "official_train target-purged backbone train",
+        "center_scale_sha256": "9a4c4f683245ce234a02d8a031868a4a5f974e4763ef3294ac0e77c9ffd538c8",
+        "fit_row_count": 88551
+      },
+      "development_manifest_sha256": "1b2c6401d2e2dc8814a1cb0ca5815d86de0f78436ac7525b0cc2c02dbd4935fc",
+      "development_gate": "PASS",
+      "development_fail_reasons": [],
+      "official_test_support": {
+        "target_family": "Analysis",
+        "target": {
+          "original_rows": 677,
+          "clean_rows": 58,
+          "development_overlap_rows": 0,
+          "test_internal_ambiguous_rows": 605,
+          "train_conflict_related_rows": 14,
+          "ambiguous_rows": 619,
+          "clean_unique_canonical_identities": 58,
+          "percentage_clean_retained": 8.567208271787297
+        },
+        "known_background": {
+          "original_rows": 74588,
+          "clean_rows": 64016,
+          "development_overlap_rows": 3840,
+          "test_internal_ambiguous_rows": 4216,
+          "train_conflict_related_rows": 2516,
+          "ambiguous_rows": 6732,
+          "clean_unique_canonical_identities": 47444,
+          "percentage_clean_retained": 85.82613825280205
+        }
+      },
+      "post_freeze_official_test_model_input_audit": {
+        "frozen_model_input_version": "continuous-float64-categorical-opaque-id-v1",
+        "official_test_rows": 82332,
+        "clean_test_rows": 69315,
+        "cross_identity_model_input_collision_rows_all_test": 0,
+        "cross_identity_model_input_collision_unique_fingerprints_all_test": 0,
+        "cross_identity_model_input_collision_rows_clean_test": 0,
+        "cross_identity_model_input_collision_unique_fingerprints_clean_test": 0,
+        "official_test_used_for_parameter_fit": false
+      },
+      "official_test_clean_target_rows": 58,
+      "official_test_clean_known_background_rows": 64016,
+      "support_review_required": true,
+      "support_note": "Small-sample regime flagged descriptively; no statistical-power threshold or model metric was inferred.",
+      "data_protocol_status": "DATA_PROTOCOL_PASS"
+    },
+    {
+      "target": "Analysis",
+      "seed": 43,
+      "development_rows_before_ambiguity_exclusion": 175341,
+      "train_only_ambiguous_groups_excluded": 1772,
+      "train_only_ambiguous_rows_excluded": 30528,
+      "development_rows_after_ambiguity_exclusion": 144813,
+      "target_rows_held_out_from_fit": 559,
+      "target_identity_groups_purged": 393,
+      "known_rows_removed_by_target_identity_purge": 0,
+      "surrogate_rows_removed_by_target_identity_purge": 0,
+      "role_rows": {
+        "train": 88551,
+        "val": 12650,
+        "meta_known": 12649,
+        "calibration": 12649,
+        "surrogate_ood": 17755
+      },
+      "role_canonical_intersections": {
+        "train__val": 0,
+        "train__meta_known": 0,
+        "train__calibration": 0,
+        "train__surrogate_ood": 0,
+        "val__meta_known": 0,
+        "val__calibration": 0,
+        "val__surrogate_ood": 0,
+        "meta_known__calibration": 0,
+        "meta_known__surrogate_ood": 0,
+        "calibration__surrogate_ood": 0
+      },
+      "model_input_audit": {
+        "gate": {
+          "gate": "PASS",
+          "severity": "PASS",
+          "fail_reasons": [],
+          "same_role_same_label_policy": "REPORT ONLY",
+          "same_role_cross_label_policy": "CRITICAL FAIL; unresolved ambiguity; no label selection"
+        },
+        "canonical_role_intersections": {
+          "train__val": 0,
+          "train__meta_known": 0,
+          "train__calibration": 0,
+          "train__surrogate_ood": 0,
+          "val__meta_known": 0,
+          "val__calibration": 0,
+          "val__surrogate_ood": 0,
+          "meta_known__calibration": 0,
+          "meta_known__surrogate_ood": 0,
+          "calibration__surrogate_ood": 0
+        },
+        "canonical_target_intersections": {
+          "train": 0,
+          "val": 0,
+          "meta_known": 0,
+          "calibration": 0,
+          "surrogate_ood": 0
+        },
+        "collision_taxonomy": {
+          "count_unit": "unique fingerprints per category/pair; overlapping categories are not additive",
+          "same_role": {
+            "train": {
+              "same_label_fingerprints": 4724,
+              "same_label_duplicate_rows_beyond_first": 30744,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "val": {
+              "same_label_fingerprints": 683,
+              "same_label_duplicate_rows_beyond_first": 4362,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "meta_known": {
+              "same_label_fingerprints": 682,
+              "same_label_duplicate_rows_beyond_first": 4362,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "calibration": {
+              "same_label_fingerprints": 682,
+              "same_label_duplicate_rows_beyond_first": 4363,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "surrogate_ood": {
+              "same_label_fingerprints": 1104,
+              "same_label_duplicate_rows_beyond_first": 1548,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "target": {
+              "same_label_fingerprints": 101,
+              "same_label_duplicate_rows_beyond_first": 166,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            }
+          },
+          "cross_role_pairs": {
+            "train__val": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__meta_known": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__meta_known": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "calibration__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "calibration__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "surrogate_ood__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            }
+          },
+          "cross_role_same_label_fingerprints_unique": 0,
+          "cross_role_cross_label_fingerprints_unique": 0,
+          "target_vs_fit": 0,
+          "target_vs_roles": {
+            "train": 0,
+            "val": 0,
+            "meta_known": 0,
+            "calibration": 0,
+            "surrogate_ood": 0
+          }
+        },
+        "model_input_cross_identity_before_scaling": 0,
+        "model_input_cross_identity_final": 0,
+        "new_scaling_merges": 0,
+        "new_dtype_conversion_merges": 0
+      },
+      "vocabulary_provenance": {
+        "source": "official_train target-purged backbone train",
+        "sha256": "bcb976065632835edf1b47a1af61990230ac4ca90f026f715d391b9419907130",
+        "sizes": {
+          "proto": 7,
+          "service": 13,
+          "state": 9
+        }
+      },
+      "scaler_provenance": {
+        "source": "official_train target-purged backbone train",
+        "center_scale_sha256": "2be04e0f883a436946559bf219c218c1e07f8a62dc951868bbf206c811a12c92",
+        "fit_row_count": 88551
+      },
+      "development_manifest_sha256": "dabe2182439cf6ef57676afbdc63a7a073a466621b51e4537f1b3544e57639cb",
+      "development_gate": "PASS",
+      "development_fail_reasons": [],
+      "official_test_support": {
+        "target_family": "Analysis",
+        "target": {
+          "original_rows": 677,
+          "clean_rows": 58,
+          "development_overlap_rows": 0,
+          "test_internal_ambiguous_rows": 605,
+          "train_conflict_related_rows": 14,
+          "ambiguous_rows": 619,
+          "clean_unique_canonical_identities": 58,
+          "percentage_clean_retained": 8.567208271787297
+        },
+        "known_background": {
+          "original_rows": 74588,
+          "clean_rows": 64016,
+          "development_overlap_rows": 3840,
+          "test_internal_ambiguous_rows": 4216,
+          "train_conflict_related_rows": 2516,
+          "ambiguous_rows": 6732,
+          "clean_unique_canonical_identities": 47444,
+          "percentage_clean_retained": 85.82613825280205
+        }
+      },
+      "post_freeze_official_test_model_input_audit": {
+        "frozen_model_input_version": "continuous-float64-categorical-opaque-id-v1",
+        "official_test_rows": 82332,
+        "clean_test_rows": 69315,
+        "cross_identity_model_input_collision_rows_all_test": 0,
+        "cross_identity_model_input_collision_unique_fingerprints_all_test": 0,
+        "cross_identity_model_input_collision_rows_clean_test": 0,
+        "cross_identity_model_input_collision_unique_fingerprints_clean_test": 0,
+        "official_test_used_for_parameter_fit": false
+      },
+      "official_test_clean_target_rows": 58,
+      "official_test_clean_known_background_rows": 64016,
+      "support_review_required": true,
+      "support_note": "Small-sample regime flagged descriptively; no statistical-power threshold or model metric was inferred.",
+      "data_protocol_status": "DATA_PROTOCOL_PASS"
+    },
+    {
+      "target": "Analysis",
+      "seed": 44,
+      "development_rows_before_ambiguity_exclusion": 175341,
+      "train_only_ambiguous_groups_excluded": 1772,
+      "train_only_ambiguous_rows_excluded": 30528,
+      "development_rows_after_ambiguity_exclusion": 144813,
+      "target_rows_held_out_from_fit": 559,
+      "target_identity_groups_purged": 393,
+      "known_rows_removed_by_target_identity_purge": 0,
+      "surrogate_rows_removed_by_target_identity_purge": 0,
+      "role_rows": {
+        "train": 88551,
+        "val": 12650,
+        "meta_known": 12649,
+        "calibration": 12649,
+        "surrogate_ood": 17755
+      },
+      "role_canonical_intersections": {
+        "train__val": 0,
+        "train__meta_known": 0,
+        "train__calibration": 0,
+        "train__surrogate_ood": 0,
+        "val__meta_known": 0,
+        "val__calibration": 0,
+        "val__surrogate_ood": 0,
+        "meta_known__calibration": 0,
+        "meta_known__surrogate_ood": 0,
+        "calibration__surrogate_ood": 0
+      },
+      "model_input_audit": {
+        "gate": {
+          "gate": "PASS",
+          "severity": "PASS",
+          "fail_reasons": [],
+          "same_role_same_label_policy": "REPORT ONLY",
+          "same_role_cross_label_policy": "CRITICAL FAIL; unresolved ambiguity; no label selection"
+        },
+        "canonical_role_intersections": {
+          "train__val": 0,
+          "train__meta_known": 0,
+          "train__calibration": 0,
+          "train__surrogate_ood": 0,
+          "val__meta_known": 0,
+          "val__calibration": 0,
+          "val__surrogate_ood": 0,
+          "meta_known__calibration": 0,
+          "meta_known__surrogate_ood": 0,
+          "calibration__surrogate_ood": 0
+        },
+        "canonical_target_intersections": {
+          "train": 0,
+          "val": 0,
+          "meta_known": 0,
+          "calibration": 0,
+          "surrogate_ood": 0
+        },
+        "collision_taxonomy": {
+          "count_unit": "unique fingerprints per category/pair; overlapping categories are not additive",
+          "same_role": {
+            "train": {
+              "same_label_fingerprints": 4724,
+              "same_label_duplicate_rows_beyond_first": 30744,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "val": {
+              "same_label_fingerprints": 683,
+              "same_label_duplicate_rows_beyond_first": 4362,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "meta_known": {
+              "same_label_fingerprints": 682,
+              "same_label_duplicate_rows_beyond_first": 4362,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "calibration": {
+              "same_label_fingerprints": 682,
+              "same_label_duplicate_rows_beyond_first": 4363,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "surrogate_ood": {
+              "same_label_fingerprints": 1104,
+              "same_label_duplicate_rows_beyond_first": 1548,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "target": {
+              "same_label_fingerprints": 101,
+              "same_label_duplicate_rows_beyond_first": 166,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            }
+          },
+          "cross_role_pairs": {
+            "train__val": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__meta_known": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__meta_known": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "calibration__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "calibration__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "surrogate_ood__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            }
+          },
+          "cross_role_same_label_fingerprints_unique": 0,
+          "cross_role_cross_label_fingerprints_unique": 0,
+          "target_vs_fit": 0,
+          "target_vs_roles": {
+            "train": 0,
+            "val": 0,
+            "meta_known": 0,
+            "calibration": 0,
+            "surrogate_ood": 0
+          }
+        },
+        "model_input_cross_identity_before_scaling": 0,
+        "model_input_cross_identity_final": 0,
+        "new_scaling_merges": 0,
+        "new_dtype_conversion_merges": 0
+      },
+      "vocabulary_provenance": {
+        "source": "official_train target-purged backbone train",
+        "sha256": "8a840d79bd83d3770be3fded4fa4cf6ea7fdefce6e9f8ffa57b3d46e8c13ef88",
+        "sizes": {
+          "proto": 6,
+          "service": 13,
+          "state": 8
+        }
+      },
+      "scaler_provenance": {
+        "source": "official_train target-purged backbone train",
+        "center_scale_sha256": "579738638fa17f91bbbdd3c43a9562b3c1f8f9e79b9acd3c7dcb53b4547f52aa",
+        "fit_row_count": 88551
+      },
+      "development_manifest_sha256": "55d2f26ffe78ae0c63a335235c4a5e2ac6c844327a90fef209a730106dc3c3d6",
+      "development_gate": "PASS",
+      "development_fail_reasons": [],
+      "official_test_support": {
+        "target_family": "Analysis",
+        "target": {
+          "original_rows": 677,
+          "clean_rows": 58,
+          "development_overlap_rows": 0,
+          "test_internal_ambiguous_rows": 605,
+          "train_conflict_related_rows": 14,
+          "ambiguous_rows": 619,
+          "clean_unique_canonical_identities": 58,
+          "percentage_clean_retained": 8.567208271787297
+        },
+        "known_background": {
+          "original_rows": 74588,
+          "clean_rows": 64016,
+          "development_overlap_rows": 3840,
+          "test_internal_ambiguous_rows": 4216,
+          "train_conflict_related_rows": 2516,
+          "ambiguous_rows": 6732,
+          "clean_unique_canonical_identities": 47444,
+          "percentage_clean_retained": 85.82613825280205
+        }
+      },
+      "post_freeze_official_test_model_input_audit": {
+        "frozen_model_input_version": "continuous-float64-categorical-opaque-id-v1",
+        "official_test_rows": 82332,
+        "clean_test_rows": 69315,
+        "cross_identity_model_input_collision_rows_all_test": 0,
+        "cross_identity_model_input_collision_unique_fingerprints_all_test": 0,
+        "cross_identity_model_input_collision_rows_clean_test": 0,
+        "cross_identity_model_input_collision_unique_fingerprints_clean_test": 0,
+        "official_test_used_for_parameter_fit": false
+      },
+      "official_test_clean_target_rows": 58,
+      "official_test_clean_known_background_rows": 64016,
+      "support_review_required": true,
+      "support_note": "Small-sample regime flagged descriptively; no statistical-power threshold or model metric was inferred.",
+      "data_protocol_status": "DATA_PROTOCOL_PASS"
+    },
+    {
+      "target": "Backdoors",
+      "seed": 42,
+      "development_rows_before_ambiguity_exclusion": 175341,
+      "train_only_ambiguous_groups_excluded": 1772,
+      "train_only_ambiguous_rows_excluded": 30528,
+      "development_rows_after_ambiguity_exclusion": 144813,
+      "target_rows_held_out_from_fit": 406,
+      "target_identity_groups_purged": 403,
+      "known_rows_removed_by_target_identity_purge": 0,
+      "surrogate_rows_removed_by_target_identity_purge": 0,
+      "role_rows": {
+        "train": 88551,
+        "val": 12650,
+        "meta_known": 12649,
+        "calibration": 12649,
+        "surrogate_ood": 17908
+      },
+      "role_canonical_intersections": {
+        "train__val": 0,
+        "train__meta_known": 0,
+        "train__calibration": 0,
+        "train__surrogate_ood": 0,
+        "val__meta_known": 0,
+        "val__calibration": 0,
+        "val__surrogate_ood": 0,
+        "meta_known__calibration": 0,
+        "meta_known__surrogate_ood": 0,
+        "calibration__surrogate_ood": 0
+      },
+      "model_input_audit": {
+        "gate": {
+          "gate": "PASS",
+          "severity": "PASS",
+          "fail_reasons": [],
+          "same_role_same_label_policy": "REPORT ONLY",
+          "same_role_cross_label_policy": "CRITICAL FAIL; unresolved ambiguity; no label selection"
+        },
+        "canonical_role_intersections": {
+          "train__val": 0,
+          "train__meta_known": 0,
+          "train__calibration": 0,
+          "train__surrogate_ood": 0,
+          "val__meta_known": 0,
+          "val__calibration": 0,
+          "val__surrogate_ood": 0,
+          "meta_known__calibration": 0,
+          "meta_known__surrogate_ood": 0,
+          "calibration__surrogate_ood": 0
+        },
+        "canonical_target_intersections": {
+          "train": 0,
+          "val": 0,
+          "meta_known": 0,
+          "calibration": 0,
+          "surrogate_ood": 0
+        },
+        "collision_taxonomy": {
+          "count_unit": "unique fingerprints per category/pair; overlapping categories are not additive",
+          "same_role": {
+            "train": {
+              "same_label_fingerprints": 4724,
+              "same_label_duplicate_rows_beyond_first": 30743,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "val": {
+              "same_label_fingerprints": 682,
+              "same_label_duplicate_rows_beyond_first": 4362,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "meta_known": {
+              "same_label_fingerprints": 683,
+              "same_label_duplicate_rows_beyond_first": 4362,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "calibration": {
+              "same_label_fingerprints": 682,
+              "same_label_duplicate_rows_beyond_first": 4364,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "surrogate_ood": {
+              "same_label_fingerprints": 1202,
+              "same_label_duplicate_rows_beyond_first": 1711,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "target": {
+              "same_label_fingerprints": 3,
+              "same_label_duplicate_rows_beyond_first": 3,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            }
+          },
+          "cross_role_pairs": {
+            "train__val": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__meta_known": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__meta_known": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "calibration__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "calibration__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "surrogate_ood__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            }
+          },
+          "cross_role_same_label_fingerprints_unique": 0,
+          "cross_role_cross_label_fingerprints_unique": 0,
+          "target_vs_fit": 0,
+          "target_vs_roles": {
+            "train": 0,
+            "val": 0,
+            "meta_known": 0,
+            "calibration": 0,
+            "surrogate_ood": 0
+          }
+        },
+        "model_input_cross_identity_before_scaling": 0,
+        "model_input_cross_identity_final": 0,
+        "new_scaling_merges": 0,
+        "new_dtype_conversion_merges": 0
+      },
+      "vocabulary_provenance": {
+        "source": "official_train target-purged backbone train",
+        "sha256": "8a840d79bd83d3770be3fded4fa4cf6ea7fdefce6e9f8ffa57b3d46e8c13ef88",
+        "sizes": {
+          "proto": 6,
+          "service": 13,
+          "state": 8
+        }
+      },
+      "scaler_provenance": {
+        "source": "official_train target-purged backbone train",
+        "center_scale_sha256": "9a4c4f683245ce234a02d8a031868a4a5f974e4763ef3294ac0e77c9ffd538c8",
+        "fit_row_count": 88551
+      },
+      "development_manifest_sha256": "a5102cacd57d1299d6ce6b8fd85fa25dd525fd4be22c1f4132336c751c3fe06a",
+      "development_gate": "PASS",
+      "development_fail_reasons": [],
+      "official_test_support": {
+        "target_family": "Backdoors",
+        "target": {
+          "original_rows": 583,
+          "clean_rows": 57,
+          "development_overlap_rows": 0,
+          "test_internal_ambiguous_rows": 522,
+          "train_conflict_related_rows": 4,
+          "ambiguous_rows": 526,
+          "clean_unique_canonical_identities": 57,
+          "percentage_clean_retained": 9.777015437392796
+        },
+        "known_background": {
+          "original_rows": 74588,
+          "clean_rows": 64016,
+          "development_overlap_rows": 3840,
+          "test_internal_ambiguous_rows": 4216,
+          "train_conflict_related_rows": 2516,
+          "ambiguous_rows": 6732,
+          "clean_unique_canonical_identities": 47444,
+          "percentage_clean_retained": 85.82613825280205
+        }
+      },
+      "post_freeze_official_test_model_input_audit": {
+        "frozen_model_input_version": "continuous-float64-categorical-opaque-id-v1",
+        "official_test_rows": 82332,
+        "clean_test_rows": 69315,
+        "cross_identity_model_input_collision_rows_all_test": 0,
+        "cross_identity_model_input_collision_unique_fingerprints_all_test": 0,
+        "cross_identity_model_input_collision_rows_clean_test": 0,
+        "cross_identity_model_input_collision_unique_fingerprints_clean_test": 0,
+        "official_test_used_for_parameter_fit": false
+      },
+      "official_test_clean_target_rows": 57,
+      "official_test_clean_known_background_rows": 64016,
+      "support_review_required": true,
+      "support_note": "Small-sample regime flagged descriptively; no statistical-power threshold or model metric was inferred.",
+      "data_protocol_status": "DATA_PROTOCOL_PASS"
+    },
+    {
+      "target": "Backdoors",
+      "seed": 43,
+      "development_rows_before_ambiguity_exclusion": 175341,
+      "train_only_ambiguous_groups_excluded": 1772,
+      "train_only_ambiguous_rows_excluded": 30528,
+      "development_rows_after_ambiguity_exclusion": 144813,
+      "target_rows_held_out_from_fit": 406,
+      "target_identity_groups_purged": 403,
+      "known_rows_removed_by_target_identity_purge": 0,
+      "surrogate_rows_removed_by_target_identity_purge": 0,
+      "role_rows": {
+        "train": 88551,
+        "val": 12650,
+        "meta_known": 12649,
+        "calibration": 12649,
+        "surrogate_ood": 17908
+      },
+      "role_canonical_intersections": {
+        "train__val": 0,
+        "train__meta_known": 0,
+        "train__calibration": 0,
+        "train__surrogate_ood": 0,
+        "val__meta_known": 0,
+        "val__calibration": 0,
+        "val__surrogate_ood": 0,
+        "meta_known__calibration": 0,
+        "meta_known__surrogate_ood": 0,
+        "calibration__surrogate_ood": 0
+      },
+      "model_input_audit": {
+        "gate": {
+          "gate": "PASS",
+          "severity": "PASS",
+          "fail_reasons": [],
+          "same_role_same_label_policy": "REPORT ONLY",
+          "same_role_cross_label_policy": "CRITICAL FAIL; unresolved ambiguity; no label selection"
+        },
+        "canonical_role_intersections": {
+          "train__val": 0,
+          "train__meta_known": 0,
+          "train__calibration": 0,
+          "train__surrogate_ood": 0,
+          "val__meta_known": 0,
+          "val__calibration": 0,
+          "val__surrogate_ood": 0,
+          "meta_known__calibration": 0,
+          "meta_known__surrogate_ood": 0,
+          "calibration__surrogate_ood": 0
+        },
+        "canonical_target_intersections": {
+          "train": 0,
+          "val": 0,
+          "meta_known": 0,
+          "calibration": 0,
+          "surrogate_ood": 0
+        },
+        "collision_taxonomy": {
+          "count_unit": "unique fingerprints per category/pair; overlapping categories are not additive",
+          "same_role": {
+            "train": {
+              "same_label_fingerprints": 4724,
+              "same_label_duplicate_rows_beyond_first": 30744,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "val": {
+              "same_label_fingerprints": 683,
+              "same_label_duplicate_rows_beyond_first": 4362,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "meta_known": {
+              "same_label_fingerprints": 682,
+              "same_label_duplicate_rows_beyond_first": 4362,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "calibration": {
+              "same_label_fingerprints": 682,
+              "same_label_duplicate_rows_beyond_first": 4363,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "surrogate_ood": {
+              "same_label_fingerprints": 1202,
+              "same_label_duplicate_rows_beyond_first": 1711,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "target": {
+              "same_label_fingerprints": 3,
+              "same_label_duplicate_rows_beyond_first": 3,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            }
+          },
+          "cross_role_pairs": {
+            "train__val": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__meta_known": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__meta_known": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "calibration__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "calibration__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "surrogate_ood__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            }
+          },
+          "cross_role_same_label_fingerprints_unique": 0,
+          "cross_role_cross_label_fingerprints_unique": 0,
+          "target_vs_fit": 0,
+          "target_vs_roles": {
+            "train": 0,
+            "val": 0,
+            "meta_known": 0,
+            "calibration": 0,
+            "surrogate_ood": 0
+          }
+        },
+        "model_input_cross_identity_before_scaling": 0,
+        "model_input_cross_identity_final": 0,
+        "new_scaling_merges": 0,
+        "new_dtype_conversion_merges": 0
+      },
+      "vocabulary_provenance": {
+        "source": "official_train target-purged backbone train",
+        "sha256": "bcb976065632835edf1b47a1af61990230ac4ca90f026f715d391b9419907130",
+        "sizes": {
+          "proto": 7,
+          "service": 13,
+          "state": 9
+        }
+      },
+      "scaler_provenance": {
+        "source": "official_train target-purged backbone train",
+        "center_scale_sha256": "2be04e0f883a436946559bf219c218c1e07f8a62dc951868bbf206c811a12c92",
+        "fit_row_count": 88551
+      },
+      "development_manifest_sha256": "a894bcb16a52b14742d44daf53de935ae4ac82f95b0581ef84d25f0e7fd40f29",
+      "development_gate": "PASS",
+      "development_fail_reasons": [],
+      "official_test_support": {
+        "target_family": "Backdoors",
+        "target": {
+          "original_rows": 583,
+          "clean_rows": 57,
+          "development_overlap_rows": 0,
+          "test_internal_ambiguous_rows": 522,
+          "train_conflict_related_rows": 4,
+          "ambiguous_rows": 526,
+          "clean_unique_canonical_identities": 57,
+          "percentage_clean_retained": 9.777015437392796
+        },
+        "known_background": {
+          "original_rows": 74588,
+          "clean_rows": 64016,
+          "development_overlap_rows": 3840,
+          "test_internal_ambiguous_rows": 4216,
+          "train_conflict_related_rows": 2516,
+          "ambiguous_rows": 6732,
+          "clean_unique_canonical_identities": 47444,
+          "percentage_clean_retained": 85.82613825280205
+        }
+      },
+      "post_freeze_official_test_model_input_audit": {
+        "frozen_model_input_version": "continuous-float64-categorical-opaque-id-v1",
+        "official_test_rows": 82332,
+        "clean_test_rows": 69315,
+        "cross_identity_model_input_collision_rows_all_test": 0,
+        "cross_identity_model_input_collision_unique_fingerprints_all_test": 0,
+        "cross_identity_model_input_collision_rows_clean_test": 0,
+        "cross_identity_model_input_collision_unique_fingerprints_clean_test": 0,
+        "official_test_used_for_parameter_fit": false
+      },
+      "official_test_clean_target_rows": 57,
+      "official_test_clean_known_background_rows": 64016,
+      "support_review_required": true,
+      "support_note": "Small-sample regime flagged descriptively; no statistical-power threshold or model metric was inferred.",
+      "data_protocol_status": "DATA_PROTOCOL_PASS"
+    },
+    {
+      "target": "Backdoors",
+      "seed": 44,
+      "development_rows_before_ambiguity_exclusion": 175341,
+      "train_only_ambiguous_groups_excluded": 1772,
+      "train_only_ambiguous_rows_excluded": 30528,
+      "development_rows_after_ambiguity_exclusion": 144813,
+      "target_rows_held_out_from_fit": 406,
+      "target_identity_groups_purged": 403,
+      "known_rows_removed_by_target_identity_purge": 0,
+      "surrogate_rows_removed_by_target_identity_purge": 0,
+      "role_rows": {
+        "train": 88551,
+        "val": 12650,
+        "meta_known": 12649,
+        "calibration": 12649,
+        "surrogate_ood": 17908
+      },
+      "role_canonical_intersections": {
+        "train__val": 0,
+        "train__meta_known": 0,
+        "train__calibration": 0,
+        "train__surrogate_ood": 0,
+        "val__meta_known": 0,
+        "val__calibration": 0,
+        "val__surrogate_ood": 0,
+        "meta_known__calibration": 0,
+        "meta_known__surrogate_ood": 0,
+        "calibration__surrogate_ood": 0
+      },
+      "model_input_audit": {
+        "gate": {
+          "gate": "PASS",
+          "severity": "PASS",
+          "fail_reasons": [],
+          "same_role_same_label_policy": "REPORT ONLY",
+          "same_role_cross_label_policy": "CRITICAL FAIL; unresolved ambiguity; no label selection"
+        },
+        "canonical_role_intersections": {
+          "train__val": 0,
+          "train__meta_known": 0,
+          "train__calibration": 0,
+          "train__surrogate_ood": 0,
+          "val__meta_known": 0,
+          "val__calibration": 0,
+          "val__surrogate_ood": 0,
+          "meta_known__calibration": 0,
+          "meta_known__surrogate_ood": 0,
+          "calibration__surrogate_ood": 0
+        },
+        "canonical_target_intersections": {
+          "train": 0,
+          "val": 0,
+          "meta_known": 0,
+          "calibration": 0,
+          "surrogate_ood": 0
+        },
+        "collision_taxonomy": {
+          "count_unit": "unique fingerprints per category/pair; overlapping categories are not additive",
+          "same_role": {
+            "train": {
+              "same_label_fingerprints": 4724,
+              "same_label_duplicate_rows_beyond_first": 30744,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "val": {
+              "same_label_fingerprints": 683,
+              "same_label_duplicate_rows_beyond_first": 4362,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "meta_known": {
+              "same_label_fingerprints": 682,
+              "same_label_duplicate_rows_beyond_first": 4362,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "calibration": {
+              "same_label_fingerprints": 682,
+              "same_label_duplicate_rows_beyond_first": 4363,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "surrogate_ood": {
+              "same_label_fingerprints": 1202,
+              "same_label_duplicate_rows_beyond_first": 1711,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "target": {
+              "same_label_fingerprints": 3,
+              "same_label_duplicate_rows_beyond_first": 3,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            }
+          },
+          "cross_role_pairs": {
+            "train__val": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__meta_known": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__meta_known": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "calibration__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "calibration__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "surrogate_ood__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            }
+          },
+          "cross_role_same_label_fingerprints_unique": 0,
+          "cross_role_cross_label_fingerprints_unique": 0,
+          "target_vs_fit": 0,
+          "target_vs_roles": {
+            "train": 0,
+            "val": 0,
+            "meta_known": 0,
+            "calibration": 0,
+            "surrogate_ood": 0
+          }
+        },
+        "model_input_cross_identity_before_scaling": 0,
+        "model_input_cross_identity_final": 0,
+        "new_scaling_merges": 0,
+        "new_dtype_conversion_merges": 0
+      },
+      "vocabulary_provenance": {
+        "source": "official_train target-purged backbone train",
+        "sha256": "8a840d79bd83d3770be3fded4fa4cf6ea7fdefce6e9f8ffa57b3d46e8c13ef88",
+        "sizes": {
+          "proto": 6,
+          "service": 13,
+          "state": 8
+        }
+      },
+      "scaler_provenance": {
+        "source": "official_train target-purged backbone train",
+        "center_scale_sha256": "579738638fa17f91bbbdd3c43a9562b3c1f8f9e79b9acd3c7dcb53b4547f52aa",
+        "fit_row_count": 88551
+      },
+      "development_manifest_sha256": "6a0e15ce8a9cbad1c6aaee787ac31c250103c91e27dc8ed5e8191caff3631b41",
+      "development_gate": "PASS",
+      "development_fail_reasons": [],
+      "official_test_support": {
+        "target_family": "Backdoors",
+        "target": {
+          "original_rows": 583,
+          "clean_rows": 57,
+          "development_overlap_rows": 0,
+          "test_internal_ambiguous_rows": 522,
+          "train_conflict_related_rows": 4,
+          "ambiguous_rows": 526,
+          "clean_unique_canonical_identities": 57,
+          "percentage_clean_retained": 9.777015437392796
+        },
+        "known_background": {
+          "original_rows": 74588,
+          "clean_rows": 64016,
+          "development_overlap_rows": 3840,
+          "test_internal_ambiguous_rows": 4216,
+          "train_conflict_related_rows": 2516,
+          "ambiguous_rows": 6732,
+          "clean_unique_canonical_identities": 47444,
+          "percentage_clean_retained": 85.82613825280205
+        }
+      },
+      "post_freeze_official_test_model_input_audit": {
+        "frozen_model_input_version": "continuous-float64-categorical-opaque-id-v1",
+        "official_test_rows": 82332,
+        "clean_test_rows": 69315,
+        "cross_identity_model_input_collision_rows_all_test": 0,
+        "cross_identity_model_input_collision_unique_fingerprints_all_test": 0,
+        "cross_identity_model_input_collision_rows_clean_test": 0,
+        "cross_identity_model_input_collision_unique_fingerprints_clean_test": 0,
+        "official_test_used_for_parameter_fit": false
+      },
+      "official_test_clean_target_rows": 57,
+      "official_test_clean_known_background_rows": 64016,
+      "support_review_required": true,
+      "support_note": "Small-sample regime flagged descriptively; no statistical-power threshold or model metric was inferred.",
+      "data_protocol_status": "DATA_PROTOCOL_PASS"
+    },
+    {
+      "target": "Shellcode",
+      "seed": 42,
+      "development_rows_before_ambiguity_exclusion": 175341,
+      "train_only_ambiguous_groups_excluded": 1772,
+      "train_only_ambiguous_rows_excluded": 30528,
+      "development_rows_after_ambiguity_exclusion": 144813,
+      "target_rows_held_out_from_fit": 1126,
+      "target_identity_groups_purged": 1085,
+      "known_rows_removed_by_target_identity_purge": 0,
+      "surrogate_rows_removed_by_target_identity_purge": 0,
+      "role_rows": {
+        "train": 88551,
+        "val": 12650,
+        "meta_known": 12649,
+        "calibration": 12649,
+        "surrogate_ood": 17188
+      },
+      "role_canonical_intersections": {
+        "train__val": 0,
+        "train__meta_known": 0,
+        "train__calibration": 0,
+        "train__surrogate_ood": 0,
+        "val__meta_known": 0,
+        "val__calibration": 0,
+        "val__surrogate_ood": 0,
+        "meta_known__calibration": 0,
+        "meta_known__surrogate_ood": 0,
+        "calibration__surrogate_ood": 0
+      },
+      "model_input_audit": {
+        "gate": {
+          "gate": "PASS",
+          "severity": "PASS",
+          "fail_reasons": [],
+          "same_role_same_label_policy": "REPORT ONLY",
+          "same_role_cross_label_policy": "CRITICAL FAIL; unresolved ambiguity; no label selection"
+        },
+        "canonical_role_intersections": {
+          "train__val": 0,
+          "train__meta_known": 0,
+          "train__calibration": 0,
+          "train__surrogate_ood": 0,
+          "val__meta_known": 0,
+          "val__calibration": 0,
+          "val__surrogate_ood": 0,
+          "meta_known__calibration": 0,
+          "meta_known__surrogate_ood": 0,
+          "calibration__surrogate_ood": 0
+        },
+        "canonical_target_intersections": {
+          "train": 0,
+          "val": 0,
+          "meta_known": 0,
+          "calibration": 0,
+          "surrogate_ood": 0
+        },
+        "collision_taxonomy": {
+          "count_unit": "unique fingerprints per category/pair; overlapping categories are not additive",
+          "same_role": {
+            "train": {
+              "same_label_fingerprints": 4724,
+              "same_label_duplicate_rows_beyond_first": 30743,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "val": {
+              "same_label_fingerprints": 682,
+              "same_label_duplicate_rows_beyond_first": 4362,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "meta_known": {
+              "same_label_fingerprints": 683,
+              "same_label_duplicate_rows_beyond_first": 4362,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "calibration": {
+              "same_label_fingerprints": 682,
+              "same_label_duplicate_rows_beyond_first": 4364,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "surrogate_ood": {
+              "same_label_fingerprints": 1171,
+              "same_label_duplicate_rows_beyond_first": 1673,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "target": {
+              "same_label_fingerprints": 34,
+              "same_label_duplicate_rows_beyond_first": 41,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            }
+          },
+          "cross_role_pairs": {
+            "train__val": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__meta_known": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__meta_known": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "calibration__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "calibration__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "surrogate_ood__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            }
+          },
+          "cross_role_same_label_fingerprints_unique": 0,
+          "cross_role_cross_label_fingerprints_unique": 0,
+          "target_vs_fit": 0,
+          "target_vs_roles": {
+            "train": 0,
+            "val": 0,
+            "meta_known": 0,
+            "calibration": 0,
+            "surrogate_ood": 0
+          }
+        },
+        "model_input_cross_identity_before_scaling": 0,
+        "model_input_cross_identity_final": 0,
+        "new_scaling_merges": 0,
+        "new_dtype_conversion_merges": 0
+      },
+      "vocabulary_provenance": {
+        "source": "official_train target-purged backbone train",
+        "sha256": "8a840d79bd83d3770be3fded4fa4cf6ea7fdefce6e9f8ffa57b3d46e8c13ef88",
+        "sizes": {
+          "proto": 6,
+          "service": 13,
+          "state": 8
+        }
+      },
+      "scaler_provenance": {
+        "source": "official_train target-purged backbone train",
+        "center_scale_sha256": "9a4c4f683245ce234a02d8a031868a4a5f974e4763ef3294ac0e77c9ffd538c8",
+        "fit_row_count": 88551
+      },
+      "development_manifest_sha256": "3d3c1dd0232bc7db96d048016b0a06b403ac4dd7353bb1c053407a86eaa4a851",
+      "development_gate": "PASS",
+      "development_fail_reasons": [],
+      "official_test_support": {
+        "target_family": "Shellcode",
+        "target": {
+          "original_rows": 378,
+          "clean_rows": 364,
+          "development_overlap_rows": 12,
+          "test_internal_ambiguous_rows": 1,
+          "train_conflict_related_rows": 1,
+          "ambiguous_rows": 2,
+          "clean_unique_canonical_identities": 364,
+          "percentage_clean_retained": 96.29629629629629
+        },
+        "known_background": {
+          "original_rows": 74588,
+          "clean_rows": 64016,
+          "development_overlap_rows": 3840,
+          "test_internal_ambiguous_rows": 4216,
+          "train_conflict_related_rows": 2516,
+          "ambiguous_rows": 6732,
+          "clean_unique_canonical_identities": 47444,
+          "percentage_clean_retained": 85.82613825280205
+        }
+      },
+      "post_freeze_official_test_model_input_audit": {
+        "frozen_model_input_version": "continuous-float64-categorical-opaque-id-v1",
+        "official_test_rows": 82332,
+        "clean_test_rows": 69315,
+        "cross_identity_model_input_collision_rows_all_test": 0,
+        "cross_identity_model_input_collision_unique_fingerprints_all_test": 0,
+        "cross_identity_model_input_collision_rows_clean_test": 0,
+        "cross_identity_model_input_collision_unique_fingerprints_clean_test": 0,
+        "official_test_used_for_parameter_fit": false
+      },
+      "official_test_clean_target_rows": 364,
+      "official_test_clean_known_background_rows": 64016,
+      "support_review_required": false,
+      "support_note": "Structural support count only; statistical power not inferred.",
+      "data_protocol_status": "DATA_PROTOCOL_PASS"
+    },
+    {
+      "target": "Shellcode",
+      "seed": 43,
+      "development_rows_before_ambiguity_exclusion": 175341,
+      "train_only_ambiguous_groups_excluded": 1772,
+      "train_only_ambiguous_rows_excluded": 30528,
+      "development_rows_after_ambiguity_exclusion": 144813,
+      "target_rows_held_out_from_fit": 1126,
+      "target_identity_groups_purged": 1085,
+      "known_rows_removed_by_target_identity_purge": 0,
+      "surrogate_rows_removed_by_target_identity_purge": 0,
+      "role_rows": {
+        "train": 88551,
+        "val": 12650,
+        "meta_known": 12649,
+        "calibration": 12649,
+        "surrogate_ood": 17188
+      },
+      "role_canonical_intersections": {
+        "train__val": 0,
+        "train__meta_known": 0,
+        "train__calibration": 0,
+        "train__surrogate_ood": 0,
+        "val__meta_known": 0,
+        "val__calibration": 0,
+        "val__surrogate_ood": 0,
+        "meta_known__calibration": 0,
+        "meta_known__surrogate_ood": 0,
+        "calibration__surrogate_ood": 0
+      },
+      "model_input_audit": {
+        "gate": {
+          "gate": "PASS",
+          "severity": "PASS",
+          "fail_reasons": [],
+          "same_role_same_label_policy": "REPORT ONLY",
+          "same_role_cross_label_policy": "CRITICAL FAIL; unresolved ambiguity; no label selection"
+        },
+        "canonical_role_intersections": {
+          "train__val": 0,
+          "train__meta_known": 0,
+          "train__calibration": 0,
+          "train__surrogate_ood": 0,
+          "val__meta_known": 0,
+          "val__calibration": 0,
+          "val__surrogate_ood": 0,
+          "meta_known__calibration": 0,
+          "meta_known__surrogate_ood": 0,
+          "calibration__surrogate_ood": 0
+        },
+        "canonical_target_intersections": {
+          "train": 0,
+          "val": 0,
+          "meta_known": 0,
+          "calibration": 0,
+          "surrogate_ood": 0
+        },
+        "collision_taxonomy": {
+          "count_unit": "unique fingerprints per category/pair; overlapping categories are not additive",
+          "same_role": {
+            "train": {
+              "same_label_fingerprints": 4724,
+              "same_label_duplicate_rows_beyond_first": 30744,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "val": {
+              "same_label_fingerprints": 683,
+              "same_label_duplicate_rows_beyond_first": 4362,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "meta_known": {
+              "same_label_fingerprints": 682,
+              "same_label_duplicate_rows_beyond_first": 4362,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "calibration": {
+              "same_label_fingerprints": 682,
+              "same_label_duplicate_rows_beyond_first": 4363,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "surrogate_ood": {
+              "same_label_fingerprints": 1171,
+              "same_label_duplicate_rows_beyond_first": 1673,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "target": {
+              "same_label_fingerprints": 34,
+              "same_label_duplicate_rows_beyond_first": 41,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            }
+          },
+          "cross_role_pairs": {
+            "train__val": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__meta_known": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__meta_known": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "calibration__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "calibration__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "surrogate_ood__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            }
+          },
+          "cross_role_same_label_fingerprints_unique": 0,
+          "cross_role_cross_label_fingerprints_unique": 0,
+          "target_vs_fit": 0,
+          "target_vs_roles": {
+            "train": 0,
+            "val": 0,
+            "meta_known": 0,
+            "calibration": 0,
+            "surrogate_ood": 0
+          }
+        },
+        "model_input_cross_identity_before_scaling": 0,
+        "model_input_cross_identity_final": 0,
+        "new_scaling_merges": 0,
+        "new_dtype_conversion_merges": 0
+      },
+      "vocabulary_provenance": {
+        "source": "official_train target-purged backbone train",
+        "sha256": "bcb976065632835edf1b47a1af61990230ac4ca90f026f715d391b9419907130",
+        "sizes": {
+          "proto": 7,
+          "service": 13,
+          "state": 9
+        }
+      },
+      "scaler_provenance": {
+        "source": "official_train target-purged backbone train",
+        "center_scale_sha256": "2be04e0f883a436946559bf219c218c1e07f8a62dc951868bbf206c811a12c92",
+        "fit_row_count": 88551
+      },
+      "development_manifest_sha256": "41039f85ca4877cbaa3c90dd70f91f939dcc2de80ee9274f6864475940f9d08c",
+      "development_gate": "PASS",
+      "development_fail_reasons": [],
+      "official_test_support": {
+        "target_family": "Shellcode",
+        "target": {
+          "original_rows": 378,
+          "clean_rows": 364,
+          "development_overlap_rows": 12,
+          "test_internal_ambiguous_rows": 1,
+          "train_conflict_related_rows": 1,
+          "ambiguous_rows": 2,
+          "clean_unique_canonical_identities": 364,
+          "percentage_clean_retained": 96.29629629629629
+        },
+        "known_background": {
+          "original_rows": 74588,
+          "clean_rows": 64016,
+          "development_overlap_rows": 3840,
+          "test_internal_ambiguous_rows": 4216,
+          "train_conflict_related_rows": 2516,
+          "ambiguous_rows": 6732,
+          "clean_unique_canonical_identities": 47444,
+          "percentage_clean_retained": 85.82613825280205
+        }
+      },
+      "post_freeze_official_test_model_input_audit": {
+        "frozen_model_input_version": "continuous-float64-categorical-opaque-id-v1",
+        "official_test_rows": 82332,
+        "clean_test_rows": 69315,
+        "cross_identity_model_input_collision_rows_all_test": 0,
+        "cross_identity_model_input_collision_unique_fingerprints_all_test": 0,
+        "cross_identity_model_input_collision_rows_clean_test": 0,
+        "cross_identity_model_input_collision_unique_fingerprints_clean_test": 0,
+        "official_test_used_for_parameter_fit": false
+      },
+      "official_test_clean_target_rows": 364,
+      "official_test_clean_known_background_rows": 64016,
+      "support_review_required": false,
+      "support_note": "Structural support count only; statistical power not inferred.",
+      "data_protocol_status": "DATA_PROTOCOL_PASS"
+    },
+    {
+      "target": "Shellcode",
+      "seed": 44,
+      "development_rows_before_ambiguity_exclusion": 175341,
+      "train_only_ambiguous_groups_excluded": 1772,
+      "train_only_ambiguous_rows_excluded": 30528,
+      "development_rows_after_ambiguity_exclusion": 144813,
+      "target_rows_held_out_from_fit": 1126,
+      "target_identity_groups_purged": 1085,
+      "known_rows_removed_by_target_identity_purge": 0,
+      "surrogate_rows_removed_by_target_identity_purge": 0,
+      "role_rows": {
+        "train": 88551,
+        "val": 12650,
+        "meta_known": 12649,
+        "calibration": 12649,
+        "surrogate_ood": 17188
+      },
+      "role_canonical_intersections": {
+        "train__val": 0,
+        "train__meta_known": 0,
+        "train__calibration": 0,
+        "train__surrogate_ood": 0,
+        "val__meta_known": 0,
+        "val__calibration": 0,
+        "val__surrogate_ood": 0,
+        "meta_known__calibration": 0,
+        "meta_known__surrogate_ood": 0,
+        "calibration__surrogate_ood": 0
+      },
+      "model_input_audit": {
+        "gate": {
+          "gate": "PASS",
+          "severity": "PASS",
+          "fail_reasons": [],
+          "same_role_same_label_policy": "REPORT ONLY",
+          "same_role_cross_label_policy": "CRITICAL FAIL; unresolved ambiguity; no label selection"
+        },
+        "canonical_role_intersections": {
+          "train__val": 0,
+          "train__meta_known": 0,
+          "train__calibration": 0,
+          "train__surrogate_ood": 0,
+          "val__meta_known": 0,
+          "val__calibration": 0,
+          "val__surrogate_ood": 0,
+          "meta_known__calibration": 0,
+          "meta_known__surrogate_ood": 0,
+          "calibration__surrogate_ood": 0
+        },
+        "canonical_target_intersections": {
+          "train": 0,
+          "val": 0,
+          "meta_known": 0,
+          "calibration": 0,
+          "surrogate_ood": 0
+        },
+        "collision_taxonomy": {
+          "count_unit": "unique fingerprints per category/pair; overlapping categories are not additive",
+          "same_role": {
+            "train": {
+              "same_label_fingerprints": 4724,
+              "same_label_duplicate_rows_beyond_first": 30744,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "val": {
+              "same_label_fingerprints": 683,
+              "same_label_duplicate_rows_beyond_first": 4362,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "meta_known": {
+              "same_label_fingerprints": 682,
+              "same_label_duplicate_rows_beyond_first": 4362,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "calibration": {
+              "same_label_fingerprints": 682,
+              "same_label_duplicate_rows_beyond_first": 4363,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "surrogate_ood": {
+              "same_label_fingerprints": 1171,
+              "same_label_duplicate_rows_beyond_first": 1673,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "target": {
+              "same_label_fingerprints": 34,
+              "same_label_duplicate_rows_beyond_first": 41,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            }
+          },
+          "cross_role_pairs": {
+            "train__val": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__meta_known": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__meta_known": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "calibration__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "calibration__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "surrogate_ood__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            }
+          },
+          "cross_role_same_label_fingerprints_unique": 0,
+          "cross_role_cross_label_fingerprints_unique": 0,
+          "target_vs_fit": 0,
+          "target_vs_roles": {
+            "train": 0,
+            "val": 0,
+            "meta_known": 0,
+            "calibration": 0,
+            "surrogate_ood": 0
+          }
+        },
+        "model_input_cross_identity_before_scaling": 0,
+        "model_input_cross_identity_final": 0,
+        "new_scaling_merges": 0,
+        "new_dtype_conversion_merges": 0
+      },
+      "vocabulary_provenance": {
+        "source": "official_train target-purged backbone train",
+        "sha256": "8a840d79bd83d3770be3fded4fa4cf6ea7fdefce6e9f8ffa57b3d46e8c13ef88",
+        "sizes": {
+          "proto": 6,
+          "service": 13,
+          "state": 8
+        }
+      },
+      "scaler_provenance": {
+        "source": "official_train target-purged backbone train",
+        "center_scale_sha256": "579738638fa17f91bbbdd3c43a9562b3c1f8f9e79b9acd3c7dcb53b4547f52aa",
+        "fit_row_count": 88551
+      },
+      "development_manifest_sha256": "1d0d60756892a247a8dd8097bc9e3ee8ffa2e92a418edfa9cf6f989397df20f1",
+      "development_gate": "PASS",
+      "development_fail_reasons": [],
+      "official_test_support": {
+        "target_family": "Shellcode",
+        "target": {
+          "original_rows": 378,
+          "clean_rows": 364,
+          "development_overlap_rows": 12,
+          "test_internal_ambiguous_rows": 1,
+          "train_conflict_related_rows": 1,
+          "ambiguous_rows": 2,
+          "clean_unique_canonical_identities": 364,
+          "percentage_clean_retained": 96.29629629629629
+        },
+        "known_background": {
+          "original_rows": 74588,
+          "clean_rows": 64016,
+          "development_overlap_rows": 3840,
+          "test_internal_ambiguous_rows": 4216,
+          "train_conflict_related_rows": 2516,
+          "ambiguous_rows": 6732,
+          "clean_unique_canonical_identities": 47444,
+          "percentage_clean_retained": 85.82613825280205
+        }
+      },
+      "post_freeze_official_test_model_input_audit": {
+        "frozen_model_input_version": "continuous-float64-categorical-opaque-id-v1",
+        "official_test_rows": 82332,
+        "clean_test_rows": 69315,
+        "cross_identity_model_input_collision_rows_all_test": 0,
+        "cross_identity_model_input_collision_unique_fingerprints_all_test": 0,
+        "cross_identity_model_input_collision_rows_clean_test": 0,
+        "cross_identity_model_input_collision_unique_fingerprints_clean_test": 0,
+        "official_test_used_for_parameter_fit": false
+      },
+      "official_test_clean_target_rows": 364,
+      "official_test_clean_known_background_rows": 64016,
+      "support_review_required": false,
+      "support_note": "Structural support count only; statistical power not inferred.",
+      "data_protocol_status": "DATA_PROTOCOL_PASS"
+    },
+    {
+      "target": "Worms",
+      "seed": 42,
+      "development_rows_before_ambiguity_exclusion": 175341,
+      "train_only_ambiguous_groups_excluded": 1772,
+      "train_only_ambiguous_rows_excluded": 30528,
+      "development_rows_after_ambiguity_exclusion": 144813,
+      "target_rows_held_out_from_fit": 117,
+      "target_identity_groups_purged": 117,
+      "known_rows_removed_by_target_identity_purge": 0,
+      "surrogate_rows_removed_by_target_identity_purge": 0,
+      "role_rows": {
+        "train": 88551,
+        "val": 12650,
+        "meta_known": 12649,
+        "calibration": 12649,
+        "surrogate_ood": 18197
+      },
+      "role_canonical_intersections": {
+        "train__val": 0,
+        "train__meta_known": 0,
+        "train__calibration": 0,
+        "train__surrogate_ood": 0,
+        "val__meta_known": 0,
+        "val__calibration": 0,
+        "val__surrogate_ood": 0,
+        "meta_known__calibration": 0,
+        "meta_known__surrogate_ood": 0,
+        "calibration__surrogate_ood": 0
+      },
+      "model_input_audit": {
+        "gate": {
+          "gate": "PASS",
+          "severity": "PASS",
+          "fail_reasons": [],
+          "same_role_same_label_policy": "REPORT ONLY",
+          "same_role_cross_label_policy": "CRITICAL FAIL; unresolved ambiguity; no label selection"
+        },
+        "canonical_role_intersections": {
+          "train__val": 0,
+          "train__meta_known": 0,
+          "train__calibration": 0,
+          "train__surrogate_ood": 0,
+          "val__meta_known": 0,
+          "val__calibration": 0,
+          "val__surrogate_ood": 0,
+          "meta_known__calibration": 0,
+          "meta_known__surrogate_ood": 0,
+          "calibration__surrogate_ood": 0
+        },
+        "canonical_target_intersections": {
+          "train": 0,
+          "val": 0,
+          "meta_known": 0,
+          "calibration": 0,
+          "surrogate_ood": 0
+        },
+        "collision_taxonomy": {
+          "count_unit": "unique fingerprints per category/pair; overlapping categories are not additive",
+          "same_role": {
+            "train": {
+              "same_label_fingerprints": 4724,
+              "same_label_duplicate_rows_beyond_first": 30743,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "val": {
+              "same_label_fingerprints": 682,
+              "same_label_duplicate_rows_beyond_first": 4362,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "meta_known": {
+              "same_label_fingerprints": 683,
+              "same_label_duplicate_rows_beyond_first": 4362,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "calibration": {
+              "same_label_fingerprints": 682,
+              "same_label_duplicate_rows_beyond_first": 4364,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "surrogate_ood": {
+              "same_label_fingerprints": 1205,
+              "same_label_duplicate_rows_beyond_first": 1714,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "target": {
+              "same_label_fingerprints": 0,
+              "same_label_duplicate_rows_beyond_first": 0,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            }
+          },
+          "cross_role_pairs": {
+            "train__val": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__meta_known": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__meta_known": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "calibration__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "calibration__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "surrogate_ood__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            }
+          },
+          "cross_role_same_label_fingerprints_unique": 0,
+          "cross_role_cross_label_fingerprints_unique": 0,
+          "target_vs_fit": 0,
+          "target_vs_roles": {
+            "train": 0,
+            "val": 0,
+            "meta_known": 0,
+            "calibration": 0,
+            "surrogate_ood": 0
+          }
+        },
+        "model_input_cross_identity_before_scaling": 0,
+        "model_input_cross_identity_final": 0,
+        "new_scaling_merges": 0,
+        "new_dtype_conversion_merges": 0
+      },
+      "vocabulary_provenance": {
+        "source": "official_train target-purged backbone train",
+        "sha256": "8a840d79bd83d3770be3fded4fa4cf6ea7fdefce6e9f8ffa57b3d46e8c13ef88",
+        "sizes": {
+          "proto": 6,
+          "service": 13,
+          "state": 8
+        }
+      },
+      "scaler_provenance": {
+        "source": "official_train target-purged backbone train",
+        "center_scale_sha256": "9a4c4f683245ce234a02d8a031868a4a5f974e4763ef3294ac0e77c9ffd538c8",
+        "fit_row_count": 88551
+      },
+      "development_manifest_sha256": "04b2b1e86dcd43ecb93c19981f522b097d9f6591227e514e21d2a615a92f74cd",
+      "development_gate": "PASS",
+      "development_fail_reasons": [],
+      "official_test_support": {
+        "target_family": "Worms",
+        "target": {
+          "original_rows": 44,
+          "clean_rows": 43,
+          "development_overlap_rows": 0,
+          "test_internal_ambiguous_rows": 1,
+          "train_conflict_related_rows": 0,
+          "ambiguous_rows": 1,
+          "clean_unique_canonical_identities": 43,
+          "percentage_clean_retained": 97.72727272727273
+        },
+        "known_background": {
+          "original_rows": 74588,
+          "clean_rows": 64016,
+          "development_overlap_rows": 3840,
+          "test_internal_ambiguous_rows": 4216,
+          "train_conflict_related_rows": 2516,
+          "ambiguous_rows": 6732,
+          "clean_unique_canonical_identities": 47444,
+          "percentage_clean_retained": 85.82613825280205
+        }
+      },
+      "post_freeze_official_test_model_input_audit": {
+        "frozen_model_input_version": "continuous-float64-categorical-opaque-id-v1",
+        "official_test_rows": 82332,
+        "clean_test_rows": 69315,
+        "cross_identity_model_input_collision_rows_all_test": 0,
+        "cross_identity_model_input_collision_unique_fingerprints_all_test": 0,
+        "cross_identity_model_input_collision_rows_clean_test": 0,
+        "cross_identity_model_input_collision_unique_fingerprints_clean_test": 0,
+        "official_test_used_for_parameter_fit": false
+      },
+      "official_test_clean_target_rows": 43,
+      "official_test_clean_known_background_rows": 64016,
+      "support_review_required": true,
+      "support_note": "Small-sample regime flagged descriptively; no statistical-power threshold or model metric was inferred.",
+      "data_protocol_status": "DATA_PROTOCOL_PASS"
+    },
+    {
+      "target": "Worms",
+      "seed": 43,
+      "development_rows_before_ambiguity_exclusion": 175341,
+      "train_only_ambiguous_groups_excluded": 1772,
+      "train_only_ambiguous_rows_excluded": 30528,
+      "development_rows_after_ambiguity_exclusion": 144813,
+      "target_rows_held_out_from_fit": 117,
+      "target_identity_groups_purged": 117,
+      "known_rows_removed_by_target_identity_purge": 0,
+      "surrogate_rows_removed_by_target_identity_purge": 0,
+      "role_rows": {
+        "train": 88551,
+        "val": 12650,
+        "meta_known": 12649,
+        "calibration": 12649,
+        "surrogate_ood": 18197
+      },
+      "role_canonical_intersections": {
+        "train__val": 0,
+        "train__meta_known": 0,
+        "train__calibration": 0,
+        "train__surrogate_ood": 0,
+        "val__meta_known": 0,
+        "val__calibration": 0,
+        "val__surrogate_ood": 0,
+        "meta_known__calibration": 0,
+        "meta_known__surrogate_ood": 0,
+        "calibration__surrogate_ood": 0
+      },
+      "model_input_audit": {
+        "gate": {
+          "gate": "PASS",
+          "severity": "PASS",
+          "fail_reasons": [],
+          "same_role_same_label_policy": "REPORT ONLY",
+          "same_role_cross_label_policy": "CRITICAL FAIL; unresolved ambiguity; no label selection"
+        },
+        "canonical_role_intersections": {
+          "train__val": 0,
+          "train__meta_known": 0,
+          "train__calibration": 0,
+          "train__surrogate_ood": 0,
+          "val__meta_known": 0,
+          "val__calibration": 0,
+          "val__surrogate_ood": 0,
+          "meta_known__calibration": 0,
+          "meta_known__surrogate_ood": 0,
+          "calibration__surrogate_ood": 0
+        },
+        "canonical_target_intersections": {
+          "train": 0,
+          "val": 0,
+          "meta_known": 0,
+          "calibration": 0,
+          "surrogate_ood": 0
+        },
+        "collision_taxonomy": {
+          "count_unit": "unique fingerprints per category/pair; overlapping categories are not additive",
+          "same_role": {
+            "train": {
+              "same_label_fingerprints": 4724,
+              "same_label_duplicate_rows_beyond_first": 30744,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "val": {
+              "same_label_fingerprints": 683,
+              "same_label_duplicate_rows_beyond_first": 4362,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "meta_known": {
+              "same_label_fingerprints": 682,
+              "same_label_duplicate_rows_beyond_first": 4362,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "calibration": {
+              "same_label_fingerprints": 682,
+              "same_label_duplicate_rows_beyond_first": 4363,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "surrogate_ood": {
+              "same_label_fingerprints": 1205,
+              "same_label_duplicate_rows_beyond_first": 1714,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "target": {
+              "same_label_fingerprints": 0,
+              "same_label_duplicate_rows_beyond_first": 0,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            }
+          },
+          "cross_role_pairs": {
+            "train__val": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__meta_known": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__meta_known": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "calibration__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "calibration__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "surrogate_ood__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            }
+          },
+          "cross_role_same_label_fingerprints_unique": 0,
+          "cross_role_cross_label_fingerprints_unique": 0,
+          "target_vs_fit": 0,
+          "target_vs_roles": {
+            "train": 0,
+            "val": 0,
+            "meta_known": 0,
+            "calibration": 0,
+            "surrogate_ood": 0
+          }
+        },
+        "model_input_cross_identity_before_scaling": 0,
+        "model_input_cross_identity_final": 0,
+        "new_scaling_merges": 0,
+        "new_dtype_conversion_merges": 0
+      },
+      "vocabulary_provenance": {
+        "source": "official_train target-purged backbone train",
+        "sha256": "bcb976065632835edf1b47a1af61990230ac4ca90f026f715d391b9419907130",
+        "sizes": {
+          "proto": 7,
+          "service": 13,
+          "state": 9
+        }
+      },
+      "scaler_provenance": {
+        "source": "official_train target-purged backbone train",
+        "center_scale_sha256": "2be04e0f883a436946559bf219c218c1e07f8a62dc951868bbf206c811a12c92",
+        "fit_row_count": 88551
+      },
+      "development_manifest_sha256": "dc05fd316a89583cc4109759a9e8796745b6bf9712930662b2ed4706259a10dc",
+      "development_gate": "PASS",
+      "development_fail_reasons": [],
+      "official_test_support": {
+        "target_family": "Worms",
+        "target": {
+          "original_rows": 44,
+          "clean_rows": 43,
+          "development_overlap_rows": 0,
+          "test_internal_ambiguous_rows": 1,
+          "train_conflict_related_rows": 0,
+          "ambiguous_rows": 1,
+          "clean_unique_canonical_identities": 43,
+          "percentage_clean_retained": 97.72727272727273
+        },
+        "known_background": {
+          "original_rows": 74588,
+          "clean_rows": 64016,
+          "development_overlap_rows": 3840,
+          "test_internal_ambiguous_rows": 4216,
+          "train_conflict_related_rows": 2516,
+          "ambiguous_rows": 6732,
+          "clean_unique_canonical_identities": 47444,
+          "percentage_clean_retained": 85.82613825280205
+        }
+      },
+      "post_freeze_official_test_model_input_audit": {
+        "frozen_model_input_version": "continuous-float64-categorical-opaque-id-v1",
+        "official_test_rows": 82332,
+        "clean_test_rows": 69315,
+        "cross_identity_model_input_collision_rows_all_test": 0,
+        "cross_identity_model_input_collision_unique_fingerprints_all_test": 0,
+        "cross_identity_model_input_collision_rows_clean_test": 0,
+        "cross_identity_model_input_collision_unique_fingerprints_clean_test": 0,
+        "official_test_used_for_parameter_fit": false
+      },
+      "official_test_clean_target_rows": 43,
+      "official_test_clean_known_background_rows": 64016,
+      "support_review_required": true,
+      "support_note": "Small-sample regime flagged descriptively; no statistical-power threshold or model metric was inferred.",
+      "data_protocol_status": "DATA_PROTOCOL_PASS"
+    },
+    {
+      "target": "Worms",
+      "seed": 44,
+      "development_rows_before_ambiguity_exclusion": 175341,
+      "train_only_ambiguous_groups_excluded": 1772,
+      "train_only_ambiguous_rows_excluded": 30528,
+      "development_rows_after_ambiguity_exclusion": 144813,
+      "target_rows_held_out_from_fit": 117,
+      "target_identity_groups_purged": 117,
+      "known_rows_removed_by_target_identity_purge": 0,
+      "surrogate_rows_removed_by_target_identity_purge": 0,
+      "role_rows": {
+        "train": 88551,
+        "val": 12650,
+        "meta_known": 12649,
+        "calibration": 12649,
+        "surrogate_ood": 18197
+      },
+      "role_canonical_intersections": {
+        "train__val": 0,
+        "train__meta_known": 0,
+        "train__calibration": 0,
+        "train__surrogate_ood": 0,
+        "val__meta_known": 0,
+        "val__calibration": 0,
+        "val__surrogate_ood": 0,
+        "meta_known__calibration": 0,
+        "meta_known__surrogate_ood": 0,
+        "calibration__surrogate_ood": 0
+      },
+      "model_input_audit": {
+        "gate": {
+          "gate": "PASS",
+          "severity": "PASS",
+          "fail_reasons": [],
+          "same_role_same_label_policy": "REPORT ONLY",
+          "same_role_cross_label_policy": "CRITICAL FAIL; unresolved ambiguity; no label selection"
+        },
+        "canonical_role_intersections": {
+          "train__val": 0,
+          "train__meta_known": 0,
+          "train__calibration": 0,
+          "train__surrogate_ood": 0,
+          "val__meta_known": 0,
+          "val__calibration": 0,
+          "val__surrogate_ood": 0,
+          "meta_known__calibration": 0,
+          "meta_known__surrogate_ood": 0,
+          "calibration__surrogate_ood": 0
+        },
+        "canonical_target_intersections": {
+          "train": 0,
+          "val": 0,
+          "meta_known": 0,
+          "calibration": 0,
+          "surrogate_ood": 0
+        },
+        "collision_taxonomy": {
+          "count_unit": "unique fingerprints per category/pair; overlapping categories are not additive",
+          "same_role": {
+            "train": {
+              "same_label_fingerprints": 4724,
+              "same_label_duplicate_rows_beyond_first": 30744,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "val": {
+              "same_label_fingerprints": 683,
+              "same_label_duplicate_rows_beyond_first": 4362,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "meta_known": {
+              "same_label_fingerprints": 682,
+              "same_label_duplicate_rows_beyond_first": 4362,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "calibration": {
+              "same_label_fingerprints": 682,
+              "same_label_duplicate_rows_beyond_first": 4363,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "surrogate_ood": {
+              "same_label_fingerprints": 1205,
+              "same_label_duplicate_rows_beyond_first": 1714,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            },
+            "target": {
+              "same_label_fingerprints": 0,
+              "same_label_duplicate_rows_beyond_first": 0,
+              "cross_label_fingerprints": 0,
+              "cross_label_affected_rows": 0
+            }
+          },
+          "cross_role_pairs": {
+            "train__val": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__meta_known": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "train__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__meta_known": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "val__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__calibration": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "meta_known__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "calibration__surrogate_ood": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "calibration__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            },
+            "surrogate_ood__target": {
+              "shared_fingerprints": 0,
+              "same_label_fingerprints": 0,
+              "cross_label_fingerprints": 0
+            }
+          },
+          "cross_role_same_label_fingerprints_unique": 0,
+          "cross_role_cross_label_fingerprints_unique": 0,
+          "target_vs_fit": 0,
+          "target_vs_roles": {
+            "train": 0,
+            "val": 0,
+            "meta_known": 0,
+            "calibration": 0,
+            "surrogate_ood": 0
+          }
+        },
+        "model_input_cross_identity_before_scaling": 0,
+        "model_input_cross_identity_final": 0,
+        "new_scaling_merges": 0,
+        "new_dtype_conversion_merges": 0
+      },
+      "vocabulary_provenance": {
+        "source": "official_train target-purged backbone train",
+        "sha256": "8a840d79bd83d3770be3fded4fa4cf6ea7fdefce6e9f8ffa57b3d46e8c13ef88",
+        "sizes": {
+          "proto": 6,
+          "service": 13,
+          "state": 8
+        }
+      },
+      "scaler_provenance": {
+        "source": "official_train target-purged backbone train",
+        "center_scale_sha256": "579738638fa17f91bbbdd3c43a9562b3c1f8f9e79b9acd3c7dcb53b4547f52aa",
+        "fit_row_count": 88551
+      },
+      "development_manifest_sha256": "19047256d426fcb3c39af55757a9db8019aa42d31b67a78734638f98929c67f2",
+      "development_gate": "PASS",
+      "development_fail_reasons": [],
+      "official_test_support": {
+        "target_family": "Worms",
+        "target": {
+          "original_rows": 44,
+          "clean_rows": 43,
+          "development_overlap_rows": 0,
+          "test_internal_ambiguous_rows": 1,
+          "train_conflict_related_rows": 0,
+          "ambiguous_rows": 1,
+          "clean_unique_canonical_identities": 43,
+          "percentage_clean_retained": 97.72727272727273
+        },
+        "known_background": {
+          "original_rows": 74588,
+          "clean_rows": 64016,
+          "development_overlap_rows": 3840,
+          "test_internal_ambiguous_rows": 4216,
+          "train_conflict_related_rows": 2516,
+          "ambiguous_rows": 6732,
+          "clean_unique_canonical_identities": 47444,
+          "percentage_clean_retained": 85.82613825280205
+        }
+      },
+      "post_freeze_official_test_model_input_audit": {
+        "frozen_model_input_version": "continuous-float64-categorical-opaque-id-v1",
+        "official_test_rows": 82332,
+        "clean_test_rows": 69315,
+        "cross_identity_model_input_collision_rows_all_test": 0,
+        "cross_identity_model_input_collision_unique_fingerprints_all_test": 0,
+        "cross_identity_model_input_collision_rows_clean_test": 0,
+        "cross_identity_model_input_collision_unique_fingerprints_clean_test": 0,
+        "official_test_used_for_parameter_fit": false
+      },
+      "official_test_clean_target_rows": 43,
+      "official_test_clean_known_background_rows": 64016,
+      "support_review_required": true,
+      "support_note": "Small-sample regime flagged descriptively; no statistical-power threshold or model metric was inferred.",
+      "data_protocol_status": "DATA_PROTOCOL_PASS"
+    }
+  ],
+  "training_authorized": false,
+  "model_design_required_before_training": true
+}

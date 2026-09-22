@@ -1,0 +1,77 @@
+{
+  "version": "p4-architecture-decision-v1",
+  "decision_basis": [
+    "simplicity",
+    "auditability",
+    "scientific defensibility"
+  ],
+  "performance_evidence_used": false,
+  "alternatives": [
+    {
+      "id": "A",
+      "name": "Concatenated embeddings + numeric MLP",
+      "advantages": [
+        "simple",
+        "explicit typed branches",
+        "low engineering risk"
+      ],
+      "risks": [
+        "limited interaction inductive bias"
+      ],
+      "decision": "SELECTED P4 BASELINE"
+    },
+    {
+      "id": "B",
+      "name": "Feature-token transformer",
+      "advantages": [
+        "explicit inter-feature attention"
+      ],
+      "risks": [
+        "greater complexity",
+        "overfitting risk with small support"
+      ],
+      "decision": "NOT SELECTED; no performance comparison was run"
+    },
+    {
+      "id": "C",
+      "name": "Hybrid controlled-interaction encoder",
+      "advantages": [
+        "can add constrained interactions later"
+      ],
+      "risks": [
+        "more design degrees of freedom",
+        "harder attribution"
+      ],
+      "decision": "DEFERRED"
+    }
+  ],
+  "baseline": {
+    "architecture_version": "structured-mlp-embedding-representation-v1",
+    "continuous": "58→64→32 float64 MLP",
+    "categorical": "three independent per-feature embeddings",
+    "fusion": "concatenate numeric latent and embeddings; MLP to 32-D representation",
+    "classifier": null,
+    "open_set_scorer": null,
+    "zero_day_compatibility": "The backbone exposes a representation without committing to a classifier or score. Future prototype/density/reconstruction scorers require separate approval.",
+    "autoencoder": "Optional continuous reconstruction head is isolated and not selected by P4; categorical reconstruction and scoring semantics remain future decisions."
+  },
+  "small_support_evaluation_plan": {
+    "clean_identity_counts": {
+      "Fuzzers": 4317,
+      "Analysis": 58,
+      "Backdoors": 57,
+      "Shellcode": 364,
+      "Worms": 43
+    },
+    "requirements": [
+      "report raw rows and unique canonical identities",
+      "report each target and seed separately",
+      "include uncertainty intervals only where statistically meaningful",
+      "attach explicit small-N warnings for Analysis, Backdoors, and Worms",
+      "never aggregate targets in a way that hides target-specific support",
+      "predeclare future scores/thresholds without using official-test-clean"
+    ],
+    "warning": "Nonzero support does not imply adequate statistical power.",
+    "thresholds_or_metrics_selected": false
+  }
+}

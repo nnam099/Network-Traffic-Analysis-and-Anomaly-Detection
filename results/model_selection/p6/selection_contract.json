@@ -1,0 +1,19 @@
+{
+  "aggregation": "arithmetic mean of row scores per canonical identity; order-independent sorted math.fsum",
+  "candidates": [
+    "negative_max_softmax",
+    "nearest_centroid_l2"
+  ],
+  "negative_role": "meta_known",
+  "positive_role": "surrogate_ood",
+  "primary_metric": "SURROGATE DEVELOPMENT AUROC at canonical-identity level",
+  "row_metric": "diagnostic only; never selects scorer",
+  "score_orientation": "higher means more OOD-like",
+  "selection_scope": "independent target x split-seed cell; no cross-seed pooling",
+  "surrogate_interpretation": "Surrogate-based scorer selection estimates development discrimination against the predefined surrogate unknown families only. It does not establish performance on the held-out target family.",
+  "tie_preference": "nearest_centroid_l2",
+  "tie_rationale": "P5 froze nearest_centroid_l2 on exact tie; P6 extends numerical equality to 1e-12 while retaining P5's centroid preference.",
+  "tie_tolerance": 1e-12,
+  "unit": "canonical_identity_mean",
+  "version": "p6-selection-contract-v1"
+}

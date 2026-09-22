@@ -1,0 +1,13 @@
+{
+  "checkpoint_file_sha256": "3d041845e26cdfafd317ba2c7f70fbf8e247cff6f05326c8ab55369e6b944e86",
+  "checkpoint_state_sha256": "ddeafc584ec0b6700cd51d31b8df8d079798cf0bc2209eea9cfcd2ca06470b40",
+  "model_seed": 10042,
+  "p3_manifest_sha256": "3d3c1dd0232bc7db96d048016b0a06b403ac4dd7353bb1c053407a86eaa4a851",
+  "p4_model_config_sha256": "84f395c1f1aabf404b11f846342e3fdb1c8b26ebd1ea838b9ee2b2405f40e8c4",
+  "p5_training_config_sha256": "d2760152bce8b91e1bc166e13a9908be5c291332b00201c7c45b19bc1a92a5b5",
+  "p6_source_hash": "0a74854d8ecf5a4dd692e438ddfe6fd8ba5981020f49ad04192257ae0e3a71af",
+  "path": "results/model_selection/p6/runs/shellcode/seed_42/checkpoint.pt",
+  "split_seed": 42,
+  "target": "Shellcode",
+  "version": "p6-checkpoint-reference-v1"
+}
