@@ -1,0 +1,16 @@
+{
+  "historical_test_used_for": "descriptive support counts only; never selection",
+  "official_test_csv_accessed": false,
+  "official_train_sha256": "bec7dd5ec88dc2a0ccc7a07879d338395ed7421750f675fd0339e07dfe0648fa",
+  "p3_development_freeze_sha256": "1443746a4f024b3d7c1569ba9bbd31987933b5f9e2fb0ce6507ba5e57ddbab21",
+  "p3_frozen_historical_test_audit_artifact_sha256": "38833343810d182f33e479080355f9bd101d69f81a46a8072e0f616bbd6c0947",
+  "p3_schema_sha256": "f3ecf12891e5b0d9b5e1fe38a22c23720a71eaf1d5a47b763911df363b3b36d7",
+  "p7_primary_results_accessed": false,
+  "p8_source_sha256": {
+    "docs/p8_loafo_protocol.md": "99781da6def73c7600cf2c7c3d332f78ad6b44079f58b92c7387992bb682207b",
+    "scripts/audit_p8_loafo.py": "b808222b6cfd21874c618610f59a653efd6486f53521ce6deb044f0f1e4e3519",
+    "src/ids/p8_loafo_protocol.py": "0eb4d88a1b5e0f2d1a33af3a3bf83c143663f7d5d5c7222254bea8f03672ba5d",
+    "tests/test_p8_loafo_protocol.py": "26041fe3a6eab8490ba7f617f2fe3aa698269b13a1f56139ce8b633a91ee5a2b"
+  },
+  "repository_head_before_p8": "c289f74ffa21524a47aa09ac7e42cf2a8765cafb"
+}

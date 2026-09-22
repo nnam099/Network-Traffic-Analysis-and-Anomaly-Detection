@@ -1,0 +1,48 @@
+{
+  "fit_permissions": {
+    "centroid_fit": [
+      "train"
+    ],
+    "checkpoint_selection": [
+      "val"
+    ],
+    "consumed_official_test_selection": [],
+    "gradient_and_representation": [
+      "train"
+    ],
+    "held_out_target_fit": [],
+    "scaler_and_vocabulary": [
+      "train"
+    ],
+    "scorer_family_selection": [
+      "meta_known",
+      "surrogate_ood"
+    ],
+    "threshold_fit": [
+      "calibration"
+    ]
+  },
+  "historical_test_policy": "REUSED TEST — NOT INDEPENDENT EXTERNAL VALIDATION",
+  "model_seed_rule": "10000 + split_seed",
+  "no_training_in_p8": true,
+  "roles": [
+    "train",
+    "val",
+    "meta_known",
+    "calibration",
+    "surrogate_ood",
+    "target_held_out"
+  ],
+  "scientific_unit": "canonical-model-features-v1 identity, not row",
+  "source": "official_train only; whole conflicting canonical groups excluded from all roles",
+  "split": "StratifiedGroupKFold 10 folds, 0-6 train, 7 val, 8 meta_known, 9 calibration",
+  "split_seeds": [
+    42,
+    43,
+    44
+  ],
+  "structured_input_collision": "fail if target and fit canonical identities collapse to one final model input",
+  "target_isolation": "target label and canonical identities absent from every fitting/selection role",
+  "train_only_surrogate": "S2_top_two_remaining_train_identity_support_v1",
+  "version": "loafo-p8-train-only-protocol-v1"
+}

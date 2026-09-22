@@ -1,0 +1,63 @@
+{
+  "architecture_ablation_required_for_change": true,
+  "architecture_change_disclosure": "This preserves the concrete P4/P5 44-D baseline; any other embedding width is a separate architecture ablation and protocol amendment",
+  "centroid_fit_role": "train",
+  "class_order": "Normal first, then remaining fitted attack families in exact lexical order",
+  "development_metrics_label": "DEVELOPMENT ONLY",
+  "neural_training_performed": false,
+  "normal_policy": "Normal is an in-distribution known classifier class, never a zero-day target",
+  "objective": "known-class cross entropy on train only; P8 does not instantiate optimizer or train",
+  "reference_architecture": {
+    "categorical_embedding_dims": {
+      "proto": 4,
+      "service": 4,
+      "state": 4
+    },
+    "continuous_dims": [
+      58,
+      64,
+      32
+    ],
+    "fusion_dims": [
+      44,
+      64,
+      32
+    ]
+  },
+  "reference_architecture_implementation": "P8ReferenceBackbone-v1 fixed-4 adapter; P4 generic vocabulary-size heuristic is not applied because LOAFO class mix can enlarge proto vocabulary",
+  "schema_sha256": "f3ecf12891e5b0d9b5e1fe38a22c23720a71eaf1d5a47b763911df363b3b36d7",
+  "scorer_selection_statistic": "canonical identity arithmetic mean of row scores, then identity-level AUROC on meta_known vs surrogate_ood",
+  "scorer_selection_tie_preference": "nearest_centroid_l2",
+  "scorer_selection_tie_tolerance": 1e-12,
+  "scorers": [
+    "1 - max softmax",
+    "min_k Euclidean_distance(z, train_known_centroid_k)"
+  ],
+  "structured_input": {
+    "continuous": "torch.float64[B,58]",
+    "proto": "torch.int64[B]",
+    "service": "torch.int64[B]",
+    "state": "torch.int64[B]"
+  },
+  "temporary_head": "Linear(32, len(known_class_order), dtype=torch.float64)",
+  "threshold": {
+    "alert_rule": "score > threshold",
+    "method": "higher",
+    "quantile": 0.99,
+    "role": "known-only calibration"
+  },
+  "training_reference": {
+    "amp": false,
+    "batch_size": 512,
+    "checkpoint_selection": "minimum sample-mean val cross entropy; patience=2; min_delta=0; lowest epoch on exact tie",
+    "dtype": "torch.float64",
+    "gradient_clip_norm": 1.0,
+    "lr": 0.001,
+    "max_epochs": 8,
+    "model_seed_rule": "10000 + split_seed",
+    "optimizer": "AdamW",
+    "weight_decay": 0.01
+  },
+  "version": "loafo-p8-train-only-protocol-v1",
+  "vocabulary": "fold-local train only; immutable per-feature PAD=0, OOV=1; no modulo hashing"
+}

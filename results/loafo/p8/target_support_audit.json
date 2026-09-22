@@ -1,0 +1,94 @@
+{
+  "descriptive_only": true,
+  "future_external_support_unknown": true,
+  "targets": {
+    "Analysis": {
+      "development_held_out_canonical_identities": 393,
+      "historical_consumed_test_clean_identities_not_available_for_new_independent_validation": 58,
+      "original_official_train_canonical_identities": 1594,
+      "original_official_train_rows": 2000,
+      "post_ambiguity_official_train_rows": 559,
+      "potential_new_external_identities": null,
+      "support_category": "MODERATE SUPPORT"
+    },
+    "Backdoors": {
+      "development_held_out_canonical_identities": 403,
+      "historical_consumed_test_clean_identities_not_available_for_new_independent_validation": 57,
+      "original_official_train_canonical_identities": 1535,
+      "original_official_train_rows": 1746,
+      "post_ambiguity_official_train_rows": 406,
+      "potential_new_external_identities": null,
+      "support_category": "MODERATE SUPPORT"
+    },
+    "DoS": {
+      "development_held_out_canonical_identities": 2477,
+      "historical_consumed_test_clean_identities_not_available_for_new_independent_validation": 1149,
+      "original_official_train_canonical_identities": 3806,
+      "original_official_train_rows": 12264,
+      "post_ambiguity_official_train_rows": 2518,
+      "potential_new_external_identities": null,
+      "support_category": "HIGH SUPPORT"
+    },
+    "Exploits": {
+      "development_held_out_canonical_identities": 18417,
+      "historical_consumed_test_clean_identities_not_available_for_new_independent_validation": 7041,
+      "original_official_train_canonical_identities": 19844,
+      "original_official_train_rows": 33393,
+      "post_ambiguity_official_train_rows": 20094,
+      "potential_new_external_identities": null,
+      "support_category": "HIGH SUPPORT"
+    },
+    "Fuzzers": {
+      "development_held_out_canonical_identities": 14602,
+      "historical_consumed_test_clean_identities_not_available_for_new_independent_validation": 4317,
+      "original_official_train_canonical_identities": 16150,
+      "original_official_train_rows": 18184,
+      "post_ambiguity_official_train_rows": 16106,
+      "potential_new_external_identities": null,
+      "support_category": "HIGH SUPPORT"
+    },
+    "Generic": {
+      "development_held_out_canonical_identities": 3904,
+      "historical_consumed_test_clean_identities_not_available_for_new_independent_validation": 3379,
+      "original_official_train_canonical_identities": 4181,
+      "original_official_train_rows": 40000,
+      "post_ambiguity_official_train_rows": 39681,
+      "potential_new_external_identities": null,
+      "support_category": "HIGH SUPPORT"
+    },
+    "Reconnaissance": {
+      "development_held_out_canonical_identities": 6209,
+      "historical_consumed_test_clean_identities_not_available_for_new_independent_validation": 2213,
+      "original_official_train_canonical_identities": 7522,
+      "original_official_train_rows": 10491,
+      "post_ambiguity_official_train_rows": 8602,
+      "potential_new_external_identities": null,
+      "support_category": "HIGH SUPPORT"
+    },
+    "Shellcode": {
+      "development_held_out_canonical_identities": 1085,
+      "historical_consumed_test_clean_identities_not_available_for_new_independent_validation": 364,
+      "original_official_train_canonical_identities": 1091,
+      "original_official_train_rows": 1133,
+      "post_ambiguity_official_train_rows": 1126,
+      "potential_new_external_identities": null,
+      "support_category": "HIGH SUPPORT"
+    },
+    "Worms": {
+      "development_held_out_canonical_identities": 117,
+      "historical_consumed_test_clean_identities_not_available_for_new_independent_validation": 43,
+      "original_official_train_canonical_identities": 127,
+      "original_official_train_rows": 130,
+      "post_ambiguity_official_train_rows": 117,
+      "potential_new_external_identities": null,
+      "support_category": "SMALL-N"
+    }
+  },
+  "tiers_train_only": {
+    "HIGH SUPPORT": ">=1000 identities",
+    "INSUFFICIENT": "<50 identities",
+    "MODERATE SUPPORT": "200-999 identities",
+    "SMALL-N": "50-199 identities"
+  },
+  "version": "loafo-p8-train-only-protocol-v1"
+}

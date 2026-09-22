@@ -1,0 +1,22 @@
+{
+  "P7_results_used_for_choice": false,
+  "candidate_S1": {
+    "advantage": "more known attack classes and a simple single OOD contrast",
+    "leakage": "safe only if family is absent from train/val/calibration and no target/test signals rank it",
+    "risk": "single surrogate's behavior may not transfer to held-out target",
+    "rule": "top one remaining non-target attack family by same train-only ranking",
+    "selected": false
+  },
+  "candidate_S2": {
+    "advantage": "multiple distinct OOD families for scorer selection",
+    "leakage": "surrogate identities forbidden from backbone, scaler, vocab, checkpoint, centroid, calibration",
+    "risk": "removes two classes from representation fit; still may not represent target",
+    "rule": "top two remaining non-target attack families by same train-only ranking",
+    "selected": true
+  },
+  "frozen_before_P9": true,
+  "primary_policy": "S2_top_two_remaining_train_identity_support_v1",
+  "ranking_data": "official_train post-ambiguity canonical identity counts only",
+  "ranking_rule": "descending remaining-family identity count, exact label ascending tie-break; exclude target; top two",
+  "version": "loafo-p8-train-only-protocol-v1"
+}

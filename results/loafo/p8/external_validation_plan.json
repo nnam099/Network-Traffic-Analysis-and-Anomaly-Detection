@@ -1,0 +1,29 @@
+{
+  "categories": {
+    "DEVELOPMENT": "P8/P9 official-train-derived roles only; may guide development under protocol",
+    "NEW_EXTERNAL_VALIDATION": "new untouched preregistered partition, genuinely external dataset, or newly collected traffic; P10 only",
+    "REUSED_TEST_DIAGNOSTIC": "old official test only if separately authorized later, never independent external validation"
+  },
+  "download_or_external_access_performed": false,
+  "future_candidate_assessment": {
+    "Bot-IoT": "Different traffic generation and severe shift; label and feature mappings unverified",
+    "CIC-DDoS2019": "DDoS-focused label coverage; not a complete LOAFO-family external universe; feature map unverified",
+    "CIC-IDS2017": "Different flow extraction, feature and attack taxonomy; 58-feature mapping unverified; do not ingest as-is",
+    "CSE-CIC-IDS2018": "Different schema and temporal distribution; semantic labels and categorical domains require mapping",
+    "TON_IoT": "Different telemetry domains and background definition; likely incompatible without new interface study",
+    "new_reserved_UNSW_partition": "Potential schema match, only independent if cryptographically reserved before any P8/P9 decision",
+    "newly_collected_traffic": "Potentially strongest temporal validation; requires frozen feature extractor and independent provenance"
+  },
+  "official_test_status": "consumed by P7; not a new validation source",
+  "pre_P10_requirements": [
+    "semantic attack mapping",
+    "feature mapping for all 58 continuous fields",
+    "missing feature behavior",
+    "proto/service/state OOV behavior",
+    "normal/background definition",
+    "source hash and reservation evidence",
+    "one-way evaluation intent and immutable protocol"
+  ],
+  "reused_test_required_label": "REUSED TEST — NOT INDEPENDENT EXTERNAL VALIDATION",
+  "version": "loafo-p8-train-only-protocol-v1"
+}
