@@ -7,7 +7,7 @@ Updated: 2026-05-29
 - `scripts/smoke_check.py` now runs with UTF-8 subprocess settings, so it works on Windows paths containing Vietnamese characters.
 - `scripts/check_environment.py` now configures UTF-8 console output before printing JSON, so direct execution works from Windows paths containing Vietnamese characters.
 - Python compile passes for `src/`, `dashboard/`, `export_model.py`, `patch_checkpoint.py` and `tests/`.
-- Smoke tests pass locally: 54 tests, with the v15 artifact smoke test skipped until v15 artifacts exist.
+- Smoke tests pass locally, with the v15 artifact smoke test skipped until v15 artifacts exist.
 - Checkpoint `ids_v14_model.pth` loads into `IDSModel` v14 without missing or unexpected weights.
 - Pipeline v14 has 66 features and matches `n_features` in the checkpoint.
 - `log_normalizer.py` maps common firewall/flow CSV columns into an UNSW-like flow schema.
@@ -22,11 +22,11 @@ Updated: 2026-05-29
 - Dashboard UI rendering has started moving into smaller modules: queue view, alert-analysis safety, batch upload summaries, Ask AI helpers, setup status and shared safety/report copy.
 - `scripts/regenerate_v14_report.py` regenerates artifact evaluation metrics and plots from current saved v14 artifacts without retraining.
 - `results/ids_v14_results.json` now includes detection accuracy, known-class recall, OOD detection rate, normal false-positive rate and threshold profile for `UNSW_NB15_testing-set.csv`.
-- Kaggle-trained v14 artifacts report about 91.52% detection accuracy, 3.98% normal false-positive rate and 33.27% OOD detection rate on `UNSW_NB15_testing-set.csv`.
+- The old Kaggle-trained v14 values (91.52% detection accuracy, 3.98% normal false-positive rate and 33.27% OOD detection rate) are retained only as historical/demo records. They are non-independent and **not valid for scientific claims**.
 - v14 training now supports class-specific sampler/loss weight overrides, with defaults focused on the currently weak `Exploits` and `Reconnaissance` classes.
 - v14 training now reduces DoS focal over-weighting and explicitly penalizes Recon/DoS cross-confusion in focal and contrastive objectives.
 - v14 hybrid anomaly scoring now fits a validation meta-learner from `ae_re` and classifier uncertainty, and the weak energy OOD comparator is removed from v14 reports.
-- v14 can optionally adapt the AE reconstruction threshold from recent normal traffic and plot threshold drift over the test timeline.
+- Label-assisted adaptive AE thresholding remains demo-only and is disabled in the scientific benchmark.
 - v14 training code is split into `src/ids/` modules with a `train.py` entry point while retaining the legacy `ids_v14_unswnb15.py` wrapper.
 - `llm_agent.py` no longer initializes the provider client on import; it initializes lazily when LLM output is requested.
 - `patch_checkpoint.py` now validates checkpoint structure, accepts a path argument and creates a backup by default.
@@ -60,10 +60,12 @@ Updated: 2026-05-29
 
 - `dashboard/app.py` is still a large orchestration file. Major queue rendering and several UI helper areas have been split out, but single-alert investigation and OOD log detail can still be modularized further.
 - Some code comments/docstrings still contain mojibake or ASCII-only Vietnamese text from earlier encoding issues.
-- v14 artifact evaluation has been regenerated from Kaggle-trained artifacts. Threshold choice must still be tied to analyst capacity and demo goals, especially before applying the model to non-UNSW traffic.
+- v14 artifact evaluation has been regenerated from Kaggle-trained artifacts, but those values remain historical/demo-only and non-independent. Threshold choice must still be tied to analyst capacity and demo goals, especially before applying the model to non-UNSW traffic.
 - v15 is experimental. The dashboard can select it, but stable v15 use requires separately trained/exported artifacts. The v15 smoke test is present and skipped until artifacts are available.
 - LLM provider packages remain optional and are not installed unless the selected provider is needed.
 - Pretrained artifacts are not yet published as a release/model-registry asset; users must train locally or receive artifacts out of band.
+- Phase 3 target-isolated LOFO dry-run (15 target/seed cells) is blocked before neural training because post-transform model-input collisions remain; see `results/data_quality/target_isolated_lofo_dry_run.json` and `results/data_quality/label_collision_report.json`.
+- P1 audit removes hard clipping, distinguishes unknown categories with deterministic feature-namespaced SHA-256 codes, and keeps canonical purge unchanged. Its 15-cell dry-run is still blocked: float32 conversion merges distinct known-role vectors, while canonical known/surrogate and same-role identities retain conflicting labels. Archived Backdoors target collisions are independently reconstructed from saved Phase 3 evidence. See `results/data_quality/p1/target_isolated_lofo_dry_run.json`, `collision_provenance.json`, and `backdoors_archived_recheck_summary.json`. No retraining was run. The scalar categorical coordinate retains arbitrary ordinal geometry; a revised categorical schema is required before scientific retraining.
 
 ## Next Priorities
 

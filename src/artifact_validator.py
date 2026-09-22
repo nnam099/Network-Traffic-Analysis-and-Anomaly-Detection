@@ -57,6 +57,24 @@ def validate_artifact_contract(checkpoint: dict[str, Any], pipeline: dict[str, A
         duplicates = sorted(name for name, count in Counter(normalized_features).items() if count > 1)
         if duplicates:
             result.errors.append("pipeline feature_names/feat_cols contains duplicates: " + ", ".join(duplicates[:5]))
+        metadata_features = [name for name in normalized_features if name.startswith("__")]
+        if metadata_features:
+            result.errors.append(
+                "pipeline feature_names/feat_cols contains metadata columns: "
+                + ", ".join(metadata_features[:5])
+            )
+
+    checkpoint_features = checkpoint.get("feat_cols")
+    if isinstance(checkpoint_features, (list, tuple)):
+        checkpoint_metadata = [
+            str(name).strip() for name in checkpoint_features
+            if str(name).strip().startswith("__")
+        ]
+        if checkpoint_metadata:
+            result.errors.append(
+                "checkpoint feat_cols contains metadata columns: "
+                + ", ".join(checkpoint_metadata[:5])
+            )
 
     label_encoder = pipeline.get("label_encoder")
     label_classes = getattr(label_encoder, "classes_", None)

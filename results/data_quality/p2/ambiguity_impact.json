@@ -1,0 +1,447 @@
+{
+  "policy": "whole-canonical-conflict-group-exclusion-candidate-v1",
+  "active_in_repository": false,
+  "test_label_aware_curation": true,
+  "per_source_family": {
+    "official_train": {
+      "Normal": {
+        "original_rows": 56000,
+        "ambiguous_rows_removed": 423,
+        "retained_rows": 55577,
+        "percent_retained": 99.24464285714286,
+        "unique_canonical_identities_retained": 51646
+      },
+      "DoS": {
+        "original_rows": 12264,
+        "ambiguous_rows_removed": 9748,
+        "retained_rows": 2516,
+        "percent_retained": 20.51532941943901,
+        "unique_canonical_identities_retained": 2475
+      },
+      "Exploits": {
+        "original_rows": 33393,
+        "ambiguous_rows_removed": 13308,
+        "retained_rows": 20085,
+        "percent_retained": 60.14733626808014,
+        "unique_canonical_identities_retained": 18410
+      },
+      "Reconnaissance": {
+        "original_rows": 10491,
+        "ambiguous_rows_removed": 1894,
+        "retained_rows": 8597,
+        "percent_retained": 81.94643027356781,
+        "unique_canonical_identities_retained": 6206
+      },
+      "Generic": {
+        "original_rows": 40000,
+        "ambiguous_rows_removed": 319,
+        "retained_rows": 39681,
+        "percent_retained": 99.2025,
+        "unique_canonical_identities_retained": 3904
+      },
+      "Fuzzers": {
+        "original_rows": 18184,
+        "ambiguous_rows_removed": 2337,
+        "retained_rows": 15847,
+        "percent_retained": 87.14804223493181,
+        "unique_canonical_identities_retained": 14432
+      },
+      "Analysis": {
+        "original_rows": 2000,
+        "ambiguous_rows_removed": 1442,
+        "retained_rows": 558,
+        "percent_retained": 27.9,
+        "unique_canonical_identities_retained": 392
+      },
+      "Backdoors": {
+        "original_rows": 1746,
+        "ambiguous_rows_removed": 1451,
+        "retained_rows": 295,
+        "percent_retained": 16.895761741122566,
+        "unique_canonical_identities_retained": 293
+      },
+      "Shellcode": {
+        "original_rows": 1133,
+        "ambiguous_rows_removed": 11,
+        "retained_rows": 1122,
+        "percent_retained": 99.02912621359224,
+        "unique_canonical_identities_retained": 1082
+      },
+      "Worms": {
+        "original_rows": 130,
+        "ambiguous_rows_removed": 14,
+        "retained_rows": 116,
+        "percent_retained": 89.23076923076923,
+        "unique_canonical_identities_retained": 116
+      }
+    },
+    "official_test": {
+      "Normal": {
+        "original_rows": 37000,
+        "ambiguous_rows_removed": 505,
+        "retained_rows": 36495,
+        "percent_retained": 98.63513513513513,
+        "unique_canonical_identities_retained": 33943
+      },
+      "DoS": {
+        "original_rows": 4089,
+        "ambiguous_rows_removed": 2915,
+        "retained_rows": 1174,
+        "percent_retained": 28.711176326730254,
+        "unique_canonical_identities_retained": 1153
+      },
+      "Exploits": {
+        "original_rows": 11132,
+        "ambiguous_rows_removed": 3199,
+        "retained_rows": 7933,
+        "percent_retained": 71.26302551203737,
+        "unique_canonical_identities_retained": 7042
+      },
+      "Reconnaissance": {
+        "original_rows": 3496,
+        "ambiguous_rows_removed": 352,
+        "retained_rows": 3144,
+        "percent_retained": 89.93135011441647,
+        "unique_canonical_identities_retained": 2427
+      },
+      "Generic": {
+        "original_rows": 18871,
+        "ambiguous_rows_removed": 54,
+        "retained_rows": 18817,
+        "percent_retained": 99.7138466429972,
+        "unique_canonical_identities_retained": 3617
+      },
+      "Fuzzers": {
+        "original_rows": 6062,
+        "ambiguous_rows_removed": 1280,
+        "retained_rows": 4782,
+        "percent_retained": 78.8848564830089,
+        "unique_canonical_identities_retained": 4321
+      },
+      "Analysis": {
+        "original_rows": 677,
+        "ambiguous_rows_removed": 619,
+        "retained_rows": 58,
+        "percent_retained": 8.567208271787297,
+        "unique_canonical_identities_retained": 58
+      },
+      "Backdoors": {
+        "original_rows": 583,
+        "ambiguous_rows_removed": 526,
+        "retained_rows": 57,
+        "percent_retained": 9.777015437392796,
+        "unique_canonical_identities_retained": 57
+      },
+      "Shellcode": {
+        "original_rows": 378,
+        "ambiguous_rows_removed": 2,
+        "retained_rows": 376,
+        "percent_retained": 99.47089947089947,
+        "unique_canonical_identities_retained": 376
+      },
+      "Worms": {
+        "original_rows": 44,
+        "ambiguous_rows_removed": 1,
+        "retained_rows": 43,
+        "percent_retained": 97.72727272727273,
+        "unique_canonical_identities_retained": 43
+      }
+    }
+  },
+  "per_target": {
+    "Fuzzers": {
+      "before_exclusion": {
+        "target_ood_train_rows": 18184,
+        "target_official_test_rows": 6062,
+        "known_rows_before_target_purge": 152148,
+        "known_rows_after_target_purge": 126875,
+        "known_class_support_after_target_purge": {
+          "Normal": 55578,
+          "Generic": 39712,
+          "Exploits": 20271,
+          "Reconnaissance": 8679,
+          "DoS": 2635
+        },
+        "surrogate_rows_after_target_purge": 2119,
+        "surrogate_family_support": {
+          "Shellcode": 1132,
+          "Analysis": 561,
+          "Backdoors": 296,
+          "Worms": 130
+        },
+        "official_test_known_class_support": {
+          "Normal": 37000,
+          "Generic": 18871,
+          "Exploits": 11132,
+          "DoS": 4089,
+          "Reconnaissance": 3496
+        }
+      },
+      "after_whole_group_exclusion": {
+        "target_ood_train_rows": 15847,
+        "target_official_test_rows": 4782,
+        "known_rows_before_target_purge": 126456,
+        "known_rows_after_target_purge": 126456,
+        "known_class_support_after_target_purge": {
+          "Normal": 55577,
+          "Generic": 39681,
+          "Exploits": 20085,
+          "Reconnaissance": 8597,
+          "DoS": 2516
+        },
+        "surrogate_rows_after_target_purge": 2091,
+        "surrogate_family_support": {
+          "Shellcode": 1122,
+          "Analysis": 558,
+          "Backdoors": 295,
+          "Worms": 116
+        },
+        "official_test_known_class_support": {
+          "Normal": 36495,
+          "Generic": 18817,
+          "Exploits": 7933,
+          "Reconnaissance": 3144,
+          "DoS": 1174
+        }
+      },
+      "zero_support_flag": [],
+      "statistical_power_note": "No minimum-sample threshold or power guarantee is inferred from nonzero support."
+    },
+    "Analysis": {
+      "before_exclusion": {
+        "target_ood_train_rows": 2000,
+        "target_official_test_rows": 677,
+        "known_rows_before_target_purge": 152148,
+        "known_rows_after_target_purge": 129658,
+        "known_class_support_after_target_purge": {
+          "Normal": 56000,
+          "Generic": 39750,
+          "Exploits": 21705,
+          "Reconnaissance": 8890,
+          "DoS": 3313
+        },
+        "surrogate_rows_after_target_purge": 18554,
+        "surrogate_family_support": {
+          "Fuzzers": 16847,
+          "Shellcode": 1133,
+          "Backdoors": 444,
+          "Worms": 130
+        },
+        "official_test_known_class_support": {
+          "Normal": 37000,
+          "Generic": 18871,
+          "Exploits": 11132,
+          "DoS": 4089,
+          "Reconnaissance": 3496
+        }
+      },
+      "after_whole_group_exclusion": {
+        "target_ood_train_rows": 558,
+        "target_official_test_rows": 58,
+        "known_rows_before_target_purge": 126456,
+        "known_rows_after_target_purge": 126456,
+        "known_class_support_after_target_purge": {
+          "Normal": 55577,
+          "Generic": 39681,
+          "Exploits": 20085,
+          "Reconnaissance": 8597,
+          "DoS": 2516
+        },
+        "surrogate_rows_after_target_purge": 17380,
+        "surrogate_family_support": {
+          "Fuzzers": 15847,
+          "Shellcode": 1122,
+          "Backdoors": 295,
+          "Worms": 116
+        },
+        "official_test_known_class_support": {
+          "Normal": 36495,
+          "Generic": 18817,
+          "Exploits": 7933,
+          "Reconnaissance": 3144,
+          "DoS": 1174
+        }
+      },
+      "zero_support_flag": [],
+      "statistical_power_note": "No minimum-sample threshold or power guarantee is inferred from nonzero support."
+    },
+    "Backdoors": {
+      "before_exclusion": {
+        "target_ood_train_rows": 1746,
+        "target_official_test_rows": 583,
+        "known_rows_before_target_purge": 152148,
+        "known_rows_after_target_purge": 131022,
+        "known_class_support_after_target_purge": {
+          "Normal": 56000,
+          "Generic": 39717,
+          "Exploits": 22553,
+          "Reconnaissance": 8889,
+          "DoS": 3863
+        },
+        "surrogate_rows_after_target_purge": 18943,
+        "surrogate_family_support": {
+          "Fuzzers": 16909,
+          "Shellcode": 1133,
+          "Analysis": 771,
+          "Worms": 130
+        },
+        "official_test_known_class_support": {
+          "Normal": 37000,
+          "Generic": 18871,
+          "Exploits": 11132,
+          "DoS": 4089,
+          "Reconnaissance": 3496
+        }
+      },
+      "after_whole_group_exclusion": {
+        "target_ood_train_rows": 295,
+        "target_official_test_rows": 57,
+        "known_rows_before_target_purge": 126456,
+        "known_rows_after_target_purge": 126456,
+        "known_class_support_after_target_purge": {
+          "Normal": 55577,
+          "Generic": 39681,
+          "Exploits": 20085,
+          "Reconnaissance": 8597,
+          "DoS": 2516
+        },
+        "surrogate_rows_after_target_purge": 17643,
+        "surrogate_family_support": {
+          "Fuzzers": 15847,
+          "Shellcode": 1122,
+          "Analysis": 558,
+          "Worms": 116
+        },
+        "official_test_known_class_support": {
+          "Normal": 36495,
+          "Generic": 18817,
+          "Exploits": 7933,
+          "Reconnaissance": 3144,
+          "DoS": 1174
+        }
+      },
+      "zero_support_flag": [],
+      "statistical_power_note": "No minimum-sample threshold or power guarantee is inferred from nonzero support."
+    },
+    "Shellcode": {
+      "before_exclusion": {
+        "target_ood_train_rows": 1133,
+        "target_official_test_rows": 378,
+        "known_rows_before_target_purge": 152148,
+        "known_rows_after_target_purge": 152142,
+        "known_class_support_after_target_purge": {
+          "Normal": 55999,
+          "Generic": 39999,
+          "Exploits": 33391,
+          "DoS": 12262,
+          "Reconnaissance": 10491
+        },
+        "surrogate_rows_after_target_purge": 22059,
+        "surrogate_family_support": {
+          "Fuzzers": 18183,
+          "Analysis": 2000,
+          "Backdoors": 1746,
+          "Worms": 130
+        },
+        "official_test_known_class_support": {
+          "Normal": 37000,
+          "Generic": 18871,
+          "Exploits": 11132,
+          "DoS": 4089,
+          "Reconnaissance": 3496
+        }
+      },
+      "after_whole_group_exclusion": {
+        "target_ood_train_rows": 1122,
+        "target_official_test_rows": 376,
+        "known_rows_before_target_purge": 126456,
+        "known_rows_after_target_purge": 126456,
+        "known_class_support_after_target_purge": {
+          "Normal": 55577,
+          "Generic": 39681,
+          "Exploits": 20085,
+          "Reconnaissance": 8597,
+          "DoS": 2516
+        },
+        "surrogate_rows_after_target_purge": 16816,
+        "surrogate_family_support": {
+          "Fuzzers": 15847,
+          "Analysis": 558,
+          "Backdoors": 295,
+          "Worms": 116
+        },
+        "official_test_known_class_support": {
+          "Normal": 36495,
+          "Generic": 18817,
+          "Exploits": 7933,
+          "Reconnaissance": 3144,
+          "DoS": 1174
+        }
+      },
+      "zero_support_flag": [],
+      "statistical_power_note": "No minimum-sample threshold or power guarantee is inferred from nonzero support."
+    },
+    "Worms": {
+      "before_exclusion": {
+        "target_ood_train_rows": 130,
+        "target_official_test_rows": 44,
+        "known_rows_before_target_purge": 152148,
+        "known_rows_after_target_purge": 152135,
+        "known_class_support_after_target_purge": {
+          "Normal": 56000,
+          "Generic": 40000,
+          "Exploits": 33381,
+          "DoS": 12263,
+          "Reconnaissance": 10491
+        },
+        "surrogate_rows_after_target_purge": 23063,
+        "surrogate_family_support": {
+          "Fuzzers": 18184,
+          "Analysis": 2000,
+          "Backdoors": 1746,
+          "Shellcode": 1133
+        },
+        "official_test_known_class_support": {
+          "Normal": 37000,
+          "Generic": 18871,
+          "Exploits": 11132,
+          "DoS": 4089,
+          "Reconnaissance": 3496
+        }
+      },
+      "after_whole_group_exclusion": {
+        "target_ood_train_rows": 116,
+        "target_official_test_rows": 43,
+        "known_rows_before_target_purge": 126456,
+        "known_rows_after_target_purge": 126456,
+        "known_class_support_after_target_purge": {
+          "Normal": 55577,
+          "Generic": 39681,
+          "Exploits": 20085,
+          "Reconnaissance": 8597,
+          "DoS": 2516
+        },
+        "surrogate_rows_after_target_purge": 17822,
+        "surrogate_family_support": {
+          "Fuzzers": 15847,
+          "Shellcode": 1122,
+          "Analysis": 558,
+          "Backdoors": 295
+        },
+        "official_test_known_class_support": {
+          "Normal": 36495,
+          "Generic": 18817,
+          "Exploits": 7933,
+          "Reconnaissance": 3144,
+          "DoS": 1174
+        }
+      },
+      "zero_support_flag": [],
+      "statistical_power_note": "No minimum-sample threshold or power guarantee is inferred from nonzero support."
+    }
+  },
+  "official_train_rows_removed": 30947,
+  "official_test_rows_removed": 9453,
+  "ambiguous_groups": 2445,
+  "rows_removed_total": 40400
+}

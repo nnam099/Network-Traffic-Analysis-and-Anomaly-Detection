@@ -1,0 +1,713 @@
+{
+  "version": 1,
+  "canonical_identity_version": "canonical-model-features-v1",
+  "canonical_identity_contract": {
+    "ordered_fields": [
+      "ackdat",
+      "ct_dst_ltm",
+      "ct_dst_sport_ltm",
+      "ct_dst_src_ltm",
+      "ct_flw_http_mthd",
+      "ct_ftp_cmd",
+      "ct_src_dport_ltm",
+      "ct_src_ltm",
+      "ct_srv_dst",
+      "ct_srv_src",
+      "ct_state_ttl",
+      "dbytes",
+      "dinpkt",
+      "djit",
+      "dload",
+      "dloss",
+      "dmean",
+      "dpkts",
+      "dtcpb",
+      "dttl",
+      "dur",
+      "dwin",
+      "is_ftp_login",
+      "is_sm_ips_ports",
+      "proto_num",
+      "rate",
+      "response_body_len",
+      "sbytes",
+      "service_num",
+      "sinpkt",
+      "sjit",
+      "sload",
+      "sloss",
+      "smean",
+      "spkts",
+      "state_num",
+      "stcpb",
+      "sttl",
+      "swin",
+      "synack",
+      "tcprtt",
+      "trans_depth",
+      "bytes_ratio",
+      "log_total_bytes",
+      "log_sbytes",
+      "log_dbytes",
+      "pkts_ratio",
+      "log_total_pkts",
+      "src_bps",
+      "log_src_bps",
+      "pkt_rate",
+      "load_asym",
+      "log_sload",
+      "ttl_diff",
+      "ttl_sum",
+      "loss_rate_src",
+      "loss_rate_dst",
+      "jit_ratio",
+      "log_sjit",
+      "handshake_ratio",
+      "incomplete_tcp"
+    ],
+    "numeric_precision": "float32; signed zero canonicalized; NaN retained",
+    "categorical_fields": [
+      "proto",
+      "service",
+      "state"
+    ],
+    "missing_category": "missing:; non-missing strings use value: prefix",
+    "numeric_missing_policy": "Canonical base numeric NaN remains distinct from zero; deterministic engineered non-finite values follow existing engineer_features (zero).",
+    "hash": "pandas.hash_pandas_object(index=False), uint64; no row indices",
+    "included": "ordered deterministic engineered model features; float32 numeric values; NFKC/strip/casefold categorical strings",
+    "excluded": "labels, metadata, raw identifiers, fitted scaler, fitted category indices, clipping, learned representations"
+  },
+  "canonical_label_collisions": {
+    "fingerprints_with_multiple_labels": 2445,
+    "affected_rows": 40400,
+    "label_pair_fingerprint_matrix": {
+      "Analysis <-> Backdoors": 1374,
+      "Analysis <-> DoS": 1577,
+      "Analysis <-> Exploits": 1577,
+      "Analysis <-> Fuzzers": 1579,
+      "Analysis <-> Generic": 242,
+      "Analysis <-> Reconnaissance": 1337,
+      "Backdoors <-> DoS": 1524,
+      "Backdoors <-> Exploits": 1529,
+      "Backdoors <-> Fuzzers": 1524,
+      "Backdoors <-> Generic": 262,
+      "Backdoors <-> Reconnaissance": 1281,
+      "DoS <-> Exploits": 1843,
+      "DoS <-> Fuzzers": 1742,
+      "DoS <-> Generic": 288,
+      "DoS <-> Reconnaissance": 1502,
+      "DoS <-> Shellcode": 3,
+      "DoS <-> Worms": 2,
+      "Exploits <-> Fuzzers": 1778,
+      "Exploits <-> Generic": 307,
+      "Exploits <-> Reconnaissance": 1545,
+      "Exploits <-> Shellcode": 3,
+      "Exploits <-> Worms": 10,
+      "Fuzzers <-> Generic": 278,
+      "Fuzzers <-> Normal": 412,
+      "Fuzzers <-> Reconnaissance": 1493,
+      "Fuzzers <-> Shellcode": 1,
+      "Generic <-> Reconnaissance": 273,
+      "Generic <-> Shellcode": 2,
+      "Normal <-> Shellcode": 3
+    },
+    "normal_attack_conflicting_fingerprints": 414,
+    "normal_attack_affected_rows": 1758,
+    "known_ood_conflicting_fingerprints": 2238,
+    "known_ood_affected_rows": 39774,
+    "safe_examples": [
+      {
+        "fingerprint": "645710475018729",
+        "labels": [
+          "Analysis",
+          "Backdoors",
+          "DoS",
+          "Exploits",
+          "Fuzzers"
+        ],
+        "rows": 14
+      },
+      {
+        "fingerprint": "5386846867376638",
+        "labels": [
+          "DoS",
+          "Exploits"
+        ],
+        "rows": 2
+      },
+      {
+        "fingerprint": "46398329782595546",
+        "labels": [
+          "Backdoors",
+          "DoS",
+          "Exploits",
+          "Fuzzers",
+          "Reconnaissance"
+        ],
+        "rows": 16
+      },
+      {
+        "fingerprint": "48953589334946398",
+        "labels": [
+          "Analysis",
+          "Backdoors",
+          "DoS",
+          "Exploits",
+          "Fuzzers"
+        ],
+        "rows": 14
+      },
+      {
+        "fingerprint": "55597352847324481",
+        "labels": [
+          "Analysis",
+          "Backdoors",
+          "DoS",
+          "Exploits",
+          "Fuzzers",
+          "Generic",
+          "Reconnaissance"
+        ],
+        "rows": 18
+      },
+      {
+        "fingerprint": "60023923961589733",
+        "labels": [
+          "DoS",
+          "Exploits",
+          "Reconnaissance"
+        ],
+        "rows": 14
+      },
+      {
+        "fingerprint": "65956151847758243",
+        "labels": [
+          "Fuzzers",
+          "Normal"
+        ],
+        "rows": 3
+      },
+      {
+        "fingerprint": "77817001246903156",
+        "labels": [
+          "Analysis",
+          "Backdoors",
+          "DoS",
+          "Exploits",
+          "Fuzzers",
+          "Generic",
+          "Reconnaissance"
+        ],
+        "rows": 18
+      },
+      {
+        "fingerprint": "78789071161348745",
+        "labels": [
+          "Analysis",
+          "Backdoors",
+          "DoS",
+          "Exploits",
+          "Fuzzers",
+          "Reconnaissance"
+        ],
+        "rows": 20
+      },
+      {
+        "fingerprint": "84413791020785622",
+        "labels": [
+          "Analysis",
+          "Backdoors",
+          "DoS",
+          "Exploits",
+          "Fuzzers",
+          "Reconnaissance"
+        ],
+        "rows": 21
+      }
+    ]
+  },
+  "fuzzers_normal_root_cause": {
+    "canonical_fuzzers_normal_conflicting_fingerprints": 412,
+    "affected_rows": 1751,
+    "exact_raw_records_with_conflicting_labels": 0,
+    "duplicate_events_with_conflicting_labels_ignoring_record_id": 412,
+    "groups_with_all_event_fields_identical_except_id_and_labels": 412,
+    "feature_projection_conflicts": 0,
+    "categorical_normalization_conflicts": 0,
+    "interpretation": "Rows identical apart from the dataset record id are duplicate events with conflicting labels. Label correctness cannot be adjudicated from these vectors; conflicts are irreducible for the current deployable feature space.",
+    "safe_examples": [
+      {
+        "fingerprint": "65956151847758243",
+        "labels": [
+          "Fuzzers",
+          "Normal"
+        ],
+        "rows": 3,
+        "raw_record_conflict": false,
+        "duplicate_event_ignoring_record_id": true,
+        "varying_nonlabel_fields": [
+          "id"
+        ],
+        "label_counts": {
+          "Fuzzers": 1,
+          "Normal": 2
+        },
+        "safe_shared_feature_values": {
+          "dur": "8e-06",
+          "proto": "udp",
+          "service": "-",
+          "state": "INT",
+          "sbytes": "78",
+          "dbytes": "0"
+        }
+      },
+      {
+        "fingerprint": "87594086856200368",
+        "labels": [
+          "Fuzzers",
+          "Normal"
+        ],
+        "rows": 2,
+        "raw_record_conflict": false,
+        "duplicate_event_ignoring_record_id": true,
+        "varying_nonlabel_fields": [
+          "id"
+        ],
+        "label_counts": {
+          "Fuzzers": 1,
+          "Normal": 1
+        },
+        "safe_shared_feature_values": {
+          "dur": "2e-06",
+          "proto": "udp",
+          "service": "-",
+          "state": "INT",
+          "sbytes": "1064",
+          "dbytes": "0"
+        }
+      },
+      {
+        "fingerprint": "114077491619126388",
+        "labels": [
+          "Fuzzers",
+          "Normal"
+        ],
+        "rows": 10,
+        "raw_record_conflict": false,
+        "duplicate_event_ignoring_record_id": true,
+        "varying_nonlabel_fields": [
+          "id"
+        ],
+        "label_counts": {
+          "Fuzzers": 8,
+          "Normal": 2
+        },
+        "safe_shared_feature_values": {
+          "dur": "9e-06",
+          "proto": "udp",
+          "service": "-",
+          "state": "INT",
+          "sbytes": "104",
+          "dbytes": "0"
+        }
+      },
+      {
+        "fingerprint": "117218101855043858",
+        "labels": [
+          "Fuzzers",
+          "Normal"
+        ],
+        "rows": 3,
+        "raw_record_conflict": false,
+        "duplicate_event_ignoring_record_id": true,
+        "varying_nonlabel_fields": [
+          "id"
+        ],
+        "label_counts": {
+          "Fuzzers": 1,
+          "Normal": 2
+        },
+        "safe_shared_feature_values": {
+          "dur": "6e-06",
+          "proto": "udp",
+          "service": "-",
+          "state": "INT",
+          "sbytes": "104",
+          "dbytes": "0"
+        }
+      },
+      {
+        "fingerprint": "183904748986212081",
+        "labels": [
+          "Fuzzers",
+          "Normal"
+        ],
+        "rows": 2,
+        "raw_record_conflict": false,
+        "duplicate_event_ignoring_record_id": true,
+        "varying_nonlabel_fields": [
+          "id"
+        ],
+        "label_counts": {
+          "Fuzzers": 1,
+          "Normal": 1
+        },
+        "safe_shared_feature_values": {
+          "dur": "6e-06",
+          "proto": "udp",
+          "service": "-",
+          "state": "INT",
+          "sbytes": "104",
+          "dbytes": "0"
+        }
+      },
+      {
+        "fingerprint": "199184354033041860",
+        "labels": [
+          "Fuzzers",
+          "Normal"
+        ],
+        "rows": 15,
+        "raw_record_conflict": false,
+        "duplicate_event_ignoring_record_id": true,
+        "varying_nonlabel_fields": [
+          "id"
+        ],
+        "label_counts": {
+          "Fuzzers": 7,
+          "Normal": 8
+        },
+        "safe_shared_feature_values": {
+          "dur": "9e-06",
+          "proto": "udp",
+          "service": "-",
+          "state": "INT",
+          "sbytes": "104",
+          "dbytes": "0"
+        }
+      },
+      {
+        "fingerprint": "236925294074795726",
+        "labels": [
+          "Fuzzers",
+          "Normal"
+        ],
+        "rows": 3,
+        "raw_record_conflict": false,
+        "duplicate_event_ignoring_record_id": true,
+        "varying_nonlabel_fields": [
+          "id"
+        ],
+        "label_counts": {
+          "Fuzzers": 1,
+          "Normal": 2
+        },
+        "safe_shared_feature_values": {
+          "dur": "1e-05",
+          "proto": "udp",
+          "service": "-",
+          "state": "INT",
+          "sbytes": "1064",
+          "dbytes": "0"
+        }
+      },
+      {
+        "fingerprint": "241358748944739421",
+        "labels": [
+          "Fuzzers",
+          "Normal"
+        ],
+        "rows": 3,
+        "raw_record_conflict": false,
+        "duplicate_event_ignoring_record_id": true,
+        "varying_nonlabel_fields": [
+          "id"
+        ],
+        "label_counts": {
+          "Fuzzers": 1,
+          "Normal": 2
+        },
+        "safe_shared_feature_values": {
+          "dur": "1e-05",
+          "proto": "udp",
+          "service": "-",
+          "state": "INT",
+          "sbytes": "1064",
+          "dbytes": "0"
+        }
+      },
+      {
+        "fingerprint": "267702221276023767",
+        "labels": [
+          "Fuzzers",
+          "Normal"
+        ],
+        "rows": 6,
+        "raw_record_conflict": false,
+        "duplicate_event_ignoring_record_id": true,
+        "varying_nonlabel_fields": [
+          "id"
+        ],
+        "label_counts": {
+          "Fuzzers": 2,
+          "Normal": 4
+        },
+        "safe_shared_feature_values": {
+          "dur": "9e-06",
+          "proto": "udp",
+          "service": "-",
+          "state": "INT",
+          "sbytes": "104",
+          "dbytes": "0"
+        }
+      },
+      {
+        "fingerprint": "281472040125962345",
+        "labels": [
+          "Fuzzers",
+          "Normal"
+        ],
+        "rows": 2,
+        "raw_record_conflict": false,
+        "duplicate_event_ignoring_record_id": true,
+        "varying_nonlabel_fields": [
+          "id"
+        ],
+        "label_counts": {
+          "Fuzzers": 1,
+          "Normal": 1
+        },
+        "safe_shared_feature_values": {
+          "dur": "8e-06",
+          "proto": "udp",
+          "service": "-",
+          "state": "INT",
+          "sbytes": "78",
+          "dbytes": "0"
+        }
+      }
+    ]
+  },
+  "previous_fuzzers_normal_calibration": {
+    "protocol": "previous_P0_shared_backbone_seed42_diagnostic_only",
+    "shared_model_input_fingerprints": 28,
+    "normal_calibration_rows": 47,
+    "rows_already_matching_train_fuzzers_before_fitted_transform": 47,
+    "rows_with_identical_raw_features_except_record_id_and_labels": 47,
+    "solely_transformation_induced_rows": 0,
+    "row_ids_sha256": "986ca2df300463f8e6833a98b2ad090b11d025563f0765357fba0d029aaf0bea"
+  },
+  "population": "Official train and official test combined, before target purging; diagnostics only, never used to select or tune a model.",
+  "lineage": {
+    "git": {
+      "commit_sha": "64945aee859f2d8b650cb14ec6ad60aba55c89d9",
+      "branch": "main",
+      "dirty": true,
+      "status": [
+        "M README.md",
+        " M docs/project_audit.md",
+        " M results/ids_v14_results.json",
+        " M scripts/evaluate_csv.py",
+        " M scripts/regenerate_v14_report.py",
+        " M src/artifact_validator.py",
+        " M src/ids/config.py",
+        " M src/ids/dataset.py",
+        " M src/ids/evaluator.py",
+        " M src/ids_v14_unswnb15.py",
+        " M src/train.py",
+        " M tests/test_serve.py",
+        "?? results/README.md",
+        "?? results/data_quality/",
+        "?? results/step2_multiseed_report.json",
+        "?? results/step2_seed42/",
+        "?? results/step2_seed43/",
+        "?? results/step2_seed44/",
+        "?? scripts/aggregate_step2_seeds.py",
+        "?? scripts/audit_target_isolated_lofo.py",
+        "?? src/ids/lineage.py",
+        "?? src/ids/target_isolation.py",
+        "?? tests/test_evaluate_csv_warning.py",
+        "?? tests/test_step2_data_isolation.py"
+      ],
+      "working_tree_diff_sha256": "e168f3f9d0c267049f04e1cd03212202428a4917313a75a63b4b78a3080e777d",
+      "untracked_files": [
+        {
+          "path": "results/README.md",
+          "sha256": "afe12bb7e6f40c834f487c9e64b6302eddac6c85e64a58e4043ad5daec8718a4"
+        },
+        {
+          "path": "results/data_quality/label_collision_report.json",
+          "sha256": "a78e9c353b322c7e7ad0adeba879cba2265b845b598c69c77e7da89831fddceb"
+        },
+        {
+          "path": "results/data_quality/target_isolated_evidence/analysis_seed42.npz",
+          "sha256": "62b4cee7c8916c96120e223a72176b3b497a27e6c62241075b9f84c91ad0f807"
+        },
+        {
+          "path": "results/data_quality/target_isolated_evidence/analysis_seed43.npz",
+          "sha256": "97f1bc1b6b846042a58b390249ebc7e33973a12aca4129285e27baf7ec3bf93e"
+        },
+        {
+          "path": "results/data_quality/target_isolated_evidence/analysis_seed44.npz",
+          "sha256": "eb06e29fe37061f440cf0c3d410689b1505ddd839e8d4759b3a81f3e0986923d"
+        },
+        {
+          "path": "results/data_quality/target_isolated_evidence/backdoors_seed42.npz",
+          "sha256": "a0b4ea5cc0abe19ff8c4b9f636026568934e1134acb0599857ee8cf373dab1e0"
+        },
+        {
+          "path": "results/data_quality/target_isolated_evidence/backdoors_seed43.npz",
+          "sha256": "9ec0821b243ee1f96036953b62d2bca06cb262014f647cf877abce47818e227b"
+        },
+        {
+          "path": "results/data_quality/target_isolated_evidence/backdoors_seed44.npz",
+          "sha256": "2e9a3a5c0a61b09f2818b6cdf97217576df91ee119dfab00e7d708304da0a427"
+        },
+        {
+          "path": "results/data_quality/target_isolated_evidence/fuzzers_seed42.npz",
+          "sha256": "c9aa50799f274e94677f76ad0ee30d800452dbf2e39b98df004266ed9fe66914"
+        },
+        {
+          "path": "results/data_quality/target_isolated_evidence/fuzzers_seed43.npz",
+          "sha256": "624a67f2ae5c5a9ea4398b8f2da01903c4a4257a345c31ff6c7af643cfb0fa98"
+        },
+        {
+          "path": "results/data_quality/target_isolated_evidence/fuzzers_seed44.npz",
+          "sha256": "c2dda43b41e5fee9991c73307912396b68c9f44a04ca5c9d737ce74ebf883342"
+        },
+        {
+          "path": "results/data_quality/target_isolated_evidence/shellcode_seed42.npz",
+          "sha256": "04449e4cd806f28cbb9221369382791fc4d5a89d83768518573d2528c2d3ebc8"
+        },
+        {
+          "path": "results/data_quality/target_isolated_evidence/shellcode_seed43.npz",
+          "sha256": "a416a8d891d2a785624dcf326976ea88aea30035f07dc0c79c10e855ceb13fc8"
+        },
+        {
+          "path": "results/data_quality/target_isolated_evidence/shellcode_seed44.npz",
+          "sha256": "163d2c92e7c4e79f7a0579cf92d4d9e8648eecfcdd35854bb0ac44256f41b971"
+        },
+        {
+          "path": "results/data_quality/target_isolated_evidence/worms_seed42.npz",
+          "sha256": "b9369907502aa0b6522c6e46a1a7603b22a94b4a9181e592da9828ffe87f6938"
+        },
+        {
+          "path": "results/data_quality/target_isolated_evidence/worms_seed43.npz",
+          "sha256": "e432e925326e23f70482a4b04b9f9272a34d43e737708dfaeb33d809a780d120"
+        },
+        {
+          "path": "results/data_quality/target_isolated_evidence/worms_seed44.npz",
+          "sha256": "0232354c700e5b0959515b876c7adb76e6ead5c98bcb156fd8bb4a82d60e1566"
+        },
+        {
+          "path": "results/data_quality/target_isolated_lofo_dry_run.json",
+          "sha256": "6a02975813dcd8e3fff2d865eabd9feb132f7507bec8cda89351cb856c2a77b1"
+        },
+        {
+          "path": "results/step2_multiseed_report.json",
+          "sha256": "e490ce04fab5b0acffda2a01fbbbc91f7667e12f1d845ec61092bcd585772841"
+        },
+        {
+          "path": "results/step2_seed42/checkpoints/ids_v14_model.pth",
+          "sha256": "fad408922a7d1c6751ff35846ac4bb86077ec7d251613da7fece8e4350baacc0"
+        },
+        {
+          "path": "results/step2_seed42/checkpoints/ids_v14_pipeline.pkl",
+          "sha256": "0cb9fd73fd6b0d9b56dea4a766e9f9459c01c2e3c520702f59e2607d27f452cb"
+        },
+        {
+          "path": "results/step2_seed42/lofo_report.json",
+          "sha256": "85486b8ff42e893028762780926a0b29950543a20f8252df53f29c3478af6d7a"
+        },
+        {
+          "path": "results/step2_seed42/plots/v14_confusion_matrix.png",
+          "sha256": "b04d775a02aa43571ac7c32d993677fdc475bd3ed9ce43cd02fdbf0ccce51334"
+        },
+        {
+          "path": "results/step2_seed42/plots/v14_training_curve.png",
+          "sha256": "499eb06dd176e6bd8efa503920c9bf3ce6c51bd3605decd4bc62ce1d3c3b2a7c"
+        },
+        {
+          "path": "results/step2_seed43/checkpoints/ids_v14_model.pth",
+          "sha256": "ed11ef1ff9952cb8da6ef515617e6b9d5cea91e83f4c6f2abbfc0063dbad0bea"
+        },
+        {
+          "path": "results/step2_seed43/checkpoints/ids_v14_pipeline.pkl",
+          "sha256": "f69cbec93658860c608d87ac6ca926ddcd5718a2e70aee46d5ffe7445729a97b"
+        },
+        {
+          "path": "results/step2_seed43/lofo_report.json",
+          "sha256": "edfb0b31c3723e15d3941770799a38746324c5d7a3948af0257fa9a10e320d4d"
+        },
+        {
+          "path": "results/step2_seed43/plots/v14_confusion_matrix.png",
+          "sha256": "232d3ebc2d8c81f34f8fdb18dd55781838b4b962e791cff8ebe8781b7b370fc2"
+        },
+        {
+          "path": "results/step2_seed43/plots/v14_training_curve.png",
+          "sha256": "5c101905d6242663bfc707627d54ceeb8ec502c2eaaf899716fa85341124e214"
+        },
+        {
+          "path": "results/step2_seed44/checkpoints/ids_v14_model.pth",
+          "sha256": "8b8ca3d80ca68aa3b53ecc45220bf1dee1e00713355cd8f5c8e720ba7cc67604"
+        },
+        {
+          "path": "results/step2_seed44/checkpoints/ids_v14_pipeline.pkl",
+          "sha256": "349a9cbc11c36c2be41f429297037c7720a3fafa57fceba7930d22d1bdff47b4"
+        },
+        {
+          "path": "results/step2_seed44/lofo_report.json",
+          "sha256": "0ca5f032b5da7c10ec470f959010e073c237e2c5a025712d6305ad24760dc911"
+        },
+        {
+          "path": "results/step2_seed44/plots/v14_confusion_matrix.png",
+          "sha256": "5992815e4265787f5f502d53cee6958072f4769107d080ad6bfe1b34142aa2d8"
+        },
+        {
+          "path": "results/step2_seed44/plots/v14_training_curve.png",
+          "sha256": "c421e4c8be41e198122b2ca8cecbb40bfe09fd4f9fb8ed3804e11c250569a6c2"
+        },
+        {
+          "path": "scripts/aggregate_step2_seeds.py",
+          "sha256": "861f2cd399311ec99e2abe7b95bdf41daae4b04158c3d23b6641ccc6543e85b0"
+        },
+        {
+          "path": "scripts/audit_target_isolated_lofo.py",
+          "sha256": "60977e2ff1b15e01b170f391fa23a196f381f81bc049d1a8cb5c28195c0b4a39"
+        },
+        {
+          "path": "src/ids/lineage.py",
+          "sha256": "e222eb18c80f8b3d787f5be5a418684b3ec26f61d5475db5aebf345e7c92eae7"
+        },
+        {
+          "path": "src/ids/target_isolation.py",
+          "sha256": "2ae369ea8d7d94935d0c5e0f71fdf8625c981f6bce734c14db70fcac3abab819"
+        },
+        {
+          "path": "tests/test_evaluate_csv_warning.py",
+          "sha256": "9dab148e4a74642dd4059bbe9651815478c9d0d38e70c20d217f2b1c468bb282"
+        },
+        {
+          "path": "tests/test_step2_data_isolation.py",
+          "sha256": "85674b21f37b11a3f1486ebfcf3bf5ccd39a03179d6be260add9f00a03ce677f"
+        }
+      ]
+    },
+    "package_versions": {
+      "python": "3.13.5",
+      "numpy": "2.5.3",
+      "pandas": "2.3.3",
+      "scikit-learn": "1.9.1",
+      "torch": "2.14.0"
+    },
+    "dataset_sha256": {
+      "UNSW_NB15_training-set.csv": "bec7dd5ec88dc2a0ccc7a07879d338395ed7421750f675fd0339e07dfe0648fa",
+      "UNSW_NB15_testing-set.csv": "734fe6642edf758f7c94d7d9149426b49d202fe8e7bf0bef47392489c3c0a559"
+    },
+    "source_sha256": {
+      "src/ids/dataset.py": "db692926c393db06cf687ce82e8bb1a24ac6a0b69a3e9cb39c813a552b058207",
+      "src/ids/target_isolation.py": "2ae369ea8d7d94935d0c5e0f71fdf8625c981f6bce734c14db70fcac3abab819",
+      "scripts/audit_target_isolated_lofo.py": "60977e2ff1b15e01b170f391fa23a196f381f81bc049d1a8cb5c28195c0b4a39"
+    }
+  }
+}

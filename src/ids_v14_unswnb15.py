@@ -5,7 +5,9 @@ from ids.dataset import (
     KNOWN_ATTACK_CATS, ZERO_DAY_ATTACK_CATS, UNSW_RAW_COLUMNS, SKIP_FILES,
     FlowDS, _find_unsw_csvs, load_unsw_csvs, load_official_unsw_splits,
     normalize_labels, validate_declared_classes, feature_fingerprints,
-    prepare_official_splits, assert_training_isolation,
+    prepare_official_splits, assert_training_isolation, build_lofo_surrogate_mask,
+    audit_lofo_known_partition_overlap, assert_lofo_retraining_gate,
+    feature_schema_hash, model_input_fingerprints,
     _encode_categorical_features, _get_numeric_features, engineer_features,
     clean_df, prepare_splits, make_loaders,
 )
@@ -20,6 +22,13 @@ from ids.evaluator import (
     compute_hybrid_meta_score, _hybrid_base_features, fit_hybrid_meta_learner,
     _batch_scores, _batch_gradbp, build_centroids, class_prototype_cosine_similarity,
     calibrate, compute_adaptive_threshold_trace, evaluate_classifier, evaluate_zero_day,
+)
+from ids.target_isolation import (
+    build_target_isolation_context,
+    canonical_feature_fingerprints,
+    prepare_target_isolated_fold,
+    assert_target_fold_retraining_gate,
+    build_data_quality_report,
 )
 from ids.plots import (
     _attack_probs_batch, plot_soc_decision_space, plot_per_class_proper,
