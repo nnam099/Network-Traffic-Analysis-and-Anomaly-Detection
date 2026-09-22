@@ -79,6 +79,9 @@ def main() -> int:
     report = {
         "version": "v14.0",
         "status": "artifact_evaluation_regenerated",
+        "scientific_status": "HISTORICAL / NON-INDEPENDENT / NOT VALID FOR SCIENTIFIC CLAIMS",
+        "valid_for_scientific_claims": False,
+        "artifact_role": "DEMO ARTIFACT",
         "updated_at": datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),
         "regeneration_mode": "current_artifact_evaluation",
         "input_csv": display_path(args.csv_path),

@@ -9,11 +9,15 @@ from sklearn.preprocessing import RobustScaler, LabelEncoder
 from ids.config import CFG, get_config, seed_everything
 from ids.dataset import (
     ZERO_DAY_ATTACK_CATS,
+    _assert_model_feature_schema,
+    assert_lofo_retraining_gate,
     assert_training_isolation,
+    build_lofo_surrogate_mask,
     load_official_unsw_splits,
     make_loaders,
     prepare_official_splits,
 )
+from ids.lineage import build_experiment_lineage
 from ids.models import IDSModel
 from ids.losses import IDSLoss
 from ids.trainer import normal_class_index, train
@@ -41,6 +45,7 @@ from ids.plots import (
 def save_artifacts(model, splits, thresholds, history, centroids, save_dir,
                    hybrid_meta=None, research_protocol=None):
     os.makedirs(save_dir, exist_ok=True)
+    _assert_model_feature_schema(splits['feat_cols'])
 
     pth_path = os.path.join(save_dir, 'ids_v14_model.pth')
     torch.save({
@@ -122,6 +127,11 @@ def run_full(args):
     print('='*70)
 
     seed_everything(args.seed)
+    if getattr(args, 'adaptive_threshold', False):
+        raise ValueError(
+            'adaptive_threshold is disabled for scientific benchmarks because '
+            'the legacy evaluator updates it from held-out ground-truth labels'
+        )
 
     os.makedirs(args.save_dir, exist_ok=True)
     os.makedirs(args.plot_dir, exist_ok=True)
@@ -141,6 +151,8 @@ def run_full(args):
         calibration_df=data_roles['calibration'],
         seed=args.seed,
     )
+    assert_lofo_retraining_gate(splits)
+    lineage = build_experiment_lineage(args, data_roles, splits)
     print(
         f'  Backbone train {len(splits["X_train"]):,} | '
         f'Validation {len(splits["X_val"]):,} | '
@@ -211,7 +223,7 @@ def run_full(args):
         normal_idx=normal_idx,
     )
 
-    print('\n[6/8] Building centroids and collecting target-independent scores...')
+    print('\n[6/8] Freezing centroids, LOFO meta-learners and thresholds...')
     centroids = build_centroids(
         model,
         splits['X_train'],
@@ -220,45 +232,32 @@ def run_full(args):
         device=device,
         seed=args.seed,
     )
-    known_base_scores = collect_ood_scores(model, splits['X_test'], device, centroids)
-    ood_base_scores = collect_ood_scores(model, splits['X_ood_test'], device, centroids)
-
-    print('\n[7/8] Evaluating official test with five leave-one-family-out folds...')
-    clf_res = evaluate_classifier(
-        model, splits['X_test'], splits['y_test'], label_names, device
-    )
-    known_unseen = splits['test_unseen_fingerprint_mask']
-    clf_sensitivity = evaluate_classifier(
-        model,
-        splits['X_test'][known_unseen],
-        splits['y_test'][known_unseen],
-        label_names,
-        device,
-    )
-
-    def slice_scores(scores, mask):
-        return {name: np.asarray(values)[mask] for name, values in scores.items()}
-
     normal_calibration = splits['y_calibration'] == normal_idx
     if not bool(normal_calibration.any()):
         raise AssertionError('calibration split contains no Normal rows')
 
-    fold_reports = {}
+    fold_setups = {}
     fold_artifacts = {}
     all_assertions = dict(splits['isolation_assertions'])
     for target_family in ZERO_DAY_ATTACK_CATS:
-        print(f'\n{"-"*70}\nLOFO target family: {target_family}\n{"-"*70}')
-        surrogate_mask = splits['y_ood_train'] != target_family
-        target_mask = splits['y_ood_test'] == target_family
-        if not bool(target_mask.any()):
-            raise AssertionError(f'official test has no target OOD rows for {target_family}')
+        print(f'\n{"-"*70}\nFreezing LOFO target: {target_family}\n{"-"*70}')
+        surrogate_mask, purge_audit = build_lofo_surrogate_mask(
+            splits, target_family
+        )
         fold_assertions = assert_training_isolation(
             splits,
             target_family=target_family,
             surrogate_labels=splits['y_ood_train'][surrogate_mask],
+            surrogate_fingerprints=splits['fingerprints_ood_train'][surrogate_mask],
+            target_fingerprints=splits['fingerprints_ood_train'][
+                splits['y_ood_train'] == target_family
+            ],
         )
         all_assertions['target_family_excluded_from_surrogate'] = bool(
             fold_assertions['target_family_excluded_from_surrogate']
+        )
+        all_assertions['target_fingerprints_excluded_from_surrogate'] = bool(
+            fold_assertions['target_fingerprints_excluded_from_surrogate']
         )
 
         hybrid_meta = fit_hybrid_meta_learner(
@@ -277,6 +276,60 @@ def run_full(args):
             hybrid_meta=hybrid_meta,
         )
         thresholds['hybrid_meta'] = hybrid_meta
+        surrogate_families = [
+            str(family) for family in sorted(set(
+                splits['y_ood_train'][surrogate_mask]
+            ))
+        ]
+        fold_setups[target_family] = {
+            'hybrid_meta': hybrid_meta,
+            'thresholds': thresholds,
+            'surrogate_families': surrogate_families,
+            'surrogate_support': int(surrogate_mask.sum()),
+            'purge_audit': purge_audit,
+            'assertions': fold_assertions,
+        }
+        fold_artifacts[target_family] = {
+            'target_family': target_family,
+            'surrogate_families': surrogate_families,
+            'purge_audit': purge_audit,
+            'threshold_calibration_population': {
+                'role': 'calibration_normal',
+                'support': int(normal_calibration.sum()),
+            },
+            'assertions': fold_assertions,
+            'hybrid_meta': hybrid_meta,
+            'thresholds': thresholds,
+        }
+
+    # Official test is first accessed for scoring only after every learned
+    # component, method choice and threshold has been frozen above.
+    print('\n[7/8] Final official-test evaluation with frozen LOFO folds...')
+    known_base_scores = collect_ood_scores(model, splits['X_test'], device, centroids)
+    ood_base_scores = collect_ood_scores(model, splits['X_ood_test'], device, centroids)
+    clf_res = evaluate_classifier(
+        model, splits['X_test'], splits['y_test'], label_names, device
+    )
+    known_unseen = splits['test_unseen_fingerprint_mask']
+    clf_sensitivity = evaluate_classifier(
+        model,
+        splits['X_test'][known_unseen],
+        splits['y_test'][known_unseen],
+        label_names,
+        device,
+    )
+
+    def slice_scores(scores, mask):
+        return {name: np.asarray(values)[mask] for name, values in scores.items()}
+
+    fold_reports = {}
+    for target_family in ZERO_DAY_ATTACK_CATS:
+        setup = fold_setups[target_family]
+        hybrid_meta = setup['hybrid_meta']
+        thresholds = setup['thresholds']
+        target_mask = splits['y_ood_test'] == target_family
+        if not bool(target_mask.any()):
+            raise AssertionError(f'official test has no target OOD rows for {target_family}')
         known_scores = add_hybrid_scores(known_base_scores, hybrid_meta)
         target_scores = add_hybrid_scores(
             slice_scores(ood_base_scores, target_mask), hybrid_meta
@@ -288,8 +341,10 @@ def run_full(args):
             target_labels,
             thresholds,
             selected_method='hybrid',
+            y_known=splits['y_test'],
+            known_predictions=clf_res['preds'],
+            normal_idx=normal_idx,
         )
-
         target_unseen = splits['ood_test_unseen_fingerprint_mask'][target_mask]
         sensitivity_result = evaluate_zero_day_from_scores(
             slice_scores(known_scores, known_unseen),
@@ -297,41 +352,98 @@ def run_full(args):
             target_labels[target_unseen],
             thresholds,
             selected_method='hybrid',
+            y_known=splits['y_test'][known_unseen],
+            known_predictions=clf_sensitivity['preds'],
+            normal_idx=normal_idx,
         )
         official_family = official_result['_per_class'][target_family]
         sensitivity_family = sensitivity_result['_per_class'].get(
             target_family, {'support': 0, 'recall': None}
         )
+        official_ood = official_result['ood_metrics']
+        sensitivity_ood = sensitivity_result['ood_metrics']
         fold_reports[target_family] = {
             'selected_method': 'hybrid',
+            'target_family': target_family,
+            'calibration': {
+                'normal_support': int(normal_calibration.sum()),
+                'target_fpr': float(args.target_fpr),
+                'hybrid_threshold': float(thresholds['hybrid']),
+            },
             'official_test': {
                 'support': official_family['support'],
+                'ood_target_recall': float(official_family['recall']),
+                'ood_auroc': official_ood['ood_auroc'],
+                'ood_auprc': official_ood['ood_auprc'],
+                'ood_tpr_at_1pct_fpr': official_ood['ood_tpr_at_1pct_fpr'],
+                'ood_tpr_at_5pct_fpr': official_ood['ood_tpr_at_5pct_fpr'],
+                'normal_ood_fpr': official_ood['normal_ood_fpr'],
+                'known_false_unknown_rate': official_ood['known_false_unknown_rate'],
+                'total_alert_fpr': official_ood['total_alert_fpr'],
                 'recall': float(official_family['recall']),
-                'auroc': float(official_result['hybrid']['auc']),
+                'auroc': official_ood['ood_auroc'],
             },
             'unseen_fingerprint_sensitivity': {
                 'support': int(sensitivity_family['support']),
+                'ood_target_recall': (
+                    None if sensitivity_family['recall'] is None
+                    else float(sensitivity_family['recall'])
+                ),
+                'ood_auroc': sensitivity_ood['ood_auroc'],
+                'ood_auprc': sensitivity_ood['ood_auprc'],
+                'ood_tpr_at_1pct_fpr': sensitivity_ood['ood_tpr_at_1pct_fpr'],
+                'ood_tpr_at_5pct_fpr': sensitivity_ood['ood_tpr_at_5pct_fpr'],
+                'normal_ood_fpr': sensitivity_ood['normal_ood_fpr'],
+                'known_false_unknown_rate': sensitivity_ood['known_false_unknown_rate'],
+                'total_alert_fpr': sensitivity_ood['total_alert_fpr'],
                 'recall': (
                     None if sensitivity_family['recall'] is None
                     else float(sensitivity_family['recall'])
                 ),
-                'auroc': float(sensitivity_result['hybrid']['auc']),
+                'auroc': sensitivity_ood['ood_auroc'],
                 'known_support': int(known_unseen.sum()),
                 'note': (
-                    'Exact training-feature fingerprints were excluded. This is '
-                    'not a temporal-generalization benchmark.'
+                    'Exact training model-input fingerprints were excluded. This '
+                    'is not a temporal-generalization benchmark.'
                 ),
             },
-            'surrogate_families': [
-                family for family in ZERO_DAY_ATTACK_CATS if family != target_family
-            ],
-            'surrogate_support': int(surrogate_mask.sum()),
-            'assertions': fold_assertions,
+            'surrogate_families': setup['surrogate_families'],
+            'surrogate_support': setup['surrogate_support'],
+            'purge_audit': setup['purge_audit'],
+            'assertions': setup['assertions'],
         }
-        fold_artifacts[target_family] = {
-            'hybrid_meta': hybrid_meta,
-            'thresholds': thresholds,
+
+    def aggregate_fold_metrics(section):
+        rows = [values[section] for values in fold_reports.values()]
+        valid = [
+            row for row in rows
+            if row['ood_target_recall'] is not None and row['ood_auroc'] is not None
+        ]
+        recalls = np.asarray([row['ood_target_recall'] for row in valid], dtype=float)
+        aurocs = np.asarray([row['ood_auroc'] for row in valid], dtype=float)
+        supports = np.asarray([row['support'] for row in valid], dtype=float)
+        if not valid:
+            return {
+                'macro_recall_mean': None, 'macro_recall_std': None,
+                'macro_auroc_mean': None, 'macro_auroc_std': None,
+                'pooled_recall': None, 'support': 0, 'families_evaluated': 0,
+            }
+        return {
+            'macro_recall_mean': float(recalls.mean()),
+            'macro_recall_std': float(recalls.std(ddof=1)) if len(valid) > 1 else 0.0,
+            'macro_auroc_mean': float(aurocs.mean()),
+            'macro_auroc_std': float(aurocs.std(ddof=1)) if len(valid) > 1 else 0.0,
+            'pooled_recall': float(np.average(recalls, weights=supports)),
+            'support': int(supports.sum()),
+            'families_evaluated': len(valid),
         }
+
+    aggregate_metrics = {
+        'official_test': aggregate_fold_metrics('official_test'),
+        'unseen_fingerprint_sensitivity': aggregate_fold_metrics(
+            'unseen_fingerprint_sensitivity'
+        ),
+    }
 
     print('\n[8/8] Saving seed report and research artifacts...')
     research_protocol = {
@@ -340,6 +452,7 @@ def run_full(args):
         'selected_method': 'hybrid',
         'folds': fold_artifacts,
         'assertions': all_assertions,
+        'lineage': lineage,
     }
     pth_path, pipeline_path = save_artifacts(
         model,
@@ -368,12 +481,16 @@ def run_full(args):
     os.makedirs(os.path.dirname(os.path.abspath(report_path)), exist_ok=True)
     report = {
         'version': 'v14.0-step2',
+        'scientific_status': 'LEAKAGE_GUARDED_RESEARCH_BENCHMARK',
+        'valid_for_scientific_claims': True,
         'protocol': 'official_70_10_10_10_lofo',
         'seed': int(args.seed),
         'elapsed_seconds': float(elapsed_seconds),
         'elapsed_hours': float(elapsed_seconds / 3600.0),
         'n_epochs': len(history),
         'n_features': int(splits['n_features']),
+        'feature_schema': list(splits['feat_cols']),
+        'feature_schema_sha256': splits['feature_schema_sha256'],
         'known_cats': splits['known_cats'],
         'ood_cats': splits['zd_cats'],
         'assertions': all_assertions,
@@ -386,15 +503,42 @@ def run_full(args):
             'official_train_ood': len(splits['X_ood_train']),
             'official_test_ood': len(splits['X_ood_test']),
         },
+        'known_classification_metrics': {
+            key: clf_res[key] for key in (
+                'binary_attack_detection_accuracy',
+                'binary_attack_detection_auroc',
+                'known_multiclass_accuracy',
+                'known_macro_f1',
+            )
+        },
+        'unseen_fingerprint_known_classification_metrics': {
+            key: clf_sensitivity[key] for key in (
+                'binary_attack_detection_accuracy',
+                'binary_attack_detection_auroc',
+                'known_multiclass_accuracy',
+                'known_macro_f1',
+            )
+        },
         'official_test_known_auc': float(clf_res['auc']),
         'unseen_fingerprint_known_auc': float(clf_sensitivity['auc']),
+        'deprecated_metric_aliases': {
+            'official_test_known_auc': 'known_classification_metrics.binary_attack_detection_auroc',
+            'unseen_fingerprint_known_auc': 'unseen_fingerprint_known_classification_metrics.binary_attack_detection_auroc',
+            'folds.*.official_test.recall': 'folds.*.official_test.ood_target_recall',
+            'folds.*.official_test.auroc': 'folds.*.official_test.ood_auroc',
+        },
         'shared_official_fingerprint_count': int(
             splits['shared_official_fingerprint_count']
         ),
+        'fingerprint_contamination': splits['fingerprint_contamination'],
+        'known_split_model_input_purge': splits['known_split_model_input_purge'],
+        'lineage': lineage,
+        'aggregate_metrics': aggregate_metrics,
         'folds': fold_reports,
         'sensitivity_analysis_note': (
-            'Rows whose exact raw-feature fingerprint appears in official training '
-            'are excluded. This is not a temporal-generalization benchmark because '
+            'Rows whose exact post-scaling/clipping float32 model-input fingerprint '
+            'appears in official training are excluded. This is not a '
+            'temporal-generalization benchmark because '
             'the pre-split CSVs contain no timestamps or flow identifiers.'
         ),
         'model_path': pth_path,

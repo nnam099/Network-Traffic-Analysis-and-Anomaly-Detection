@@ -23,6 +23,14 @@ from batch_evaluator import (  # noqa: E402
 )
 
 
+THRESHOLD_LEAKAGE_WARNING = (
+    "THRESHOLD LEAKAGE WARNING: this CSV is being used for both threshold "
+    "calibration and report generation. The report is not an independent "
+    "evaluation of the calibrated profile; evaluate that profile on a separate "
+    "held-out file before reporting performance."
+)
+
+
 def display_path(path: str) -> str:
     abs_path = os.path.abspath(path)
     try:
@@ -35,6 +43,17 @@ def configure_console_encoding() -> None:
     for stream in (sys.stdout, sys.stderr):
         if hasattr(stream, "reconfigure"):
             stream.reconfigure(encoding="utf-8", errors="backslashreplace")
+
+
+def add_threshold_leakage_warning(summary: dict, csv_path: str) -> None:
+    """Record that calibration and reporting reuse the same input rows."""
+    summary.setdefault("methodology_warnings", []).append(THRESHOLD_LEAKAGE_WARNING)
+    summary["threshold_calibration_evaluation_independence"] = {
+        "calibration_input_csv": display_path(csv_path),
+        "report_input_csv": display_path(csv_path),
+        "same_input_file": True,
+        "independent_evaluation": False,
+    }
 
 
 def parse_args() -> argparse.Namespace:
@@ -61,6 +80,8 @@ def parse_args() -> argparse.Namespace:
 def main() -> int:
     configure_console_encoding()
     args = parse_args()
+    if args.calibrate_thresholds:
+        print(THRESHOLD_LEAKAGE_WARNING, file=sys.stderr)
     os.makedirs(args.output_dir, exist_ok=True)
     stem = args.name or os.path.splitext(os.path.basename(args.csv_path))[0]
 
@@ -92,6 +113,7 @@ def main() -> int:
         print(f"Scores CSV: {scores_path}")
 
     if args.calibrate_thresholds:
+        add_threshold_leakage_warning(summary, args.csv_path)
         profile = calibrate_thresholds(
             scores,
             target_fpr=args.target_fpr,
@@ -108,8 +130,10 @@ def main() -> int:
     print(f"Report: {report_path}")
     print(f"Rows: {summary['rows']:,}")
     print(f"Zero-day rate: {summary['zero_day_rate']:.2%}")
-    if "normal_false_positive_rate" in summary:
-        print(f"Normal FPR: {summary['normal_false_positive_rate']:.2%}")
+    if "normal_ood_fpr" in summary:
+        print(f"Normal OOD FPR: {summary['normal_ood_fpr']:.2%}")
+        print(f"Normal alert FPR: {summary['normal_alert_fpr']:.2%}")
+        print(f"Known-classifier FPR: {summary['known_classifier_fpr']:.2%}")
     return 0
 
 

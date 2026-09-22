@@ -5,7 +5,14 @@ import torch
 import torch.nn.functional as F
 from sklearn.cluster import MiniBatchKMeans
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import roc_auc_score, roc_curve, classification_report
+from sklearn.metrics import (
+    accuracy_score,
+    average_precision_score,
+    classification_report,
+    f1_score,
+    roc_auc_score,
+    roc_curve,
+)
 
 from .threshold import AdaptiveThreshold
 
@@ -193,9 +200,15 @@ def class_prototype_cosine_similarity(model, X, y, class_a, class_b, device='cpu
     return float(torch.dot(proto_a, proto_b).item())
 
 
-def calibrate(model, X_val, y_val, target_fpr, device, centroids, hybrid_meta=None):
-    scores = _batch_scores(model, X_val, device, centroids, hybrid_meta=hybrid_meta)
-    scores['gradbp_l2'] = _batch_gradbp(model, X_val, device)
+def calibrate(model, X_normal_calibration, target_fpr, device, centroids,
+              hybrid_meta=None):
+    """Calibrate score thresholds using only held-out benign/Normal rows."""
+    if len(X_normal_calibration) == 0:
+        raise ValueError('threshold calibration requires at least one Normal row')
+    scores = _batch_scores(
+        model, X_normal_calibration, device, centroids, hybrid_meta=hybrid_meta
+    )
+    scores['gradbp_l2'] = _batch_gradbp(model, X_normal_calibration, device)
     thr = {}
     print(f'\n  Thresholds @ FPR={target_fpr*100:.0f}%')
     for m, arr in scores.items():
@@ -228,6 +241,41 @@ def compute_adaptive_threshold_trace(model, X_test, y_test, normal_idx,
     }
 
 
+def roc_operating_point_at_fpr(fpr_values, tpr_values, thresholds, target_fpr):
+    """Return the highest-TPR ROC point that does not exceed the FPR budget."""
+    fpr_values = np.asarray(fpr_values, dtype=float)
+    tpr_values = np.asarray(tpr_values, dtype=float)
+    thresholds = np.asarray(thresholds, dtype=float)
+    target_fpr = float(target_fpr)
+    if not np.isfinite(target_fpr) or not 0.0 <= target_fpr <= 1.0:
+        raise ValueError('target_fpr must be finite and within [0, 1]')
+    if not (len(fpr_values) == len(tpr_values) == len(thresholds)):
+        raise ValueError('ROC arrays must have identical lengths')
+    if not len(fpr_values):
+        raise ValueError('ROC arrays must not be empty')
+    if not np.isfinite(fpr_values).all() or not np.isfinite(tpr_values).all():
+        raise ValueError('ROC FPR/TPR values must be finite')
+    if bool(((fpr_values < 0.0) | (fpr_values > 1.0)).any()) or bool(
+        ((tpr_values < 0.0) | (tpr_values > 1.0)).any()
+    ):
+        raise ValueError('ROC FPR/TPR values must be within [0, 1]')
+    eligible = np.flatnonzero(fpr_values <= target_fpr)
+    if eligible.size == 0:
+        raise ValueError('ROC curve has no point within the requested FPR budget')
+    eligible_tpr = tpr_values[eligible]
+    best_tpr = eligible_tpr.max()
+    best = eligible[np.flatnonzero(eligible_tpr == best_tpr)]
+    # When multiple thresholds have the same TPR, report the point closest to
+    # (but never above) the requested budget.
+    index = int(best[np.argmax(fpr_values[best])])
+    return {
+        'target_fpr': target_fpr,
+        'achieved_fpr': float(fpr_values[index]),
+        'tpr': float(tpr_values[index]),
+        'threshold': float(thresholds[index]),
+    }
+
+
 def evaluate_classifier(model, X_te, y_te, label_names, device):
     model.eval()
     preds, probs_list = [], []
@@ -239,61 +287,168 @@ def evaluate_classifier(model, X_te, y_te, label_names, device):
             probs_list.append(torch.softmax(lg,dim=-1).cpu().numpy())
     preds = np.concatenate(preds)
     probs = np.concatenate(probs_list)
-    print(classification_report(y_te, preds, target_names=label_names, digits=4))
+    print(classification_report(
+        y_te,
+        preds,
+        labels=list(range(len(label_names))),
+        target_names=label_names,
+        digits=4,
+        zero_division=0,
+    ))
     ni = label_names.index('Normal') if 'Normal' in label_names else 0
     bin_ = (y_te!=ni).astype(int)
+    bin_pred = (preds!=ni).astype(int)
     score = 1-probs[:,ni]
     try: auc = roc_auc_score(bin_, score)
     except: auc = 0.5
     print(f'  AUC(Normal vs Attack): {auc:.4f}')
-    return {'preds':preds,'probs':probs,'auc':auc}
+    return {
+        'preds': preds,
+        'probs': probs,
+        'binary_attack_detection_accuracy': float(accuracy_score(bin_, bin_pred)),
+        'binary_attack_detection_auroc': float(auc),
+        'known_multiclass_accuracy': float(accuracy_score(y_te, preds)),
+        'known_macro_f1': float(f1_score(
+            y_te, preds, labels=list(range(len(label_names))), average='macro',
+            zero_division=0,
+        )),
+        # Backward-compatible alias. New reports identify it as deprecated.
+        'auc': float(auc),
+    }
 
 
-def evaluate_zero_day(model, X_kn, y_kn, X_zd, y_zd, thr, centroids, device, hybrid_meta=None):
-    print(f'\n{"="*65}')
-    print(f'ZERO-DAY DETECTION  |  Known={len(X_kn):,}  ZD={len(X_zd):,}')
-    print(f'{"="*65}')
-    sk = _batch_scores(model, X_kn, device, centroids, hybrid_meta=hybrid_meta)
-    sz = _batch_scores(model, X_zd, device, centroids, hybrid_meta=hybrid_meta)
-    sk['gradbp_l2'] = _batch_gradbp(model, X_kn, device)
-    sz['gradbp_l2'] = _batch_gradbp(model, X_zd, device)
+def collect_ood_scores(model, X, device, centroids):
+    """Collect target-independent base scores once for efficient LOFO evaluation."""
+    scores = _batch_scores(model, X, device, centroids, hybrid_meta=None)
+    scores['gradbp_l2'] = _batch_gradbp(model, X, device)
+    return scores
 
-    true = np.concatenate([np.zeros(len(X_kn)), np.ones(len(X_zd))])
+
+def add_hybrid_scores(scores, hybrid_meta):
+    out = {name: np.asarray(values) for name, values in scores.items()}
+    out['hybrid'] = compute_hybrid_meta_score(
+        out['ae_re'], out['softmax'], hybrid_meta
+    )
+    return out
+
+
+def _alert_policy_metrics(known_scores, threshold, y_known=None,
+                          known_predictions=None, normal_idx=0):
+    decisions = np.asarray(known_scores) > float(threshold)
+    metrics = {
+        'known_false_unknown_rate': float(decisions.mean()) if len(decisions) else None,
+        'normal_ood_fpr': None,
+        'total_alert_fpr': None,
+    }
+    if y_known is None:
+        return metrics
+    y_known = np.asarray(y_known)
+    normal_mask = y_known == int(normal_idx)
+    if not bool(normal_mask.any()):
+        return metrics
+    metrics['normal_ood_fpr'] = float(decisions[normal_mask].mean())
+    if known_predictions is not None:
+        classifier_alert = np.asarray(known_predictions) != int(normal_idx)
+        metrics['total_alert_fpr'] = float(
+            (decisions[normal_mask] | classifier_alert[normal_mask]).mean()
+        )
+    return metrics
+
+
+def evaluate_zero_day_from_scores(sk, sz, y_zd, thr, selected_method='hybrid',
+                                  y_known=None, known_predictions=None,
+                                  normal_idx=0):
+    """Report a pre-selected OOD method without tuning on target OOD labels."""
+    if selected_method not in sk or selected_method not in sz:
+        raise ValueError(f'selected OOD method is unavailable: {selected_method}')
+    true = np.concatenate([np.zeros(len(sk[selected_method])), np.ones(len(sz[selected_method]))])
     results = {}
     print(f'\n  {"Method":<16} {"AUC":>8} {"TPR@1%":>10} {"TPR@5%":>10}')
     print(f'  {"-"*48}')
-    # Energy is intentionally excluded from OOD comparison: observed AUC < 0.6,
-    # which is not materially better than a random baseline for this task.
-    for m in ['gradbp_l2','hybrid','ae_re','softmax','fv_cluster']:
-        if m not in sk: continue
-        sc_all = np.concatenate([sk[m], sz[m]])
-        try: auc = roc_auc_score(true, sc_all)
-        except: auc=0.5
-        fpr_a, tpr_a, _ = roc_curve(true, sc_all)
-        def tpr_at(tfpr):
-            idx = np.searchsorted(fpr_a, tfpr)
-            return float(tpr_a[min(idx,len(tpr_a)-1)])
-        t1,t5 = tpr_at(0.01), tpr_at(0.05)
-        print(f'  {m:<16} {auc:>8.4f} {t1:>10.4f} {t5:>10.4f}')
-        results[m] = {'auc':auc,'tpr_1':t1,'tpr_5':t5,
-                      'fpr':fpr_a.tolist(),'tpr':tpr_a.tolist(),
-                      's_known':sk[m],'s_zd':sz[m]}
+    for method in ['gradbp_l2', 'hybrid', 'ae_re', 'softmax', 'fv_cluster']:
+        if method not in sk or method not in sz:
+            continue
+        scores_all = np.concatenate([sk[method], sz[method]])
+        if len(np.unique(true)) < 2:
+            auc = None
+            auprc = None
+            fpr_values = np.asarray([0.0])
+            tpr_values = np.asarray([0.0])
+            roc_thresholds = np.asarray([np.inf])
+        else:
+            auc = float(roc_auc_score(true, scores_all))
+            auprc = float(average_precision_score(true, scores_all))
+            fpr_values, tpr_values, roc_thresholds = roc_curve(true, scores_all)
+        op_1 = roc_operating_point_at_fpr(
+            fpr_values, tpr_values, roc_thresholds, 0.01
+        )
+        op_5 = roc_operating_point_at_fpr(
+            fpr_values, tpr_values, roc_thresholds, 0.05
+        )
+        tpr_1, tpr_5 = op_1['tpr'], op_5['tpr']
+        auc_display = float('nan') if auc is None else auc
+        print(f'  {method:<16} {auc_display:>8.4f} {tpr_1:>10.4f} {tpr_5:>10.4f}')
+        results[method] = {
+            'ood_auroc': auc,
+            'ood_auprc': auprc,
+            'ood_tpr_at_1pct_fpr': op_1,
+            'ood_tpr_at_5pct_fpr': op_5,
+            # Deprecated aliases retained for old plot/report consumers.
+            'auc': auc,
+            'tpr_1': tpr_1,
+            'tpr_5': tpr_5,
+            'fpr': fpr_values.tolist(),
+            'tpr': tpr_values.tolist(),
+        }
 
-    best = max(results, key=lambda m: results[m]['auc'])
-    bt   = thr.get(best, float(np.quantile(sk[best],0.95)))
-    print(f'\n  Per-class recall [{best}@thr={bt:.5f}]:')
-    per_cls = {}
-    for cls in np.unique(y_zd):
-        mask = y_zd==cls
-        n    = mask.sum()
-        det  = (sz[best][mask]>bt).sum()
-        r    = det/n if n>0 else 0.
-        per_cls[str(cls)] = {'n':int(n),'recall':r}
-        bar  = '#'*int(r*20)+'.'*(20-int(r*20))
-        print(f'    {str(cls):<30} [{bar}] {r:.1%}  (n={n:,})')
+    threshold = thr[selected_method]
+    print(f'\n  Per-class recall [{selected_method}@thr={threshold:.5f}]:')
+    per_class = {}
+    for class_name in np.unique(y_zd):
+        mask = np.asarray(y_zd) == class_name
+        support = int(mask.sum())
+        detected = int((np.asarray(sz[selected_method])[mask] > threshold).sum())
+        recall = detected / support if support else 0.0
+        per_class[str(class_name)] = {'n': support, 'support': support, 'recall': recall}
+        bar = '#'*int(recall*20) + '.'*(20-int(recall*20))
+        print(f'    {str(class_name):<30} [{bar}] {recall:.1%}  (n={support:,})')
 
-    results['_per_class']   = per_cls
-    results['_best_method'] = best
+    results['_per_class'] = per_class
+    results['_selected_method'] = selected_method
+    results['_best_method'] = selected_method
+    selected = results[selected_method]
+    results['ood_metrics'] = {
+        'ood_auroc': selected['ood_auroc'],
+        'ood_auprc': selected['ood_auprc'],
+        'ood_tpr_at_1pct_fpr': selected['ood_tpr_at_1pct_fpr'],
+        'ood_tpr_at_5pct_fpr': selected['ood_tpr_at_5pct_fpr'],
+        **_alert_policy_metrics(
+            sk[selected_method],
+            threshold,
+            y_known=y_known,
+            known_predictions=known_predictions,
+            normal_idx=normal_idx,
+        ),
+    }
+    results['_deprecated_metric_aliases'] = {
+        'auc': 'ood_auroc',
+        'tpr_1': 'ood_tpr_at_1pct_fpr.tpr',
+        'tpr_5': 'ood_tpr_at_5pct_fpr.tpr',
+        '_best_method': '_selected_method',
+    }
+    return results
+
+
+def evaluate_zero_day(model, X_kn, y_kn, X_zd, y_zd, thr, centroids, device,
+                      hybrid_meta=None, selected_method='hybrid'):
+    print(f'\n{"="*65}')
+    print(f'ZERO-DAY DETECTION  |  Known={len(X_kn):,}  ZD={len(X_zd):,}')
+    print(f'{"="*65}')
+    sk = add_hybrid_scores(collect_ood_scores(model, X_kn, device, centroids), hybrid_meta)
+    sz = add_hybrid_scores(collect_ood_scores(model, X_zd, device, centroids), hybrid_meta)
+    results = evaluate_zero_day_from_scores(
+        sk, sz, y_zd, thr, selected_method=selected_method
+    )
     results['_scores_known']= sk
     results['_scores_zd']   = sz
     return results

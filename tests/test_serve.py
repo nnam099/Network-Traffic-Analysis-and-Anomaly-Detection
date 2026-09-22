@@ -1,8 +1,6 @@
 import asyncio
-import json
 import os
 import pickle
-import subprocess
 import sys
 import tempfile
 import unittest
@@ -10,7 +8,6 @@ from pathlib import Path
 
 import httpx
 import torch
-from fastapi.testclient import TestClient
 from sklearn.preprocessing import LabelEncoder, RobustScaler
 
 
@@ -49,48 +46,28 @@ class ServeApiTests(unittest.TestCase):
 
         self.tmp.cleanup()
 
-    def test_health_with_test_client(self):
-        script = """
-import json
-from fastapi.testclient import TestClient
-from src.serve import app
+    def _request(self, method: str, path: str, **kwargs):
+        async def run_request():
+            # Starlette TestClient's AnyIO blocking portal deadlocks under this
+            # Python 3.13 environment. Exercise the same ASGI app and lifespan
+            # directly without a cross-thread event-loop bridge.
+            async with app.router.lifespan_context(app):
+                transport = httpx.ASGITransport(app=app)
+                async with httpx.AsyncClient(
+                    transport=transport, base_url="http://testserver"
+                ) as client:
+                    return await client.request(method, path, **kwargs)
 
-with TestClient(app) as client:
-    response = client.get("/health")
+        return asyncio.run(run_request())
 
-print("HEALTH_RESULT=" + json.dumps({"status_code": response.status_code, "body": response.json()}))
-"""
-        try:
-            completed = subprocess.run(
-                [sys.executable, "-c", script],
-                cwd=ROOT_DIR,
-                env=os.environ.copy(),
-                capture_output=True,
-                text=True,
-                timeout=10,
-                check=False,
-            )
-        except subprocess.TimeoutExpired as exc:
-            self.fail(f"TestClient /health timed out after {exc.timeout} seconds")
+    def test_health_with_async_asgi_transport(self):
+        response = self._request("GET", "/health")
 
-        self.assertEqual(completed.returncode, 0, completed.stderr)
-        result_line = next(
-            (line for line in completed.stdout.splitlines() if line.startswith("HEALTH_RESULT=")),
-            None,
-        )
-        self.assertIsNotNone(result_line, completed.stdout)
-        payload = json.loads(result_line.removeprefix("HEALTH_RESULT="))
-        self.assertEqual(payload["status_code"], 200)
-        self.assertEqual(payload["body"], {"status": "ok", "model_version": "v14"})
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json(), {"status": "ok", "model_version": "v14"})
 
     def test_predict_with_async_client(self):
-        async def run_request():
-            with TestClient(app):
-                transport = httpx.ASGITransport(app=app)
-                async with httpx.AsyncClient(transport=transport, base_url="http://testserver") as client:
-                    return await client.post("/predict", json={"features": [0.0] * 55})
-
-        response = asyncio.run(run_request())
+        response = self._request("POST", "/predict", json={"features": [0.0] * 55})
 
         self.assertEqual(response.status_code, 200)
         payload = response.json()
@@ -105,33 +82,32 @@ print("HEALTH_RESULT=" + json.dumps({"status_code": response.status_code, "body"
         self.assertIsInstance(payload["uncertainty"]["std_max_class"], float)
 
     def test_predict_rejects_wrong_feature_count(self):
-        with TestClient(app) as client:
-            response = client.post("/predict", json={"features": [0.0] * 54})
+        response = self._request("POST", "/predict", json={"features": [0.0] * 54})
 
         self.assertEqual(response.status_code, 400)
         self.assertIn("expected 55 features", response.json()["detail"])
 
     def test_predict_rejects_empty_feature_vector(self):
-        with TestClient(app) as client:
-            response = client.post("/predict", json={"features": []})
+        response = self._request("POST", "/predict", json={"features": []})
 
         self.assertEqual(response.status_code, 400)
         self.assertIn("at least one", response.json()["detail"])
 
     def test_predict_rejects_non_finite_features(self):
-        with TestClient(app) as client:
-            response = client.post(
-                "/predict",
-                content='{"features":[NaN,0.0,0.0]}',
-                headers={"content-type": "application/json"},
-            )
+        response = self._request(
+            "POST",
+            "/predict",
+            content='{"features":[NaN,0.0,0.0]}',
+            headers={"content-type": "application/json"},
+        )
 
         self.assertEqual(response.status_code, 400)
         self.assertIn("finite numeric", response.json()["detail"])
 
     def test_predict_rejects_non_numeric_feature_values(self):
-        with TestClient(app) as client:
-            response = client.post("/predict", json={"features": ["not-a-number"] * 55})
+        response = self._request(
+            "POST", "/predict", json={"features": ["not-a-number"] * 55}
+        )
 
         self.assertEqual(response.status_code, 422)
 
@@ -149,8 +125,7 @@ print("HEALTH_RESULT=" + json.dumps({"status_code": response.status_code, "body"
                 "packets": 12,
             }
         }
-        with TestClient(app) as client:
-            response = client.post("/predict/flow", json=payload)
+        response = self._request("POST", "/predict/flow", json=payload)
 
         self.assertEqual(response.status_code, 200)
         body = response.json()
@@ -174,15 +149,13 @@ print("HEALTH_RESULT=" + json.dumps({"status_code": response.status_code, "body"
         self.assertIsInstance(body["is_anomaly"], bool)
 
     def test_predict_flow_rejects_empty_event(self):
-        with TestClient(app) as client:
-            response = client.post("/predict/flow", json={"event": {}})
+        response = self._request("POST", "/predict/flow", json={"event": {}})
 
         self.assertEqual(response.status_code, 400)
         self.assertIn("event must contain", response.json()["detail"])
 
     def test_predict_flow_rejects_non_object_event(self):
-        with TestClient(app) as client:
-            response = client.post("/predict/flow", json={"event": []})
+        response = self._request("POST", "/predict/flow", json={"event": []})
 
         self.assertEqual(response.status_code, 422)
 

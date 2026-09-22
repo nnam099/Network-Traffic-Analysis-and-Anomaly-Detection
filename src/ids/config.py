@@ -10,6 +10,10 @@ class CFG:
     data_dir: str = '/kaggle/input'
     save_dir: str = '/kaggle/working/checkpoints_v14'
     plot_dir: str = '/kaggle/working/plots_v14'
+    train_files: str = ''
+    calibration_files: str = ''
+    test_files: str = ''
+    report_path: str = ''
     demo: bool = False
 
     # Training

@@ -1,4 +1,7 @@
 {
+  "scientific_status": "HISTORICAL / NON-INDEPENDENT / NOT VALID FOR SCIENTIFIC CLAIMS",
+  "valid_for_scientific_claims": false,
+  "artifact_role": "DEMO ARTIFACT",
   "calibrated_threshold_evaluation": null,
   "input_csv": "data/UNSW_NB15_training-set.csv",
   "known_cats": [
