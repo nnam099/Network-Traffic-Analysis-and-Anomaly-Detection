@@ -1,0 +1,31 @@
+{
+  "artifact_type": "P12_FUTURE_MODEL_INTERFACE",
+  "conservative_future_architecture": {
+    "categorical_branch": "protocol embedding with dimension 4",
+    "continuous_branch": "small fully connected encoder over values concatenated with missing mask",
+    "fusion": "concatenate branches before compact bottleneck and symmetric reconstruction heads",
+    "status": "DESIGN_ONLY_UNTRAINED",
+    "transport_extension": "excluded from baseline; requires a later preregistered amendment to enter a model"
+  },
+  "evaluation_tracks": {
+    "cross_dataset_ood": "future P16 only; never mixed with LOAFO claims",
+    "within_dataset_loafo": "future P14/P15 only"
+  },
+  "fold_local_preprocessing": {
+    "categorical": "fixed protocol vocabulary; no labels, target rows or external rows used",
+    "continuous": "RobustScaler-like median/IQR transform fit on development-training identities only and observed values only",
+    "external_fit_forbidden": true,
+    "masked_numeric_fill": "0.0 after transform with mask retained as a separate input"
+  },
+  "inputs": {
+    "continuous_missing_mask": "bool[batch,18], true exactly where semantic value is null",
+    "continuous_values": "float64[batch,18] in frozen field order",
+    "ip_protocol_id": "int64[batch], fixed categorical encoding"
+  },
+  "new_model_required": true,
+  "p9_checkpoint_reuse": false,
+  "p9_scaler_reuse": false,
+  "p9_threshold_reuse": false,
+  "schema_version": "portable-feature-schema-v3",
+  "training_performed": false
+}

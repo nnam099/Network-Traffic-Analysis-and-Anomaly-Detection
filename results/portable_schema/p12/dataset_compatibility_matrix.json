@@ -1,0 +1,1215 @@
+{
+  "artifact_type": "P12_DATASET_COMPATIBILITY_MATRIX",
+  "assessment_basis": "official dataset landing-page metadata only; no dataset file was opened",
+  "baseline_feature_count": 19,
+  "classification_vocabulary": [
+    "DIRECT",
+    "DERIVABLE",
+    "UNAVAILABLE"
+  ],
+  "complete_capture_family_count": 6,
+  "datasets": {
+    "bot_iot": {
+      "capture_family": "bot-iot-capture",
+      "complete_core": true,
+      "core_supported": 19,
+      "core_total": 19,
+      "dataset": "Bot-IoT",
+      "official_source": "https://research.unsw.edu.au/projects/bot-iot-dataset",
+      "raw_pcap_documented": true
+    },
+    "cic_ddos_2019": {
+      "capture_family": "cic-ddos-2019-capture",
+      "complete_core": true,
+      "core_supported": 19,
+      "core_total": 19,
+      "dataset": "CIC-DDoS2019",
+      "official_source": "https://www.unb.ca/cic/datasets/ddos-2019.html",
+      "raw_pcap_documented": true
+    },
+    "cic_ids_2017": {
+      "capture_family": "cic-ids-2017-capture",
+      "complete_core": true,
+      "core_supported": 19,
+      "core_total": 19,
+      "dataset": "CIC-IDS2017",
+      "official_source": "https://www.unb.ca/cic/datasets/ids-2017.html",
+      "raw_pcap_documented": true
+    },
+    "cse_cic_ids_2018": {
+      "capture_family": "cse-cic-ids-2018-capture",
+      "complete_core": true,
+      "core_supported": 19,
+      "core_total": 19,
+      "dataset": "CSE-CIC-IDS2018",
+      "official_source": "https://www.unb.ca/cic/datasets/ids-2018.html",
+      "raw_pcap_documented": true
+    },
+    "ton_iot": {
+      "capture_family": "ton-iot-network-capture",
+      "complete_core": true,
+      "core_supported": 19,
+      "core_total": 19,
+      "dataset": "TON_IoT network",
+      "official_source": "https://research.unsw.edu.au/projects/toniot-datasets",
+      "raw_pcap_documented": true
+    },
+    "unsw_nb15": {
+      "capture_family": "unsw-nb15-capture",
+      "complete_core": true,
+      "core_supported": 19,
+      "core_total": 19,
+      "dataset": "UNSW-NB15",
+      "official_source": "https://research.unsw.edu.au/projects/unsw-nb15-dataset",
+      "raw_pcap_documented": true
+    }
+  },
+  "extension_scope": "transport extension is not required for baseline compatibility and is not claimed validated",
+  "full_core_schema_implementable": true,
+  "minimum_complete_capture_families": 3,
+  "raw_data_accessed": false,
+  "rows": [
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "unsw-nb15-capture",
+      "classification": "DERIVABLE",
+      "dataset": "UNSW-NB15",
+      "dataset_id": "unsw_nb15",
+      "feature": "duration_seconds",
+      "source_url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "unsw-nb15-capture",
+      "classification": "DERIVABLE",
+      "dataset": "UNSW-NB15",
+      "dataset_id": "unsw_nb15",
+      "feature": "forward_packet_count",
+      "source_url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "unsw-nb15-capture",
+      "classification": "DERIVABLE",
+      "dataset": "UNSW-NB15",
+      "dataset_id": "unsw_nb15",
+      "feature": "backward_packet_count",
+      "source_url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "unsw-nb15-capture",
+      "classification": "DERIVABLE",
+      "dataset": "UNSW-NB15",
+      "dataset_id": "unsw_nb15",
+      "feature": "total_packet_count",
+      "source_url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "unsw-nb15-capture",
+      "classification": "DERIVABLE",
+      "dataset": "UNSW-NB15",
+      "dataset_id": "unsw_nb15",
+      "feature": "forward_byte_count",
+      "source_url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "unsw-nb15-capture",
+      "classification": "DERIVABLE",
+      "dataset": "UNSW-NB15",
+      "dataset_id": "unsw_nb15",
+      "feature": "backward_byte_count",
+      "source_url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "unsw-nb15-capture",
+      "classification": "DERIVABLE",
+      "dataset": "UNSW-NB15",
+      "dataset_id": "unsw_nb15",
+      "feature": "total_byte_count",
+      "source_url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "unsw-nb15-capture",
+      "classification": "DERIVABLE",
+      "dataset": "UNSW-NB15",
+      "dataset_id": "unsw_nb15",
+      "feature": "forward_packet_fraction",
+      "source_url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "unsw-nb15-capture",
+      "classification": "DERIVABLE",
+      "dataset": "UNSW-NB15",
+      "dataset_id": "unsw_nb15",
+      "feature": "forward_byte_fraction",
+      "source_url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "unsw-nb15-capture",
+      "classification": "DERIVABLE",
+      "dataset": "UNSW-NB15",
+      "dataset_id": "unsw_nb15",
+      "feature": "mean_packet_size_bytes",
+      "source_url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "unsw-nb15-capture",
+      "classification": "DERIVABLE",
+      "dataset": "UNSW-NB15",
+      "dataset_id": "unsw_nb15",
+      "feature": "forward_mean_packet_size_bytes",
+      "source_url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "unsw-nb15-capture",
+      "classification": "DERIVABLE",
+      "dataset": "UNSW-NB15",
+      "dataset_id": "unsw_nb15",
+      "feature": "backward_mean_packet_size_bytes",
+      "source_url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "unsw-nb15-capture",
+      "classification": "DERIVABLE",
+      "dataset": "UNSW-NB15",
+      "dataset_id": "unsw_nb15",
+      "feature": "packets_per_second",
+      "source_url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "unsw-nb15-capture",
+      "classification": "DERIVABLE",
+      "dataset": "UNSW-NB15",
+      "dataset_id": "unsw_nb15",
+      "feature": "bytes_per_second",
+      "source_url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "unsw-nb15-capture",
+      "classification": "DERIVABLE",
+      "dataset": "UNSW-NB15",
+      "dataset_id": "unsw_nb15",
+      "feature": "forward_packets_per_second",
+      "source_url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "unsw-nb15-capture",
+      "classification": "DERIVABLE",
+      "dataset": "UNSW-NB15",
+      "dataset_id": "unsw_nb15",
+      "feature": "backward_packets_per_second",
+      "source_url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "unsw-nb15-capture",
+      "classification": "DERIVABLE",
+      "dataset": "UNSW-NB15",
+      "dataset_id": "unsw_nb15",
+      "feature": "forward_bytes_per_second",
+      "source_url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "unsw-nb15-capture",
+      "classification": "DERIVABLE",
+      "dataset": "UNSW-NB15",
+      "dataset_id": "unsw_nb15",
+      "feature": "backward_bytes_per_second",
+      "source_url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "read unsigned protocol number from normalized IP header",
+      "capture_family": "unsw-nb15-capture",
+      "classification": "DIRECT",
+      "dataset": "UNSW-NB15",
+      "dataset_id": "unsw_nb15",
+      "feature": "ip_protocol",
+      "source_url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ids-2017-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-IDS2017",
+      "dataset_id": "cic_ids_2017",
+      "feature": "duration_seconds",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2017.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ids-2017-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-IDS2017",
+      "dataset_id": "cic_ids_2017",
+      "feature": "forward_packet_count",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2017.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ids-2017-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-IDS2017",
+      "dataset_id": "cic_ids_2017",
+      "feature": "backward_packet_count",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2017.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ids-2017-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-IDS2017",
+      "dataset_id": "cic_ids_2017",
+      "feature": "total_packet_count",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2017.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ids-2017-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-IDS2017",
+      "dataset_id": "cic_ids_2017",
+      "feature": "forward_byte_count",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2017.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ids-2017-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-IDS2017",
+      "dataset_id": "cic_ids_2017",
+      "feature": "backward_byte_count",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2017.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ids-2017-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-IDS2017",
+      "dataset_id": "cic_ids_2017",
+      "feature": "total_byte_count",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2017.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ids-2017-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-IDS2017",
+      "dataset_id": "cic_ids_2017",
+      "feature": "forward_packet_fraction",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2017.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ids-2017-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-IDS2017",
+      "dataset_id": "cic_ids_2017",
+      "feature": "forward_byte_fraction",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2017.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ids-2017-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-IDS2017",
+      "dataset_id": "cic_ids_2017",
+      "feature": "mean_packet_size_bytes",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2017.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ids-2017-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-IDS2017",
+      "dataset_id": "cic_ids_2017",
+      "feature": "forward_mean_packet_size_bytes",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2017.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ids-2017-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-IDS2017",
+      "dataset_id": "cic_ids_2017",
+      "feature": "backward_mean_packet_size_bytes",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2017.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ids-2017-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-IDS2017",
+      "dataset_id": "cic_ids_2017",
+      "feature": "packets_per_second",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2017.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ids-2017-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-IDS2017",
+      "dataset_id": "cic_ids_2017",
+      "feature": "bytes_per_second",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2017.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ids-2017-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-IDS2017",
+      "dataset_id": "cic_ids_2017",
+      "feature": "forward_packets_per_second",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2017.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ids-2017-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-IDS2017",
+      "dataset_id": "cic_ids_2017",
+      "feature": "backward_packets_per_second",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2017.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ids-2017-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-IDS2017",
+      "dataset_id": "cic_ids_2017",
+      "feature": "forward_bytes_per_second",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2017.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ids-2017-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-IDS2017",
+      "dataset_id": "cic_ids_2017",
+      "feature": "backward_bytes_per_second",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2017.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "read unsigned protocol number from normalized IP header",
+      "capture_family": "cic-ids-2017-capture",
+      "classification": "DIRECT",
+      "dataset": "CIC-IDS2017",
+      "dataset_id": "cic_ids_2017",
+      "feature": "ip_protocol",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2017.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cse-cic-ids-2018-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CSE-CIC-IDS2018",
+      "dataset_id": "cse_cic_ids_2018",
+      "feature": "duration_seconds",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2018.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cse-cic-ids-2018-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CSE-CIC-IDS2018",
+      "dataset_id": "cse_cic_ids_2018",
+      "feature": "forward_packet_count",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2018.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cse-cic-ids-2018-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CSE-CIC-IDS2018",
+      "dataset_id": "cse_cic_ids_2018",
+      "feature": "backward_packet_count",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2018.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cse-cic-ids-2018-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CSE-CIC-IDS2018",
+      "dataset_id": "cse_cic_ids_2018",
+      "feature": "total_packet_count",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2018.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cse-cic-ids-2018-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CSE-CIC-IDS2018",
+      "dataset_id": "cse_cic_ids_2018",
+      "feature": "forward_byte_count",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2018.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cse-cic-ids-2018-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CSE-CIC-IDS2018",
+      "dataset_id": "cse_cic_ids_2018",
+      "feature": "backward_byte_count",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2018.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cse-cic-ids-2018-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CSE-CIC-IDS2018",
+      "dataset_id": "cse_cic_ids_2018",
+      "feature": "total_byte_count",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2018.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cse-cic-ids-2018-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CSE-CIC-IDS2018",
+      "dataset_id": "cse_cic_ids_2018",
+      "feature": "forward_packet_fraction",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2018.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cse-cic-ids-2018-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CSE-CIC-IDS2018",
+      "dataset_id": "cse_cic_ids_2018",
+      "feature": "forward_byte_fraction",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2018.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cse-cic-ids-2018-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CSE-CIC-IDS2018",
+      "dataset_id": "cse_cic_ids_2018",
+      "feature": "mean_packet_size_bytes",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2018.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cse-cic-ids-2018-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CSE-CIC-IDS2018",
+      "dataset_id": "cse_cic_ids_2018",
+      "feature": "forward_mean_packet_size_bytes",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2018.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cse-cic-ids-2018-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CSE-CIC-IDS2018",
+      "dataset_id": "cse_cic_ids_2018",
+      "feature": "backward_mean_packet_size_bytes",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2018.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cse-cic-ids-2018-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CSE-CIC-IDS2018",
+      "dataset_id": "cse_cic_ids_2018",
+      "feature": "packets_per_second",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2018.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cse-cic-ids-2018-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CSE-CIC-IDS2018",
+      "dataset_id": "cse_cic_ids_2018",
+      "feature": "bytes_per_second",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2018.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cse-cic-ids-2018-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CSE-CIC-IDS2018",
+      "dataset_id": "cse_cic_ids_2018",
+      "feature": "forward_packets_per_second",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2018.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cse-cic-ids-2018-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CSE-CIC-IDS2018",
+      "dataset_id": "cse_cic_ids_2018",
+      "feature": "backward_packets_per_second",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2018.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cse-cic-ids-2018-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CSE-CIC-IDS2018",
+      "dataset_id": "cse_cic_ids_2018",
+      "feature": "forward_bytes_per_second",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2018.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cse-cic-ids-2018-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CSE-CIC-IDS2018",
+      "dataset_id": "cse_cic_ids_2018",
+      "feature": "backward_bytes_per_second",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2018.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "read unsigned protocol number from normalized IP header",
+      "capture_family": "cse-cic-ids-2018-capture",
+      "classification": "DIRECT",
+      "dataset": "CSE-CIC-IDS2018",
+      "dataset_id": "cse_cic_ids_2018",
+      "feature": "ip_protocol",
+      "source_url": "https://www.unb.ca/cic/datasets/ids-2018.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "ton-iot-network-capture",
+      "classification": "DERIVABLE",
+      "dataset": "TON_IoT network",
+      "dataset_id": "ton_iot",
+      "feature": "duration_seconds",
+      "source_url": "https://research.unsw.edu.au/projects/toniot-datasets",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "ton-iot-network-capture",
+      "classification": "DERIVABLE",
+      "dataset": "TON_IoT network",
+      "dataset_id": "ton_iot",
+      "feature": "forward_packet_count",
+      "source_url": "https://research.unsw.edu.au/projects/toniot-datasets",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "ton-iot-network-capture",
+      "classification": "DERIVABLE",
+      "dataset": "TON_IoT network",
+      "dataset_id": "ton_iot",
+      "feature": "backward_packet_count",
+      "source_url": "https://research.unsw.edu.au/projects/toniot-datasets",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "ton-iot-network-capture",
+      "classification": "DERIVABLE",
+      "dataset": "TON_IoT network",
+      "dataset_id": "ton_iot",
+      "feature": "total_packet_count",
+      "source_url": "https://research.unsw.edu.au/projects/toniot-datasets",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "ton-iot-network-capture",
+      "classification": "DERIVABLE",
+      "dataset": "TON_IoT network",
+      "dataset_id": "ton_iot",
+      "feature": "forward_byte_count",
+      "source_url": "https://research.unsw.edu.au/projects/toniot-datasets",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "ton-iot-network-capture",
+      "classification": "DERIVABLE",
+      "dataset": "TON_IoT network",
+      "dataset_id": "ton_iot",
+      "feature": "backward_byte_count",
+      "source_url": "https://research.unsw.edu.au/projects/toniot-datasets",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "ton-iot-network-capture",
+      "classification": "DERIVABLE",
+      "dataset": "TON_IoT network",
+      "dataset_id": "ton_iot",
+      "feature": "total_byte_count",
+      "source_url": "https://research.unsw.edu.au/projects/toniot-datasets",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "ton-iot-network-capture",
+      "classification": "DERIVABLE",
+      "dataset": "TON_IoT network",
+      "dataset_id": "ton_iot",
+      "feature": "forward_packet_fraction",
+      "source_url": "https://research.unsw.edu.au/projects/toniot-datasets",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "ton-iot-network-capture",
+      "classification": "DERIVABLE",
+      "dataset": "TON_IoT network",
+      "dataset_id": "ton_iot",
+      "feature": "forward_byte_fraction",
+      "source_url": "https://research.unsw.edu.au/projects/toniot-datasets",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "ton-iot-network-capture",
+      "classification": "DERIVABLE",
+      "dataset": "TON_IoT network",
+      "dataset_id": "ton_iot",
+      "feature": "mean_packet_size_bytes",
+      "source_url": "https://research.unsw.edu.au/projects/toniot-datasets",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "ton-iot-network-capture",
+      "classification": "DERIVABLE",
+      "dataset": "TON_IoT network",
+      "dataset_id": "ton_iot",
+      "feature": "forward_mean_packet_size_bytes",
+      "source_url": "https://research.unsw.edu.au/projects/toniot-datasets",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "ton-iot-network-capture",
+      "classification": "DERIVABLE",
+      "dataset": "TON_IoT network",
+      "dataset_id": "ton_iot",
+      "feature": "backward_mean_packet_size_bytes",
+      "source_url": "https://research.unsw.edu.au/projects/toniot-datasets",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "ton-iot-network-capture",
+      "classification": "DERIVABLE",
+      "dataset": "TON_IoT network",
+      "dataset_id": "ton_iot",
+      "feature": "packets_per_second",
+      "source_url": "https://research.unsw.edu.au/projects/toniot-datasets",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "ton-iot-network-capture",
+      "classification": "DERIVABLE",
+      "dataset": "TON_IoT network",
+      "dataset_id": "ton_iot",
+      "feature": "bytes_per_second",
+      "source_url": "https://research.unsw.edu.au/projects/toniot-datasets",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "ton-iot-network-capture",
+      "classification": "DERIVABLE",
+      "dataset": "TON_IoT network",
+      "dataset_id": "ton_iot",
+      "feature": "forward_packets_per_second",
+      "source_url": "https://research.unsw.edu.au/projects/toniot-datasets",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "ton-iot-network-capture",
+      "classification": "DERIVABLE",
+      "dataset": "TON_IoT network",
+      "dataset_id": "ton_iot",
+      "feature": "backward_packets_per_second",
+      "source_url": "https://research.unsw.edu.au/projects/toniot-datasets",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "ton-iot-network-capture",
+      "classification": "DERIVABLE",
+      "dataset": "TON_IoT network",
+      "dataset_id": "ton_iot",
+      "feature": "forward_bytes_per_second",
+      "source_url": "https://research.unsw.edu.au/projects/toniot-datasets",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "ton-iot-network-capture",
+      "classification": "DERIVABLE",
+      "dataset": "TON_IoT network",
+      "dataset_id": "ton_iot",
+      "feature": "backward_bytes_per_second",
+      "source_url": "https://research.unsw.edu.au/projects/toniot-datasets",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "read unsigned protocol number from normalized IP header",
+      "capture_family": "ton-iot-network-capture",
+      "classification": "DIRECT",
+      "dataset": "TON_IoT network",
+      "dataset_id": "ton_iot",
+      "feature": "ip_protocol",
+      "source_url": "https://research.unsw.edu.au/projects/toniot-datasets",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "bot-iot-capture",
+      "classification": "DERIVABLE",
+      "dataset": "Bot-IoT",
+      "dataset_id": "bot_iot",
+      "feature": "duration_seconds",
+      "source_url": "https://research.unsw.edu.au/projects/bot-iot-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "bot-iot-capture",
+      "classification": "DERIVABLE",
+      "dataset": "Bot-IoT",
+      "dataset_id": "bot_iot",
+      "feature": "forward_packet_count",
+      "source_url": "https://research.unsw.edu.au/projects/bot-iot-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "bot-iot-capture",
+      "classification": "DERIVABLE",
+      "dataset": "Bot-IoT",
+      "dataset_id": "bot_iot",
+      "feature": "backward_packet_count",
+      "source_url": "https://research.unsw.edu.au/projects/bot-iot-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "bot-iot-capture",
+      "classification": "DERIVABLE",
+      "dataset": "Bot-IoT",
+      "dataset_id": "bot_iot",
+      "feature": "total_packet_count",
+      "source_url": "https://research.unsw.edu.au/projects/bot-iot-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "bot-iot-capture",
+      "classification": "DERIVABLE",
+      "dataset": "Bot-IoT",
+      "dataset_id": "bot_iot",
+      "feature": "forward_byte_count",
+      "source_url": "https://research.unsw.edu.au/projects/bot-iot-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "bot-iot-capture",
+      "classification": "DERIVABLE",
+      "dataset": "Bot-IoT",
+      "dataset_id": "bot_iot",
+      "feature": "backward_byte_count",
+      "source_url": "https://research.unsw.edu.au/projects/bot-iot-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "bot-iot-capture",
+      "classification": "DERIVABLE",
+      "dataset": "Bot-IoT",
+      "dataset_id": "bot_iot",
+      "feature": "total_byte_count",
+      "source_url": "https://research.unsw.edu.au/projects/bot-iot-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "bot-iot-capture",
+      "classification": "DERIVABLE",
+      "dataset": "Bot-IoT",
+      "dataset_id": "bot_iot",
+      "feature": "forward_packet_fraction",
+      "source_url": "https://research.unsw.edu.au/projects/bot-iot-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "bot-iot-capture",
+      "classification": "DERIVABLE",
+      "dataset": "Bot-IoT",
+      "dataset_id": "bot_iot",
+      "feature": "forward_byte_fraction",
+      "source_url": "https://research.unsw.edu.au/projects/bot-iot-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "bot-iot-capture",
+      "classification": "DERIVABLE",
+      "dataset": "Bot-IoT",
+      "dataset_id": "bot_iot",
+      "feature": "mean_packet_size_bytes",
+      "source_url": "https://research.unsw.edu.au/projects/bot-iot-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "bot-iot-capture",
+      "classification": "DERIVABLE",
+      "dataset": "Bot-IoT",
+      "dataset_id": "bot_iot",
+      "feature": "forward_mean_packet_size_bytes",
+      "source_url": "https://research.unsw.edu.au/projects/bot-iot-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "bot-iot-capture",
+      "classification": "DERIVABLE",
+      "dataset": "Bot-IoT",
+      "dataset_id": "bot_iot",
+      "feature": "backward_mean_packet_size_bytes",
+      "source_url": "https://research.unsw.edu.au/projects/bot-iot-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "bot-iot-capture",
+      "classification": "DERIVABLE",
+      "dataset": "Bot-IoT",
+      "dataset_id": "bot_iot",
+      "feature": "packets_per_second",
+      "source_url": "https://research.unsw.edu.au/projects/bot-iot-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "bot-iot-capture",
+      "classification": "DERIVABLE",
+      "dataset": "Bot-IoT",
+      "dataset_id": "bot_iot",
+      "feature": "bytes_per_second",
+      "source_url": "https://research.unsw.edu.au/projects/bot-iot-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "bot-iot-capture",
+      "classification": "DERIVABLE",
+      "dataset": "Bot-IoT",
+      "dataset_id": "bot_iot",
+      "feature": "forward_packets_per_second",
+      "source_url": "https://research.unsw.edu.au/projects/bot-iot-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "bot-iot-capture",
+      "classification": "DERIVABLE",
+      "dataset": "Bot-IoT",
+      "dataset_id": "bot_iot",
+      "feature": "backward_packets_per_second",
+      "source_url": "https://research.unsw.edu.au/projects/bot-iot-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "bot-iot-capture",
+      "classification": "DERIVABLE",
+      "dataset": "Bot-IoT",
+      "dataset_id": "bot_iot",
+      "feature": "forward_bytes_per_second",
+      "source_url": "https://research.unsw.edu.au/projects/bot-iot-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "bot-iot-capture",
+      "classification": "DERIVABLE",
+      "dataset": "Bot-IoT",
+      "dataset_id": "bot_iot",
+      "feature": "backward_bytes_per_second",
+      "source_url": "https://research.unsw.edu.au/projects/bot-iot-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "read unsigned protocol number from normalized IP header",
+      "capture_family": "bot-iot-capture",
+      "classification": "DIRECT",
+      "dataset": "Bot-IoT",
+      "dataset_id": "bot_iot",
+      "feature": "ip_protocol",
+      "source_url": "https://research.unsw.edu.au/projects/bot-iot-dataset",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ddos-2019-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-DDoS2019",
+      "dataset_id": "cic_ddos_2019",
+      "feature": "duration_seconds",
+      "source_url": "https://www.unb.ca/cic/datasets/ddos-2019.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ddos-2019-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-DDoS2019",
+      "dataset_id": "cic_ddos_2019",
+      "feature": "forward_packet_count",
+      "source_url": "https://www.unb.ca/cic/datasets/ddos-2019.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ddos-2019-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-DDoS2019",
+      "dataset_id": "cic_ddos_2019",
+      "feature": "backward_packet_count",
+      "source_url": "https://www.unb.ca/cic/datasets/ddos-2019.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ddos-2019-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-DDoS2019",
+      "dataset_id": "cic_ddos_2019",
+      "feature": "total_packet_count",
+      "source_url": "https://www.unb.ca/cic/datasets/ddos-2019.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ddos-2019-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-DDoS2019",
+      "dataset_id": "cic_ddos_2019",
+      "feature": "forward_byte_count",
+      "source_url": "https://www.unb.ca/cic/datasets/ddos-2019.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ddos-2019-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-DDoS2019",
+      "dataset_id": "cic_ddos_2019",
+      "feature": "backward_byte_count",
+      "source_url": "https://www.unb.ca/cic/datasets/ddos-2019.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ddos-2019-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-DDoS2019",
+      "dataset_id": "cic_ddos_2019",
+      "feature": "total_byte_count",
+      "source_url": "https://www.unb.ca/cic/datasets/ddos-2019.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ddos-2019-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-DDoS2019",
+      "dataset_id": "cic_ddos_2019",
+      "feature": "forward_packet_fraction",
+      "source_url": "https://www.unb.ca/cic/datasets/ddos-2019.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ddos-2019-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-DDoS2019",
+      "dataset_id": "cic_ddos_2019",
+      "feature": "forward_byte_fraction",
+      "source_url": "https://www.unb.ca/cic/datasets/ddos-2019.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ddos-2019-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-DDoS2019",
+      "dataset_id": "cic_ddos_2019",
+      "feature": "mean_packet_size_bytes",
+      "source_url": "https://www.unb.ca/cic/datasets/ddos-2019.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ddos-2019-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-DDoS2019",
+      "dataset_id": "cic_ddos_2019",
+      "feature": "forward_mean_packet_size_bytes",
+      "source_url": "https://www.unb.ca/cic/datasets/ddos-2019.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ddos-2019-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-DDoS2019",
+      "dataset_id": "cic_ddos_2019",
+      "feature": "backward_mean_packet_size_bytes",
+      "source_url": "https://www.unb.ca/cic/datasets/ddos-2019.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ddos-2019-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-DDoS2019",
+      "dataset_id": "cic_ddos_2019",
+      "feature": "packets_per_second",
+      "source_url": "https://www.unb.ca/cic/datasets/ddos-2019.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ddos-2019-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-DDoS2019",
+      "dataset_id": "cic_ddos_2019",
+      "feature": "bytes_per_second",
+      "source_url": "https://www.unb.ca/cic/datasets/ddos-2019.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ddos-2019-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-DDoS2019",
+      "dataset_id": "cic_ddos_2019",
+      "feature": "forward_packets_per_second",
+      "source_url": "https://www.unb.ca/cic/datasets/ddos-2019.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ddos-2019-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-DDoS2019",
+      "dataset_id": "cic_ddos_2019",
+      "feature": "backward_packets_per_second",
+      "source_url": "https://www.unb.ca/cic/datasets/ddos-2019.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ddos-2019-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-DDoS2019",
+      "dataset_id": "cic_ddos_2019",
+      "feature": "forward_bytes_per_second",
+      "source_url": "https://www.unb.ca/cic/datasets/ddos-2019.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "apply the frozen P12 formula to timestamped IP packets from the documented raw PCAP",
+      "capture_family": "cic-ddos-2019-capture",
+      "classification": "DERIVABLE",
+      "dataset": "CIC-DDoS2019",
+      "dataset_id": "cic_ddos_2019",
+      "feature": "backward_bytes_per_second",
+      "source_url": "https://www.unb.ca/cic/datasets/ddos-2019.html",
+      "structural_imputation_required": false
+    },
+    {
+      "basis": "read unsigned protocol number from normalized IP header",
+      "capture_family": "cic-ddos-2019-capture",
+      "classification": "DIRECT",
+      "dataset": "CIC-DDoS2019",
+      "dataset_id": "cic_ddos_2019",
+      "feature": "ip_protocol",
+      "source_url": "https://www.unb.ca/cic/datasets/ddos-2019.html",
+      "structural_imputation_required": false
+    }
+  ],
+  "schema_version": "portable-feature-schema-v3",
+  "structural_imputation_required": false
+}

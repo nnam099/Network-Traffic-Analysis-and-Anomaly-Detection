@@ -1,0 +1,30 @@
+{
+  "artifact_sha256": {
+    "canonical_identity_contract.json": "fce0b69f1d5e0a8646f9d34ef735a97540fd6e44d9ddb7c5971b4c6040de6422",
+    "categorical_contract.json": "0837bc67c7dee4d1f2d05fe7b8bc652b289b53545fd00981e3e156f80be9c26c",
+    "dataset_compatibility_matrix.json": "515d23b118abe2f29dd3be49db9f9dbb81df81fa7e1069ce1d1683ced587c4c7",
+    "feature_semantic_contract.json": "f0c9b19b765290d6efe8bd930c2da87f0b86aff16016e363327252b447f0da48",
+    "future_model_interface.json": "f621acf00ec3799ea9070f219bd8a537769942adec5b7913d1956a544b53f1d4",
+    "missing_value_contract.json": "7fcb040acda36da5feeae6bfa2eee94a56145b0271c1f4fd2a6f81216e08943b",
+    "original_to_v3_mapping.json": "d38599cce29e369652c053738d150e6d20e8d8601e8749bb4b75c89171dd887b",
+    "portable_state_contract.json": "6ff23d8e38a776b95d502115b2a2fb56b5be87fe312ab31bc1724c2a26407ee9",
+    "schema_v3.json": "01351d41fefe0fcf3eb8fa5d42a0aee94c330676224fa1b63791c6d287f64858"
+  },
+  "artifact_type": "P12_PORTABLE_SCHEMA_GATE",
+  "baseline_semantic_dimension": 19,
+  "complete_capture_family_count": 6,
+  "created_at_utc": "2026-09-23T12:29:51.654271Z",
+  "external_dataset_file_opened": false,
+  "minimum_complete_capture_families": 3,
+  "model_training_performed": false,
+  "p12_protocol_sha256": "db6405fcac5d8fd94e406660ea60c22853a9c0073762df0e3f21881fe806fec3",
+  "p7_or_p9_detector_evaluated": false,
+  "p9_checkpoint_opened": false,
+  "p9_compatibility_claimed": false,
+  "performance_guided_feature_selection": false,
+  "readiness": "P13_EXTRACTION_AND_DATA_PROTOCOL_DESIGN_ONLY",
+  "schema_version": "portable-feature-schema-v3",
+  "source_sha256": "ad1fd6377b49a42cf5d97c788071486af5835230360dde10638f3a42946555e1",
+  "status": "P12_PORTABLE_SCHEMA_PASS",
+  "structural_imputation_required": false
+}

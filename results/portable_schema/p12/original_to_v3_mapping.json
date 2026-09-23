@@ -1,0 +1,507 @@
+{
+  "artifact_type": "P12_ORIGINAL_TO_V3_MAPPING",
+  "decision_counts": {
+    "DROP_NONPORTABLE": 37,
+    "REDEFINE_PORTABLE": 24
+  },
+  "decision_vocabulary": [
+    "KEEP_EXACT",
+    "REDEFINE_PORTABLE",
+    "DROP_NONPORTABLE"
+  ],
+  "keep_exact_count": 0,
+  "note": "No P9 field is asserted exact: even retained concepts receive new observable semantics.",
+  "original_semantic_feature_count": 61,
+  "p11_gap_analysis_sha256": "86669d17667456445ecd5f21261088bbdb5b36a6b456a76d44fa9bb27e81d27c",
+  "rows": [
+    {
+      "decision": "REDEFINE_PORTABLE",
+      "inclusion_scope": "optional_extension",
+      "original_feature": "ackdat",
+      "portable_feature": "tcp_ack_after_synack_seconds",
+      "reason": "retain a network-behavior concept only under a fully explicit packet-observable formula",
+      "semantic_difference": "optional ordered SYN-ACK to ACK interval"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "ct_dst_ltm",
+      "portable_feature": null,
+      "reason": "historical last-N/context semantics are extractor- and ordering-dependent",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "ct_dst_sport_ltm",
+      "portable_feature": null,
+      "reason": "historical last-N/context semantics are extractor- and ordering-dependent",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "ct_dst_src_ltm",
+      "portable_feature": null,
+      "reason": "historical last-N/context semantics are extractor- and ordering-dependent",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "ct_flw_http_mthd",
+      "portable_feature": null,
+      "reason": "historical last-N/context semantics are extractor- and ordering-dependent",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "ct_ftp_cmd",
+      "portable_feature": null,
+      "reason": "historical last-N/context semantics are extractor- and ordering-dependent",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "ct_src_dport_ltm",
+      "portable_feature": null,
+      "reason": "historical last-N/context semantics are extractor- and ordering-dependent",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "ct_src_ltm",
+      "portable_feature": null,
+      "reason": "historical last-N/context semantics are extractor- and ordering-dependent",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "ct_srv_dst",
+      "portable_feature": null,
+      "reason": "historical last-N/context semantics are extractor- and ordering-dependent",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "ct_srv_src",
+      "portable_feature": null,
+      "reason": "historical last-N/context semantics are extractor- and ordering-dependent",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "ct_state_ttl",
+      "portable_feature": null,
+      "reason": "historical last-N/context semantics are extractor- and ordering-dependent",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "REDEFINE_PORTABLE",
+      "inclusion_scope": "baseline",
+      "original_feature": "dbytes",
+      "portable_feature": "backward_byte_count",
+      "reason": "retain a network-behavior concept only under a fully explicit packet-observable formula",
+      "semantic_difference": "IP total-length bytes replace historical destination-byte semantics"
+    },
+    {
+      "decision": "REDEFINE_PORTABLE",
+      "inclusion_scope": "optional_extension",
+      "original_feature": "dinpkt",
+      "portable_feature": "backward_iat_mean_seconds",
+      "reason": "retain a network-behavior concept only under a fully explicit packet-observable formula",
+      "semantic_difference": "optional extension uses seconds and observed adjacent intervals"
+    },
+    {
+      "decision": "REDEFINE_PORTABLE",
+      "inclusion_scope": "optional_extension",
+      "original_feature": "djit",
+      "portable_feature": "backward_iat_std_seconds",
+      "reason": "retain a network-behavior concept only under a fully explicit packet-observable formula",
+      "semantic_difference": "optional population standard deviation; not Argus jitter"
+    },
+    {
+      "decision": "REDEFINE_PORTABLE",
+      "inclusion_scope": "baseline",
+      "original_feature": "dload",
+      "portable_feature": "backward_bytes_per_second",
+      "reason": "retain a network-behavior concept only under a fully explicit packet-observable formula",
+      "semantic_difference": "bytes/second replaces historical bits/second load"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "dloss",
+      "portable_feature": null,
+      "reason": "packet loss is not observable consistently from a single passive capture",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "REDEFINE_PORTABLE",
+      "inclusion_scope": "baseline",
+      "original_feature": "dmean",
+      "portable_feature": "backward_mean_packet_size_bytes",
+      "reason": "retain a network-behavior concept only under a fully explicit packet-observable formula",
+      "semantic_difference": "explicit IP-layer bytes/count with null on zero denominator"
+    },
+    {
+      "decision": "REDEFINE_PORTABLE",
+      "inclusion_scope": "baseline",
+      "original_feature": "dpkts",
+      "portable_feature": "backward_packet_count",
+      "reason": "retain a network-behavior concept only under a fully explicit packet-observable formula",
+      "semantic_difference": "reverse first-observed direction replaces historical Argus direction"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "dtcpb",
+      "portable_feature": null,
+      "reason": "raw TCP sequence number is endpoint/session-specific and unsuitable as a portable model feature",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "dttl",
+      "portable_feature": null,
+      "reason": "TTL is capture-point and route dependent",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "REDEFINE_PORTABLE",
+      "inclusion_scope": "baseline",
+      "original_feature": "dur",
+      "portable_feature": "duration_seconds",
+      "reason": "retain a network-behavior concept only under a fully explicit packet-observable formula",
+      "semantic_difference": "fixed nanosecond timestamps and seconds; no historical Argus timeout claim"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "dwin",
+      "portable_feature": null,
+      "reason": "TCP window semantics depend on packet selection and protocol state",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "is_ftp_login",
+      "portable_feature": null,
+      "reason": "payload/application parsing is outside the portable baseline",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "is_sm_ips_ports",
+      "portable_feature": null,
+      "reason": "endpoint-identity coincidence is brittle and not retained as behavior",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "REDEFINE_PORTABLE",
+      "inclusion_scope": "baseline",
+      "original_feature": "rate",
+      "portable_feature": "packets_per_second",
+      "reason": "retain a network-behavior concept only under a fully explicit packet-observable formula",
+      "semantic_difference": "total observed packets/duration; zero-duration is null, no epsilon"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "response_body_len",
+      "portable_feature": null,
+      "reason": "payload/application parsing is outside the portable baseline",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "REDEFINE_PORTABLE",
+      "inclusion_scope": "baseline",
+      "original_feature": "sbytes",
+      "portable_feature": "forward_byte_count",
+      "reason": "retain a network-behavior concept only under a fully explicit packet-observable formula",
+      "semantic_difference": "IP total-length bytes replace historical source-byte semantics"
+    },
+    {
+      "decision": "REDEFINE_PORTABLE",
+      "inclusion_scope": "optional_extension",
+      "original_feature": "sinpkt",
+      "portable_feature": "forward_iat_mean_seconds",
+      "reason": "retain a network-behavior concept only under a fully explicit packet-observable formula",
+      "semantic_difference": "optional extension uses seconds and observed adjacent intervals"
+    },
+    {
+      "decision": "REDEFINE_PORTABLE",
+      "inclusion_scope": "optional_extension",
+      "original_feature": "sjit",
+      "portable_feature": "forward_iat_std_seconds",
+      "reason": "retain a network-behavior concept only under a fully explicit packet-observable formula",
+      "semantic_difference": "optional population standard deviation; not Argus jitter"
+    },
+    {
+      "decision": "REDEFINE_PORTABLE",
+      "inclusion_scope": "baseline",
+      "original_feature": "sload",
+      "portable_feature": "forward_bytes_per_second",
+      "reason": "retain a network-behavior concept only under a fully explicit packet-observable formula",
+      "semantic_difference": "bytes/second replaces historical bits/second load"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "sloss",
+      "portable_feature": null,
+      "reason": "packet loss is not observable consistently from a single passive capture",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "REDEFINE_PORTABLE",
+      "inclusion_scope": "baseline",
+      "original_feature": "smean",
+      "portable_feature": "forward_mean_packet_size_bytes",
+      "reason": "retain a network-behavior concept only under a fully explicit packet-observable formula",
+      "semantic_difference": "explicit IP-layer bytes/count with null on zero denominator"
+    },
+    {
+      "decision": "REDEFINE_PORTABLE",
+      "inclusion_scope": "baseline",
+      "original_feature": "spkts",
+      "portable_feature": "forward_packet_count",
+      "reason": "retain a network-behavior concept only under a fully explicit packet-observable formula",
+      "semantic_difference": "first-observed direction replaces historical Argus direction"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "stcpb",
+      "portable_feature": null,
+      "reason": "raw TCP sequence number is endpoint/session-specific and unsuitable as a portable model feature",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "sttl",
+      "portable_feature": null,
+      "reason": "TTL is capture-point and route dependent",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "swin",
+      "portable_feature": null,
+      "reason": "TCP window semantics depend on packet selection and protocol state",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "REDEFINE_PORTABLE",
+      "inclusion_scope": "optional_extension",
+      "original_feature": "synack",
+      "portable_feature": "tcp_synack_seconds",
+      "reason": "retain a network-behavior concept only under a fully explicit packet-observable formula",
+      "semantic_difference": "optional ordered packet-observed SYN to SYN-ACK interval"
+    },
+    {
+      "decision": "REDEFINE_PORTABLE",
+      "inclusion_scope": "optional_extension",
+      "original_feature": "tcprtt",
+      "portable_feature": "tcp_handshake_seconds",
+      "reason": "retain a network-behavior concept only under a fully explicit packet-observable formula",
+      "semantic_difference": "optional handshake completion interval; not Argus RTT"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "trans_depth",
+      "portable_feature": null,
+      "reason": "payload/application parsing is outside the portable baseline",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "REDEFINE_PORTABLE",
+      "inclusion_scope": "baseline",
+      "original_feature": "bytes_ratio",
+      "portable_feature": "forward_byte_fraction",
+      "reason": "retain a network-behavior concept only under a fully explicit packet-observable formula",
+      "semantic_difference": "no epsilon; denominator-zero is explicit null"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "log_total_bytes",
+      "portable_feature": null,
+      "reason": "redundant nonlinear transform belongs in a future fold-local model pipeline, not the schema",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "log_sbytes",
+      "portable_feature": null,
+      "reason": "redundant nonlinear transform belongs in a future fold-local model pipeline, not the schema",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "log_dbytes",
+      "portable_feature": null,
+      "reason": "redundant nonlinear transform belongs in a future fold-local model pipeline, not the schema",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "REDEFINE_PORTABLE",
+      "inclusion_scope": "baseline",
+      "original_feature": "pkts_ratio",
+      "portable_feature": "forward_packet_fraction",
+      "reason": "retain a network-behavior concept only under a fully explicit packet-observable formula",
+      "semantic_difference": "no epsilon; denominator-zero is explicit null"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "log_total_pkts",
+      "portable_feature": null,
+      "reason": "redundant nonlinear transform belongs in a future fold-local model pipeline, not the schema",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "REDEFINE_PORTABLE",
+      "inclusion_scope": "baseline",
+      "original_feature": "src_bps",
+      "portable_feature": "forward_bytes_per_second",
+      "reason": "retain a network-behavior concept only under a fully explicit packet-observable formula",
+      "semantic_difference": "same high-level rate but new byte and duration semantics"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "log_src_bps",
+      "portable_feature": null,
+      "reason": "redundant nonlinear transform belongs in a future fold-local model pipeline, not the schema",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "REDEFINE_PORTABLE",
+      "inclusion_scope": "baseline",
+      "original_feature": "pkt_rate",
+      "portable_feature": "forward_packets_per_second",
+      "reason": "retain a network-behavior concept only under a fully explicit packet-observable formula",
+      "semantic_difference": "same high-level rate but no epsilon/min-duration clamp"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "load_asym",
+      "portable_feature": null,
+      "reason": "historical derived semantic is redundant, unstable, or not portable",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "log_sload",
+      "portable_feature": null,
+      "reason": "redundant nonlinear transform belongs in a future fold-local model pipeline, not the schema",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "ttl_diff",
+      "portable_feature": null,
+      "reason": "derived from capture-point and route-dependent TTL values",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "ttl_sum",
+      "portable_feature": null,
+      "reason": "derived from capture-point and route-dependent TTL values",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "loss_rate_src",
+      "portable_feature": null,
+      "reason": "depends on a non-portable packet-loss estimate",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "loss_rate_dst",
+      "portable_feature": null,
+      "reason": "depends on a non-portable packet-loss estimate",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "jit_ratio",
+      "portable_feature": null,
+      "reason": "historical derived semantic is redundant, unstable, or not portable",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "log_sjit",
+      "portable_feature": null,
+      "reason": "redundant nonlinear transform belongs in a future fold-local model pipeline, not the schema",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "handshake_ratio",
+      "portable_feature": null,
+      "reason": "historical derived semantic is redundant, unstable, or not portable",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "REDEFINE_PORTABLE",
+      "inclusion_scope": "optional_extension",
+      "original_feature": "incomplete_tcp",
+      "portable_feature": "portable_connection_state",
+      "reason": "retain a network-behavior concept only under a fully explicit packet-observable formula",
+      "semantic_difference": "optional categorical state replaces a historical binary heuristic"
+    },
+    {
+      "decision": "REDEFINE_PORTABLE",
+      "inclusion_scope": "baseline",
+      "original_feature": "proto",
+      "portable_feature": "ip_protocol",
+      "reason": "retain a network-behavior concept only under a fully explicit packet-observable formula",
+      "semantic_difference": "IANA numeric protocol token replaces dataset vocabulary"
+    },
+    {
+      "decision": "DROP_NONPORTABLE",
+      "inclusion_scope": "excluded",
+      "original_feature": "service",
+      "portable_feature": null,
+      "reason": "application-service inference is removed; port guesses and payload parsing are forbidden",
+      "semantic_difference": "feature is absent from schema v3 and must not be imputed"
+    },
+    {
+      "decision": "REDEFINE_PORTABLE",
+      "inclusion_scope": "optional_extension",
+      "original_feature": "state",
+      "portable_feature": "portable_connection_state",
+      "reason": "retain a network-behavior concept only under a fully explicit packet-observable formula",
+      "semantic_difference": "optional local state machine; explicitly not Argus/Zeek-equivalent"
+    }
+  ],
+  "schema_version": "portable-feature-schema-v3"
+}

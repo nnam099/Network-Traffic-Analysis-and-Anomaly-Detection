@@ -1,0 +1,26 @@
+{
+  "artifact_type": "P12_CATEGORICAL_CONTRACT",
+  "baseline": {
+    "ip_protocol": {
+      "integer_encoding": {
+        "IPPROTO_n": "n + 2",
+        "OOV": 1,
+        "PAD": 0
+      },
+      "normalization": "canonical ASCII IPPROTO_<minimal unsigned decimal>",
+      "oov_behavior": "malformed or adapter-unknown tokens map to OOV; valid 0..255 never map to OOV",
+      "semantic_source": "unsigned 8-bit IANA Protocol/Next Header value",
+      "vocabulary": "fixed IPPROTO_0 through IPPROTO_255; independent of labels and dataset"
+    }
+  },
+  "label_tokens_forbidden": true,
+  "schema_version": "portable-feature-schema-v3",
+  "service": {
+    "decision": "REMOVED",
+    "reason": "portable baseline performs no payload or port service inference"
+  },
+  "state": {
+    "contract": "portable-connection-state-v1",
+    "decision": "OPTIONAL_EXTENSION"
+  }
+}

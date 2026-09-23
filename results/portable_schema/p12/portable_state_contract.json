@@ -1,0 +1,29 @@
+{
+  "artifact_type": "P12_PORTABLE_STATE_CONTRACT",
+  "baseline_model_input": false,
+  "categories": [
+    "NOT_TCP",
+    "TCP_RESET",
+    "TCP_CLOSED",
+    "TCP_ESTABLISHED",
+    "TCP_PARTIAL_HANDSHAKE",
+    "TCP_OBSERVED"
+  ],
+  "handshake_formulas": {
+    "tcp_ack_after_synack_seconds": "first later forward ACK-without-SYN minus valid SYN+ACK timestamp",
+    "tcp_handshake_seconds": "sum of the preceding two intervals",
+    "tcp_synack_seconds": "first valid backward SYN+ACK timestamp minus first forward SYN-without-ACK timestamp"
+  },
+  "historical_equivalence": "NONE; not Argus state and not Zeek conn_state",
+  "missing_semantics": "handshake times are NULL_NOT_APPLICABLE for non-TCP and NULL_INSUFFICIENT_PACKETS for incomplete TCP",
+  "precedence": [
+    "NOT_TCP when IP protocol is not 6",
+    "TCP_RESET when any observed TCP packet has RST",
+    "TCP_CLOSED when both directions contain FIN",
+    "TCP_ESTABLISHED when ordered forward SYN, backward SYN+ACK, forward ACK completes",
+    "TCP_PARTIAL_HANDSHAKE when any SYN is observed without a complete handshake",
+    "TCP_OBSERVED otherwise"
+  ],
+  "tcp_flag_counts": "count each TCP packet on which the corresponding FIN/SYN/RST/PSH/ACK/URG/ECE/CWR bit is set",
+  "version": "portable-connection-state-v1"
+}

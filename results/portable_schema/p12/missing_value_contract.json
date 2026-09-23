@@ -1,0 +1,25 @@
+{
+  "artifact_type": "P12_MISSING_VALUE_CONTRACT",
+  "model_boundary": {
+    "scaler_fit": "development-training fold only, observed values only",
+    "scaler_reuse_from_p9": false,
+    "semantic_null_to_numeric": "after fold-local scaling only, place numeric 0.0 where mask=true; mask preserves missingness",
+    "strategy": "continuous values plus an equal-width boolean missing mask",
+    "structural_imputation": false
+  },
+  "rules": {
+    "IAT": "mean requires at least one interval; population std requires at least two intervals",
+    "TCP_handshake": "non-TCP is NULL_NOT_APPLICABLE; incomplete observation is NULL_INSUFFICIENT_PACKETS",
+    "counts": "zero is a measured valid absence; never convert zero to null",
+    "directional_means": "null with NULL_INSUFFICIENT_PACKETS when the direction has zero packets",
+    "failure": "parse/reassembly/truncation failures are NULL_EXTRACTION_FAILURE and audited; never structural zero-fill",
+    "rates": "null with NULL_NOT_APPLICABLE when duration is zero; no epsilon or duration clamp"
+  },
+  "schema_version": "portable-feature-schema-v3",
+  "semantic_states": [
+    "ZERO_IS_VALID_ABSENCE",
+    "NULL_NOT_APPLICABLE",
+    "NULL_INSUFFICIENT_PACKETS",
+    "NULL_EXTRACTION_FAILURE"
+  ]
+}

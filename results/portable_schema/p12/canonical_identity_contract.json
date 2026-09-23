@@ -1,0 +1,48 @@
+{
+  "artifact_type": "P12_CANONICAL_IDENTITY_CONTRACT",
+  "categorical_representation": "canonical IPPROTO_n token or IPPROTO_OOV",
+  "definition": "SHA-256 of schema/version-tagged ordered baseline semantics; continuous values are big-endian float64 hex or null",
+  "excluded": [
+    "row index",
+    "dataset name",
+    "file path",
+    "capture timestamp",
+    "IP address",
+    "port",
+    "label",
+    "attack family",
+    "split role",
+    "model score",
+    "threshold",
+    "prediction"
+  ],
+  "identity_version": "canonical-flow-identity-v3",
+  "included": [
+    "duration_seconds",
+    "forward_packet_count",
+    "backward_packet_count",
+    "total_packet_count",
+    "forward_byte_count",
+    "backward_byte_count",
+    "total_byte_count",
+    "forward_packet_fraction",
+    "forward_byte_fraction",
+    "mean_packet_size_bytes",
+    "forward_mean_packet_size_bytes",
+    "backward_mean_packet_size_bytes",
+    "packets_per_second",
+    "bytes_per_second",
+    "forward_packets_per_second",
+    "backward_packets_per_second",
+    "forward_bytes_per_second",
+    "backward_bytes_per_second",
+    "ip_protocol"
+  ],
+  "reconstruction_key": "dataset/file provenance plus bidirectional five-tuple, flow start/end and segment ordinal",
+  "reconstruction_key_is_distinct": true,
+  "uses": [
+    "duplicate audit",
+    "group-aware split",
+    "cross-dataset semantic-overlap audit"
+  ]
+}

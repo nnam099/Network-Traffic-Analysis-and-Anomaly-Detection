@@ -1,0 +1,326 @@
+{
+  "artifact_type": "P12_FEATURE_SEMANTIC_CONTRACT",
+  "canonical_dtype": "IEEE-754 binary64 before and after fold-local preprocessing",
+  "fields": [
+    {
+      "aggregation_window": "one deterministic bidirectional flow",
+      "direction": "bidirectional/not direction-specific",
+      "dtype": "IEEE-754 binary64",
+      "formula": "(last_packet_timestamp_ns - first_packet_timestamp_ns) / 1e9",
+      "kind": "continuous",
+      "label_dependency": false,
+      "missing_value_semantics": "NULL_EXTRACTION_FAILURE only for an invalid/failed flow observation",
+      "name": "duration_seconds",
+      "position": 0,
+      "source_dependency": [
+        "normalized IP packet header",
+        "capture timestamp"
+      ],
+      "unit": "seconds"
+    },
+    {
+      "aggregation_window": "one deterministic bidirectional flow",
+      "direction": "first-observed source to destination",
+      "dtype": "IEEE-754 binary64",
+      "formula": "count(packet where packet.source_endpoint == first_observed_source_endpoint)",
+      "kind": "continuous",
+      "label_dependency": false,
+      "missing_value_semantics": "ZERO_IS_VALID_ABSENCE; null only on extraction failure",
+      "name": "forward_packet_count",
+      "position": 1,
+      "source_dependency": [
+        "normalized IP packet header",
+        "capture timestamp"
+      ],
+      "unit": "packets"
+    },
+    {
+      "aggregation_window": "one deterministic bidirectional flow",
+      "direction": "reverse of first-observed direction",
+      "dtype": "IEEE-754 binary64",
+      "formula": "count(packet where packet.source_endpoint != first_observed_source_endpoint)",
+      "kind": "continuous",
+      "label_dependency": false,
+      "missing_value_semantics": "ZERO_IS_VALID_ABSENCE; null only on extraction failure",
+      "name": "backward_packet_count",
+      "position": 2,
+      "source_dependency": [
+        "normalized IP packet header",
+        "capture timestamp"
+      ],
+      "unit": "packets"
+    },
+    {
+      "aggregation_window": "one deterministic bidirectional flow",
+      "direction": "bidirectional/not direction-specific",
+      "dtype": "IEEE-754 binary64",
+      "formula": "forward_packet_count + backward_packet_count",
+      "kind": "continuous",
+      "label_dependency": false,
+      "missing_value_semantics": "ZERO_IS_VALID_ABSENCE; null only on extraction failure",
+      "name": "total_packet_count",
+      "position": 3,
+      "source_dependency": [
+        "normalized IP packet header",
+        "capture timestamp"
+      ],
+      "unit": "packets"
+    },
+    {
+      "aggregation_window": "one deterministic bidirectional flow",
+      "direction": "first-observed source to destination",
+      "dtype": "IEEE-754 binary64",
+      "formula": "sum(ip_total_length for forward packets)",
+      "kind": "continuous",
+      "label_dependency": false,
+      "missing_value_semantics": "ZERO_IS_VALID_ABSENCE; null only on extraction failure",
+      "name": "forward_byte_count",
+      "position": 4,
+      "source_dependency": [
+        "normalized IP packet header",
+        "capture timestamp"
+      ],
+      "unit": "IP-layer bytes"
+    },
+    {
+      "aggregation_window": "one deterministic bidirectional flow",
+      "direction": "reverse of first-observed direction",
+      "dtype": "IEEE-754 binary64",
+      "formula": "sum(ip_total_length for backward packets)",
+      "kind": "continuous",
+      "label_dependency": false,
+      "missing_value_semantics": "ZERO_IS_VALID_ABSENCE; null only on extraction failure",
+      "name": "backward_byte_count",
+      "position": 5,
+      "source_dependency": [
+        "normalized IP packet header",
+        "capture timestamp"
+      ],
+      "unit": "IP-layer bytes"
+    },
+    {
+      "aggregation_window": "one deterministic bidirectional flow",
+      "direction": "bidirectional/not direction-specific",
+      "dtype": "IEEE-754 binary64",
+      "formula": "forward_byte_count + backward_byte_count",
+      "kind": "continuous",
+      "label_dependency": false,
+      "missing_value_semantics": "ZERO_IS_VALID_ABSENCE; null only on extraction failure",
+      "name": "total_byte_count",
+      "position": 6,
+      "source_dependency": [
+        "normalized IP packet header",
+        "capture timestamp"
+      ],
+      "unit": "IP-layer bytes"
+    },
+    {
+      "aggregation_window": "one deterministic bidirectional flow",
+      "direction": "first-observed source to destination",
+      "dtype": "IEEE-754 binary64",
+      "formula": "forward_packet_count / total_packet_count",
+      "kind": "continuous",
+      "label_dependency": false,
+      "missing_value_semantics": "NULL_EXTRACTION_FAILURE only for an invalid/failed flow observation",
+      "name": "forward_packet_fraction",
+      "position": 7,
+      "source_dependency": [
+        "normalized IP packet header",
+        "capture timestamp"
+      ],
+      "unit": "unitless ratio"
+    },
+    {
+      "aggregation_window": "one deterministic bidirectional flow",
+      "direction": "first-observed source to destination",
+      "dtype": "IEEE-754 binary64",
+      "formula": "forward_byte_count / total_byte_count",
+      "kind": "continuous",
+      "label_dependency": false,
+      "missing_value_semantics": "NULL_EXTRACTION_FAILURE only for an invalid/failed flow observation",
+      "name": "forward_byte_fraction",
+      "position": 8,
+      "source_dependency": [
+        "normalized IP packet header",
+        "capture timestamp"
+      ],
+      "unit": "unitless ratio"
+    },
+    {
+      "aggregation_window": "one deterministic bidirectional flow",
+      "direction": "bidirectional/not direction-specific",
+      "dtype": "IEEE-754 binary64",
+      "formula": "total_byte_count / total_packet_count",
+      "kind": "continuous",
+      "label_dependency": false,
+      "missing_value_semantics": "NULL_EXTRACTION_FAILURE only for an invalid/failed flow observation",
+      "name": "mean_packet_size_bytes",
+      "position": 9,
+      "source_dependency": [
+        "normalized IP packet header",
+        "capture timestamp"
+      ],
+      "unit": "IP-layer bytes/packet"
+    },
+    {
+      "aggregation_window": "one deterministic bidirectional flow",
+      "direction": "first-observed source to destination",
+      "dtype": "IEEE-754 binary64",
+      "formula": "forward_byte_count / forward_packet_count",
+      "kind": "continuous",
+      "label_dependency": false,
+      "missing_value_semantics": "NULL_EXTRACTION_FAILURE only for an invalid/failed flow observation",
+      "name": "forward_mean_packet_size_bytes",
+      "position": 10,
+      "source_dependency": [
+        "normalized IP packet header",
+        "capture timestamp"
+      ],
+      "unit": "IP-layer bytes/packet"
+    },
+    {
+      "aggregation_window": "one deterministic bidirectional flow",
+      "direction": "reverse of first-observed direction",
+      "dtype": "IEEE-754 binary64",
+      "formula": "backward_byte_count / backward_packet_count",
+      "kind": "continuous",
+      "label_dependency": false,
+      "missing_value_semantics": "NULL_INSUFFICIENT_PACKETS when backward_packet_count == 0",
+      "name": "backward_mean_packet_size_bytes",
+      "position": 11,
+      "source_dependency": [
+        "normalized IP packet header",
+        "capture timestamp"
+      ],
+      "unit": "IP-layer bytes/packet"
+    },
+    {
+      "aggregation_window": "one deterministic bidirectional flow",
+      "direction": "bidirectional/not direction-specific",
+      "dtype": "IEEE-754 binary64",
+      "formula": "total_packet_count / duration_seconds",
+      "kind": "continuous",
+      "label_dependency": false,
+      "missing_value_semantics": "NULL_NOT_APPLICABLE when duration_seconds == 0; NULL_EXTRACTION_FAILURE otherwise",
+      "name": "packets_per_second",
+      "position": 12,
+      "source_dependency": [
+        "normalized IP packet header",
+        "capture timestamp"
+      ],
+      "unit": "packets/second"
+    },
+    {
+      "aggregation_window": "one deterministic bidirectional flow",
+      "direction": "bidirectional/not direction-specific",
+      "dtype": "IEEE-754 binary64",
+      "formula": "total_byte_count / duration_seconds",
+      "kind": "continuous",
+      "label_dependency": false,
+      "missing_value_semantics": "NULL_NOT_APPLICABLE when duration_seconds == 0; NULL_EXTRACTION_FAILURE otherwise",
+      "name": "bytes_per_second",
+      "position": 13,
+      "source_dependency": [
+        "normalized IP packet header",
+        "capture timestamp"
+      ],
+      "unit": "IP-layer bytes/second"
+    },
+    {
+      "aggregation_window": "one deterministic bidirectional flow",
+      "direction": "first-observed source to destination",
+      "dtype": "IEEE-754 binary64",
+      "formula": "forward_packet_count / duration_seconds",
+      "kind": "continuous",
+      "label_dependency": false,
+      "missing_value_semantics": "NULL_NOT_APPLICABLE when duration_seconds == 0; NULL_EXTRACTION_FAILURE otherwise",
+      "name": "forward_packets_per_second",
+      "position": 14,
+      "source_dependency": [
+        "normalized IP packet header",
+        "capture timestamp"
+      ],
+      "unit": "packets/second"
+    },
+    {
+      "aggregation_window": "one deterministic bidirectional flow",
+      "direction": "reverse of first-observed direction",
+      "dtype": "IEEE-754 binary64",
+      "formula": "backward_packet_count / duration_seconds",
+      "kind": "continuous",
+      "label_dependency": false,
+      "missing_value_semantics": "NULL_NOT_APPLICABLE when duration_seconds == 0; NULL_EXTRACTION_FAILURE otherwise",
+      "name": "backward_packets_per_second",
+      "position": 15,
+      "source_dependency": [
+        "normalized IP packet header",
+        "capture timestamp"
+      ],
+      "unit": "packets/second"
+    },
+    {
+      "aggregation_window": "one deterministic bidirectional flow",
+      "direction": "first-observed source to destination",
+      "dtype": "IEEE-754 binary64",
+      "formula": "forward_byte_count / duration_seconds",
+      "kind": "continuous",
+      "label_dependency": false,
+      "missing_value_semantics": "NULL_NOT_APPLICABLE when duration_seconds == 0; NULL_EXTRACTION_FAILURE otherwise",
+      "name": "forward_bytes_per_second",
+      "position": 16,
+      "source_dependency": [
+        "normalized IP packet header",
+        "capture timestamp"
+      ],
+      "unit": "IP-layer bytes/second"
+    },
+    {
+      "aggregation_window": "one deterministic bidirectional flow",
+      "direction": "reverse of first-observed direction",
+      "dtype": "IEEE-754 binary64",
+      "formula": "backward_byte_count / duration_seconds",
+      "kind": "continuous",
+      "label_dependency": false,
+      "missing_value_semantics": "NULL_NOT_APPLICABLE when duration_seconds == 0; NULL_EXTRACTION_FAILURE otherwise",
+      "name": "backward_bytes_per_second",
+      "position": 17,
+      "source_dependency": [
+        "normalized IP packet header",
+        "capture timestamp"
+      ],
+      "unit": "IP-layer bytes/second"
+    },
+    {
+      "aggregation_window": "one deterministic bidirectional flow",
+      "direction": "bidirectional/not direction-specific",
+      "dtype": "UTF-8 controlled token",
+      "formula": "'IPPROTO_' + unsigned decimal IANA IP protocol number",
+      "kind": "categorical",
+      "label_dependency": false,
+      "missing_value_semantics": "NULL_EXTRACTION_FAILURE only; malformed adapter values map to IPPROTO_OOV",
+      "name": "ip_protocol",
+      "position": 18,
+      "source_dependency": [
+        "normalized IP packet header",
+        "capture timestamp"
+      ],
+      "unit": "categorical token"
+    }
+  ],
+  "flow_observation_contract": {
+    "direction": "originator is source endpoint of first observed packet in the segmented flow",
+    "fragments": "fail closed unless P13 freezes deterministic reassembly",
+    "idle_timeout_ns": 60000000000,
+    "minimum_flow_packets": 1,
+    "non_ip_frames": "excluded with audited counts",
+    "out_of_order_input": "sort by timestamp_ns then unique capture_index",
+    "packet_source": "timestamped IPv4/IPv6 headers normalized by a P13 dataset adapter"
+  },
+  "label_independence": {
+    "labels_used_in_extraction": false,
+    "labels_used_in_feature_selection": false,
+    "per_dataset_feature_formulas": false,
+    "target_family_used_in_features": false
+  },
+  "schema_version": "portable-feature-schema-v3"
+}
