@@ -1,0 +1,23 @@
+{
+  "checkpoint_file_hash_equal": true,
+  "development_only": true,
+  "different_fields": [],
+  "exact_compared_fields": [
+    "selected_epoch",
+    "model_state_sha256",
+    "centroid_state_sha256",
+    "softmax_surrogate_development_identity_auroc",
+    "centroid_surrogate_development_identity_auroc",
+    "selected_scorer",
+    "selection_margin_centroid_minus_softmax",
+    "tie_break_used",
+    "threshold"
+  ],
+  "model_seed": 10042,
+  "official_test_access": false,
+  "split_seed": 42,
+  "status": "P9_PILOT_PASS",
+  "target": "Fuzzers",
+  "target_held_out_scoring": false,
+  "version": "p9-loafo-development-v1"
+}

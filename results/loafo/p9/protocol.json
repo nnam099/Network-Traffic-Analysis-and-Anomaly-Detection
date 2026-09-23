@@ -1,0 +1,66 @@
+{
+  "authorized_targets": [
+    "Analysis",
+    "Backdoors",
+    "DoS",
+    "Exploits",
+    "Fuzzers",
+    "Generic",
+    "Reconnaissance",
+    "Shellcode",
+    "Worms"
+  ],
+  "development_only": true,
+  "official_test_access": false,
+  "p8_matrix_artifact_sha256": "5c32a2acc361e48acd67fa4520b12a54e68b887edceb801a08759e183ed08072",
+  "p8_model_contract_sha256": "0cf4c71a89c4a93db1dc2b3193f04971b54220791e91f8d535f1133566bc6c32",
+  "p8_protocol_sha256": "62916073ef6048503415d45e2605bbf475b729e032c838a60cc7e94c43768216",
+  "p8_repository_commit": "397954fd792f5309a26e2a0e784bac1d1a686860",
+  "role_permissions": {
+    "calibration": [
+      "threshold_fit"
+    ],
+    "consumed_official_test": [],
+    "meta_known": [
+      "scorer_selection"
+    ],
+    "surrogate_ood": [
+      "scorer_selection"
+    ],
+    "target_held_out": [],
+    "train": [
+      "gradient_fit",
+      "centroid_fit",
+      "scaler_fit",
+      "vocabulary_fit"
+    ],
+    "val": [
+      "checkpoint_selection"
+    ]
+  },
+  "scorers": [
+    "negative_max_softmax",
+    "nearest_centroid_l2"
+  ],
+  "selection_statistic": "surrogate_development_identity_AUROC",
+  "selection_unit": "canonical_identity_mean",
+  "source_code_aggregate_sha256": "b9a6fe0f84dfaeaf728d2fb5eea85562a809ef33779e3bc324079167f70e779b",
+  "source_code_sha256": {
+    "scripts/run_p9_loafo.py": "88b38162b7e66a6c1ccac9236acf9e5c4e49f6281f3b4faa3f6fd5d4c271948a",
+    "src/ids/p4_model_interface.py": "7b954bff83cad4c32a9a99ab1ca0b8c15cc8135d538521119a9e181415eaa33b",
+    "src/ids/p8_loafo_protocol.py": "0eb4d88a1b5e0f2d1a33af3a3bf83c143663f7d5d5c7222254bea8f03672ba5d",
+    "src/ids/p9_loafo.py": "8a8658d71e097846f6e8c74b39cf1c40f0a858088068fdd9da89165a3a671717"
+  },
+  "split_seeds": [
+    42,
+    43,
+    44
+  ],
+  "target_held_out_scoring": false,
+  "threshold_comparison": "score > threshold",
+  "threshold_numpy_method": "higher",
+  "threshold_quantile": 0.99,
+  "threshold_unit": "known_calibration_canonical_identity_mean",
+  "training_config_sha256": "f4955efbb2b630f3956d43cd19996ed90886c5b053f2b6a5adb6feb8571b4b61",
+  "version": "p9-loafo-development-v1"
+}

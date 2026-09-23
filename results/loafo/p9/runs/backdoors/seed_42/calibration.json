@@ -1,0 +1,73 @@
+{
+  "calibration_identity_count": 6605,
+  "calibration_row_count": 10821,
+  "comparison": "score > threshold",
+  "fit_role": "calibration",
+  "identity_scores_sha256": "cd17a281086f6ba0e46c400e95dd5f99c04d91ad78fc65edacf389c14e47285a",
+  "known_only": true,
+  "label": "DEVELOPMENT_ONLY",
+  "numpy_method": "higher",
+  "official_test_access": false,
+  "provenance": {
+    "centroid_state_sha256": "dbee859c12c7e7a6726a8aa958f851920b34cc012f03f5ecbc0a28579e871f2d",
+    "class_order": [
+      "Normal",
+      "Analysis",
+      "DoS",
+      "Generic",
+      "Reconnaissance",
+      "Shellcode",
+      "Worms"
+    ],
+    "model_seed": 10042,
+    "model_state_sha256": "83acbc0f837844a55576d86e189ffd5294f6d6378ca380ada27a385ec707ace3",
+    "p8_manifest_artifact_sha256": "bf0fce5dd99219a15336a9e11320de602044d6e87882738736b59914decc9d56",
+    "p8_manifest_sha256": "42b32edebe901cd57a1aee283e27703594543bbef9ad1683e725df4d3560507d",
+    "p8_model_contract_sha256": "0cf4c71a89c4a93db1dc2b3193f04971b54220791e91f8d535f1133566bc6c32",
+    "p8_protocol_sha256": "62916073ef6048503415d45e2605bbf475b729e032c838a60cc7e94c43768216",
+    "p8_repository_commit": "397954fd792f5309a26e2a0e784bac1d1a686860",
+    "p9_source_code_aggregate_sha256": "b9a6fe0f84dfaeaf728d2fb5eea85562a809ef33779e3bc324079167f70e779b",
+    "p9_training_config_sha256": "f4955efbb2b630f3956d43cd19996ed90886c5b053f2b6a5adb6feb8571b4b61",
+    "role_identities": {
+      "calibration": 6605,
+      "meta_known": 6605,
+      "surrogate_ood": 33019,
+      "train": 46031,
+      "val": 6605
+    },
+    "role_rows": {
+      "calibration": 10821,
+      "meta_known": 10820,
+      "surrogate_ood": 36200,
+      "train": 75746,
+      "val": 10820
+    },
+    "scaler_sha256": "a2b0318dc1ec6803817ba6c9af0ccb3f0b5dc1f6d597799e1046dc66821af419",
+    "selected_epoch": 7,
+    "selected_scorer": "negative_max_softmax",
+    "selected_scorer_state_sha256": "3bac960b2d3868c2d8c138b0954c66ba08e31310b604df579f97a04be1eb88e3",
+    "split_seed": 42,
+    "status": "P9_CELL_PROTOCOL_PASS",
+    "surrogate_families": [
+      "Exploits",
+      "Fuzzers"
+    ],
+    "target": "Backdoors",
+    "target_held_out_identity_count_from_p8": 403,
+    "target_held_out_row_count_from_p8": 406,
+    "threshold": 0.5464638596055849,
+    "validation_value": 0.12155673958236739,
+    "vocabulary_feature_sha256": {
+      "proto": "c6053d35ec67f188242ad6e9623ea0f30737a8849512b0a0d4563e678a8a7398",
+      "service": "259a52d4aa6a52b64b19ce84b22799574b1f56f75908c6cfa18a8abb051990c9",
+      "state": "817feb2caf76023382ba107e48aa2211e7043a74ceae99ddc203444840689165"
+    },
+    "vocabulary_sha256": "d7730e54fbb9059129a03247440c443519a79a9b6a3ce149d19d649e21be2346"
+  },
+  "quantile": 0.99,
+  "selected_scorer": "negative_max_softmax",
+  "selected_scorer_state_sha256": "3bac960b2d3868c2d8c138b0954c66ba08e31310b604df579f97a04be1eb88e3",
+  "target_held_out_scoring": false,
+  "threshold": 0.5464638596055849,
+  "version": "p9-loafo-development-v1"
+}

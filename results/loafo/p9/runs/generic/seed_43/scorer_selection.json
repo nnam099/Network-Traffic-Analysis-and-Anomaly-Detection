@@ -1,0 +1,133 @@
+{
+  "candidate_statistics": {
+    "nearest_centroid_l2": {
+      "meta_known_identities": {
+        "count": 6255,
+        "max": 7.377498118682998,
+        "mean": 2.850454900051749,
+        "min": 0.23680957368681754
+      },
+      "meta_known_rows": {
+        "count": 6893,
+        "max": 7.377498118682998,
+        "mean": 2.818584843319642,
+        "min": 0.23680957368681754
+      },
+      "row_minus_identity_auroc": 0.0042468757100518895,
+      "surrogate_development_identity_auroc": 0.7882635700700773,
+      "surrogate_development_row_auroc_diagnostic": 0.7925104457801292,
+      "surrogate_ood_identities": {
+        "count": 33019,
+        "max": 7.412889586254915,
+        "mean": 4.190556619010591,
+        "min": 0.21710142237771293
+      },
+      "surrogate_ood_rows": {
+        "count": 36200,
+        "max": 7.412889586254915,
+        "mean": 4.161272398423585,
+        "min": 0.21710142237771293
+      }
+    },
+    "negative_max_softmax": {
+      "meta_known_identities": {
+        "count": 6255,
+        "max": 0.7287526184548863,
+        "mean": 0.048681327936169166,
+        "min": 3.2931385017809234e-05
+      },
+      "meta_known_rows": {
+        "count": 6893,
+        "max": 0.7287526184548863,
+        "mean": 0.047378606883589185,
+        "min": 3.2931385017809234e-05
+      },
+      "row_minus_identity_auroc": -0.0005863453729642032,
+      "surrogate_development_identity_auroc": 0.8330369097616906,
+      "surrogate_development_row_auroc_diagnostic": 0.8324505643887264,
+      "surrogate_ood_identities": {
+        "count": 33019,
+        "max": 0.7628581082561896,
+        "mean": 0.15638965198003146,
+        "min": 7.24911293010777e-05
+      },
+      "surrogate_ood_rows": {
+        "count": 36200,
+        "max": 0.7628581082561896,
+        "mean": 0.15676677062480776,
+        "min": 7.24911293010777e-05
+      }
+    }
+  },
+  "label": "DEVELOPMENT_ONLY",
+  "official_test_access": false,
+  "provenance": {
+    "centroid_state_sha256": "828b4010b47103521b8af483ce894ea4429f234f6b6e6d5ef375435e89f5f17c",
+    "class_order": [
+      "Normal",
+      "Analysis",
+      "Backdoors",
+      "DoS",
+      "Reconnaissance",
+      "Shellcode",
+      "Worms"
+    ],
+    "model_seed": 10043,
+    "model_state_sha256": "9ac119bef673b9a9a737f05982e8b26f7f5e6a6050f4aae522bfd3d371c079c0",
+    "p8_manifest_artifact_sha256": "359329c111603e96e7e215df7f203022350918bde0e0b61f2ea41dd99acbf379",
+    "p8_manifest_sha256": "216369de9bcd5ec5ceb3a1910cbeea2670092cfc58b5bbce859de408d0477647",
+    "p8_model_contract_sha256": "0cf4c71a89c4a93db1dc2b3193f04971b54220791e91f8d535f1133566bc6c32",
+    "p8_protocol_sha256": "62916073ef6048503415d45e2605bbf475b729e032c838a60cc7e94c43768216",
+    "p8_repository_commit": "397954fd792f5309a26e2a0e784bac1d1a686860",
+    "p9_source_code_aggregate_sha256": "b9a6fe0f84dfaeaf728d2fb5eea85562a809ef33779e3bc324079167f70e779b",
+    "p9_training_config_sha256": "f4955efbb2b630f3956d43cd19996ed90886c5b053f2b6a5adb6feb8571b4b61",
+    "role_identities": {
+      "calibration": 6258,
+      "meta_known": 6255,
+      "surrogate_ood": 33019,
+      "train": 43577,
+      "val": 6255
+    },
+    "role_rows": {
+      "calibration": 6894,
+      "meta_known": 6893,
+      "surrogate_ood": 36200,
+      "train": 48252,
+      "val": 6893
+    },
+    "scaler_sha256": "dda4d2f39bcb808e18cf169dfb1cc56e1e1a20377e03f65a632bb34d5563e31d",
+    "selected_epoch": 8,
+    "selected_scorer": "negative_max_softmax",
+    "selected_scorer_state_sha256": "6868ee0332b421de4ee79e0703fcf127416f1d9978a2ae6ebd4cb1733e4f1b30",
+    "split_seed": 43,
+    "status": "P9_CELL_PROTOCOL_PASS",
+    "surrogate_families": [
+      "Exploits",
+      "Fuzzers"
+    ],
+    "target": "Generic",
+    "target_held_out_identity_count_from_p8": 3904,
+    "target_held_out_row_count_from_p8": 39681,
+    "threshold": 0.5200653223708425,
+    "validation_value": 0.13054409694713226,
+    "vocabulary_feature_sha256": {
+      "proto": "98a46b6c01c0778e62effeec31a546f18eea0accbbee27b496a8f24cdfe2e52d",
+      "service": "259a52d4aa6a52b64b19ce84b22799574b1f56f75908c6cfa18a8abb051990c9",
+      "state": "c7011e9c2d2fed17a4c5178e0dd96984b471e40ce7d74571fe54cb39b5b59069"
+    },
+    "vocabulary_sha256": "64fbfb8e6f39ecf38848310e9082a73ef526a171aa5f66e38147b2d468300e65"
+  },
+  "selected_scorer": "negative_max_softmax",
+  "selection_margin_centroid_minus_softmax": -0.044773339691613345,
+  "selection_roles": [
+    "meta_known",
+    "surrogate_ood"
+  ],
+  "selection_unit": "canonical_identity_mean",
+  "target_held_out_access": false,
+  "target_held_out_scoring": false,
+  "tie_break_used": false,
+  "tie_preference": "nearest_centroid_l2",
+  "tie_tolerance": 1e-12,
+  "version": "p9-loafo-development-v1"
+}

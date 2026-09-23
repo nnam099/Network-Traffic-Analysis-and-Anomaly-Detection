@@ -1,0 +1,240 @@
+{
+  "descriptive_only": true,
+  "label": "DEVELOPMENT_ONLY",
+  "official_test_access": false,
+  "per_target": {
+    "Analysis": {
+      "calibration_thresholds": [
+        0.5667701108558632,
+        0.5777392526752085,
+        0.5556581718302555
+      ],
+      "p8_support_flag": "retain P8 support context",
+      "seed_agreement": true,
+      "selected_epochs": [
+        8,
+        6,
+        7
+      ],
+      "selected_scorers_by_seed": {
+        "42": "negative_max_softmax",
+        "43": "negative_max_softmax",
+        "44": "negative_max_softmax"
+      },
+      "selection_margins": [
+        -0.050489018331587476,
+        -0.11481849224196883,
+        -0.06623193734325739
+      ]
+    },
+    "Backdoors": {
+      "calibration_thresholds": [
+        0.5464638596055849,
+        0.5665911377004933,
+        0.5775565298948289
+      ],
+      "p8_support_flag": "retain P8 support context",
+      "seed_agreement": true,
+      "selected_epochs": [
+        7,
+        8,
+        8
+      ],
+      "selected_scorers_by_seed": {
+        "42": "negative_max_softmax",
+        "43": "negative_max_softmax",
+        "44": "negative_max_softmax"
+      },
+      "selection_margins": [
+        -0.06524610804336073,
+        -0.03941032235525066,
+        -0.0386261216931989
+      ]
+    },
+    "DoS": {
+      "calibration_thresholds": [
+        0.5273866464472173,
+        0.5210826214310453,
+        0.512530676225826
+      ],
+      "p8_support_flag": "retain P8 support context",
+      "seed_agreement": true,
+      "selected_epochs": [
+        3,
+        3,
+        5
+      ],
+      "selected_scorers_by_seed": {
+        "42": "negative_max_softmax",
+        "43": "negative_max_softmax",
+        "44": "negative_max_softmax"
+      },
+      "selection_margins": [
+        -0.027593782359207286,
+        -0.016368792605626403,
+        -0.022995512894472214
+      ]
+    },
+    "Exploits": {
+      "calibration_thresholds": [
+        0.5686995293399814,
+        0.5571104153873654,
+        0.6069282543277588
+      ],
+      "p8_support_flag": "retain P8 support context",
+      "seed_agreement": true,
+      "selected_epochs": [
+        8,
+        7,
+        8
+      ],
+      "selected_scorers_by_seed": {
+        "42": "negative_max_softmax",
+        "43": "negative_max_softmax",
+        "44": "negative_max_softmax"
+      },
+      "selection_margins": [
+        -0.09148654851756288,
+        -0.17686425537716743,
+        -0.18418393910445197
+      ]
+    },
+    "Fuzzers": {
+      "calibration_thresholds": [
+        0.5686995293399814,
+        0.5571104153873654,
+        0.6069282543277588
+      ],
+      "p8_support_flag": "retain P8 support context",
+      "seed_agreement": true,
+      "selected_epochs": [
+        8,
+        7,
+        8
+      ],
+      "selected_scorers_by_seed": {
+        "42": "negative_max_softmax",
+        "43": "negative_max_softmax",
+        "44": "negative_max_softmax"
+      },
+      "selection_margins": [
+        -0.28241213618175864,
+        -0.31522183456785335,
+        -0.2832262537654907
+      ]
+    },
+    "Generic": {
+      "calibration_thresholds": [
+        0.5647860087300363,
+        0.5200653223708425,
+        0.5314473581352666
+      ],
+      "p8_support_flag": "retain P8 support context",
+      "seed_agreement": true,
+      "selected_epochs": [
+        7,
+        8,
+        8
+      ],
+      "selected_scorers_by_seed": {
+        "42": "negative_max_softmax",
+        "43": "negative_max_softmax",
+        "44": "negative_max_softmax"
+      },
+      "selection_margins": [
+        -0.01110163808745257,
+        -0.044773339691613345,
+        -0.09079168114068681
+      ]
+    },
+    "Reconnaissance": {
+      "calibration_thresholds": [
+        0.5686995293399814,
+        0.5571104153873654,
+        0.6069282543277588
+      ],
+      "p8_support_flag": "retain P8 support context",
+      "seed_agreement": true,
+      "selected_epochs": [
+        8,
+        7,
+        8
+      ],
+      "selected_scorers_by_seed": {
+        "42": "negative_max_softmax",
+        "43": "negative_max_softmax",
+        "44": "negative_max_softmax"
+      },
+      "selection_margins": [
+        -0.16296251503467862,
+        -0.19119365066272487,
+        -0.19512380263789275
+      ]
+    },
+    "Shellcode": {
+      "calibration_thresholds": [
+        0.5605904835516722,
+        0.5721615300243742,
+        0.5583138748355485
+      ],
+      "p8_support_flag": "retain P8 support context",
+      "seed_agreement": true,
+      "selected_epochs": [
+        6,
+        7,
+        6
+      ],
+      "selected_scorers_by_seed": {
+        "42": "negative_max_softmax",
+        "43": "negative_max_softmax",
+        "44": "negative_max_softmax"
+      },
+      "selection_margins": [
+        -0.10140526032445574,
+        -0.07818293500675566,
+        -0.032705364316111374
+      ]
+    },
+    "Worms": {
+      "calibration_thresholds": [
+        0.548708146752431,
+        0.6030032582117294,
+        0.5704938313574419
+      ],
+      "p8_support_flag": "SMALL-N HELD-OUT TARGET",
+      "seed_agreement": true,
+      "selected_epochs": [
+        8,
+        8,
+        7
+      ],
+      "selected_scorers_by_seed": {
+        "42": "negative_max_softmax",
+        "43": "negative_max_softmax",
+        "44": "negative_max_softmax"
+      },
+      "selection_margins": [
+        -0.05378800332271261,
+        -0.07864900521186624,
+        -0.032450752836206576
+      ]
+    }
+  },
+  "protocol_changed_after_pilot": false,
+  "scorer_selection_counts": {
+    "nearest_centroid_l2": 0,
+    "negative_max_softmax": 27
+  },
+  "selected_epoch_distribution": {
+    "1": 0,
+    "2": 0,
+    "3": 2,
+    "4": 0,
+    "5": 1,
+    "6": 3,
+    "7": 8,
+    "8": 13
+  },
+  "target_held_out_scoring": false,
+  "version": "p9-loafo-development-v1"
+}

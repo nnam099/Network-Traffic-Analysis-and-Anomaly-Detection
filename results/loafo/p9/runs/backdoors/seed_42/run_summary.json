@@ -1,0 +1,52 @@
+{
+  "artifact_sha256": {
+    "calibration.json": "853a5a91f7aea333cc7ae908cd625f391efc27bcec5f5d218769df0aa85494cf",
+    "checkpoint.pt": "054c7ce2dcfd3b94f8c5c3be18b3e95bd4549f1af4be3a4dffd8201173c77a64",
+    "checkpoint_metadata.json": "009ad85c51a3ef8a085d29fa36deb496505e51fd2249aa037d9a20ecef4f0266",
+    "development_diagnostics.json": "e2622b3e12cd1a5e0308989bf14addba80d751dd32106462bc0babfeb0331c8b",
+    "scorer_selection.json": "c0d4a99b98e9f2996b91af5ff2756b26c553fdb2c3be30e74c70d4c48fb25d9b",
+    "scorer_state.json": "2576ac2a40260d2915003cbcbc52d052611ba5d90b078d0b949f51c253b76102",
+    "training_manifest.json": "79f2a1ed9c3e07d681634776771896ed8456f59d0f96678d3463671010e05009"
+  },
+  "calibration_identity_count": 6605,
+  "calibration_row_count": 10821,
+  "centroid_state_sha256": "dbee859c12c7e7a6726a8aa958f851920b34cc012f03f5ecbc0a28579e871f2d",
+  "centroid_surrogate_development_identity_auroc": 0.8028813818777383,
+  "checkpoint_file_sha256": "054c7ce2dcfd3b94f8c5c3be18b3e95bd4549f1af4be3a4dffd8201173c77a64",
+  "known_class_order": [
+    "Normal",
+    "Analysis",
+    "DoS",
+    "Generic",
+    "Reconnaissance",
+    "Shellcode",
+    "Worms"
+  ],
+  "label": "DEVELOPMENT_ONLY",
+  "model_seed": 10042,
+  "model_state_sha256": "83acbc0f837844a55576d86e189ffd5294f6d6378ca380ada27a385ec707ace3",
+  "official_test_access": false,
+  "optimizer_steps": 1184,
+  "p8_manifest_sha256": "42b32edebe901cd57a1aee283e27703594543bbef9ad1683e725df4d3560507d",
+  "p8_protocol_sha256": "62916073ef6048503415d45e2605bbf475b729e032c838a60cc7e94c43768216",
+  "p9_source_code_aggregate_sha256": "b9a6fe0f84dfaeaf728d2fb5eea85562a809ef33779e3bc324079167f70e779b",
+  "p9_training_config_sha256": "f4955efbb2b630f3956d43cd19996ed90886c5b053f2b6a5adb6feb8571b4b61",
+  "selected_epoch": 7,
+  "selected_scorer": "negative_max_softmax",
+  "selection_margin_centroid_minus_softmax": -0.06524610804336073,
+  "softmax_surrogate_development_identity_auroc": 0.868127489921099,
+  "split_seed": 42,
+  "status": "P9_CELL_PASS",
+  "surrogate_families": [
+    "Exploits",
+    "Fuzzers"
+  ],
+  "target": "Backdoors",
+  "target_held_out_scoring": false,
+  "threshold": 0.5464638596055849,
+  "tie_break_used": false,
+  "train_identities": 46031,
+  "train_rows": 75746,
+  "validation_value": 0.12155673958236739,
+  "version": "p9-loafo-development-v1"
+}

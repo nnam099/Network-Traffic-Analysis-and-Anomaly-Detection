@@ -1,0 +1,122 @@
+{
+  "epoch_history": [
+    {
+      "development_val_cross_entropy": 0.19313480297647295,
+      "epoch": 1
+    },
+    {
+      "development_val_cross_entropy": 0.1523518078965725,
+      "epoch": 2
+    },
+    {
+      "development_val_cross_entropy": 0.1312930972639802,
+      "epoch": 3
+    },
+    {
+      "development_val_cross_entropy": 0.12251065618848238,
+      "epoch": 4
+    },
+    {
+      "development_val_cross_entropy": 0.1717601680836067,
+      "epoch": 5
+    },
+    {
+      "development_val_cross_entropy": 0.1146949528742648,
+      "epoch": 6
+    },
+    {
+      "development_val_cross_entropy": 0.11424265441233225,
+      "epoch": 7
+    },
+    {
+      "development_val_cross_entropy": 0.12619079199726693,
+      "epoch": 8
+    }
+  ],
+  "label": "DEVELOPMENT_ONLY",
+  "official_test_access": false,
+  "optimizer": {
+    "amp": false,
+    "batch_order": "single_process_numpy_PCG64_epoch_permutation",
+    "batch_size": 512,
+    "checkpoint_metric": "sample_mean_val_cross_entropy",
+    "checkpoint_tie_break": "lowest_epoch_exact_tie",
+    "class_weighting": "none",
+    "deterministic_algorithms": true,
+    "device": "cpu",
+    "dtype": "torch.float64",
+    "gradient_clip_norm": 1.0,
+    "learning_rate": 0.001,
+    "max_epochs": 8,
+    "min_delta": 0.0,
+    "model_seed_rule": "10000 + split_seed",
+    "objective": "known_class_cross_entropy",
+    "optimizer": "AdamW",
+    "patience": 2,
+    "scheduler": "none",
+    "version": "p9-loafo-known-class-ce-v1",
+    "weight_decay": 0.01
+  },
+  "optimizer_steps": 1176,
+  "provenance": {
+    "centroid_state_sha256": "c2df56e3a20638406cd57e0c46648198a99970f14a263295bd45e6de853e41fc",
+    "class_order": [
+      "Normal",
+      "Analysis",
+      "Backdoors",
+      "DoS",
+      "Generic",
+      "Reconnaissance",
+      "Worms"
+    ],
+    "model_seed": 10043,
+    "model_state_sha256": "3aca0ccaf8ea996c34bb94831638e50b6cdac38cf651c0a541d2ed788f556f6a",
+    "p8_manifest_artifact_sha256": "d71d280bd156116ba8c5d796c518aeb8dd65d68048836e9c9608f4dcaff760c4",
+    "p8_manifest_sha256": "ac47bfc84cb1f92b450070201660336f3bc5f600e37300a0552c5c9b46a339e6",
+    "p8_model_contract_sha256": "0cf4c71a89c4a93db1dc2b3193f04971b54220791e91f8d535f1133566bc6c32",
+    "p8_protocol_sha256": "62916073ef6048503415d45e2605bbf475b729e032c838a60cc7e94c43768216",
+    "p8_repository_commit": "397954fd792f5309a26e2a0e784bac1d1a686860",
+    "p9_source_code_aggregate_sha256": "b9a6fe0f84dfaeaf728d2fb5eea85562a809ef33779e3bc324079167f70e779b",
+    "p9_training_config_sha256": "f4955efbb2b630f3956d43cd19996ed90886c5b053f2b6a5adb6feb8571b4b61",
+    "role_identities": {
+      "calibration": 6535,
+      "meta_known": 6538,
+      "surrogate_ood": 33019,
+      "train": 45555,
+      "val": 6536
+    },
+    "role_rows": {
+      "calibration": 10748,
+      "meta_known": 10749,
+      "surrogate_ood": 36200,
+      "train": 75242,
+      "val": 10748
+    },
+    "scaler_sha256": "999f3d32787f516fe44b7ea0766eca662f0ea1f779b2b99145fc757027c6e507",
+    "selected_epoch": 7,
+    "selected_scorer": "negative_max_softmax",
+    "selected_scorer_state_sha256": "a724d8bb9857a8ca415cc10a34882c541f55f83e173af9486e57ee5b682a245c",
+    "split_seed": 43,
+    "status": "P9_CELL_PROTOCOL_PASS",
+    "surrogate_families": [
+      "Exploits",
+      "Fuzzers"
+    ],
+    "target": "Shellcode",
+    "target_held_out_identity_count_from_p8": 1085,
+    "target_held_out_row_count_from_p8": 1126,
+    "threshold": 0.5721615300243742,
+    "validation_value": 0.11424265441233225,
+    "vocabulary_feature_sha256": {
+      "proto": "718d331e2f469bb8ecab94e09a1aa9f763ac79dcdae48e2e38f0a3c9e4f69b2e",
+      "service": "259a52d4aa6a52b64b19ce84b22799574b1f56f75908c6cfa18a8abb051990c9",
+      "state": "70ab808e7d2f4ac4eb6d980cf4bcb3ee146277c501e8a9dba91507243086a380"
+    },
+    "vocabulary_sha256": "feef6dd26496bc2ec2b060a53bff8fcc3395858c5ea2c9dc87cb9818e64ff9d8"
+  },
+  "role": "train_and_val_only",
+  "selected_epoch": 7,
+  "target_held_out_scoring": false,
+  "validation_value": 0.11424265441233225,
+  "version": "p9-loafo-development-v1"
+}

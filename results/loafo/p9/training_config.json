@@ -1,0 +1,22 @@
+{
+  "amp": false,
+  "batch_order": "single_process_numpy_PCG64_epoch_permutation",
+  "batch_size": 512,
+  "checkpoint_metric": "sample_mean_val_cross_entropy",
+  "checkpoint_tie_break": "lowest_epoch_exact_tie",
+  "class_weighting": "none",
+  "deterministic_algorithms": true,
+  "device": "cpu",
+  "dtype": "torch.float64",
+  "gradient_clip_norm": 1.0,
+  "learning_rate": 0.001,
+  "max_epochs": 8,
+  "min_delta": 0.0,
+  "model_seed_rule": "10000 + split_seed",
+  "objective": "known_class_cross_entropy",
+  "optimizer": "AdamW",
+  "patience": 2,
+  "scheduler": "none",
+  "version": "p9-loafo-known-class-ce-v1",
+  "weight_decay": 0.01
+}

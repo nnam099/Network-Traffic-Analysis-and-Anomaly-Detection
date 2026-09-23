@@ -1,0 +1,118 @@
+{
+  "epoch_history": [
+    {
+      "development_val_cross_entropy": 0.1607339239290296,
+      "epoch": 1
+    },
+    {
+      "development_val_cross_entropy": 0.13563729622610793,
+      "epoch": 2
+    },
+    {
+      "development_val_cross_entropy": 0.13994503527281185,
+      "epoch": 3
+    },
+    {
+      "development_val_cross_entropy": 0.11443062166365789,
+      "epoch": 4
+    },
+    {
+      "development_val_cross_entropy": 0.09895317216657915,
+      "epoch": 5
+    },
+    {
+      "development_val_cross_entropy": 0.10727377849803586,
+      "epoch": 6
+    },
+    {
+      "development_val_cross_entropy": 0.12080573684682146,
+      "epoch": 7
+    }
+  ],
+  "label": "DEVELOPMENT_ONLY",
+  "official_test_access": false,
+  "optimizer": {
+    "amp": false,
+    "batch_order": "single_process_numpy_PCG64_epoch_permutation",
+    "batch_size": 512,
+    "checkpoint_metric": "sample_mean_val_cross_entropy",
+    "checkpoint_tie_break": "lowest_epoch_exact_tie",
+    "class_weighting": "none",
+    "deterministic_algorithms": true,
+    "device": "cpu",
+    "dtype": "torch.float64",
+    "gradient_clip_norm": 1.0,
+    "learning_rate": 0.001,
+    "max_epochs": 8,
+    "min_delta": 0.0,
+    "model_seed_rule": "10000 + split_seed",
+    "objective": "known_class_cross_entropy",
+    "optimizer": "AdamW",
+    "patience": 2,
+    "scheduler": "none",
+    "version": "p9-loafo-known-class-ce-v1",
+    "weight_decay": 0.01
+  },
+  "optimizer_steps": 1022,
+  "provenance": {
+    "centroid_state_sha256": "ea02361c00431e4bc55792b30307e3f0268577bdd67ad1a38715e4821026dcb4",
+    "class_order": [
+      "Normal",
+      "Analysis",
+      "Backdoors",
+      "Generic",
+      "Reconnaissance",
+      "Shellcode",
+      "Worms"
+    ],
+    "model_seed": 10044,
+    "model_state_sha256": "154bca94dad8683d768677505f87acdee56ffb7055ab08bc01c0731855a524ff",
+    "p8_manifest_artifact_sha256": "1be05be010949777f32f6e12fbc907a7e2681fed324eec23e1169c33de5caa7d",
+    "p8_manifest_sha256": "0d4fb9d32f07fecfc82ed34a70d697af59f12f9789a44dc8862676ce90f5c063",
+    "p8_model_contract_sha256": "0cf4c71a89c4a93db1dc2b3193f04971b54220791e91f8d535f1133566bc6c32",
+    "p8_protocol_sha256": "62916073ef6048503415d45e2605bbf475b729e032c838a60cc7e94c43768216",
+    "p8_repository_commit": "397954fd792f5309a26e2a0e784bac1d1a686860",
+    "p9_source_code_aggregate_sha256": "b9a6fe0f84dfaeaf728d2fb5eea85562a809ef33779e3bc324079167f70e779b",
+    "p9_training_config_sha256": "f4955efbb2b630f3956d43cd19996ed90886c5b053f2b6a5adb6feb8571b4b61",
+    "role_identities": {
+      "calibration": 6397,
+      "meta_known": 6398,
+      "surrogate_ood": 33019,
+      "train": 44579,
+      "val": 6398
+    },
+    "role_rows": {
+      "calibration": 10609,
+      "meta_known": 10609,
+      "surrogate_ood": 36200,
+      "train": 74268,
+      "val": 10609
+    },
+    "scaler_sha256": "1f63d3d36e13af76870dd49d5b28b2caf3553de3724dde36037f8029ad380261",
+    "selected_epoch": 5,
+    "selected_scorer": "negative_max_softmax",
+    "selected_scorer_state_sha256": "356c1836c208e1a915db077248772c1014bc4365669413aa978cf8fe7ebf88d9",
+    "split_seed": 44,
+    "status": "P9_CELL_PROTOCOL_PASS",
+    "surrogate_families": [
+      "Exploits",
+      "Fuzzers"
+    ],
+    "target": "DoS",
+    "target_held_out_identity_count_from_p8": 2477,
+    "target_held_out_row_count_from_p8": 2518,
+    "threshold": 0.512530676225826,
+    "validation_value": 0.09895317216657915,
+    "vocabulary_feature_sha256": {
+      "proto": "68ac72e83cc75f27992b689fc104b8e062d901092045fb6c74310d2a8a8e6938",
+      "service": "f43f6c73a8eba432d3c168a5c096ca42e1a51fb842d7b0ccca15c69d77eda9fe",
+      "state": "817feb2caf76023382ba107e48aa2211e7043a74ceae99ddc203444840689165"
+    },
+    "vocabulary_sha256": "f3a6e2699defc69feb54206aec390051ac2da711288c71f63775af8f32ad8f7f"
+  },
+  "role": "train_and_val_only",
+  "selected_epoch": 5,
+  "target_held_out_scoring": false,
+  "validation_value": 0.09895317216657915,
+  "version": "p9-loafo-development-v1"
+}

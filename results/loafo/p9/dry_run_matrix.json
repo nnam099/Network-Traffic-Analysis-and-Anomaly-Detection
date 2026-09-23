@@ -1,0 +1,1202 @@
+{
+  "cell_count": 27,
+  "cells": [
+    {
+      "class_order": [
+        "Normal",
+        "Backdoors",
+        "DoS",
+        "Generic",
+        "Reconnaissance",
+        "Shellcode",
+        "Worms"
+      ],
+      "model_seed": 10042,
+      "p8_manifest_artifact_sha256": "d2a74a14e380846af63991affe41c2481765f14dbbfc6e00620163be0e18cfdc",
+      "p8_manifest_sha256": "9aeade9de37c7d9511b08aeec14aca16e0c1618b0a33b8e67ed5dabe3942ece9",
+      "role_identities": {
+        "calibration": 6606,
+        "meta_known": 6605,
+        "surrogate_ood": 33019,
+        "train": 46038,
+        "val": 6607
+      },
+      "role_rows": {
+        "calibration": 10805,
+        "meta_known": 10805,
+        "surrogate_ood": 36200,
+        "train": 75639,
+        "val": 10805
+      },
+      "scaler_sha256": "d1e174abaf26fc5b7c7b20db6e06e75bbb0f7ee1881873cc045052662c9c11a8",
+      "split_seed": 42,
+      "status": "P9_CELL_PROTOCOL_PASS",
+      "surrogate_families": [
+        "Exploits",
+        "Fuzzers"
+      ],
+      "target": "Analysis",
+      "target_held_out_identity_count_from_p8": 393,
+      "target_held_out_row_count_from_p8": 559,
+      "vocabulary_feature_sha256": {
+        "proto": "fa8eec032b740c93db4a5fdb3181dfb2ae5b0ede88b0aa50973091276a2ef8bd",
+        "service": "259a52d4aa6a52b64b19ce84b22799574b1f56f75908c6cfa18a8abb051990c9",
+        "state": "1c0c8b57c24b3a091282d8c91c293e67a538922f9ec3e9c6527c87270e75597c"
+      },
+      "vocabulary_sha256": "e698af780ed25615b27dabbda93329aba1fad411de4342435acb6389adde4d5e"
+    },
+    {
+      "class_order": [
+        "Normal",
+        "Backdoors",
+        "DoS",
+        "Generic",
+        "Reconnaissance",
+        "Shellcode",
+        "Worms"
+      ],
+      "model_seed": 10043,
+      "p8_manifest_artifact_sha256": "213b9b041996929fc1273955d1a2bc0163238abbe8f4c8b703f04d2d07119320",
+      "p8_manifest_sha256": "d8de4cb7c19640f43cdae463e8c86810948c765cd314f121475eced344c1b5d0",
+      "role_identities": {
+        "calibration": 6606,
+        "meta_known": 6606,
+        "surrogate_ood": 33019,
+        "train": 46038,
+        "val": 6606
+      },
+      "role_rows": {
+        "calibration": 10805,
+        "meta_known": 10806,
+        "surrogate_ood": 36200,
+        "train": 75638,
+        "val": 10805
+      },
+      "scaler_sha256": "d07f94dd0c4d43790abca73631f849e130cd95c28b0ac503d74fba0e49ddaaf3",
+      "split_seed": 43,
+      "status": "P9_CELL_PROTOCOL_PASS",
+      "surrogate_families": [
+        "Exploits",
+        "Fuzzers"
+      ],
+      "target": "Analysis",
+      "target_held_out_identity_count_from_p8": 393,
+      "target_held_out_row_count_from_p8": 559,
+      "vocabulary_feature_sha256": {
+        "proto": "46a77b5ad5934e41b6b6152c57680d3588eb82df2ba042280191f4b615d76196",
+        "service": "259a52d4aa6a52b64b19ce84b22799574b1f56f75908c6cfa18a8abb051990c9",
+        "state": "70ab808e7d2f4ac4eb6d980cf4bcb3ee146277c501e8a9dba91507243086a380"
+      },
+      "vocabulary_sha256": "f1557421b15f0080c217946b7f38387c7449e36660c94df8b3611875df63c87e"
+    },
+    {
+      "class_order": [
+        "Normal",
+        "Backdoors",
+        "DoS",
+        "Generic",
+        "Reconnaissance",
+        "Shellcode",
+        "Worms"
+      ],
+      "model_seed": 10044,
+      "p8_manifest_artifact_sha256": "e1224e9f25fee8ba7dee497e6da750738b1d96ecce79377a94f66d90b80da055",
+      "p8_manifest_sha256": "afc85721c3f5cab4aee6f1157a0cd09f3920a3e93ba9efcdf0208daba2364863",
+      "role_identities": {
+        "calibration": 6606,
+        "meta_known": 6605,
+        "surrogate_ood": 33019,
+        "train": 46038,
+        "val": 6607
+      },
+      "role_rows": {
+        "calibration": 10805,
+        "meta_known": 10805,
+        "surrogate_ood": 36200,
+        "train": 75639,
+        "val": 10805
+      },
+      "scaler_sha256": "1d50472eedfce18266b866a2f191b1d9b877874751b3c6284eb33201ab02023a",
+      "split_seed": 44,
+      "status": "P9_CELL_PROTOCOL_PASS",
+      "surrogate_families": [
+        "Exploits",
+        "Fuzzers"
+      ],
+      "target": "Analysis",
+      "target_held_out_identity_count_from_p8": 393,
+      "target_held_out_row_count_from_p8": 559,
+      "vocabulary_feature_sha256": {
+        "proto": "ddf6a2d08e5bb50feee98b6438efe75e87cfe21b33d8a05af2bdce85833bbc89",
+        "service": "259a52d4aa6a52b64b19ce84b22799574b1f56f75908c6cfa18a8abb051990c9",
+        "state": "817feb2caf76023382ba107e48aa2211e7043a74ceae99ddc203444840689165"
+      },
+      "vocabulary_sha256": "4b81b34ac4f63b0461fda257f1f31a16d0fa77e21de9afe8c16b1a4be3f01968"
+    },
+    {
+      "class_order": [
+        "Normal",
+        "Analysis",
+        "DoS",
+        "Generic",
+        "Reconnaissance",
+        "Shellcode",
+        "Worms"
+      ],
+      "model_seed": 10042,
+      "p8_manifest_artifact_sha256": "bf0fce5dd99219a15336a9e11320de602044d6e87882738736b59914decc9d56",
+      "p8_manifest_sha256": "42b32edebe901cd57a1aee283e27703594543bbef9ad1683e725df4d3560507d",
+      "role_identities": {
+        "calibration": 6605,
+        "meta_known": 6605,
+        "surrogate_ood": 33019,
+        "train": 46031,
+        "val": 6605
+      },
+      "role_rows": {
+        "calibration": 10821,
+        "meta_known": 10820,
+        "surrogate_ood": 36200,
+        "train": 75746,
+        "val": 10820
+      },
+      "scaler_sha256": "a2b0318dc1ec6803817ba6c9af0ccb3f0b5dc1f6d597799e1046dc66821af419",
+      "split_seed": 42,
+      "status": "P9_CELL_PROTOCOL_PASS",
+      "surrogate_families": [
+        "Exploits",
+        "Fuzzers"
+      ],
+      "target": "Backdoors",
+      "target_held_out_identity_count_from_p8": 403,
+      "target_held_out_row_count_from_p8": 406,
+      "vocabulary_feature_sha256": {
+        "proto": "c6053d35ec67f188242ad6e9623ea0f30737a8849512b0a0d4563e678a8a7398",
+        "service": "259a52d4aa6a52b64b19ce84b22799574b1f56f75908c6cfa18a8abb051990c9",
+        "state": "817feb2caf76023382ba107e48aa2211e7043a74ceae99ddc203444840689165"
+      },
+      "vocabulary_sha256": "d7730e54fbb9059129a03247440c443519a79a9b6a3ce149d19d649e21be2346"
+    },
+    {
+      "class_order": [
+        "Normal",
+        "Analysis",
+        "DoS",
+        "Generic",
+        "Reconnaissance",
+        "Shellcode",
+        "Worms"
+      ],
+      "model_seed": 10043,
+      "p8_manifest_artifact_sha256": "21cbb1fd7b9aaf3022b617e0eb224f9193b955086eded29114525c3c4ac67be7",
+      "p8_manifest_sha256": "7a56865f11baf9a574fe8b33b3f711ee6986e7944f4e222974085eeb90124bc0",
+      "role_identities": {
+        "calibration": 6603,
+        "meta_known": 6606,
+        "surrogate_ood": 33019,
+        "train": 46032,
+        "val": 6605
+      },
+      "role_rows": {
+        "calibration": 10820,
+        "meta_known": 10820,
+        "surrogate_ood": 36200,
+        "train": 75747,
+        "val": 10820
+      },
+      "scaler_sha256": "19dd94c2e3f21bc22c8d66587ed80ecfda8d797ed395d121651182ed231c9bb7",
+      "split_seed": 43,
+      "status": "P9_CELL_PROTOCOL_PASS",
+      "surrogate_families": [
+        "Exploits",
+        "Fuzzers"
+      ],
+      "target": "Backdoors",
+      "target_held_out_identity_count_from_p8": 403,
+      "target_held_out_row_count_from_p8": 406,
+      "vocabulary_feature_sha256": {
+        "proto": "c6053d35ec67f188242ad6e9623ea0f30737a8849512b0a0d4563e678a8a7398",
+        "service": "259a52d4aa6a52b64b19ce84b22799574b1f56f75908c6cfa18a8abb051990c9",
+        "state": "e9ab6daeee53a299d2e2d7bf540d4a62ecab82098799f25ededd93abd5fefa2f"
+      },
+      "vocabulary_sha256": "334a7634f6b60e10fcc740ebf380f219d736bdad984f8e891589f52c8c3cc1e3"
+    },
+    {
+      "class_order": [
+        "Normal",
+        "Analysis",
+        "DoS",
+        "Generic",
+        "Reconnaissance",
+        "Shellcode",
+        "Worms"
+      ],
+      "model_seed": 10044,
+      "p8_manifest_artifact_sha256": "8ccf2800faafed15530577ba17363dee25c6841eed4d5ac66254742f53ddb7d3",
+      "p8_manifest_sha256": "490f7a9216c17ea4d746ccf0922110d62627b3a88daa2b224c0beba44ad34e03",
+      "role_identities": {
+        "calibration": 6603,
+        "meta_known": 6605,
+        "surrogate_ood": 33019,
+        "train": 46032,
+        "val": 6606
+      },
+      "role_rows": {
+        "calibration": 10820,
+        "meta_known": 10820,
+        "surrogate_ood": 36200,
+        "train": 75747,
+        "val": 10820
+      },
+      "scaler_sha256": "e3f40ba8c3f5891b594146aab9db86a963268b7a5bf5db99e18c22fc142dc891",
+      "split_seed": 44,
+      "status": "P9_CELL_PROTOCOL_PASS",
+      "surrogate_families": [
+        "Exploits",
+        "Fuzzers"
+      ],
+      "target": "Backdoors",
+      "target_held_out_identity_count_from_p8": 403,
+      "target_held_out_row_count_from_p8": 406,
+      "vocabulary_feature_sha256": {
+        "proto": "c6053d35ec67f188242ad6e9623ea0f30737a8849512b0a0d4563e678a8a7398",
+        "service": "259a52d4aa6a52b64b19ce84b22799574b1f56f75908c6cfa18a8abb051990c9",
+        "state": "70ab808e7d2f4ac4eb6d980cf4bcb3ee146277c501e8a9dba91507243086a380"
+      },
+      "vocabulary_sha256": "bcb976065632835edf1b47a1af61990230ac4ca90f026f715d391b9419907130"
+    },
+    {
+      "class_order": [
+        "Normal",
+        "Analysis",
+        "Backdoors",
+        "Generic",
+        "Reconnaissance",
+        "Shellcode",
+        "Worms"
+      ],
+      "model_seed": 10042,
+      "p8_manifest_artifact_sha256": "182640bc55471ac7020de6e42c4caf7d5f04700cf5a120f01c1d96ccbadda3da",
+      "p8_manifest_sha256": "4b410e55721efc507555655034d84fbcedeae10293dac63b25c3c196d430e645",
+      "role_identities": {
+        "calibration": 6397,
+        "meta_known": 6398,
+        "surrogate_ood": 33019,
+        "train": 44580,
+        "val": 6397
+      },
+      "role_rows": {
+        "calibration": 10609,
+        "meta_known": 10609,
+        "surrogate_ood": 36200,
+        "train": 74268,
+        "val": 10609
+      },
+      "scaler_sha256": "ab86671f92a53d5597aa30e7ee6f2c97bbe5f59bd45f74f5b658efaec96e003b",
+      "split_seed": 42,
+      "status": "P9_CELL_PROTOCOL_PASS",
+      "surrogate_families": [
+        "Exploits",
+        "Fuzzers"
+      ],
+      "target": "DoS",
+      "target_held_out_identity_count_from_p8": 2477,
+      "target_held_out_row_count_from_p8": 2518,
+      "vocabulary_feature_sha256": {
+        "proto": "3193890ba64ce7a1382ff21100eaa89bc14998ac9b580a829d227de63d56f81a",
+        "service": "259a52d4aa6a52b64b19ce84b22799574b1f56f75908c6cfa18a8abb051990c9",
+        "state": "817feb2caf76023382ba107e48aa2211e7043a74ceae99ddc203444840689165"
+      },
+      "vocabulary_sha256": "a19baea5b9026f87032b64b1a303e4ff43a5f68a93d9e20c30d6bd17cf2bafdb"
+    },
+    {
+      "class_order": [
+        "Normal",
+        "Analysis",
+        "Backdoors",
+        "Generic",
+        "Reconnaissance",
+        "Shellcode",
+        "Worms"
+      ],
+      "model_seed": 10043,
+      "p8_manifest_artifact_sha256": "8099f989608291edb9289eeb7c3eaf63c6b44ec47f12b3aa3e7d776f3239e456",
+      "p8_manifest_sha256": "cef2a012a6179eaf0151db4162ceca0578e4dda810f1ad705ec975d939beba5f",
+      "role_identities": {
+        "calibration": 6397,
+        "meta_known": 6397,
+        "surrogate_ood": 33019,
+        "train": 44580,
+        "val": 6398
+      },
+      "role_rows": {
+        "calibration": 10609,
+        "meta_known": 10609,
+        "surrogate_ood": 36200,
+        "train": 74268,
+        "val": 10609
+      },
+      "scaler_sha256": "0befa4957c4cd03eddc54f9fb3b850d2673733d628f12482b7363dfa3eee97f1",
+      "split_seed": 43,
+      "status": "P9_CELL_PROTOCOL_PASS",
+      "surrogate_families": [
+        "Exploits",
+        "Fuzzers"
+      ],
+      "target": "DoS",
+      "target_held_out_identity_count_from_p8": 2477,
+      "target_held_out_row_count_from_p8": 2518,
+      "vocabulary_feature_sha256": {
+        "proto": "fbf2289ac9d823692760eba2c93a8972c032eb57fff5f4ff14b5171769128b9f",
+        "service": "259a52d4aa6a52b64b19ce84b22799574b1f56f75908c6cfa18a8abb051990c9",
+        "state": "70ab808e7d2f4ac4eb6d980cf4bcb3ee146277c501e8a9dba91507243086a380"
+      },
+      "vocabulary_sha256": "5820193747b3321ecb8b2ab1fb5d01c65a13dddadfc13bea0fc2cb238270905a"
+    },
+    {
+      "class_order": [
+        "Normal",
+        "Analysis",
+        "Backdoors",
+        "Generic",
+        "Reconnaissance",
+        "Shellcode",
+        "Worms"
+      ],
+      "model_seed": 10044,
+      "p8_manifest_artifact_sha256": "1be05be010949777f32f6e12fbc907a7e2681fed324eec23e1169c33de5caa7d",
+      "p8_manifest_sha256": "0d4fb9d32f07fecfc82ed34a70d697af59f12f9789a44dc8862676ce90f5c063",
+      "role_identities": {
+        "calibration": 6397,
+        "meta_known": 6398,
+        "surrogate_ood": 33019,
+        "train": 44579,
+        "val": 6398
+      },
+      "role_rows": {
+        "calibration": 10609,
+        "meta_known": 10609,
+        "surrogate_ood": 36200,
+        "train": 74268,
+        "val": 10609
+      },
+      "scaler_sha256": "1f63d3d36e13af76870dd49d5b28b2caf3553de3724dde36037f8029ad380261",
+      "split_seed": 44,
+      "status": "P9_CELL_PROTOCOL_PASS",
+      "surrogate_families": [
+        "Exploits",
+        "Fuzzers"
+      ],
+      "target": "DoS",
+      "target_held_out_identity_count_from_p8": 2477,
+      "target_held_out_row_count_from_p8": 2518,
+      "vocabulary_feature_sha256": {
+        "proto": "68ac72e83cc75f27992b689fc104b8e062d901092045fb6c74310d2a8a8e6938",
+        "service": "f43f6c73a8eba432d3c168a5c096ca42e1a51fb842d7b0ccca15c69d77eda9fe",
+        "state": "817feb2caf76023382ba107e48aa2211e7043a74ceae99ddc203444840689165"
+      },
+      "vocabulary_sha256": "f3a6e2699defc69feb54206aec390051ac2da711288c71f63775af8f32ad8f7f"
+    },
+    {
+      "class_order": [
+        "Normal",
+        "Analysis",
+        "Backdoors",
+        "DoS",
+        "Generic",
+        "Shellcode",
+        "Worms"
+      ],
+      "model_seed": 10042,
+      "p8_manifest_artifact_sha256": "9cff97b6a83999b61f514a9479025652956d6a6dd509f892a5209e512cb59d8f",
+      "p8_manifest_sha256": "91ebc291d240d3007531911b4100465a9b2e94662ec7e2d03a65c8e546a39f7f",
+      "role_identities": {
+        "calibration": 6004,
+        "meta_known": 6005,
+        "surrogate_ood": 20811,
+        "train": 42026,
+        "val": 6005
+      },
+      "role_rows": {
+        "calibration": 10001,
+        "meta_known": 10001,
+        "surrogate_ood": 24708,
+        "train": 70008,
+        "val": 10001
+      },
+      "scaler_sha256": "abaaf1b9b22cd31eb3a0237754fe07ca55020d843be7cc38b8e9991da6996a5f",
+      "split_seed": 42,
+      "status": "P9_CELL_PROTOCOL_PASS",
+      "surrogate_families": [
+        "Fuzzers",
+        "Reconnaissance"
+      ],
+      "target": "Exploits",
+      "target_held_out_identity_count_from_p8": 18417,
+      "target_held_out_row_count_from_p8": 20094,
+      "vocabulary_feature_sha256": {
+        "proto": "f6723ddf54669b9b4e55929e039bc7685be861f7ddac15709d084d35909b73e1",
+        "service": "259a52d4aa6a52b64b19ce84b22799574b1f56f75908c6cfa18a8abb051990c9",
+        "state": "817feb2caf76023382ba107e48aa2211e7043a74ceae99ddc203444840689165"
+      },
+      "vocabulary_sha256": "a57d1cb2efcdbabb2ba494e931afed78af9464094fca6bf136971969f42f6f50"
+    },
+    {
+      "class_order": [
+        "Normal",
+        "Analysis",
+        "Backdoors",
+        "DoS",
+        "Generic",
+        "Shellcode",
+        "Worms"
+      ],
+      "model_seed": 10043,
+      "p8_manifest_artifact_sha256": "8a5fe90e0d1bd76f3ff116cc3158db36bdb52f9fd1e0f181f41bf41ec8e37600",
+      "p8_manifest_sha256": "e64ce5a20a97963d714284af0add95d95f3505877a36c6a6e6c93da7a28bb1d2",
+      "role_identities": {
+        "calibration": 6005,
+        "meta_known": 6004,
+        "surrogate_ood": 20811,
+        "train": 42026,
+        "val": 6005
+      },
+      "role_rows": {
+        "calibration": 10001,
+        "meta_known": 10001,
+        "surrogate_ood": 24708,
+        "train": 70008,
+        "val": 10001
+      },
+      "scaler_sha256": "d4c8254091391b1328786412dd6eaf047970a62272b3c8dd550ec7f2597a0f99",
+      "split_seed": 43,
+      "status": "P9_CELL_PROTOCOL_PASS",
+      "surrogate_families": [
+        "Fuzzers",
+        "Reconnaissance"
+      ],
+      "target": "Exploits",
+      "target_held_out_identity_count_from_p8": 18417,
+      "target_held_out_row_count_from_p8": 20094,
+      "vocabulary_feature_sha256": {
+        "proto": "dd8d92a08558d5fa86595a8fc483ee239a46aabc9baa9a848fb52a2730bc4244",
+        "service": "259a52d4aa6a52b64b19ce84b22799574b1f56f75908c6cfa18a8abb051990c9",
+        "state": "817feb2caf76023382ba107e48aa2211e7043a74ceae99ddc203444840689165"
+      },
+      "vocabulary_sha256": "918ad2c609577dc80ba9c52d8c9777ec382ad98a235232030f345b209ea04558"
+    },
+    {
+      "class_order": [
+        "Normal",
+        "Analysis",
+        "Backdoors",
+        "DoS",
+        "Generic",
+        "Shellcode",
+        "Worms"
+      ],
+      "model_seed": 10044,
+      "p8_manifest_artifact_sha256": "673ac8c8a7ae42405c4126daf427a6c3ef3882091ad5a57b8b48298aaff96a75",
+      "p8_manifest_sha256": "39b33591ec636a815816ccfcc75a80ed2a8e6f736a5b7e7dd56240b5a80829e2",
+      "role_identities": {
+        "calibration": 6005,
+        "meta_known": 6005,
+        "surrogate_ood": 20811,
+        "train": 42025,
+        "val": 6005
+      },
+      "role_rows": {
+        "calibration": 10001,
+        "meta_known": 10001,
+        "surrogate_ood": 24708,
+        "train": 70008,
+        "val": 10001
+      },
+      "scaler_sha256": "416fe6e151a45d6d5086240e01f3e03b35bfcdf8e21656d6ca0d3d8c3bda2f43",
+      "split_seed": 44,
+      "status": "P9_CELL_PROTOCOL_PASS",
+      "surrogate_families": [
+        "Fuzzers",
+        "Reconnaissance"
+      ],
+      "target": "Exploits",
+      "target_held_out_identity_count_from_p8": 18417,
+      "target_held_out_row_count_from_p8": 20094,
+      "vocabulary_feature_sha256": {
+        "proto": "7eb5743b79d111a612fd2706738bd7e1e07ac60c30b92dafc2c44ddce3ec8b88",
+        "service": "259a52d4aa6a52b64b19ce84b22799574b1f56f75908c6cfa18a8abb051990c9",
+        "state": "70ab808e7d2f4ac4eb6d980cf4bcb3ee146277c501e8a9dba91507243086a380"
+      },
+      "vocabulary_sha256": "8d836029229800a0a0d9b49c3900ffe142132aa71e6fb55e25312277016c89fd"
+    },
+    {
+      "class_order": [
+        "Normal",
+        "Analysis",
+        "Backdoors",
+        "DoS",
+        "Generic",
+        "Shellcode",
+        "Worms"
+      ],
+      "model_seed": 10042,
+      "p8_manifest_artifact_sha256": "ff3ae620d95b93c3b5df7233df79dc2397283ab9494e8905bbfeb213d9f96711",
+      "p8_manifest_sha256": "9bc79198a5f48a60dc2b6c943c5775cebb3f4bfbdb55c75a08ace42f8845ca67",
+      "role_identities": {
+        "calibration": 6004,
+        "meta_known": 6005,
+        "surrogate_ood": 24626,
+        "train": 42026,
+        "val": 6005
+      },
+      "role_rows": {
+        "calibration": 10001,
+        "meta_known": 10001,
+        "surrogate_ood": 28696,
+        "train": 70008,
+        "val": 10001
+      },
+      "scaler_sha256": "abaaf1b9b22cd31eb3a0237754fe07ca55020d843be7cc38b8e9991da6996a5f",
+      "split_seed": 42,
+      "status": "P9_CELL_PROTOCOL_PASS",
+      "surrogate_families": [
+        "Exploits",
+        "Reconnaissance"
+      ],
+      "target": "Fuzzers",
+      "target_held_out_identity_count_from_p8": 14602,
+      "target_held_out_row_count_from_p8": 16106,
+      "vocabulary_feature_sha256": {
+        "proto": "f6723ddf54669b9b4e55929e039bc7685be861f7ddac15709d084d35909b73e1",
+        "service": "259a52d4aa6a52b64b19ce84b22799574b1f56f75908c6cfa18a8abb051990c9",
+        "state": "817feb2caf76023382ba107e48aa2211e7043a74ceae99ddc203444840689165"
+      },
+      "vocabulary_sha256": "a57d1cb2efcdbabb2ba494e931afed78af9464094fca6bf136971969f42f6f50"
+    },
+    {
+      "class_order": [
+        "Normal",
+        "Analysis",
+        "Backdoors",
+        "DoS",
+        "Generic",
+        "Shellcode",
+        "Worms"
+      ],
+      "model_seed": 10043,
+      "p8_manifest_artifact_sha256": "8018e83ef65ebbe4743702558397bb75494615e517ea2719a1a5745f1716ec78",
+      "p8_manifest_sha256": "0b00d047ae2fcc18c60ec57d7c26ea07ef85fa37df5240ff3fc3d0f2a2ed3786",
+      "role_identities": {
+        "calibration": 6005,
+        "meta_known": 6004,
+        "surrogate_ood": 24626,
+        "train": 42026,
+        "val": 6005
+      },
+      "role_rows": {
+        "calibration": 10001,
+        "meta_known": 10001,
+        "surrogate_ood": 28696,
+        "train": 70008,
+        "val": 10001
+      },
+      "scaler_sha256": "d4c8254091391b1328786412dd6eaf047970a62272b3c8dd550ec7f2597a0f99",
+      "split_seed": 43,
+      "status": "P9_CELL_PROTOCOL_PASS",
+      "surrogate_families": [
+        "Exploits",
+        "Reconnaissance"
+      ],
+      "target": "Fuzzers",
+      "target_held_out_identity_count_from_p8": 14602,
+      "target_held_out_row_count_from_p8": 16106,
+      "vocabulary_feature_sha256": {
+        "proto": "dd8d92a08558d5fa86595a8fc483ee239a46aabc9baa9a848fb52a2730bc4244",
+        "service": "259a52d4aa6a52b64b19ce84b22799574b1f56f75908c6cfa18a8abb051990c9",
+        "state": "817feb2caf76023382ba107e48aa2211e7043a74ceae99ddc203444840689165"
+      },
+      "vocabulary_sha256": "918ad2c609577dc80ba9c52d8c9777ec382ad98a235232030f345b209ea04558"
+    },
+    {
+      "class_order": [
+        "Normal",
+        "Analysis",
+        "Backdoors",
+        "DoS",
+        "Generic",
+        "Shellcode",
+        "Worms"
+      ],
+      "model_seed": 10044,
+      "p8_manifest_artifact_sha256": "dcc82331b3892b08a09d6362ac85107105266d95089ad9708b93560d75c4e3c6",
+      "p8_manifest_sha256": "2ea4cc526bca934dd37c1a4d3c78cf73afb89ae6e117c72b0b7abdb8edfda91c",
+      "role_identities": {
+        "calibration": 6005,
+        "meta_known": 6005,
+        "surrogate_ood": 24626,
+        "train": 42025,
+        "val": 6005
+      },
+      "role_rows": {
+        "calibration": 10001,
+        "meta_known": 10001,
+        "surrogate_ood": 28696,
+        "train": 70008,
+        "val": 10001
+      },
+      "scaler_sha256": "416fe6e151a45d6d5086240e01f3e03b35bfcdf8e21656d6ca0d3d8c3bda2f43",
+      "split_seed": 44,
+      "status": "P9_CELL_PROTOCOL_PASS",
+      "surrogate_families": [
+        "Exploits",
+        "Reconnaissance"
+      ],
+      "target": "Fuzzers",
+      "target_held_out_identity_count_from_p8": 14602,
+      "target_held_out_row_count_from_p8": 16106,
+      "vocabulary_feature_sha256": {
+        "proto": "7eb5743b79d111a612fd2706738bd7e1e07ac60c30b92dafc2c44ddce3ec8b88",
+        "service": "259a52d4aa6a52b64b19ce84b22799574b1f56f75908c6cfa18a8abb051990c9",
+        "state": "70ab808e7d2f4ac4eb6d980cf4bcb3ee146277c501e8a9dba91507243086a380"
+      },
+      "vocabulary_sha256": "8d836029229800a0a0d9b49c3900ffe142132aa71e6fb55e25312277016c89fd"
+    },
+    {
+      "class_order": [
+        "Normal",
+        "Analysis",
+        "Backdoors",
+        "DoS",
+        "Reconnaissance",
+        "Shellcode",
+        "Worms"
+      ],
+      "model_seed": 10042,
+      "p8_manifest_artifact_sha256": "a0e2ecf2b512f965bb219563ce50b19996e50f3690f43c280788ddc82e1a6789",
+      "p8_manifest_sha256": "97be8d6dd7c754a84a41062135567cf9a173a27f288914474872a882e13b541c",
+      "role_identities": {
+        "calibration": 6256,
+        "meta_known": 6255,
+        "surrogate_ood": 33019,
+        "train": 43579,
+        "val": 6255
+      },
+      "role_rows": {
+        "calibration": 6893,
+        "meta_known": 6893,
+        "surrogate_ood": 36200,
+        "train": 48253,
+        "val": 6893
+      },
+      "scaler_sha256": "461c3f66e7ceb171b8327e215ee78b3e8591150d6dd5ede15143ac241ca9c2a8",
+      "split_seed": 42,
+      "status": "P9_CELL_PROTOCOL_PASS",
+      "surrogate_families": [
+        "Exploits",
+        "Fuzzers"
+      ],
+      "target": "Generic",
+      "target_held_out_identity_count_from_p8": 3904,
+      "target_held_out_row_count_from_p8": 39681,
+      "vocabulary_feature_sha256": {
+        "proto": "0d85dbf9603e67f3d6db4e7e35334474bd7782bfbab3c776ee8dad4aefc7e781",
+        "service": "259a52d4aa6a52b64b19ce84b22799574b1f56f75908c6cfa18a8abb051990c9",
+        "state": "70ab808e7d2f4ac4eb6d980cf4bcb3ee146277c501e8a9dba91507243086a380"
+      },
+      "vocabulary_sha256": "af04851d524a6d967e9cae5039a29d5b132bcb1f6051e8d8f3ad06dd4625ff5e"
+    },
+    {
+      "class_order": [
+        "Normal",
+        "Analysis",
+        "Backdoors",
+        "DoS",
+        "Reconnaissance",
+        "Shellcode",
+        "Worms"
+      ],
+      "model_seed": 10043,
+      "p8_manifest_artifact_sha256": "359329c111603e96e7e215df7f203022350918bde0e0b61f2ea41dd99acbf379",
+      "p8_manifest_sha256": "216369de9bcd5ec5ceb3a1910cbeea2670092cfc58b5bbce859de408d0477647",
+      "role_identities": {
+        "calibration": 6258,
+        "meta_known": 6255,
+        "surrogate_ood": 33019,
+        "train": 43577,
+        "val": 6255
+      },
+      "role_rows": {
+        "calibration": 6894,
+        "meta_known": 6893,
+        "surrogate_ood": 36200,
+        "train": 48252,
+        "val": 6893
+      },
+      "scaler_sha256": "dda4d2f39bcb808e18cf169dfb1cc56e1e1a20377e03f65a632bb34d5563e31d",
+      "split_seed": 43,
+      "status": "P9_CELL_PROTOCOL_PASS",
+      "surrogate_families": [
+        "Exploits",
+        "Fuzzers"
+      ],
+      "target": "Generic",
+      "target_held_out_identity_count_from_p8": 3904,
+      "target_held_out_row_count_from_p8": 39681,
+      "vocabulary_feature_sha256": {
+        "proto": "98a46b6c01c0778e62effeec31a546f18eea0accbbee27b496a8f24cdfe2e52d",
+        "service": "259a52d4aa6a52b64b19ce84b22799574b1f56f75908c6cfa18a8abb051990c9",
+        "state": "c7011e9c2d2fed17a4c5178e0dd96984b471e40ce7d74571fe54cb39b5b59069"
+      },
+      "vocabulary_sha256": "64fbfb8e6f39ecf38848310e9082a73ef526a171aa5f66e38147b2d468300e65"
+    },
+    {
+      "class_order": [
+        "Normal",
+        "Analysis",
+        "Backdoors",
+        "DoS",
+        "Reconnaissance",
+        "Shellcode",
+        "Worms"
+      ],
+      "model_seed": 10044,
+      "p8_manifest_artifact_sha256": "2f0500bd9cb2269ef590c9f5deb49fa854478ca1662c7443df672f22bf72f42e",
+      "p8_manifest_sha256": "cd3d6bd33fb4e749fee335071a4f2868c30682f4577cced2529fd6d3857a7eb5",
+      "role_identities": {
+        "calibration": 6255,
+        "meta_known": 6255,
+        "surrogate_ood": 33019,
+        "train": 43579,
+        "val": 6256
+      },
+      "role_rows": {
+        "calibration": 6893,
+        "meta_known": 6893,
+        "surrogate_ood": 36200,
+        "train": 48253,
+        "val": 6893
+      },
+      "scaler_sha256": "cc4aedf77b0d0762e69fdfce78e1884a588d5b954f798a22292ba996eb1259a8",
+      "split_seed": 44,
+      "status": "P9_CELL_PROTOCOL_PASS",
+      "surrogate_families": [
+        "Exploits",
+        "Fuzzers"
+      ],
+      "target": "Generic",
+      "target_held_out_identity_count_from_p8": 3904,
+      "target_held_out_row_count_from_p8": 39681,
+      "vocabulary_feature_sha256": {
+        "proto": "18d18acbb0359e0575805e0ab0e747664a285621c53709eb58654685d9b76492",
+        "service": "259a52d4aa6a52b64b19ce84b22799574b1f56f75908c6cfa18a8abb051990c9",
+        "state": "1c0c8b57c24b3a091282d8c91c293e67a538922f9ec3e9c6527c87270e75597c"
+      },
+      "vocabulary_sha256": "e873fb75e3c880c96380410606d2974e08203d5d4886d230a57842f6960f5c2e"
+    },
+    {
+      "class_order": [
+        "Normal",
+        "Analysis",
+        "Backdoors",
+        "DoS",
+        "Generic",
+        "Shellcode",
+        "Worms"
+      ],
+      "model_seed": 10042,
+      "p8_manifest_artifact_sha256": "72f349e4281264218782923c778a8ddb4e1f2b33fced681ed1320aa0f7c1d936",
+      "p8_manifest_sha256": "2188f2052e8405fccfe39a65c93c915fc15188af720da7d74fe86ff3f27425dc",
+      "role_identities": {
+        "calibration": 6004,
+        "meta_known": 6005,
+        "surrogate_ood": 33019,
+        "train": 42026,
+        "val": 6005
+      },
+      "role_rows": {
+        "calibration": 10001,
+        "meta_known": 10001,
+        "surrogate_ood": 36200,
+        "train": 70008,
+        "val": 10001
+      },
+      "scaler_sha256": "abaaf1b9b22cd31eb3a0237754fe07ca55020d843be7cc38b8e9991da6996a5f",
+      "split_seed": 42,
+      "status": "P9_CELL_PROTOCOL_PASS",
+      "surrogate_families": [
+        "Exploits",
+        "Fuzzers"
+      ],
+      "target": "Reconnaissance",
+      "target_held_out_identity_count_from_p8": 6209,
+      "target_held_out_row_count_from_p8": 8602,
+      "vocabulary_feature_sha256": {
+        "proto": "f6723ddf54669b9b4e55929e039bc7685be861f7ddac15709d084d35909b73e1",
+        "service": "259a52d4aa6a52b64b19ce84b22799574b1f56f75908c6cfa18a8abb051990c9",
+        "state": "817feb2caf76023382ba107e48aa2211e7043a74ceae99ddc203444840689165"
+      },
+      "vocabulary_sha256": "a57d1cb2efcdbabb2ba494e931afed78af9464094fca6bf136971969f42f6f50"
+    },
+    {
+      "class_order": [
+        "Normal",
+        "Analysis",
+        "Backdoors",
+        "DoS",
+        "Generic",
+        "Shellcode",
+        "Worms"
+      ],
+      "model_seed": 10043,
+      "p8_manifest_artifact_sha256": "b004f1c2fed4439994b1d6a3710e1cc85c0cb87e7977b0134f71ee90785b795b",
+      "p8_manifest_sha256": "5534b6941dff9c7ffa744a6c9be8f0b587589c369186d76ced4b71808a7c04ef",
+      "role_identities": {
+        "calibration": 6005,
+        "meta_known": 6004,
+        "surrogate_ood": 33019,
+        "train": 42026,
+        "val": 6005
+      },
+      "role_rows": {
+        "calibration": 10001,
+        "meta_known": 10001,
+        "surrogate_ood": 36200,
+        "train": 70008,
+        "val": 10001
+      },
+      "scaler_sha256": "d4c8254091391b1328786412dd6eaf047970a62272b3c8dd550ec7f2597a0f99",
+      "split_seed": 43,
+      "status": "P9_CELL_PROTOCOL_PASS",
+      "surrogate_families": [
+        "Exploits",
+        "Fuzzers"
+      ],
+      "target": "Reconnaissance",
+      "target_held_out_identity_count_from_p8": 6209,
+      "target_held_out_row_count_from_p8": 8602,
+      "vocabulary_feature_sha256": {
+        "proto": "dd8d92a08558d5fa86595a8fc483ee239a46aabc9baa9a848fb52a2730bc4244",
+        "service": "259a52d4aa6a52b64b19ce84b22799574b1f56f75908c6cfa18a8abb051990c9",
+        "state": "817feb2caf76023382ba107e48aa2211e7043a74ceae99ddc203444840689165"
+      },
+      "vocabulary_sha256": "918ad2c609577dc80ba9c52d8c9777ec382ad98a235232030f345b209ea04558"
+    },
+    {
+      "class_order": [
+        "Normal",
+        "Analysis",
+        "Backdoors",
+        "DoS",
+        "Generic",
+        "Shellcode",
+        "Worms"
+      ],
+      "model_seed": 10044,
+      "p8_manifest_artifact_sha256": "558fc6a74ae2089c457c7cff5351f55e54157deacb2f0de28efad0d6d5ee5536",
+      "p8_manifest_sha256": "ce582c64b060d3ef41c02ac43df117d9f175db14ec28c0cf917849bf718ae3fe",
+      "role_identities": {
+        "calibration": 6005,
+        "meta_known": 6005,
+        "surrogate_ood": 33019,
+        "train": 42025,
+        "val": 6005
+      },
+      "role_rows": {
+        "calibration": 10001,
+        "meta_known": 10001,
+        "surrogate_ood": 36200,
+        "train": 70008,
+        "val": 10001
+      },
+      "scaler_sha256": "416fe6e151a45d6d5086240e01f3e03b35bfcdf8e21656d6ca0d3d8c3bda2f43",
+      "split_seed": 44,
+      "status": "P9_CELL_PROTOCOL_PASS",
+      "surrogate_families": [
+        "Exploits",
+        "Fuzzers"
+      ],
+      "target": "Reconnaissance",
+      "target_held_out_identity_count_from_p8": 6209,
+      "target_held_out_row_count_from_p8": 8602,
+      "vocabulary_feature_sha256": {
+        "proto": "7eb5743b79d111a612fd2706738bd7e1e07ac60c30b92dafc2c44ddce3ec8b88",
+        "service": "259a52d4aa6a52b64b19ce84b22799574b1f56f75908c6cfa18a8abb051990c9",
+        "state": "70ab808e7d2f4ac4eb6d980cf4bcb3ee146277c501e8a9dba91507243086a380"
+      },
+      "vocabulary_sha256": "8d836029229800a0a0d9b49c3900ffe142132aa71e6fb55e25312277016c89fd"
+    },
+    {
+      "class_order": [
+        "Normal",
+        "Analysis",
+        "Backdoors",
+        "DoS",
+        "Generic",
+        "Reconnaissance",
+        "Worms"
+      ],
+      "model_seed": 10042,
+      "p8_manifest_artifact_sha256": "eb96400aadae07bb5aa546032f77922e0850e2af4863079acdc4777648238745",
+      "p8_manifest_sha256": "9b854a696157d968bad91159935554b50f85178abc22afcc6aeac90ef1b4c0d9",
+      "role_identities": {
+        "calibration": 6536,
+        "meta_known": 6537,
+        "surrogate_ood": 33019,
+        "train": 45554,
+        "val": 6537
+      },
+      "role_rows": {
+        "calibration": 10748,
+        "meta_known": 10748,
+        "surrogate_ood": 36200,
+        "train": 75243,
+        "val": 10748
+      },
+      "scaler_sha256": "d13d964cad7935e18af32de88607116e203170635d1404e3e11718cb6411f994",
+      "split_seed": 42,
+      "status": "P9_CELL_PROTOCOL_PASS",
+      "surrogate_families": [
+        "Exploits",
+        "Fuzzers"
+      ],
+      "target": "Shellcode",
+      "target_held_out_identity_count_from_p8": 1085,
+      "target_held_out_row_count_from_p8": 1126,
+      "vocabulary_feature_sha256": {
+        "proto": "bdeada68f31515d4dba280907b7c0fe3e39fba91fc2c3ac36fea965572f7f3ce",
+        "service": "259a52d4aa6a52b64b19ce84b22799574b1f56f75908c6cfa18a8abb051990c9",
+        "state": "e9ab6daeee53a299d2e2d7bf540d4a62ecab82098799f25ededd93abd5fefa2f"
+      },
+      "vocabulary_sha256": "ca2c8389a89778b5fc7c0cb2bb935c7a9ba545f526c1658da8c2569e9a321b46"
+    },
+    {
+      "class_order": [
+        "Normal",
+        "Analysis",
+        "Backdoors",
+        "DoS",
+        "Generic",
+        "Reconnaissance",
+        "Worms"
+      ],
+      "model_seed": 10043,
+      "p8_manifest_artifact_sha256": "d71d280bd156116ba8c5d796c518aeb8dd65d68048836e9c9608f4dcaff760c4",
+      "p8_manifest_sha256": "ac47bfc84cb1f92b450070201660336f3bc5f600e37300a0552c5c9b46a339e6",
+      "role_identities": {
+        "calibration": 6535,
+        "meta_known": 6538,
+        "surrogate_ood": 33019,
+        "train": 45555,
+        "val": 6536
+      },
+      "role_rows": {
+        "calibration": 10748,
+        "meta_known": 10749,
+        "surrogate_ood": 36200,
+        "train": 75242,
+        "val": 10748
+      },
+      "scaler_sha256": "999f3d32787f516fe44b7ea0766eca662f0ea1f779b2b99145fc757027c6e507",
+      "split_seed": 43,
+      "status": "P9_CELL_PROTOCOL_PASS",
+      "surrogate_families": [
+        "Exploits",
+        "Fuzzers"
+      ],
+      "target": "Shellcode",
+      "target_held_out_identity_count_from_p8": 1085,
+      "target_held_out_row_count_from_p8": 1126,
+      "vocabulary_feature_sha256": {
+        "proto": "718d331e2f469bb8ecab94e09a1aa9f763ac79dcdae48e2e38f0a3c9e4f69b2e",
+        "service": "259a52d4aa6a52b64b19ce84b22799574b1f56f75908c6cfa18a8abb051990c9",
+        "state": "70ab808e7d2f4ac4eb6d980cf4bcb3ee146277c501e8a9dba91507243086a380"
+      },
+      "vocabulary_sha256": "feef6dd26496bc2ec2b060a53bff8fcc3395858c5ea2c9dc87cb9818e64ff9d8"
+    },
+    {
+      "class_order": [
+        "Normal",
+        "Analysis",
+        "Backdoors",
+        "DoS",
+        "Generic",
+        "Reconnaissance",
+        "Worms"
+      ],
+      "model_seed": 10044,
+      "p8_manifest_artifact_sha256": "39d7e24e8d683e1e26b9b8982e9ae7aae8cd09f340a890ad3d7a49ec4be61b36",
+      "p8_manifest_sha256": "dc64280700906ed75b6ff579ae7572a525c4e0f10994b3d588efde9a40258fa2",
+      "role_identities": {
+        "calibration": 6536,
+        "meta_known": 6537,
+        "surrogate_ood": 33019,
+        "train": 45553,
+        "val": 6538
+      },
+      "role_rows": {
+        "calibration": 10748,
+        "meta_known": 10748,
+        "surrogate_ood": 36200,
+        "train": 75242,
+        "val": 10749
+      },
+      "scaler_sha256": "fa6ed71ad3222b4af56649468684940e551e744f7ebace52efd657eaedddf995",
+      "split_seed": 44,
+      "status": "P9_CELL_PROTOCOL_PASS",
+      "surrogate_families": [
+        "Exploits",
+        "Fuzzers"
+      ],
+      "target": "Shellcode",
+      "target_held_out_identity_count_from_p8": 1085,
+      "target_held_out_row_count_from_p8": 1126,
+      "vocabulary_feature_sha256": {
+        "proto": "b2e8c1efb77222b3d2b35e4cd7573c96ce17c24d820641c3b1737b1dbe48df38",
+        "service": "259a52d4aa6a52b64b19ce84b22799574b1f56f75908c6cfa18a8abb051990c9",
+        "state": "1c0c8b57c24b3a091282d8c91c293e67a538922f9ec3e9c6527c87270e75597c"
+      },
+      "vocabulary_sha256": "e8a5c3e7f8dcd6cac1eceaf14abb695e96f92dd433b2de06598adbaec40606a5"
+    },
+    {
+      "class_order": [
+        "Normal",
+        "Analysis",
+        "Backdoors",
+        "DoS",
+        "Generic",
+        "Reconnaissance",
+        "Shellcode"
+      ],
+      "model_seed": 10042,
+      "p8_manifest_artifact_sha256": "48aabdb677a47918e7133f00fb5d6badc3a1ed1bdf0e5bf0d9ca4eb1c939e987",
+      "p8_manifest_sha256": "898c1890cd12396419338ae6b37b6b1546dd08731e6a850209e85be973669a22",
+      "role_identities": {
+        "calibration": 6633,
+        "meta_known": 6633,
+        "surrogate_ood": 33019,
+        "train": 46233,
+        "val": 6633
+      },
+      "role_rows": {
+        "calibration": 10849,
+        "meta_known": 10849,
+        "surrogate_ood": 36200,
+        "train": 75949,
+        "val": 10849
+      },
+      "scaler_sha256": "1968af76f75269818cc35044cdcd283abfdc0c132f7d11ad8c99422392224d45",
+      "split_seed": 42,
+      "status": "P9_CELL_PROTOCOL_PASS",
+      "surrogate_families": [
+        "Exploits",
+        "Fuzzers"
+      ],
+      "target": "Worms",
+      "target_held_out_identity_count_from_p8": 117,
+      "target_held_out_row_count_from_p8": 117,
+      "vocabulary_feature_sha256": {
+        "proto": "bb39ef2fe0461f80683bc7f3adeed45ea254707184c48969a65680bfda191102",
+        "service": "259a52d4aa6a52b64b19ce84b22799574b1f56f75908c6cfa18a8abb051990c9",
+        "state": "817feb2caf76023382ba107e48aa2211e7043a74ceae99ddc203444840689165"
+      },
+      "vocabulary_sha256": "ca6d520737617442f04ad79d706c892d2abdaabbb01258485e93439dd5591c95"
+    },
+    {
+      "class_order": [
+        "Normal",
+        "Analysis",
+        "Backdoors",
+        "DoS",
+        "Generic",
+        "Reconnaissance",
+        "Shellcode"
+      ],
+      "model_seed": 10043,
+      "p8_manifest_artifact_sha256": "46673d2503228e38a1ad64c109abe52b6053e6d85dfde5268c17ac800e55f90b",
+      "p8_manifest_sha256": "5066359789cb0459ba0db8cdafc55a021b138e410549d30b0ab978f4dd19692f",
+      "role_identities": {
+        "calibration": 6632,
+        "meta_known": 6633,
+        "surrogate_ood": 33019,
+        "train": 46233,
+        "val": 6634
+      },
+      "role_rows": {
+        "calibration": 10849,
+        "meta_known": 10849,
+        "surrogate_ood": 36200,
+        "train": 75949,
+        "val": 10849
+      },
+      "scaler_sha256": "9091b6243791e387efb14121e9c5fb88387d9e17469354d28131eeb2ca875f22",
+      "split_seed": 43,
+      "status": "P9_CELL_PROTOCOL_PASS",
+      "surrogate_families": [
+        "Exploits",
+        "Fuzzers"
+      ],
+      "target": "Worms",
+      "target_held_out_identity_count_from_p8": 117,
+      "target_held_out_row_count_from_p8": 117,
+      "vocabulary_feature_sha256": {
+        "proto": "7de173b72d7c9e08fa83c016f7050f5b3653ab58a0fd0db95436bb753d63dfab",
+        "service": "259a52d4aa6a52b64b19ce84b22799574b1f56f75908c6cfa18a8abb051990c9",
+        "state": "70ab808e7d2f4ac4eb6d980cf4bcb3ee146277c501e8a9dba91507243086a380"
+      },
+      "vocabulary_sha256": "e975dab6a4e210cb8bf0086e722c15d1b390eadbfc650abde4242ef5a26deecf"
+    },
+    {
+      "class_order": [
+        "Normal",
+        "Analysis",
+        "Backdoors",
+        "DoS",
+        "Generic",
+        "Reconnaissance",
+        "Shellcode"
+      ],
+      "model_seed": 10044,
+      "p8_manifest_artifact_sha256": "ef5f696715beba53f436cdced126863900f8b4bca5409b9166ad0050ff3a2a44",
+      "p8_manifest_sha256": "f15841cb0830592eaffb545fb01ece7066ce1cef0c881c303ef3bc8ec4770596",
+      "role_identities": {
+        "calibration": 6633,
+        "meta_known": 6634,
+        "surrogate_ood": 33019,
+        "train": 46232,
+        "val": 6633
+      },
+      "role_rows": {
+        "calibration": 10849,
+        "meta_known": 10849,
+        "surrogate_ood": 36200,
+        "train": 75949,
+        "val": 10849
+      },
+      "scaler_sha256": "1911dd082008cfce453f8d49f6a0e484ac394857cbe8c528c29b1a04d81d0ad3",
+      "split_seed": 44,
+      "status": "P9_CELL_PROTOCOL_PASS",
+      "surrogate_families": [
+        "Exploits",
+        "Fuzzers"
+      ],
+      "target": "Worms",
+      "target_held_out_identity_count_from_p8": 117,
+      "target_held_out_row_count_from_p8": 117,
+      "vocabulary_feature_sha256": {
+        "proto": "835e9cf315d586a16ad84c8986385fccd6b7556412840b4080d2f7f7fdd29e04",
+        "service": "259a52d4aa6a52b64b19ce84b22799574b1f56f75908c6cfa18a8abb051990c9",
+        "state": "70ab808e7d2f4ac4eb6d980cf4bcb3ee146277c501e8a9dba91507243086a380"
+      },
+      "vocabulary_sha256": "bc63d8ff294435a4505818744accee4bbab462e60534853684fdeb0ea01103dd"
+    }
+  ],
+  "official_test_access": false,
+  "optimizer_created": false,
+  "optimizer_steps": 0,
+  "p8_protocol_sha256": "62916073ef6048503415d45e2605bbf475b729e032c838a60cc7e94c43768216",
+  "protocol_sha256": "c1c7352a9ca546a3e8e456b112d09fd42f29243e205a8760703b27f68b5baf87",
+  "status": "P9_PROTOCOL_PASS",
+  "target_held_out_access": false,
+  "training_config_sha256": "f4955efbb2b630f3956d43cd19996ed90886c5b053f2b6a5adb6feb8571b4b61",
+  "version": "p9-loafo-development-v1"
+}
