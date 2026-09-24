@@ -1,0 +1,37 @@
+{
+  "aggregate_method": "SHA-256 of sorted filename\\0size_bytes\\0file_sha256\\n records",
+  "aggregate_session_sha256": "c30cce55ef2b81f3196e88371fb363b6ca3d62f874d348f71051fbe6fd35830e",
+  "artifact_type": "P13D_SESSION_B_RAW_RESERVATION",
+  "post_reservation_editing_forbidden": true,
+  "raw_files": [
+    {
+      "capture_end_utc": "2026-09-24T01:41:46.992965Z",
+      "capture_format": "classic_pcap",
+      "capture_interface": "lo",
+      "capture_start_utc": "2026-09-24T01:41:18.078663Z",
+      "drop_count": 0,
+      "drop_count_source": "dumpcap final received/dropped diagnostic",
+      "dumpcap_binary_sha256": "704621b098f3c5440d91ce7f05e0f0f7ff1d386e67a1e133d6a4d39db3648376",
+      "dumpcap_reported_packet_count": 728,
+      "dumpcap_version": "Dumpcap (Wireshark) 4.4.18.",
+      "filename": "session_b_raw.pcap",
+      "link_type": "DLT_EN10MB",
+      "packet_capture_end_ns": 1790214104972694367,
+      "packet_capture_start_ns": 1790214084068834707,
+      "packet_count": 728,
+      "path": "data/controlled_capture/p13d/session_b_raw.pcap",
+      "schedule_sha256": "12fb1dc852eac50895cec82052097fef4da295a2b5d877ea224e6d7b72e5d640",
+      "sha256": "c2196509d774354f4f1d9b231886abae17f1d4a323d26b2b729c73d85dc9a4a3",
+      "size_bytes": 70474,
+      "timestamp_precision": "nanoseconds"
+    }
+  ],
+  "raw_files_read_only": true,
+  "raw_hashes_distinct": true,
+  "reservation_status": "P13D_SESSION_B_RAW_RESERVED",
+  "reserved_at_utc": "2026-09-24T01:41:47.015876Z",
+  "schedule_hashes_distinct": true,
+  "schedule_sha256": "12fb1dc852eac50895cec82052097fef4da295a2b5d877ea224e6d7b72e5d640",
+  "session_a_raw_sha256": "570fad15116845545d92914aa1caf1848a1d979030352f15c1bd4c6caa84b986",
+  "session_a_schedule_sha256": "4920c3efcba623d1838a9f3f3a1fd4ff008925288a3b0e5b7ca7538f2a886761"
+}

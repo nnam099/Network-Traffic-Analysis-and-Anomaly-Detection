@@ -1,0 +1,10 @@
+{
+  "artifact_type": "P13D_SESSION_B_PROTOCOL_AUDIT",
+  "balancing_performed": false,
+  "canonical_token_counts": {
+    "IPPROTO_1": 1,
+    "IPPROTO_17": 12,
+    "IPPROTO_6": 71
+  },
+  "rare_protocols_dropped": false
+}

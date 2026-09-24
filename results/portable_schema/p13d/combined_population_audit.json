@@ -1,0 +1,19 @@
+{
+  "ambiguous_rows": 0,
+  "artifact_type": "P13D_COMBINED_CONTROLLED_CORPUS_AUDIT",
+  "attack_rows": 124,
+  "balancing_performed": false,
+  "flow_instances": 164,
+  "mixed_semantic_identities": 0,
+  "ml_splits_created": false,
+  "normal_rows": 40,
+  "packets": 1521,
+  "protocol_coverage": {
+    "IPPROTO_1": 2,
+    "IPPROTO_17": 13,
+    "IPPROTO_6": 149
+  },
+  "semantic_identities": 164,
+  "synthetic_flows_created": false,
+  "unmatched_rows": 0
+}

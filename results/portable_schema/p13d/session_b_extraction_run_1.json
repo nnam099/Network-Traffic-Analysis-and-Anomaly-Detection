@@ -1,0 +1,16 @@
+{
+  "artifact_type": "P13D_SESSION_B_EXTRACTION_RUN",
+  "categorical_field_count": 1,
+  "complete_19_fields": true,
+  "continuous_field_count": 18,
+  "flow_count": 84,
+  "fresh_raw_parse": true,
+  "imputation_performed": false,
+  "labels_visible_to_extractor": false,
+  "missing_mask_field_count": 18,
+  "packet_count": 728,
+  "run": 1,
+  "scaling_performed": false,
+  "semantic_content_sha256": "27a4b0b7f56a07a3516f6a3aab3014d527d17a60a439e2925f16e4265c1da886",
+  "source_sha256": "c2196509d774354f4f1d9b231886abae17f1d4a323d26b2b729c73d85dc9a4a3"
+}

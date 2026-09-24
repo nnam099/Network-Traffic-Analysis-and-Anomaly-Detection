@@ -1,0 +1,20 @@
+{
+  "ambiguous_rows": 0,
+  "artifact_type": "P13D_SESSION_A_REFERENCE",
+  "attack_rows": 68,
+  "canonical_identity_count": 80,
+  "flow_count": 80,
+  "gate_path": "results/portable_schema/p13c/attempt_002/p13c_gate.json",
+  "gate_sha256": "6b8aef91964a18a606d3b992c42db18fe261b7c77b10d3abc3e0a51ed17fcb3f",
+  "mixed_identity_count": 0,
+  "normal_rows": 12,
+  "p13c_freeze_commit": "ce0b6be7604acd748015834df3f024e62afb5d07",
+  "packet_count": 793,
+  "raw_path": "data/controlled_capture/p13c/attempt_002/session_a_raw.pcap",
+  "raw_read_only": true,
+  "raw_sha256": "570fad15116845545d92914aa1caf1848a1d979030352f15c1bd4c6caa84b986",
+  "raw_size_bytes": 77284,
+  "schedule_sha256": "4920c3efcba623d1838a9f3f3a1fd4ff008925288a3b0e5b7ca7538f2a886761",
+  "semantic_content_sha256": "f65f0a71d35f432011ab4abe7159319499ed6385809d3829b0066ce6d222a526",
+  "unmatched_rows": 0
+}

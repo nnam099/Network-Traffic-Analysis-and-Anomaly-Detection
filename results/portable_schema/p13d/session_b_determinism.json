@@ -1,0 +1,10 @@
+{
+  "artifact_type": "P13D_SESSION_B_DETERMINISM",
+  "flow_order_and_content_equality": true,
+  "packet_equality": true,
+  "row_order_and_binary64_content_equality": true,
+  "run_1_semantic_content_sha256": "27a4b0b7f56a07a3516f6a3aab3014d527d17a60a439e2925f16e4265c1da886",
+  "run_2_semantic_content_sha256": "27a4b0b7f56a07a3516f6a3aab3014d527d17a60a439e2925f16e4265c1da886",
+  "semantic_content_hash_equality": true,
+  "status": "P13D_SESSION_B_DETERMINISM_PASS"
+}

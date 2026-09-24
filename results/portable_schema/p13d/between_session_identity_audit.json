@@ -1,0 +1,14 @@
+{
+  "artifact_type": "P13D_BETWEEN_SESSION_IDENTITY_AUDIT",
+  "cross_label_intersection_count": 0,
+  "cross_session_label_relationship_counts": {},
+  "details": [],
+  "group_identity_review_required": false,
+  "identity_overlap_is_not_packet_duplication": true,
+  "intersection_count": 0,
+  "jaccard_overlap": 0.0,
+  "meaningful_cross_label_rule": "cross_label_intersection_count >= 1",
+  "session_a_unique_identities": 80,
+  "session_b_unique_identities": 84,
+  "union_count": 164
+}

@@ -1,0 +1,113 @@
+{
+  "artifact_type": "P13D_SESSION_B_POPULATION",
+  "balancing_performed": false,
+  "per_scenario": {
+    "session_b_attack_auth_failure": {
+      "ambiguous": 0,
+      "canonical_identities": 10,
+      "flows": 10,
+      "matched": 10,
+      "portable_label": "ATTACK",
+      "protocol_distribution": {
+        "IPPROTO_6": 10
+      },
+      "scenario_type": "ATTACK_AUTH_FAILURE"
+    },
+    "session_b_attack_http_burst": {
+      "ambiguous": 0,
+      "canonical_identities": 30,
+      "flows": 30,
+      "matched": 30,
+      "portable_label": "ATTACK",
+      "protocol_distribution": {
+        "IPPROTO_6": 30
+      },
+      "scenario_type": "ATTACK_HTTP_BURST"
+    },
+    "session_b_attack_scan": {
+      "ambiguous": 0,
+      "canonical_identities": 16,
+      "flows": 16,
+      "matched": 16,
+      "portable_label": "ATTACK",
+      "protocol_distribution": {
+        "IPPROTO_6": 16
+      },
+      "scenario_type": "ATTACK_PORT_SCAN"
+    },
+    "session_b_normal_http": {
+      "ambiguous": 0,
+      "canonical_identities": 6,
+      "flows": 6,
+      "matched": 6,
+      "portable_label": "NORMAL",
+      "protocol_distribution": {
+        "IPPROTO_6": 6
+      },
+      "scenario_type": "NORMAL_HTTP"
+    },
+    "session_b_normal_icmp": {
+      "ambiguous": 0,
+      "canonical_identities": 1,
+      "flows": 1,
+      "matched": 1,
+      "portable_label": "NORMAL",
+      "protocol_distribution": {
+        "IPPROTO_1": 1
+      },
+      "scenario_type": "NORMAL_ICMP"
+    },
+    "session_b_normal_tcp_long": {
+      "ambiguous": 0,
+      "canonical_identities": 1,
+      "flows": 1,
+      "matched": 1,
+      "portable_label": "NORMAL",
+      "protocol_distribution": {
+        "IPPROTO_6": 1
+      },
+      "scenario_type": "NORMAL_TCP_LONG"
+    },
+    "session_b_normal_tcp_short": {
+      "ambiguous": 0,
+      "canonical_identities": 8,
+      "flows": 8,
+      "matched": 8,
+      "portable_label": "NORMAL",
+      "protocol_distribution": {
+        "IPPROTO_6": 8
+      },
+      "scenario_type": "NORMAL_TCP_SHORT"
+    },
+    "session_b_normal_udp": {
+      "ambiguous": 0,
+      "canonical_identities": 12,
+      "flows": 12,
+      "matched": 12,
+      "portable_label": "NORMAL",
+      "protocol_distribution": {
+        "IPPROTO_17": 12
+      },
+      "scenario_type": "NORMAL_UDP_ECHO"
+    }
+  },
+  "populations": {
+    "AMBIGUOUS": {
+      "canonical_identities": 0,
+      "rows": 0
+    },
+    "ATTACK": {
+      "canonical_identities": 56,
+      "rows": 56
+    },
+    "NORMAL": {
+      "canonical_identities": 28,
+      "rows": 28
+    },
+    "UNMATCHED": {
+      "canonical_identities": 0,
+      "rows": 0
+    }
+  },
+  "rows_silently_dropped": 0
+}

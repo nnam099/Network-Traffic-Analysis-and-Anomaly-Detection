@@ -1,0 +1,769 @@
+{
+  "artifact_type": "P13D_SESSION_B_LABEL_JOIN",
+  "details": [
+    {
+      "flow_id": "flow-000000000000",
+      "matched_scenario_ids": [
+        "session_b_normal_icmp"
+      ],
+      "outcome": "MATCHED_NORMAL",
+      "portable_label": "NORMAL",
+      "source_label": "NORMAL_ICMP"
+    },
+    {
+      "flow_id": "flow-000000000001",
+      "matched_scenario_ids": [
+        "session_b_normal_http"
+      ],
+      "outcome": "MATCHED_NORMAL",
+      "portable_label": "NORMAL",
+      "source_label": "NORMAL_HTTP"
+    },
+    {
+      "flow_id": "flow-000000000002",
+      "matched_scenario_ids": [
+        "session_b_normal_http"
+      ],
+      "outcome": "MATCHED_NORMAL",
+      "portable_label": "NORMAL",
+      "source_label": "NORMAL_HTTP"
+    },
+    {
+      "flow_id": "flow-000000000003",
+      "matched_scenario_ids": [
+        "session_b_normal_http"
+      ],
+      "outcome": "MATCHED_NORMAL",
+      "portable_label": "NORMAL",
+      "source_label": "NORMAL_HTTP"
+    },
+    {
+      "flow_id": "flow-000000000004",
+      "matched_scenario_ids": [
+        "session_b_normal_http"
+      ],
+      "outcome": "MATCHED_NORMAL",
+      "portable_label": "NORMAL",
+      "source_label": "NORMAL_HTTP"
+    },
+    {
+      "flow_id": "flow-000000000005",
+      "matched_scenario_ids": [
+        "session_b_normal_http"
+      ],
+      "outcome": "MATCHED_NORMAL",
+      "portable_label": "NORMAL",
+      "source_label": "NORMAL_HTTP"
+    },
+    {
+      "flow_id": "flow-000000000006",
+      "matched_scenario_ids": [
+        "session_b_normal_http"
+      ],
+      "outcome": "MATCHED_NORMAL",
+      "portable_label": "NORMAL",
+      "source_label": "NORMAL_HTTP"
+    },
+    {
+      "flow_id": "flow-000000000007",
+      "matched_scenario_ids": [
+        "session_b_normal_udp"
+      ],
+      "outcome": "MATCHED_NORMAL",
+      "portable_label": "NORMAL",
+      "source_label": "NORMAL_UDP_ECHO"
+    },
+    {
+      "flow_id": "flow-000000000008",
+      "matched_scenario_ids": [
+        "session_b_normal_udp"
+      ],
+      "outcome": "MATCHED_NORMAL",
+      "portable_label": "NORMAL",
+      "source_label": "NORMAL_UDP_ECHO"
+    },
+    {
+      "flow_id": "flow-000000000009",
+      "matched_scenario_ids": [
+        "session_b_normal_udp"
+      ],
+      "outcome": "MATCHED_NORMAL",
+      "portable_label": "NORMAL",
+      "source_label": "NORMAL_UDP_ECHO"
+    },
+    {
+      "flow_id": "flow-000000000010",
+      "matched_scenario_ids": [
+        "session_b_normal_udp"
+      ],
+      "outcome": "MATCHED_NORMAL",
+      "portable_label": "NORMAL",
+      "source_label": "NORMAL_UDP_ECHO"
+    },
+    {
+      "flow_id": "flow-000000000011",
+      "matched_scenario_ids": [
+        "session_b_normal_udp"
+      ],
+      "outcome": "MATCHED_NORMAL",
+      "portable_label": "NORMAL",
+      "source_label": "NORMAL_UDP_ECHO"
+    },
+    {
+      "flow_id": "flow-000000000012",
+      "matched_scenario_ids": [
+        "session_b_normal_udp"
+      ],
+      "outcome": "MATCHED_NORMAL",
+      "portable_label": "NORMAL",
+      "source_label": "NORMAL_UDP_ECHO"
+    },
+    {
+      "flow_id": "flow-000000000013",
+      "matched_scenario_ids": [
+        "session_b_normal_udp"
+      ],
+      "outcome": "MATCHED_NORMAL",
+      "portable_label": "NORMAL",
+      "source_label": "NORMAL_UDP_ECHO"
+    },
+    {
+      "flow_id": "flow-000000000014",
+      "matched_scenario_ids": [
+        "session_b_normal_udp"
+      ],
+      "outcome": "MATCHED_NORMAL",
+      "portable_label": "NORMAL",
+      "source_label": "NORMAL_UDP_ECHO"
+    },
+    {
+      "flow_id": "flow-000000000015",
+      "matched_scenario_ids": [
+        "session_b_normal_udp"
+      ],
+      "outcome": "MATCHED_NORMAL",
+      "portable_label": "NORMAL",
+      "source_label": "NORMAL_UDP_ECHO"
+    },
+    {
+      "flow_id": "flow-000000000016",
+      "matched_scenario_ids": [
+        "session_b_normal_udp"
+      ],
+      "outcome": "MATCHED_NORMAL",
+      "portable_label": "NORMAL",
+      "source_label": "NORMAL_UDP_ECHO"
+    },
+    {
+      "flow_id": "flow-000000000017",
+      "matched_scenario_ids": [
+        "session_b_normal_udp"
+      ],
+      "outcome": "MATCHED_NORMAL",
+      "portable_label": "NORMAL",
+      "source_label": "NORMAL_UDP_ECHO"
+    },
+    {
+      "flow_id": "flow-000000000018",
+      "matched_scenario_ids": [
+        "session_b_normal_udp"
+      ],
+      "outcome": "MATCHED_NORMAL",
+      "portable_label": "NORMAL",
+      "source_label": "NORMAL_UDP_ECHO"
+    },
+    {
+      "flow_id": "flow-000000000019",
+      "matched_scenario_ids": [
+        "session_b_normal_tcp_short"
+      ],
+      "outcome": "MATCHED_NORMAL",
+      "portable_label": "NORMAL",
+      "source_label": "NORMAL_TCP_SHORT"
+    },
+    {
+      "flow_id": "flow-000000000020",
+      "matched_scenario_ids": [
+        "session_b_normal_tcp_short"
+      ],
+      "outcome": "MATCHED_NORMAL",
+      "portable_label": "NORMAL",
+      "source_label": "NORMAL_TCP_SHORT"
+    },
+    {
+      "flow_id": "flow-000000000021",
+      "matched_scenario_ids": [
+        "session_b_normal_tcp_short"
+      ],
+      "outcome": "MATCHED_NORMAL",
+      "portable_label": "NORMAL",
+      "source_label": "NORMAL_TCP_SHORT"
+    },
+    {
+      "flow_id": "flow-000000000022",
+      "matched_scenario_ids": [
+        "session_b_normal_tcp_short"
+      ],
+      "outcome": "MATCHED_NORMAL",
+      "portable_label": "NORMAL",
+      "source_label": "NORMAL_TCP_SHORT"
+    },
+    {
+      "flow_id": "flow-000000000023",
+      "matched_scenario_ids": [
+        "session_b_normal_tcp_short"
+      ],
+      "outcome": "MATCHED_NORMAL",
+      "portable_label": "NORMAL",
+      "source_label": "NORMAL_TCP_SHORT"
+    },
+    {
+      "flow_id": "flow-000000000024",
+      "matched_scenario_ids": [
+        "session_b_normal_tcp_short"
+      ],
+      "outcome": "MATCHED_NORMAL",
+      "portable_label": "NORMAL",
+      "source_label": "NORMAL_TCP_SHORT"
+    },
+    {
+      "flow_id": "flow-000000000025",
+      "matched_scenario_ids": [
+        "session_b_normal_tcp_short"
+      ],
+      "outcome": "MATCHED_NORMAL",
+      "portable_label": "NORMAL",
+      "source_label": "NORMAL_TCP_SHORT"
+    },
+    {
+      "flow_id": "flow-000000000026",
+      "matched_scenario_ids": [
+        "session_b_normal_tcp_short"
+      ],
+      "outcome": "MATCHED_NORMAL",
+      "portable_label": "NORMAL",
+      "source_label": "NORMAL_TCP_SHORT"
+    },
+    {
+      "flow_id": "flow-000000000027",
+      "matched_scenario_ids": [
+        "session_b_normal_tcp_long"
+      ],
+      "outcome": "MATCHED_NORMAL",
+      "portable_label": "NORMAL",
+      "source_label": "NORMAL_TCP_LONG"
+    },
+    {
+      "flow_id": "flow-000000000028",
+      "matched_scenario_ids": [
+        "session_b_attack_scan"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_PORT_SCAN"
+    },
+    {
+      "flow_id": "flow-000000000029",
+      "matched_scenario_ids": [
+        "session_b_attack_scan"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_PORT_SCAN"
+    },
+    {
+      "flow_id": "flow-000000000030",
+      "matched_scenario_ids": [
+        "session_b_attack_scan"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_PORT_SCAN"
+    },
+    {
+      "flow_id": "flow-000000000031",
+      "matched_scenario_ids": [
+        "session_b_attack_scan"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_PORT_SCAN"
+    },
+    {
+      "flow_id": "flow-000000000032",
+      "matched_scenario_ids": [
+        "session_b_attack_scan"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_PORT_SCAN"
+    },
+    {
+      "flow_id": "flow-000000000033",
+      "matched_scenario_ids": [
+        "session_b_attack_scan"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_PORT_SCAN"
+    },
+    {
+      "flow_id": "flow-000000000034",
+      "matched_scenario_ids": [
+        "session_b_attack_scan"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_PORT_SCAN"
+    },
+    {
+      "flow_id": "flow-000000000035",
+      "matched_scenario_ids": [
+        "session_b_attack_scan"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_PORT_SCAN"
+    },
+    {
+      "flow_id": "flow-000000000036",
+      "matched_scenario_ids": [
+        "session_b_attack_scan"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_PORT_SCAN"
+    },
+    {
+      "flow_id": "flow-000000000037",
+      "matched_scenario_ids": [
+        "session_b_attack_scan"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_PORT_SCAN"
+    },
+    {
+      "flow_id": "flow-000000000038",
+      "matched_scenario_ids": [
+        "session_b_attack_scan"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_PORT_SCAN"
+    },
+    {
+      "flow_id": "flow-000000000039",
+      "matched_scenario_ids": [
+        "session_b_attack_scan"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_PORT_SCAN"
+    },
+    {
+      "flow_id": "flow-000000000040",
+      "matched_scenario_ids": [
+        "session_b_attack_scan"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_PORT_SCAN"
+    },
+    {
+      "flow_id": "flow-000000000041",
+      "matched_scenario_ids": [
+        "session_b_attack_scan"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_PORT_SCAN"
+    },
+    {
+      "flow_id": "flow-000000000042",
+      "matched_scenario_ids": [
+        "session_b_attack_scan"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_PORT_SCAN"
+    },
+    {
+      "flow_id": "flow-000000000043",
+      "matched_scenario_ids": [
+        "session_b_attack_scan"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_PORT_SCAN"
+    },
+    {
+      "flow_id": "flow-000000000044",
+      "matched_scenario_ids": [
+        "session_b_attack_http_burst"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_HTTP_BURST"
+    },
+    {
+      "flow_id": "flow-000000000045",
+      "matched_scenario_ids": [
+        "session_b_attack_http_burst"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_HTTP_BURST"
+    },
+    {
+      "flow_id": "flow-000000000046",
+      "matched_scenario_ids": [
+        "session_b_attack_http_burst"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_HTTP_BURST"
+    },
+    {
+      "flow_id": "flow-000000000047",
+      "matched_scenario_ids": [
+        "session_b_attack_http_burst"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_HTTP_BURST"
+    },
+    {
+      "flow_id": "flow-000000000048",
+      "matched_scenario_ids": [
+        "session_b_attack_http_burst"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_HTTP_BURST"
+    },
+    {
+      "flow_id": "flow-000000000049",
+      "matched_scenario_ids": [
+        "session_b_attack_http_burst"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_HTTP_BURST"
+    },
+    {
+      "flow_id": "flow-000000000050",
+      "matched_scenario_ids": [
+        "session_b_attack_http_burst"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_HTTP_BURST"
+    },
+    {
+      "flow_id": "flow-000000000051",
+      "matched_scenario_ids": [
+        "session_b_attack_http_burst"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_HTTP_BURST"
+    },
+    {
+      "flow_id": "flow-000000000052",
+      "matched_scenario_ids": [
+        "session_b_attack_http_burst"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_HTTP_BURST"
+    },
+    {
+      "flow_id": "flow-000000000053",
+      "matched_scenario_ids": [
+        "session_b_attack_http_burst"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_HTTP_BURST"
+    },
+    {
+      "flow_id": "flow-000000000054",
+      "matched_scenario_ids": [
+        "session_b_attack_http_burst"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_HTTP_BURST"
+    },
+    {
+      "flow_id": "flow-000000000055",
+      "matched_scenario_ids": [
+        "session_b_attack_http_burst"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_HTTP_BURST"
+    },
+    {
+      "flow_id": "flow-000000000056",
+      "matched_scenario_ids": [
+        "session_b_attack_http_burst"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_HTTP_BURST"
+    },
+    {
+      "flow_id": "flow-000000000057",
+      "matched_scenario_ids": [
+        "session_b_attack_http_burst"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_HTTP_BURST"
+    },
+    {
+      "flow_id": "flow-000000000058",
+      "matched_scenario_ids": [
+        "session_b_attack_http_burst"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_HTTP_BURST"
+    },
+    {
+      "flow_id": "flow-000000000059",
+      "matched_scenario_ids": [
+        "session_b_attack_http_burst"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_HTTP_BURST"
+    },
+    {
+      "flow_id": "flow-000000000060",
+      "matched_scenario_ids": [
+        "session_b_attack_http_burst"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_HTTP_BURST"
+    },
+    {
+      "flow_id": "flow-000000000061",
+      "matched_scenario_ids": [
+        "session_b_attack_http_burst"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_HTTP_BURST"
+    },
+    {
+      "flow_id": "flow-000000000062",
+      "matched_scenario_ids": [
+        "session_b_attack_http_burst"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_HTTP_BURST"
+    },
+    {
+      "flow_id": "flow-000000000063",
+      "matched_scenario_ids": [
+        "session_b_attack_http_burst"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_HTTP_BURST"
+    },
+    {
+      "flow_id": "flow-000000000064",
+      "matched_scenario_ids": [
+        "session_b_attack_http_burst"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_HTTP_BURST"
+    },
+    {
+      "flow_id": "flow-000000000065",
+      "matched_scenario_ids": [
+        "session_b_attack_http_burst"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_HTTP_BURST"
+    },
+    {
+      "flow_id": "flow-000000000066",
+      "matched_scenario_ids": [
+        "session_b_attack_http_burst"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_HTTP_BURST"
+    },
+    {
+      "flow_id": "flow-000000000067",
+      "matched_scenario_ids": [
+        "session_b_attack_http_burst"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_HTTP_BURST"
+    },
+    {
+      "flow_id": "flow-000000000068",
+      "matched_scenario_ids": [
+        "session_b_attack_http_burst"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_HTTP_BURST"
+    },
+    {
+      "flow_id": "flow-000000000069",
+      "matched_scenario_ids": [
+        "session_b_attack_http_burst"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_HTTP_BURST"
+    },
+    {
+      "flow_id": "flow-000000000070",
+      "matched_scenario_ids": [
+        "session_b_attack_http_burst"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_HTTP_BURST"
+    },
+    {
+      "flow_id": "flow-000000000071",
+      "matched_scenario_ids": [
+        "session_b_attack_http_burst"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_HTTP_BURST"
+    },
+    {
+      "flow_id": "flow-000000000072",
+      "matched_scenario_ids": [
+        "session_b_attack_http_burst"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_HTTP_BURST"
+    },
+    {
+      "flow_id": "flow-000000000073",
+      "matched_scenario_ids": [
+        "session_b_attack_http_burst"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_HTTP_BURST"
+    },
+    {
+      "flow_id": "flow-000000000074",
+      "matched_scenario_ids": [
+        "session_b_attack_auth_failure"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_AUTH_FAILURE"
+    },
+    {
+      "flow_id": "flow-000000000075",
+      "matched_scenario_ids": [
+        "session_b_attack_auth_failure"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_AUTH_FAILURE"
+    },
+    {
+      "flow_id": "flow-000000000076",
+      "matched_scenario_ids": [
+        "session_b_attack_auth_failure"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_AUTH_FAILURE"
+    },
+    {
+      "flow_id": "flow-000000000077",
+      "matched_scenario_ids": [
+        "session_b_attack_auth_failure"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_AUTH_FAILURE"
+    },
+    {
+      "flow_id": "flow-000000000078",
+      "matched_scenario_ids": [
+        "session_b_attack_auth_failure"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_AUTH_FAILURE"
+    },
+    {
+      "flow_id": "flow-000000000079",
+      "matched_scenario_ids": [
+        "session_b_attack_auth_failure"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_AUTH_FAILURE"
+    },
+    {
+      "flow_id": "flow-000000000080",
+      "matched_scenario_ids": [
+        "session_b_attack_auth_failure"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_AUTH_FAILURE"
+    },
+    {
+      "flow_id": "flow-000000000081",
+      "matched_scenario_ids": [
+        "session_b_attack_auth_failure"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_AUTH_FAILURE"
+    },
+    {
+      "flow_id": "flow-000000000082",
+      "matched_scenario_ids": [
+        "session_b_attack_auth_failure"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_AUTH_FAILURE"
+    },
+    {
+      "flow_id": "flow-000000000083",
+      "matched_scenario_ids": [
+        "session_b_attack_auth_failure"
+      ],
+      "outcome": "MATCHED_ATTACK",
+      "portable_label": "ATTACK",
+      "source_label": "ATTACK_AUTH_FAILURE"
+    }
+  ],
+  "feature_values_used": false,
+  "join_contract": "inclusive flow start time + generator/target + protocol + optional destination port",
+  "majority_vote_used": false,
+  "model_assistance_used": false,
+  "outcome_counts": {
+    "MATCHED_ATTACK": 56,
+    "MATCHED_NORMAL": 28
+  }
+}

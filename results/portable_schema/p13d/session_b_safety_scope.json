@@ -1,0 +1,12 @@
+{
+  "allowed_endpoints": [
+    "127.0.0.2",
+    "127.0.0.3"
+  ],
+  "artifact_type": "P13D_SESSION_B_SAFETY_SCOPE",
+  "external_destination_detected": false,
+  "interface": "lo",
+  "packet_records_checked": 728,
+  "status": "PASS",
+  "violating_capture_indices": []
+}

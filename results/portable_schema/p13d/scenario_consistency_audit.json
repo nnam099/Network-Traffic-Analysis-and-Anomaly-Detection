@@ -1,0 +1,221 @@
+{
+  "artifact_type": "P13D_SCENARIO_CONSISTENCY_AUDIT",
+  "conceptual_scenarios": {
+    "ATTACK_AUTH_FAILURE": {
+      "detector_accuracy_computed": false,
+      "identity_overlap_count": 0,
+      "same_flow_count_required": false,
+      "session_a": {
+        "available_feature_cells": 216,
+        "flow_count": 12,
+        "label_results": [
+          "MATCHED_ATTACK"
+        ],
+        "missing_feature_cells": 0,
+        "protocols": {
+          "IPPROTO_6": 12
+        }
+      },
+      "session_b": {
+        "available_feature_cells": 180,
+        "flow_count": 10,
+        "label_results": [
+          "MATCHED_ATTACK"
+        ],
+        "missing_feature_cells": 0,
+        "protocols": {
+          "IPPROTO_6": 10
+        }
+      }
+    },
+    "ATTACK_HTTP_BURST": {
+      "detector_accuracy_computed": false,
+      "identity_overlap_count": 0,
+      "same_flow_count_required": false,
+      "session_a": {
+        "available_feature_cells": 720,
+        "flow_count": 40,
+        "label_results": [
+          "MATCHED_ATTACK"
+        ],
+        "missing_feature_cells": 0,
+        "protocols": {
+          "IPPROTO_6": 40
+        }
+      },
+      "session_b": {
+        "available_feature_cells": 540,
+        "flow_count": 30,
+        "label_results": [
+          "MATCHED_ATTACK"
+        ],
+        "missing_feature_cells": 0,
+        "protocols": {
+          "IPPROTO_6": 30
+        }
+      }
+    },
+    "ATTACK_PORT_SCAN": {
+      "detector_accuracy_computed": false,
+      "identity_overlap_count": 0,
+      "same_flow_count_required": false,
+      "session_a": {
+        "available_feature_cells": 288,
+        "flow_count": 16,
+        "label_results": [
+          "MATCHED_ATTACK"
+        ],
+        "missing_feature_cells": 0,
+        "protocols": {
+          "IPPROTO_6": 16
+        }
+      },
+      "session_b": {
+        "available_feature_cells": 288,
+        "flow_count": 16,
+        "label_results": [
+          "MATCHED_ATTACK"
+        ],
+        "missing_feature_cells": 0,
+        "protocols": {
+          "IPPROTO_6": 16
+        }
+      }
+    },
+    "NORMAL_HTTP": {
+      "detector_accuracy_computed": false,
+      "identity_overlap_count": 0,
+      "same_flow_count_required": false,
+      "session_a": {
+        "available_feature_cells": 72,
+        "flow_count": 4,
+        "label_results": [
+          "MATCHED_NORMAL"
+        ],
+        "missing_feature_cells": 0,
+        "protocols": {
+          "IPPROTO_6": 4
+        }
+      },
+      "session_b": {
+        "available_feature_cells": 108,
+        "flow_count": 6,
+        "label_results": [
+          "MATCHED_NORMAL"
+        ],
+        "missing_feature_cells": 0,
+        "protocols": {
+          "IPPROTO_6": 6
+        }
+      }
+    },
+    "NORMAL_ICMP": {
+      "detector_accuracy_computed": false,
+      "identity_overlap_count": 0,
+      "same_flow_count_required": false,
+      "session_a": {
+        "available_feature_cells": 18,
+        "flow_count": 1,
+        "label_results": [
+          "MATCHED_NORMAL"
+        ],
+        "missing_feature_cells": 0,
+        "protocols": {
+          "IPPROTO_1": 1
+        }
+      },
+      "session_b": {
+        "available_feature_cells": 18,
+        "flow_count": 1,
+        "label_results": [
+          "MATCHED_NORMAL"
+        ],
+        "missing_feature_cells": 0,
+        "protocols": {
+          "IPPROTO_1": 1
+        }
+      }
+    },
+    "NORMAL_TCP_LONG": {
+      "detector_accuracy_computed": false,
+      "identity_overlap_count": 0,
+      "same_flow_count_required": false,
+      "session_a": {
+        "available_feature_cells": 18,
+        "flow_count": 1,
+        "label_results": [
+          "MATCHED_NORMAL"
+        ],
+        "missing_feature_cells": 0,
+        "protocols": {
+          "IPPROTO_6": 1
+        }
+      },
+      "session_b": {
+        "available_feature_cells": 18,
+        "flow_count": 1,
+        "label_results": [
+          "MATCHED_NORMAL"
+        ],
+        "missing_feature_cells": 0,
+        "protocols": {
+          "IPPROTO_6": 1
+        }
+      }
+    },
+    "NORMAL_TCP_SHORT": {
+      "detector_accuracy_computed": false,
+      "identity_overlap_count": 0,
+      "same_flow_count_required": false,
+      "session_a": {
+        "available_feature_cells": 90,
+        "flow_count": 5,
+        "label_results": [
+          "MATCHED_NORMAL"
+        ],
+        "missing_feature_cells": 0,
+        "protocols": {
+          "IPPROTO_6": 5
+        }
+      },
+      "session_b": {
+        "available_feature_cells": 144,
+        "flow_count": 8,
+        "label_results": [
+          "MATCHED_NORMAL"
+        ],
+        "missing_feature_cells": 0,
+        "protocols": {
+          "IPPROTO_6": 8
+        }
+      }
+    },
+    "NORMAL_UDP_ECHO": {
+      "detector_accuracy_computed": false,
+      "identity_overlap_count": 0,
+      "same_flow_count_required": false,
+      "session_a": {
+        "available_feature_cells": 18,
+        "flow_count": 1,
+        "label_results": [
+          "MATCHED_NORMAL"
+        ],
+        "missing_feature_cells": 0,
+        "protocols": {
+          "IPPROTO_17": 1
+        }
+      },
+      "session_b": {
+        "available_feature_cells": 216,
+        "flow_count": 12,
+        "label_results": [
+          "MATCHED_NORMAL"
+        ],
+        "missing_feature_cells": 0,
+        "protocols": {
+          "IPPROTO_17": 12
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "anomaly_scores": 0,
+  "artifact_type": "P13D_MODEL_ACCESS_AUDIT",
+  "auroc": null,
+  "average_precision": null,
+  "checkpoints": 0,
+  "model_forward_passes": 0,
+  "optimizer_steps": 0,
+  "p7_model_accessed": false,
+  "p9_model_accessed": false,
+  "scaler_fit": false,
+  "threshold": null
+}

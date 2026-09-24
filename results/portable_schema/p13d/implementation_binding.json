@@ -1,0 +1,43 @@
+{
+  "artifact_type": "P13D_IMPLEMENTATION_BINDING",
+  "canonical_identity_contract": "canonical-flow-identity-v3",
+  "direction_rule": "first observed packet defines forward direction",
+  "idle_timeout_ns": 60000000000,
+  "label_join_contract": "inclusive flow start + endpoints + protocol + optional destination port",
+  "p12_protocol_sha256": "db6405fcac5d8fd94e406660ea60c22853a9c0073762df0e3f21881fe806fec3",
+  "p12_schema_sha256": "db430498147a0601f0d1db9ef5579e210ec9795fa871043d0ab1bf5d328adb7a",
+  "p13c_freeze_commit": "ce0b6be7604acd748015834df3f024e62afb5d07",
+  "protocol_mapping": "IPPROTO_n from the observed IP protocol number",
+  "scientific_implementation_changed_after_p13c_freeze": false,
+  "scientific_source_bindings": {
+    "src/ids/p12_portable_schema.py": {
+      "matches_frozen_commit": true,
+      "sha256": "ad1fd6377b49a42cf5d97c788071486af5835230360dde10638f3a42946555e1"
+    },
+    "src/ids/p13/labels.py": {
+      "matches_frozen_commit": true,
+      "sha256": "6980bc482f2e7529ff510aeb45528d29543b1553d4935f9056594ae375ddcdbb"
+    },
+    "src/ids/p13/portable_extractor.py": {
+      "matches_frozen_commit": true,
+      "sha256": "0677630074fdaf3fc014420f5f15a5292654069662d1d6b7e39b5c365be93821"
+    },
+    "src/ids/p13/raw_reader/__init__.py": {
+      "matches_frozen_commit": true,
+      "sha256": "534d79d2808313521efee8cbf8a47f0d8364ad31682530d9ee37c8e505a4239d"
+    },
+    "src/ids/p13/raw_reader/classic_pcap.py": {
+      "matches_frozen_commit": true,
+      "sha256": "904d62a136992c464804bdcaf8e1ace6b978fb3131c50b3d6b6cf49624eb91e7"
+    },
+    "src/ids/p13/validation.py": {
+      "matches_frozen_commit": true,
+      "sha256": "0fd0631109c02a6a4fe12152f8df3f3ac3f3df3621db0011e4b21848634bd669"
+    },
+    "src/ids/p13b_controlled.py": {
+      "matches_frozen_commit": true,
+      "sha256": "5be058990ff452499bd9c7ee611df4f41c28f10ec27806e7814a441ee5f0a50d"
+    }
+  },
+  "status": "PASS"
+}
