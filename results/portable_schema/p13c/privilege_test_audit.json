@@ -1,0 +1,16 @@
+{
+  "artifact_type": "P13C_PRIVILEGE_TEST_AUDIT",
+  "bounded_packet_count": 2,
+  "capture_error": "tcpdump: lo: You don't have permission to perform this capture on that device (socket: Operation not permitted)",
+  "capture_exit_code": 1,
+  "capture_filter": "((src host 127.0.0.2 and dst host 127.0.0.3) or (src host 127.0.0.3 and dst host 127.0.0.2))",
+  "capture_interface": "lo",
+  "classification": "PRIVILEGE_TEST_ONLY",
+  "entered_scientific_corpus": false,
+  "parser_invoked": false,
+  "status": "CAPTURE_TEST_FAILED",
+  "test_capture_created": false,
+  "test_capture_size_bytes": 0,
+  "test_file_retained": false,
+  "traffic_generated": false
+}

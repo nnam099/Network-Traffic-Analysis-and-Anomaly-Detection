@@ -1,0 +1,86 @@
+{
+  "artifact_type": "P13C_SCENARIO_COVERAGE",
+  "attempt_id": "P13C_ATTEMPT_002",
+  "scenarios": {
+    "a002_attack_auth_failure": {
+      "ambiguous": 0,
+      "canonical_identities": 12,
+      "flows": 12,
+      "matched": 12,
+      "portable_label": "ATTACK",
+      "protocol_distribution": {
+        "IPPROTO_6": 12
+      }
+    },
+    "a002_attack_http_burst": {
+      "ambiguous": 0,
+      "canonical_identities": 40,
+      "flows": 40,
+      "matched": 40,
+      "portable_label": "ATTACK",
+      "protocol_distribution": {
+        "IPPROTO_6": 40
+      }
+    },
+    "a002_attack_scan": {
+      "ambiguous": 0,
+      "canonical_identities": 16,
+      "flows": 16,
+      "matched": 16,
+      "portable_label": "ATTACK",
+      "protocol_distribution": {
+        "IPPROTO_6": 16
+      }
+    },
+    "a002_normal_http": {
+      "ambiguous": 0,
+      "canonical_identities": 4,
+      "flows": 4,
+      "matched": 4,
+      "portable_label": "NORMAL",
+      "protocol_distribution": {
+        "IPPROTO_6": 4
+      }
+    },
+    "a002_normal_icmp": {
+      "ambiguous": 0,
+      "canonical_identities": 1,
+      "flows": 1,
+      "matched": 1,
+      "portable_label": "NORMAL",
+      "protocol_distribution": {
+        "IPPROTO_1": 1
+      }
+    },
+    "a002_normal_tcp_long": {
+      "ambiguous": 0,
+      "canonical_identities": 1,
+      "flows": 1,
+      "matched": 1,
+      "portable_label": "NORMAL",
+      "protocol_distribution": {
+        "IPPROTO_6": 1
+      }
+    },
+    "a002_normal_tcp_short": {
+      "ambiguous": 0,
+      "canonical_identities": 5,
+      "flows": 5,
+      "matched": 5,
+      "portable_label": "NORMAL",
+      "protocol_distribution": {
+        "IPPROTO_6": 5
+      }
+    },
+    "a002_normal_udp": {
+      "ambiguous": 0,
+      "canonical_identities": 1,
+      "flows": 1,
+      "matched": 1,
+      "portable_label": "NORMAL",
+      "protocol_distribution": {
+        "IPPROTO_17": 1
+      }
+    }
+  }
+}

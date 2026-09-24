@@ -1,0 +1,18 @@
+{
+  "artifact_type": "P13C_EXTRACTION_RUN",
+  "attempt_id": "P13C_ATTEMPT_002",
+  "categorical_field_count": 1,
+  "complete_19_fields": true,
+  "continuous_field_count": 18,
+  "flow_count": 80,
+  "fresh_raw_parse": true,
+  "labels_accessed_during_extraction": false,
+  "missing_mask_field_count": 18,
+  "packet_count": 793,
+  "run": 2,
+  "scaling_performed": false,
+  "semantic_content_sha256": "f65f0a71d35f432011ab4abe7159319499ed6385809d3829b0066ce6d222a526",
+  "source": "data/controlled_capture/p13c/attempt_002/session_a_raw.pcap",
+  "source_sha256": "570fad15116845545d92914aa1caf1848a1d979030352f15c1bd4c6caa84b986",
+  "structural_imputation_performed": false
+}

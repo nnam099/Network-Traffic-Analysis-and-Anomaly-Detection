@@ -1,0 +1,18 @@
+{
+  "artifact_type": "P13B_SCENARIO_EXECUTION_LOG",
+  "executed_scenario_ids": [],
+  "reason": "Raw capture precondition failed before traffic generation: tcpdump could not open the loopback capture device because CAP_NET_RAW was unavailable, and passwordless sudo was not authorized. No raw PCAP exists, so extraction and downstream audits cannot run.",
+  "scenario_schedule_sha256": "625374f24e04caf809a3021ac025e9fe549fa26bb3ebc7b097e963db942329de",
+  "scheduled_scenario_ids": [
+    "normal_icmp",
+    "normal_http",
+    "normal_udp",
+    "normal_tcp_short",
+    "normal_tcp_long",
+    "attack_scan",
+    "attack_http_burst",
+    "attack_auth_failure"
+  ],
+  "status": "NOT_EXECUTED_CAPTURE_PRIVILEGE_BLOCKED",
+  "traffic_generation_started": false
+}

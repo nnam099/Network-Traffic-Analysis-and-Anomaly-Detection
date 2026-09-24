@@ -1,0 +1,12 @@
+{
+  "artifact_type": "P13C_PROTOCOL_AUDIT",
+  "attempt_id": "P13C_ATTEMPT_002",
+  "canonical_token_counts": {
+    "IPPROTO_1": 1,
+    "IPPROTO_17": 1,
+    "IPPROTO_6": 78
+  },
+  "rare_protocols_dropped": false,
+  "token_inferred_from_ports": false,
+  "vocabulary_learning_performed": false
+}

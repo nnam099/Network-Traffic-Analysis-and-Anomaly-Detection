@@ -1,0 +1,32 @@
+{
+  "artifact_type": "P13B_CAPTURE_ENVIRONMENT",
+  "capture_filter": "((src host 127.0.0.2 and dst host 127.0.0.3) or (src host 127.0.0.3 and dst host 127.0.0.2))",
+  "capture_tool": "tcpdump version 4.99.5",
+  "clock_source": "single-host CLOCK_REALTIME/CLOCK_MONOTONIC; no cross-host offset",
+  "command": [
+    "tcpdump",
+    "-Z",
+    "nnam09",
+    "-i",
+    "lo",
+    "-nn",
+    "-s",
+    "0",
+    "--time-stamp-precision=nano",
+    "-U",
+    "-w",
+    "/home/nnam09/PTIT/Project/IDS/ZeroDay-Detection-AutoEncoder-IDS/data/controlled_capture/p13b/session_a_raw.pcap",
+    "((src host 127.0.0.2 and dst host 127.0.0.3) or (src host 127.0.0.3 and dst host 127.0.0.2))"
+  ],
+  "corpus_name": "P13B_CONTROLLED_CAPTURE",
+  "generator_target_clock_offset_ns": 0,
+  "host_timezone": [
+    "+07",
+    "+07"
+  ],
+  "interface": "lo",
+  "libpcap": "libpcap version 1.10.5 (with TPACKET_V3)",
+  "privacy_boundary": "only packets between 127.0.0.2 and 127.0.0.3",
+  "requested_timestamp_precision": "nanoseconds",
+  "snaplen": 0
+}

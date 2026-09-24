@@ -1,0 +1,11 @@
+{
+  "artifact_type": "P13C_DETERMINISM_AUDIT",
+  "attempt_id": "P13C_ATTEMPT_002",
+  "flow_count_equality": true,
+  "flow_order_and_content_equality": true,
+  "packet_equality": true,
+  "row_order_and_binary64_content_equality": true,
+  "run_1_semantic_content_sha256": "f65f0a71d35f432011ab4abe7159319499ed6385809d3829b0066ce6d222a526",
+  "run_2_semantic_content_sha256": "f65f0a71d35f432011ab4abe7159319499ed6385809d3829b0066ce6d222a526",
+  "status": "P13C_EXTRACTION_DETERMINISM_PASS"
+}

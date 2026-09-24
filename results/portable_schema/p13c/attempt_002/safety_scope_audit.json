@@ -1,0 +1,13 @@
+{
+  "artifact_type": "P13C_SAFETY_SCOPE_AUDIT",
+  "attempt_id": "P13C_ATTEMPT_002",
+  "capture_interface": "lo",
+  "declared_endpoints": [
+    "127.0.0.2",
+    "127.0.0.3"
+  ],
+  "endpoint_scope_violations": [],
+  "external_destination_detected": false,
+  "packet_records_checked": 793,
+  "status": "PASS"
+}

@@ -1,0 +1,134 @@
+{
+  "artifact_type": "P13_SOURCE_CANDIDATE_AUDIT",
+  "audited_at_utc": "2026-09-23T12:49:17.645060Z",
+  "candidates": [
+    {
+      "dataset": "UNSW-NB15",
+      "decision": "BLOCKED_ACCESS_AND_SIZE",
+      "documented_raw_size": "100 GB",
+      "observation": "Official download redirects to UNSW SharePoint authentication; no immutable object URL acquired.",
+      "official_url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset",
+      "priority": 1,
+      "raw_pcap_documented": true
+    },
+    {
+      "dataset": "CIC-IDS2017",
+      "decision": "BLOCKED_DOWNLOAD_FORM",
+      "documented_raw_size": "7.8-13 GB per capture day",
+      "observation": "Official download requires a personal-information form which returned a server error; no raw object URL acquired.",
+      "official_url": "https://www.unb.ca/cic/datasets/ids-2017.html",
+      "priority": 2,
+      "raw_pcap_documented": true
+    },
+    {
+      "dataset": "CSE-CIC-IDS2018",
+      "decision": "BLOCKED_UNREASONABLE_AUTOMATIC_ARCHIVE",
+      "minimum_archive_size_bytes": 38535667707,
+      "observation": "Bucket metadata is public, but each raw archive is 38.5-59.1 GB and exposes no SHA-256. P13 did not download one merely to probe suitability.",
+      "official_url": "https://www.unb.ca/cic/datasets/ids-2018.html",
+      "priority": 3,
+      "public_bucket": "s3://cse-cic-ids2018/Original Network Traffic and Log data/",
+      "raw_objects": [
+        {
+          "key": "Wednesday-14-02-2018/pcap.zip",
+          "s3_multipart_etag_not_sha256": "845cbc33e555f5906ea5c9bc520113ab-2380",
+          "size_bytes": 39913353098
+        },
+        {
+          "key": "Thursday-15-02-2018/pcap.zip",
+          "s3_multipart_etag_not_sha256": "e281e31b104af08f1e670e9bd703ff77-2461",
+          "size_bytes": 41283382768
+        },
+        {
+          "key": "Friday-16-02-2018/pcap.zip",
+          "s3_multipart_etag_not_sha256": "7ef6f23385e8cafe3427e5c612e41eeb-2297",
+          "size_bytes": 38535667707
+        },
+        {
+          "key": "Tuesday-20-02-2018/pcap.rar",
+          "s3_multipart_etag_not_sha256": "8aa242e62fde4eaa43d1ad66d545a213-2646",
+          "size_bytes": 44391980380
+        },
+        {
+          "key": "Wednesday-21-02-2018/pcap.zip",
+          "s3_multipart_etag_not_sha256": "d8e019df7ae51d9fefb558f57cdfb5f9-3187",
+          "size_bytes": 53462820707
+        },
+        {
+          "key": "Thursday-22-02-2018/pcap.zip",
+          "s3_multipart_etag_not_sha256": "23f6eb47cd517efd60aa86fea92c5264-2995",
+          "size_bytes": 50240938251
+        },
+        {
+          "key": "Friday-23-02-2018/pcap.zip",
+          "s3_multipart_etag_not_sha256": "a39a7470586d7fd0930431980a5b0c31-3523",
+          "size_bytes": 59093922810
+        },
+        {
+          "key": "Wednesday-28-02-2018/pcap.zip",
+          "s3_multipart_etag_not_sha256": "b688b1c7c529c8754fe11aec1a963270-3175",
+          "size_bytes": 53251694487
+        },
+        {
+          "key": "Thursday-01-03-2018/pcap.zip",
+          "s3_multipart_etag_not_sha256": "652d07144e22ca627d2362fa9e77c75e-3121",
+          "size_bytes": 52358069106
+        },
+        {
+          "key": "Friday-02-03-2018/pcap.zip",
+          "s3_multipart_etag_not_sha256": "290fa7c40359b9fb8cffe29917bbde36-2670",
+          "size_bytes": 44789835888
+        }
+      ],
+      "raw_pcap_documented": true
+    },
+    {
+      "dataset": "TON_IoT network",
+      "decision": "BLOCKED_ACCESS",
+      "observation": "Official download redirects to UNSW SharePoint authentication; no immutable object URL acquired.",
+      "official_url": "https://research.unsw.edu.au/projects/toniot-datasets",
+      "priority": 4,
+      "raw_pcap_documented": true
+    },
+    {
+      "dataset": "Bot-IoT",
+      "decision": "BLOCKED_ACCESS_AND_SIZE",
+      "documented_raw_size": "69.3 GB",
+      "observation": "Official download redirects to UNSW SharePoint authentication; the documented 5% subset is CSV, not raw PCAP.",
+      "official_url": "https://research.unsw.edu.au/projects/bot-iot-dataset",
+      "priority": 5,
+      "raw_pcap_documented": true
+    },
+    {
+      "dataset": "CIC-DDoS2019",
+      "decision": "BLOCKED_DOWNLOAD_FORM",
+      "observation": "No direct immutable raw-object URL and SHA-256 were available without the CIC download workflow.",
+      "official_url": "https://www.unb.ca/cic/datasets/ddos-2019.html",
+      "priority": 6,
+      "raw_pcap_documented": true
+    }
+  ],
+  "conclusion": "No candidate presently supports a complete immutable reservation without credentials/personal form input or an unapproved 38.5+ GB archive transfer.",
+  "external_dataset_file_opened": false,
+  "network_metadata_only": true,
+  "performance_guided_selection": false,
+  "selected_source": null,
+  "selection_criteria": [
+    "accessible raw PCAP",
+    "documented labels",
+    "reproducible acquisition",
+    "usable capture files",
+    "reasonable size",
+    "clear normal/attack mapping",
+    "documented label-join metadata"
+  ],
+  "selection_order": [
+    "UNSW-NB15",
+    "CIC-IDS2017",
+    "CSE-CIC-IDS2018",
+    "TON_IoT network",
+    "Bot-IoT",
+    "CIC-DDoS2019"
+  ],
+  "version": "p13-source-reservation-extraction-v1"
+}

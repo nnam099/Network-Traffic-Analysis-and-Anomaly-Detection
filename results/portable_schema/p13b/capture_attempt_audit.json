@@ -1,0 +1,24 @@
+{
+  "artifact_type": "P13B_CAPTURE_ATTEMPT_AUDIT",
+  "attempts": [
+    {
+      "attempt": 1,
+      "error": "tcpdump: lo: You don't have permission to perform this capture on that device (socket: Operation not permitted)",
+      "result": "FAILED_BEFORE_CAPTURE",
+      "tool": "tcpdump"
+    },
+    {
+      "attempt": 2,
+      "error": "sudo: a password is required",
+      "result": "FAILED_BEFORE_CAPTURE",
+      "tool": "sudo -n tcpdump -D"
+    }
+  ],
+  "blocker": "Raw capture precondition failed before traffic generation: tcpdump could not open the loopback capture device because CAP_NET_RAW was unavailable, and passwordless sudo was not authorized. No raw PCAP exists, so extraction and downstream audits cannot run.",
+  "created_at_utc": "2026-09-24T00:13:49.096364Z",
+  "external_destinations_contacted": false,
+  "packets_captured": 0,
+  "raw_pcap_created": false,
+  "status": "CAPTURE_PRIVILEGE_BLOCKED",
+  "traffic_generation_started": false
+}

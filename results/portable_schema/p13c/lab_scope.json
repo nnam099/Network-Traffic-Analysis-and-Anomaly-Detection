@@ -1,0 +1,12 @@
+{
+  "allowed_scope": [
+    "127.0.0.2",
+    "127.0.0.3"
+  ],
+  "artifact_type": "P13C_LAB_SCOPE",
+  "capture_interface": "lo",
+  "external_destinations_allowed": false,
+  "generator": "127.0.0.2",
+  "scenario_traffic_generated": false,
+  "target": "127.0.0.3"
+}

@@ -1,0 +1,18 @@
+{
+  "activation_state": "INACTIVE_NO_RESERVED_SOURCE",
+  "ambiguity_policy": "AMBIGUOUS; never majority vote",
+  "artifact_type": "P13_LABEL_JOIN_CONTRACT",
+  "multi_label_conflict_policy": "AMBIGUOUS",
+  "pipeline_order": [
+    "raw capture",
+    "flow extraction",
+    "portable features",
+    "canonical identity",
+    "label join"
+  ],
+  "reference_join": "inclusive flow-start interval plus optional protocol/endpoints/ports",
+  "time_tolerance": null,
+  "unmatched_policy": "UNMATCHED; never silently drop",
+  "version": "p13-source-reservation-extraction-v1",
+  "warning": "Exact fields and tolerance must be frozen from selected source documentation after reservation."
+}

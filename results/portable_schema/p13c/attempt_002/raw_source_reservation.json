@@ -1,0 +1,30 @@
+{
+  "aggregate_corpus_sha256": "02baaa52140f7bae77efec1c30e7f859fccc5e27767f0c90445b5bdd9966a5b5",
+  "aggregate_method": "SHA-256 of sorted filename\\0size_bytes\\0file_sha256\\n records",
+  "artifact_type": "P13C_RAW_SOURCE_RESERVATION",
+  "attempt_id": "P13C_ATTEMPT_002",
+  "corpus_name": "P13C_CONTROLLED_CAPTURE",
+  "post_reservation_editing_forbidden": true,
+  "raw_files": [
+    {
+      "capture_format": "classic_pcap",
+      "capture_interface": "lo",
+      "capture_tool": "Dumpcap (Wireshark) 4.4.18.",
+      "filename": "session_a_raw.pcap",
+      "link_type": "DLT_EN10MB",
+      "packet_capture_end_ns": 1790213506851241021,
+      "packet_capture_start_ns": 1790213488446696766,
+      "packet_count": 793,
+      "path": "data/controlled_capture/p13c/attempt_002/session_a_raw.pcap",
+      "scenario_schedule_sha256": "4920c3efcba623d1838a9f3f3a1fd4ff008925288a3b0e5b7ca7538f2a886761",
+      "sha256": "570fad15116845545d92914aa1caf1848a1d979030352f15c1bd4c6caa84b986",
+      "size_bytes": 77284,
+      "timestamp_precision": "nanoseconds"
+    }
+  ],
+  "raw_files_read_only": true,
+  "reservation_status": "P13C_RAW_SOURCE_RESERVED",
+  "reserved_at_utc": "2026-09-24T01:31:48.898852Z",
+  "scenario_schedule_sha256": "4920c3efcba623d1838a9f3f3a1fd4ff008925288a3b0e5b7ca7538f2a886761",
+  "version": "p13c-controlled-capture-attempt-002-v1"
+}

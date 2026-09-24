@@ -1,0 +1,8 @@
+{
+  "artifact_type": "P13C_PREVIOUS_ATTEMPT_REFERENCE",
+  "attempt_id": "P13B_ATTEMPT_001_CAPTURE_PRIVILEGE_BLOCKED",
+  "gate_sha256": "be8f2213474592c69b34636a089371a35664acc6d5775d9a148cdc51a39bee95",
+  "path": "results/portable_schema/p13b/p13b_gate.json",
+  "preservation_verified_at_utc": "2026-09-24T00:25:04.533010Z",
+  "preserved_unchanged": true
+}

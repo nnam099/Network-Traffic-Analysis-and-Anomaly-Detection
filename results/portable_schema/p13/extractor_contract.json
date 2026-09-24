@@ -1,0 +1,32 @@
+{
+  "activation_state": "CANDIDATE_UNACTIVATED_NO_RESERVED_SOURCE",
+  "artifact_type": "P13_EXTRACTOR_CONTRACT",
+  "dependency_versions": {
+    "python": ">=3.11",
+    "third_party_packet_parser": null
+  },
+  "direction": "first observed packet after deterministic ordering is forward",
+  "flow_key": "unordered endpoint pair plus IP protocol; labels and dataset identifiers excluded",
+  "fragment_policy": "exclude all IPv4 and IPv6 fragments with explicit counters; no implicit reassembly",
+  "idle_timeout": "strictly greater than 60 seconds splits; exactly 60 seconds stays in the flow",
+  "malformed_policy": "exclude/count packet-level malformation; fail on file-level corruption",
+  "output": "18 nullable float64 values + 18 booleans + canonical IPPROTO token + canonical identity v3",
+  "p12_protocol_sha256": "db6405fcac5d8fd94e406660ea60c22853a9c0073762df0e3f21881fe806fec3",
+  "p12_schema_sha256": "db430498147a0601f0d1db9ef5579e210ec9795fa871043d0ab1bf5d328adb7a",
+  "packet_order": "timestamp_ns ascending, then unique capture_index ascending",
+  "parser_scope": "classic PCAP 2.4, DLT_EN10MB, IPv4/IPv6 without extension headers, TCP/UDP/other IP",
+  "parser_version": "p13-classic-pcap-ethernet-v1",
+  "scaling": false,
+  "source_sha256": {
+    "src/ids/p13/__init__.py": "5ef9d7d1332663b8b775153e44425d0bf261249e740dffc161c11d15417ee213",
+    "src/ids/p13/labels.py": "6980bc482f2e7529ff510aeb45528d29543b1553d4935f9056594ae375ddcdbb",
+    "src/ids/p13/portable_extractor.py": "0677630074fdaf3fc014420f5f15a5292654069662d1d6b7e39b5c365be93821",
+    "src/ids/p13/raw_reader/__init__.py": "534d79d2808313521efee8cbf8a47f0d8364ad31682530d9ee37c8e505a4239d",
+    "src/ids/p13/raw_reader/classic_pcap.py": "904d62a136992c464804bdcaf8e1ace6b978fb3131c50b3d6b6cf49624eb91e7",
+    "src/ids/p13/validation.py": "0fd0631109c02a6a4fe12152f8df3f3ac3f3df3621db0011e4b21848634bd669"
+  },
+  "structural_imputation": false,
+  "timestamp_normalization": "integer nanoseconds",
+  "unsupported_policy": "exclude/count unsupported packets; fail on unsupported file/link format",
+  "version": "p13-source-reservation-extraction-v1"
+}

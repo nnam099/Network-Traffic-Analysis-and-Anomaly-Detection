@@ -1,0 +1,17 @@
+{
+  "artifact_type": "P13C_PREVIOUS_ATTEMPT_REFERENCE",
+  "attempt_id": "P13C_ATTEMPT_002",
+  "preserved_unchanged": true,
+  "references": [
+    {
+      "attempt": "P13B_ATTEMPT_001_CAPTURE_PRIVILEGE_BLOCKED",
+      "gate_path": "results/portable_schema/p13b/p13b_gate.json",
+      "gate_sha256": "be8f2213474592c69b34636a089371a35664acc6d5775d9a148cdc51a39bee95"
+    },
+    {
+      "attempt": "P13C_CAPTURE_PRECONDITION_BLOCKED",
+      "gate_path": "results/portable_schema/p13c/p13c_gate.json",
+      "gate_sha256": "f70e98af206f7c037975b2f97d3215e891645ee97fff5439022ff16c4d179a69"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "artifact_type": "P13C_CROSS_LABEL_IDENTITY_AUDIT",
+  "attack_only_identity_count": 68,
+  "attempt_id": "P13C_ATTEMPT_002",
+  "identity_review_required": false,
+  "mixed_flow_instance_count": 0,
+  "mixed_identity_count": 0,
+  "mixed_matched_flow_share": 0.0,
+  "normal_only_identity_count": 12,
+  "review_rule": "mixed_identity_count >= 5 AND mixed_matched_flow_share >= 0.05"
+}

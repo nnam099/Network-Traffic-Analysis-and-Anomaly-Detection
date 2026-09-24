@@ -1,0 +1,70 @@
+{
+  "artifact_type": "P13C_IDENTITY_MULTIPLICITY_AUDIT",
+  "attack_only_identity_count": 68,
+  "attempt_id": "P13C_ATTEMPT_002",
+  "flows_per_identity_maximum": 1,
+  "flows_per_identity_mean": 1.0,
+  "flows_per_identity_median": 1.0,
+  "flows_per_identity_p95": 1.0,
+  "identity_review_required": false,
+  "largest_identity_groups": [
+    {
+      "canonical_identity_v3": "0265307a25af58650f2c66d1cacd97bb1bc474c8d67acac0068b8f086dc448ed",
+      "flow_count": 1,
+      "label_class": "ATTACK"
+    },
+    {
+      "canonical_identity_v3": "028e15a7209ce45abab38ecce516dc1d5c202b5c8a5f43398086e63b7ad49df1",
+      "flow_count": 1,
+      "label_class": "ATTACK"
+    },
+    {
+      "canonical_identity_v3": "02a68c97bb53dba2f7448d011f16975da4724acb2112d018db61214c7434dcf1",
+      "flow_count": 1,
+      "label_class": "ATTACK"
+    },
+    {
+      "canonical_identity_v3": "02cfb8a6283fc14a1204308cac09f947ef7347fa5aa87711c1c5780d916f368e",
+      "flow_count": 1,
+      "label_class": "ATTACK"
+    },
+    {
+      "canonical_identity_v3": "04106afb36d463643c458c31faa63f56539314f5b2a4fdece8637147860058e4",
+      "flow_count": 1,
+      "label_class": "ATTACK"
+    },
+    {
+      "canonical_identity_v3": "05763cad912c3b0d3b3763c0d3209c379599a770f64fd61d5f389e6d6c1dcaa4",
+      "flow_count": 1,
+      "label_class": "ATTACK"
+    },
+    {
+      "canonical_identity_v3": "0705b1d91c2da379602550aea08a54a92129556ab27b4a3bd9dfbb97ae099769",
+      "flow_count": 1,
+      "label_class": "ATTACK"
+    },
+    {
+      "canonical_identity_v3": "07eb47290f1c8c2454b32edd7ea629d99bc8ef0f018c2fe1f88e2f2ce5dfd7fb",
+      "flow_count": 1,
+      "label_class": "ATTACK"
+    },
+    {
+      "canonical_identity_v3": "08159f0ec79367ae6d836d5a9a1022c80cb4a0dc45543b22c3de6cc86c464e7b",
+      "flow_count": 1,
+      "label_class": "NORMAL"
+    },
+    {
+      "canonical_identity_v3": "084f7655f1f9b037efd16d5a259838a5c3dd7b3cab5f7b31e50f96a4bdf5ff12",
+      "flow_count": 1,
+      "label_class": "ATTACK"
+    }
+  ],
+  "majority_vote_used": false,
+  "mixed_flow_count": 0,
+  "mixed_identity_count": 0,
+  "mixed_matched_flow_share": 0.0,
+  "normal_only_identity_count": 12,
+  "review_rule": "mixed_identity_count >= 5 AND mixed_matched_flow_share >= 0.05",
+  "total_flow_instances": 80,
+  "unique_canonical_identities": 80
+}

@@ -1,0 +1,9 @@
+{
+  "ambiguous_rows": null,
+  "artifact_type": "P13_POPULATION_AUDIT",
+  "attack_rows": null,
+  "normal_rows": null,
+  "rows_dropped": 0,
+  "status": "NOT_RUN_NO_RESERVED_SOURCE",
+  "unmatched_rows": null
+}

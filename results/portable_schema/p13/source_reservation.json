@@ -1,0 +1,18 @@
+{
+  "aggregate_sha256": null,
+  "archive_sha256_if_applicable": null,
+  "artifact_type": "P13_RAW_SOURCE_RESERVATION",
+  "dataset_name": null,
+  "dataset_version": null,
+  "download_timestamp_utc": null,
+  "license": null,
+  "raw_directory_read_only": false,
+  "raw_file_names": [],
+  "raw_file_sizes": [],
+  "reason": "No candidate passed accessibility, size, and SHA-256 reservation requirements.",
+  "reservation_status": "NOT_RESERVED",
+  "sha256_per_file": {},
+  "source_documentation_hashes": {},
+  "source_url": null,
+  "version": "p13-source-reservation-extraction-v1"
+}

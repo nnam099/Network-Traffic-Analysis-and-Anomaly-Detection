@@ -1,0 +1,29 @@
+{
+  "artifact_type": "P13B_LAB_TOPOLOGY",
+  "capture_point": {
+    "filter_endpoints": [
+      "127.0.0.2",
+      "127.0.0.3"
+    ],
+    "interface": "lo"
+  },
+  "corpus_name": "P13B_CONTROLLED_CAPTURE",
+  "external_destinations": [],
+  "generator": {
+    "address": "127.0.0.2",
+    "role": "controlled traffic generator"
+  },
+  "isolation": "Linux loopback only; no route to a public target is used by any scenario",
+  "ownership": "single local researcher-controlled host and disposable local services",
+  "target": {
+    "address": "127.0.0.3",
+    "ports": {
+      "auth": 18083,
+      "echo_long": 18082,
+      "echo_short": 18081,
+      "http": 18080,
+      "udp": 18053
+    },
+    "role": "controlled disposable services"
+  }
+}

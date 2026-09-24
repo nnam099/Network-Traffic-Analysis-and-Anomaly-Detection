@@ -1,0 +1,10 @@
+{
+  "artifact_type": "P13_LABEL_TAXONOMY_AUDIT",
+  "forced_unsw_family_mapping": false,
+  "portable_primary_taxonomy": [
+    "NORMAL",
+    "ATTACK"
+  ],
+  "source_categories": [],
+  "status": "NOT_RUN_NO_RESERVED_SOURCE"
+}
