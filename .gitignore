@@ -48,6 +48,7 @@ new/
 plots/*
 results/*.log
 results/csv_eval/
+results/external_cic2017_*/
 results/**/checkpoints/
 results/**/runs/
 results/**/pilot_rerun/
