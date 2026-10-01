@@ -1,0 +1,31 @@
+{
+  "authoritative_source": "https://research.unsw.edu.au/projects/unsw-nb15-dataset",
+  "availability_documented": true,
+  "blocking_reasons": [
+    "no authoritative raw PCAP is locally materialized and hashed",
+    "local train/test CSV partitions omit IP/time fields required for PCAP-flow row alignment",
+    "no immutable mapping from raw packets to the local expected rows is available"
+  ],
+  "candidate": "official full UNSW-NB15 source bundle",
+  "distribution_only_validation_forbidden": true,
+  "documented_bundle": [
+    "PCAP",
+    "Argus files",
+    "Bro files",
+    "UNSW-NB15_1.csv through _4.csv",
+    "UNSW-NB15_GT.csv",
+    "UNSW-NB15_LIST_EVENTS.csv"
+  ],
+  "download_attempt": "official SharePoint link redirected to Microsoft authentication",
+  "expected_rows_sha256": {},
+  "external_evaluation_pcap_reserved": false,
+  "local_expected_feature_files": [
+    "data/UNSW_NB15_training-set.csv",
+    "data/UNSW_NB15_testing-set.csv"
+  ],
+  "local_pair_is_row_alignable": false,
+  "local_raw_capture_files": [],
+  "raw_capture_sha256": {},
+  "status": "P11_REFERENCE_CORPUS_BLOCKED",
+  "version": "p11-semantic-extractor-v1"
+}

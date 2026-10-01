@@ -1,0 +1,453 @@
+{
+  "classification_counts": {
+    "APPLICATION_PROTOCOL_DERIVED": 5,
+    "FLOW_DERIVED": 28,
+    "LAST_N_CONNECTION_CONTEXT": 8,
+    "PACKET_DIRECT": 3,
+    "SERVICE_DERIVED": 1,
+    "TCP_STATE_DERIVED": 10,
+    "TEMPORAL_CONTEXT": 6,
+    "UNKNOWN_OR_UNVERIFIED": 0
+  },
+  "classification_vocabulary": [
+    "PACKET_DIRECT",
+    "FLOW_DERIVED",
+    "TCP_STATE_DERIVED",
+    "SERVICE_DERIVED",
+    "TEMPORAL_CONTEXT",
+    "LAST_N_CONNECTION_CONTEXT",
+    "APPLICATION_PROTOCOL_DERIVED",
+    "UNKNOWN_OR_UNVERIFIED"
+  ],
+  "features": [
+    {
+      "name": "ackdat",
+      "semantic_class": "TCP_STATE_DERIVED",
+      "sensitive": true,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "ct_dst_ltm",
+      "semantic_class": "LAST_N_CONNECTION_CONTEXT",
+      "sensitive": true,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "ct_dst_sport_ltm",
+      "semantic_class": "LAST_N_CONNECTION_CONTEXT",
+      "sensitive": true,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "ct_dst_src_ltm",
+      "semantic_class": "LAST_N_CONNECTION_CONTEXT",
+      "sensitive": true,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "ct_flw_http_mthd",
+      "semantic_class": "APPLICATION_PROTOCOL_DERIVED",
+      "sensitive": true,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "ct_ftp_cmd",
+      "semantic_class": "APPLICATION_PROTOCOL_DERIVED",
+      "sensitive": true,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "ct_src_dport_ltm",
+      "semantic_class": "LAST_N_CONNECTION_CONTEXT",
+      "sensitive": true,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "ct_src_ltm",
+      "semantic_class": "LAST_N_CONNECTION_CONTEXT",
+      "sensitive": true,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "ct_srv_dst",
+      "semantic_class": "LAST_N_CONNECTION_CONTEXT",
+      "sensitive": true,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "ct_srv_src",
+      "semantic_class": "LAST_N_CONNECTION_CONTEXT",
+      "sensitive": true,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "ct_state_ttl",
+      "semantic_class": "LAST_N_CONNECTION_CONTEXT",
+      "sensitive": true,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "dbytes",
+      "semantic_class": "FLOW_DERIVED",
+      "sensitive": false,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "dinpkt",
+      "semantic_class": "TEMPORAL_CONTEXT",
+      "sensitive": true,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "djit",
+      "semantic_class": "TEMPORAL_CONTEXT",
+      "sensitive": true,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "dload",
+      "semantic_class": "FLOW_DERIVED",
+      "sensitive": false,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "dloss",
+      "semantic_class": "FLOW_DERIVED",
+      "sensitive": false,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "dmean",
+      "semantic_class": "FLOW_DERIVED",
+      "sensitive": false,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "dpkts",
+      "semantic_class": "FLOW_DERIVED",
+      "sensitive": false,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "dtcpb",
+      "semantic_class": "TCP_STATE_DERIVED",
+      "sensitive": true,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "dttl",
+      "semantic_class": "PACKET_DIRECT",
+      "sensitive": false,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "dur",
+      "semantic_class": "FLOW_DERIVED",
+      "sensitive": false,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "dwin",
+      "semantic_class": "TCP_STATE_DERIVED",
+      "sensitive": true,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "is_ftp_login",
+      "semantic_class": "APPLICATION_PROTOCOL_DERIVED",
+      "sensitive": true,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "is_sm_ips_ports",
+      "semantic_class": "FLOW_DERIVED",
+      "sensitive": false,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "rate",
+      "semantic_class": "FLOW_DERIVED",
+      "sensitive": false,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "response_body_len",
+      "semantic_class": "APPLICATION_PROTOCOL_DERIVED",
+      "sensitive": true,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "sbytes",
+      "semantic_class": "FLOW_DERIVED",
+      "sensitive": false,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "sinpkt",
+      "semantic_class": "TEMPORAL_CONTEXT",
+      "sensitive": true,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "sjit",
+      "semantic_class": "TEMPORAL_CONTEXT",
+      "sensitive": true,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "sload",
+      "semantic_class": "FLOW_DERIVED",
+      "sensitive": false,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "sloss",
+      "semantic_class": "FLOW_DERIVED",
+      "sensitive": false,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "smean",
+      "semantic_class": "FLOW_DERIVED",
+      "sensitive": false,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "spkts",
+      "semantic_class": "FLOW_DERIVED",
+      "sensitive": false,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "stcpb",
+      "semantic_class": "TCP_STATE_DERIVED",
+      "sensitive": true,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "sttl",
+      "semantic_class": "PACKET_DIRECT",
+      "sensitive": false,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "swin",
+      "semantic_class": "TCP_STATE_DERIVED",
+      "sensitive": true,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "synack",
+      "semantic_class": "TCP_STATE_DERIVED",
+      "sensitive": true,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "tcprtt",
+      "semantic_class": "TCP_STATE_DERIVED",
+      "sensitive": true,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "trans_depth",
+      "semantic_class": "APPLICATION_PROTOCOL_DERIVED",
+      "sensitive": true,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "bytes_ratio",
+      "semantic_class": "FLOW_DERIVED",
+      "sensitive": false,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "log_total_bytes",
+      "semantic_class": "FLOW_DERIVED",
+      "sensitive": false,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "log_sbytes",
+      "semantic_class": "FLOW_DERIVED",
+      "sensitive": false,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "log_dbytes",
+      "semantic_class": "FLOW_DERIVED",
+      "sensitive": false,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "pkts_ratio",
+      "semantic_class": "FLOW_DERIVED",
+      "sensitive": false,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "log_total_pkts",
+      "semantic_class": "FLOW_DERIVED",
+      "sensitive": false,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "src_bps",
+      "semantic_class": "FLOW_DERIVED",
+      "sensitive": false,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "log_src_bps",
+      "semantic_class": "FLOW_DERIVED",
+      "sensitive": false,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "pkt_rate",
+      "semantic_class": "FLOW_DERIVED",
+      "sensitive": false,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "load_asym",
+      "semantic_class": "FLOW_DERIVED",
+      "sensitive": false,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "log_sload",
+      "semantic_class": "FLOW_DERIVED",
+      "sensitive": false,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "ttl_diff",
+      "semantic_class": "FLOW_DERIVED",
+      "sensitive": false,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "ttl_sum",
+      "semantic_class": "FLOW_DERIVED",
+      "sensitive": false,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "loss_rate_src",
+      "semantic_class": "FLOW_DERIVED",
+      "sensitive": false,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "loss_rate_dst",
+      "semantic_class": "FLOW_DERIVED",
+      "sensitive": false,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "jit_ratio",
+      "semantic_class": "TEMPORAL_CONTEXT",
+      "sensitive": true,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "log_sjit",
+      "semantic_class": "TEMPORAL_CONTEXT",
+      "sensitive": true,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "handshake_ratio",
+      "semantic_class": "TCP_STATE_DERIVED",
+      "sensitive": true,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "incomplete_tcp",
+      "semantic_class": "TCP_STATE_DERIVED",
+      "sensitive": true,
+      "type": "finite float64",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "proto",
+      "semantic_class": "PACKET_DIRECT",
+      "sensitive": false,
+      "type": "UTF-8 categorical token",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "service",
+      "semantic_class": "SERVICE_DERIVED",
+      "sensitive": true,
+      "type": "UTF-8 categorical token",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    },
+    {
+      "name": "state",
+      "semantic_class": "TCP_STATE_DERIVED",
+      "sensitive": true,
+      "type": "UTF-8 categorical token",
+      "verification_state": "UNKNOWN_OR_UNVERIFIED"
+    }
+  ],
+  "schema_contract_sha256": "2e412346f15d1d1de48ea183f8b110ffc049e2961dbb9bfffb2f6c4b118a6cfe",
+  "version": "p11-semantic-extractor-v1"
+}

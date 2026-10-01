@@ -1,0 +1,1440 @@
+{
+  "cells": [
+    {
+      "checkpoint_state_sha256": "ddeafc584ec0b6700cd51d31b8df8d079798cf0bc2209eea9cfcd2ca06470b40",
+      "confidence_intervals": {
+        "confidence_level": 0.95,
+        "discarded_replicates": 0,
+        "intervals": {
+          "AUROC": [
+            0.6508571900682169,
+            0.6643492685679618
+          ],
+          "Average_Precision": [
+            0.12151559729159399,
+            0.1313138889856627
+          ],
+          "FPR": [
+            0.021393643031784843,
+            0.024133715538318862
+          ],
+          "TPR": [
+            0.04122654621264767,
+            0.05327773917072041
+          ]
+        },
+        "method": "stratified canonical-identity bootstrap",
+        "replicates": 2000,
+        "rng": "NumPy PCG64",
+        "seed": 700042,
+        "valid_replicates": 2000
+      },
+      "counts": {
+        "family_identities": {
+          "DoS": 1149,
+          "Exploits": 7041,
+          "Fuzzers": 4317,
+          "Generic": 3379,
+          "Normal": 33662,
+          "Reconnaissance": 2213
+        },
+        "family_rows": {
+          "DoS": 1170,
+          "Exploits": 7931,
+          "Fuzzers": 4777,
+          "Generic": 17123,
+          "Normal": 35524,
+          "Reconnaissance": 2268
+        },
+        "known_identities": 47444,
+        "known_rows": 64016,
+        "positive_identities": 4317,
+        "positive_rows": 4777,
+        "primary_surface": "official-test-clean",
+        "small_n_warning": null,
+        "split_seed": 42,
+        "target": "Fuzzers"
+      },
+      "identity_metrics": {
+        "AUROC": 0.657763054430756,
+        "Average_Precision": 0.1259753190400636,
+        "F1": 0.0725,
+        "FN": 4114,
+        "FP": 1080,
+        "FPR": 0.022763679285051852,
+        "TN": 46364,
+        "TP": 203,
+        "TPR": 0.04702339587676627,
+        "balanced_accuracy": 0.5121298582958572,
+        "precision": 0.15822291504286828,
+        "specificity": 0.9772363207149481
+      },
+      "p6_calibration_artifact_sha256": "5a96bd1727947ba69f3fde28b83c5c0759709757ae50298904cb2db3aace6b7b",
+      "p6_scorer_state_sha256": "a4b3014b43631adb8102acaf9c20348f3c2dac081d2403758e6d8bd6ca43a650",
+      "selected_scorer": "negative_max_softmax",
+      "small_n_warning": null,
+      "split_seed": 42,
+      "target": "Fuzzers",
+      "threshold": 0.5406308192851865
+    },
+    {
+      "checkpoint_state_sha256": "db97f91a7d2c0338d01ddf58d9b4a11b425b00a166fb4c86bb6fbfe59cabd75b",
+      "confidence_intervals": {
+        "confidence_level": 0.95,
+        "discarded_replicates": 0,
+        "intervals": {
+          "AUROC": [
+            0.6515086486416073,
+            0.6639431146183153
+          ],
+          "Average_Precision": [
+            0.11614117204414773,
+            0.12436519010111974
+          ],
+          "FPR": [
+            0.01795801365820757,
+            0.02046623387572717
+          ],
+          "TPR": [
+            0.03729441741950429,
+            0.04957146166319203
+          ]
+        },
+        "method": "stratified canonical-identity bootstrap",
+        "replicates": 2000,
+        "rng": "NumPy PCG64",
+        "seed": 700043,
+        "valid_replicates": 2000
+      },
+      "counts": {
+        "family_identities": {
+          "DoS": 1149,
+          "Exploits": 7041,
+          "Fuzzers": 4317,
+          "Generic": 3379,
+          "Normal": 33662,
+          "Reconnaissance": 2213
+        },
+        "family_rows": {
+          "DoS": 1170,
+          "Exploits": 7931,
+          "Fuzzers": 4777,
+          "Generic": 17123,
+          "Normal": 35524,
+          "Reconnaissance": 2268
+        },
+        "known_identities": 47444,
+        "known_rows": 64016,
+        "positive_identities": 4317,
+        "positive_rows": 4777,
+        "primary_surface": "official-test-clean",
+        "small_n_warning": null,
+        "split_seed": 43,
+        "target": "Fuzzers"
+      },
+      "identity_metrics": {
+        "AUROC": 0.6578994453102307,
+        "Average_Precision": 0.11986781229711149,
+        "F1": 0.06943674976915976,
+        "FN": 4129,
+        "FP": 910,
+        "FPR": 0.019180507545738135,
+        "TN": 46534,
+        "TP": 188,
+        "TPR": 0.04354876071345842,
+        "balanced_accuracy": 0.5121841265838601,
+        "precision": 0.17122040072859745,
+        "specificity": 0.9808194924542619
+      },
+      "p6_calibration_artifact_sha256": "14e3c535a983ba48c453af52bc23f2528008c108aacb52688a34a8172ee9bf67",
+      "p6_scorer_state_sha256": "945907b891969e239de460ffa50bb1cbbe1f73804d9dc5b3fada22997d2f0a69",
+      "selected_scorer": "negative_max_softmax",
+      "small_n_warning": null,
+      "split_seed": 43,
+      "target": "Fuzzers",
+      "threshold": 0.5343232987839239
+    },
+    {
+      "checkpoint_state_sha256": "e2ae9b5494ad5587e056f1fe68bccf430ef1473173c03ec61ad056516a9e0a79",
+      "confidence_intervals": {
+        "confidence_level": 0.95,
+        "discarded_replicates": 0,
+        "intervals": {
+          "AUROC": [
+            0.6447775022895211,
+            0.6581632791488281
+          ],
+          "Average_Precision": [
+            0.10983369870414847,
+            0.11661778385357309
+          ],
+          "FPR": [
+            0.03395582160020234,
+            0.037222831127223674
+          ],
+          "TPR": [
+            0.03683113273106324,
+            0.04933981931897151
+          ]
+        },
+        "method": "stratified canonical-identity bootstrap",
+        "replicates": 2000,
+        "rng": "NumPy PCG64",
+        "seed": 700044,
+        "valid_replicates": 2000
+      },
+      "counts": {
+        "family_identities": {
+          "DoS": 1149,
+          "Exploits": 7041,
+          "Fuzzers": 4317,
+          "Generic": 3379,
+          "Normal": 33662,
+          "Reconnaissance": 2213
+        },
+        "family_rows": {
+          "DoS": 1170,
+          "Exploits": 7931,
+          "Fuzzers": 4777,
+          "Generic": 17123,
+          "Normal": 35524,
+          "Reconnaissance": 2268
+        },
+        "known_identities": 47444,
+        "known_rows": 64016,
+        "positive_identities": 4317,
+        "positive_rows": 4777,
+        "primary_surface": "official-test-clean",
+        "small_n_warning": null,
+        "split_seed": 44,
+        "target": "Fuzzers"
+      },
+      "identity_metrics": {
+        "AUROC": 0.651329506166684,
+        "Average_Precision": 0.11292534247306854,
+        "F1": 0.06008722338879017,
+        "FN": 4131,
+        "FP": 1688,
+        "FPR": 0.035578787623303264,
+        "TN": 45756,
+        "TP": 186,
+        "TPR": 0.043085476025017375,
+        "balanced_accuracy": 0.503753344200857,
+        "precision": 0.09925293489861259,
+        "specificity": 0.9644212123766968
+      },
+      "p6_calibration_artifact_sha256": "e89429829fdaf1dfab882f7bf31d37e6a34c3b93378f9dcf33246240ff1a9f6c",
+      "p6_scorer_state_sha256": "afb1376db0e3d790da98a14f39f1113eb781172534dec91e03771703fcd2575c",
+      "selected_scorer": "negative_max_softmax",
+      "small_n_warning": null,
+      "split_seed": 44,
+      "target": "Fuzzers",
+      "threshold": 0.540855742832999
+    },
+    {
+      "checkpoint_state_sha256": "ddeafc584ec0b6700cd51d31b8df8d079798cf0bc2209eea9cfcd2ca06470b40",
+      "confidence_intervals": {
+        "confidence_level": 0.95,
+        "discarded_replicates": 0,
+        "intervals": {
+          "AUROC": [
+            0.8777085743918783,
+            0.9230807045838433
+          ],
+          "Average_Precision": [
+            0.006332006919091306,
+            0.012867517235479532
+          ],
+          "FPR": [
+            0.02946631818565045,
+            0.032691172751032796
+          ],
+          "TPR": [
+            0.13793103448275862,
+            0.34525862068965285
+          ]
+        },
+        "method": "stratified canonical-identity bootstrap",
+        "replicates": 2000,
+        "rng": "NumPy PCG64",
+        "seed": 700142,
+        "valid_replicates": 2000
+      },
+      "counts": {
+        "family_identities": {
+          "Analysis": 58,
+          "DoS": 1149,
+          "Exploits": 7041,
+          "Generic": 3379,
+          "Normal": 33662,
+          "Reconnaissance": 2213
+        },
+        "family_rows": {
+          "Analysis": 58,
+          "DoS": 1170,
+          "Exploits": 7931,
+          "Generic": 17123,
+          "Normal": 35524,
+          "Reconnaissance": 2268
+        },
+        "known_identities": 47444,
+        "known_rows": 64016,
+        "positive_identities": 58,
+        "positive_rows": 58,
+        "primary_surface": "official-test-clean",
+        "small_n_warning": "SMALL-N EXTERNAL TARGET",
+        "split_seed": 42,
+        "target": "Analysis"
+      },
+      "identity_metrics": {
+        "AUROC": 0.900848259581532,
+        "Average_Precision": 0.008499508673790393,
+        "F1": 0.01808785529715762,
+        "FN": 44,
+        "FP": 1476,
+        "FPR": 0.031110361689570862,
+        "TN": 45968,
+        "TP": 14,
+        "TPR": 0.2413793103448276,
+        "balanced_accuracy": 0.6051344743276283,
+        "precision": 0.009395973154362415,
+        "specificity": 0.9688896383104292
+      },
+      "p6_calibration_artifact_sha256": "8ead1959258f4f911181f3dcd592b6a287130fb77d23747895dec59a660d3279",
+      "p6_scorer_state_sha256": "16b327bdf0dc8ecd30625fa89ec2b99c62841e5c715cb82c75ea5702cb744824",
+      "selected_scorer": "nearest_centroid_l2",
+      "small_n_warning": "SMALL-N EXTERNAL TARGET",
+      "split_seed": 42,
+      "target": "Analysis",
+      "threshold": 5.705889246261508
+    },
+    {
+      "checkpoint_state_sha256": "db97f91a7d2c0338d01ddf58d9b4a11b425b00a166fb4c86bb6fbfe59cabd75b",
+      "confidence_intervals": {
+        "confidence_level": 0.95,
+        "discarded_replicates": 0,
+        "intervals": {
+          "AUROC": [
+            0.8095307916556433,
+            0.856956495352779
+          ],
+          "Average_Precision": [
+            0.0031519506078669505,
+            0.004191369245634073
+          ],
+          "FPR": [
+            0.011634769412359835,
+            0.01374251749430908
+          ],
+          "TPR": [
+            0.0,
+            0.0
+          ]
+        },
+        "method": "stratified canonical-identity bootstrap",
+        "replicates": 2000,
+        "rng": "NumPy PCG64",
+        "seed": 700143,
+        "valid_replicates": 2000
+      },
+      "counts": {
+        "family_identities": {
+          "Analysis": 58,
+          "DoS": 1149,
+          "Exploits": 7041,
+          "Generic": 3379,
+          "Normal": 33662,
+          "Reconnaissance": 2213
+        },
+        "family_rows": {
+          "Analysis": 58,
+          "DoS": 1170,
+          "Exploits": 7931,
+          "Generic": 17123,
+          "Normal": 35524,
+          "Reconnaissance": 2268
+        },
+        "known_identities": 47444,
+        "known_rows": 64016,
+        "positive_identities": 58,
+        "positive_rows": 58,
+        "primary_surface": "official-test-clean",
+        "small_n_warning": "SMALL-N EXTERNAL TARGET",
+        "split_seed": 43,
+        "target": "Analysis"
+      },
+      "identity_metrics": {
+        "AUROC": 0.833953423128247,
+        "Average_Precision": 0.003536512745922095,
+        "F1": 0.0,
+        "FN": 58,
+        "FP": 602,
+        "FPR": 0.012688643453334458,
+        "TN": 46842,
+        "TP": 0,
+        "TPR": 0.0,
+        "balanced_accuracy": 0.4936556782733328,
+        "precision": 0.0,
+        "specificity": 0.9873113565466656
+      },
+      "p6_calibration_artifact_sha256": "cbabf4965e1301c07362df6b7358bb4d7349de2a24a6c8e51699cf28632b7d9c",
+      "p6_scorer_state_sha256": "09c05314c7e4836b27d21b97d9b6176c1827f1237a8f57f71648130ab59aae6a",
+      "selected_scorer": "nearest_centroid_l2",
+      "small_n_warning": "SMALL-N EXTERNAL TARGET",
+      "split_seed": 43,
+      "target": "Analysis",
+      "threshold": 5.654274056850929
+    },
+    {
+      "checkpoint_state_sha256": "e2ae9b5494ad5587e056f1fe68bccf430ef1473173c03ec61ad056516a9e0a79",
+      "confidence_intervals": {
+        "confidence_level": 0.95,
+        "discarded_replicates": 0,
+        "intervals": {
+          "AUROC": [
+            0.7050712600554119,
+            0.7394274356846111
+          ],
+          "Average_Precision": [
+            0.0019758586984820327,
+            0.002208699615308749
+          ],
+          "FPR": [
+            0.010053958350897901,
+            0.011929854143832729
+          ],
+          "TPR": [
+            0.0,
+            0.0
+          ]
+        },
+        "method": "stratified canonical-identity bootstrap",
+        "replicates": 2000,
+        "rng": "NumPy PCG64",
+        "seed": 700144,
+        "valid_replicates": 2000
+      },
+      "counts": {
+        "family_identities": {
+          "Analysis": 58,
+          "DoS": 1149,
+          "Exploits": 7041,
+          "Generic": 3379,
+          "Normal": 33662,
+          "Reconnaissance": 2213
+        },
+        "family_rows": {
+          "Analysis": 58,
+          "DoS": 1170,
+          "Exploits": 7931,
+          "Generic": 17123,
+          "Normal": 35524,
+          "Reconnaissance": 2268
+        },
+        "known_identities": 47444,
+        "known_rows": 64016,
+        "positive_identities": 58,
+        "positive_rows": 58,
+        "primary_surface": "official-test-clean",
+        "small_n_warning": "SMALL-N EXTERNAL TARGET",
+        "split_seed": 44,
+        "target": "Analysis"
+      },
+      "identity_metrics": {
+        "AUROC": 0.7214385598702209,
+        "Average_Precision": 0.002030196361622105,
+        "F1": 0.0,
+        "FN": 58,
+        "FP": 521,
+        "FPR": 0.010981367506955568,
+        "TN": 46923,
+        "TP": 0,
+        "TPR": 0.0,
+        "balanced_accuracy": 0.4945093162465222,
+        "precision": 0.0,
+        "specificity": 0.9890186324930444
+      },
+      "p6_calibration_artifact_sha256": "fac67e715c0936a2daa6f71dba39ad95993ee1a0ccbc6884e82eada0085133f1",
+      "p6_scorer_state_sha256": "eaf2d10e0d17c3b05ab82bdb057e8dea8fa5ad97135b834c6c8af51b6cba6ebb",
+      "selected_scorer": "nearest_centroid_l2",
+      "small_n_warning": "SMALL-N EXTERNAL TARGET",
+      "split_seed": 44,
+      "target": "Analysis",
+      "threshold": 5.971600926934242
+    },
+    {
+      "checkpoint_state_sha256": "ddeafc584ec0b6700cd51d31b8df8d079798cf0bc2209eea9cfcd2ca06470b40",
+      "confidence_intervals": {
+        "confidence_level": 0.95,
+        "discarded_replicates": 0,
+        "intervals": {
+          "AUROC": [
+            0.46158497848617835,
+            0.5563619325165625
+          ],
+          "Average_Precision": [
+            0.0010443109911357623,
+            0.0012940937889916301
+          ],
+          "FPR": [
+            0.029529550628108928,
+            0.03264901778939381
+          ],
+          "TPR": [
+            0.0,
+            0.0
+          ]
+        },
+        "method": "stratified canonical-identity bootstrap",
+        "replicates": 2000,
+        "rng": "NumPy PCG64",
+        "seed": 700242,
+        "valid_replicates": 2000
+      },
+      "counts": {
+        "family_identities": {
+          "Backdoors": 57,
+          "DoS": 1149,
+          "Exploits": 7041,
+          "Generic": 3379,
+          "Normal": 33662,
+          "Reconnaissance": 2213
+        },
+        "family_rows": {
+          "Backdoors": 57,
+          "DoS": 1170,
+          "Exploits": 7931,
+          "Generic": 17123,
+          "Normal": 35524,
+          "Reconnaissance": 2268
+        },
+        "known_identities": 47444,
+        "known_rows": 64016,
+        "positive_identities": 57,
+        "positive_rows": 57,
+        "primary_surface": "official-test-clean",
+        "small_n_warning": "SMALL-N EXTERNAL TARGET",
+        "split_seed": 42,
+        "target": "Backdoors"
+      },
+      "identity_metrics": {
+        "AUROC": 0.5109392125453166,
+        "Average_Precision": 0.0011298311195883128,
+        "F1": 0.0,
+        "FN": 57,
+        "FP": 1476,
+        "FPR": 0.031110361689570862,
+        "TN": 45968,
+        "TP": 0,
+        "TPR": 0.0,
+        "balanced_accuracy": 0.4844448191552146,
+        "precision": 0.0,
+        "specificity": 0.9688896383104292
+      },
+      "p6_calibration_artifact_sha256": "9ce5e34f316584aa1b1214fd05e3d118228a53ac842ca13b958e8cb66c2072a7",
+      "p6_scorer_state_sha256": "16b327bdf0dc8ecd30625fa89ec2b99c62841e5c715cb82c75ea5702cb744824",
+      "selected_scorer": "nearest_centroid_l2",
+      "small_n_warning": "SMALL-N EXTERNAL TARGET",
+      "split_seed": 42,
+      "target": "Backdoors",
+      "threshold": 5.705889246261508
+    },
+    {
+      "checkpoint_state_sha256": "db97f91a7d2c0338d01ddf58d9b4a11b425b00a166fb4c86bb6fbfe59cabd75b",
+      "confidence_intervals": {
+        "confidence_level": 0.95,
+        "discarded_replicates": 0,
+        "intervals": {
+          "AUROC": [
+            0.5866447627267309,
+            0.7070778827707495
+          ],
+          "Average_Precision": [
+            0.0014819715393349663,
+            0.0023576743722463177
+          ],
+          "FPR": [
+            0.01167692437399882,
+            0.013721440013489588
+          ],
+          "TPR": [
+            0.0,
+            0.0
+          ]
+        },
+        "method": "stratified canonical-identity bootstrap",
+        "replicates": 2000,
+        "rng": "NumPy PCG64",
+        "seed": 700243,
+        "valid_replicates": 2000
+      },
+      "counts": {
+        "family_identities": {
+          "Backdoors": 57,
+          "DoS": 1149,
+          "Exploits": 7041,
+          "Generic": 3379,
+          "Normal": 33662,
+          "Reconnaissance": 2213
+        },
+        "family_rows": {
+          "Backdoors": 57,
+          "DoS": 1170,
+          "Exploits": 7931,
+          "Generic": 17123,
+          "Normal": 35524,
+          "Reconnaissance": 2268
+        },
+        "known_identities": 47444,
+        "known_rows": 64016,
+        "positive_identities": 57,
+        "positive_rows": 57,
+        "primary_surface": "official-test-clean",
+        "small_n_warning": "SMALL-N EXTERNAL TARGET",
+        "split_seed": 43,
+        "target": "Backdoors"
+      },
+      "identity_metrics": {
+        "AUROC": 0.6473582151145506,
+        "Average_Precision": 0.0017585384744351388,
+        "F1": 0.0,
+        "FN": 57,
+        "FP": 602,
+        "FPR": 0.012688643453334458,
+        "TN": 46842,
+        "TP": 0,
+        "TPR": 0.0,
+        "balanced_accuracy": 0.4936556782733328,
+        "precision": 0.0,
+        "specificity": 0.9873113565466656
+      },
+      "p6_calibration_artifact_sha256": "2c946b0ba1a698f83a37f1d626ada60d097293443baf5d17203fe6f75210fcff",
+      "p6_scorer_state_sha256": "09c05314c7e4836b27d21b97d9b6176c1827f1237a8f57f71648130ab59aae6a",
+      "selected_scorer": "nearest_centroid_l2",
+      "small_n_warning": "SMALL-N EXTERNAL TARGET",
+      "split_seed": 43,
+      "target": "Backdoors",
+      "threshold": 5.654274056850929
+    },
+    {
+      "checkpoint_state_sha256": "e2ae9b5494ad5587e056f1fe68bccf430ef1473173c03ec61ad056516a9e0a79",
+      "confidence_intervals": {
+        "confidence_level": 0.95,
+        "discarded_replicates": 0,
+        "intervals": {
+          "AUROC": [
+            0.5201081108364876,
+            0.6385171086281592
+          ],
+          "Average_Precision": [
+            0.0012298059075989635,
+            0.0020951899047001498
+          ],
+          "FPR": [
+            0.010075035831717392,
+            0.011908776663013237
+          ],
+          "TPR": [
+            0.0,
+            0.05263157894736842
+          ]
+        },
+        "method": "stratified canonical-identity bootstrap",
+        "replicates": 2000,
+        "rng": "NumPy PCG64",
+        "seed": 700244,
+        "valid_replicates": 2000
+      },
+      "counts": {
+        "family_identities": {
+          "Backdoors": 57,
+          "DoS": 1149,
+          "Exploits": 7041,
+          "Generic": 3379,
+          "Normal": 33662,
+          "Reconnaissance": 2213
+        },
+        "family_rows": {
+          "Backdoors": 57,
+          "DoS": 1170,
+          "Exploits": 7931,
+          "Generic": 17123,
+          "Normal": 35524,
+          "Reconnaissance": 2268
+        },
+        "known_identities": 47444,
+        "known_rows": 64016,
+        "positive_identities": 57,
+        "positive_rows": 57,
+        "primary_surface": "official-test-clean",
+        "small_n_warning": "SMALL-N EXTERNAL TARGET",
+        "split_seed": 44,
+        "target": "Backdoors"
+      },
+      "identity_metrics": {
+        "AUROC": 0.5794813312684798,
+        "Average_Precision": 0.0014200712711780633,
+        "F1": 0.003454231433506045,
+        "FN": 56,
+        "FP": 521,
+        "FPR": 0.010981367506955568,
+        "TN": 46923,
+        "TP": 1,
+        "TPR": 0.017543859649122806,
+        "balanced_accuracy": 0.5032812460710836,
+        "precision": 0.0019157088122605363,
+        "specificity": 0.9890186324930444
+      },
+      "p6_calibration_artifact_sha256": "c119d4239922d9b4e5039346b71d94cf1519f16e7e22f6af154fdb7eb4b3a558",
+      "p6_scorer_state_sha256": "eaf2d10e0d17c3b05ab82bdb057e8dea8fa5ad97135b834c6c8af51b6cba6ebb",
+      "selected_scorer": "nearest_centroid_l2",
+      "small_n_warning": "SMALL-N EXTERNAL TARGET",
+      "split_seed": 44,
+      "target": "Backdoors",
+      "threshold": 5.971600926934242
+    },
+    {
+      "checkpoint_state_sha256": "ddeafc584ec0b6700cd51d31b8df8d079798cf0bc2209eea9cfcd2ca06470b40",
+      "confidence_intervals": {
+        "confidence_level": 0.95,
+        "discarded_replicates": 0,
+        "intervals": {
+          "AUROC": [
+            0.5347447244918474,
+            0.5823246402815211
+          ],
+          "Average_Precision": [
+            0.007752283724108254,
+            0.009308066588476157
+          ],
+          "FPR": [
+            0.02955062810892842,
+            0.032691172751032796
+          ],
+          "TPR": [
+            0.019230769230769232,
+            0.05501373626373589
+          ]
+        },
+        "method": "stratified canonical-identity bootstrap",
+        "replicates": 2000,
+        "rng": "NumPy PCG64",
+        "seed": 700342,
+        "valid_replicates": 2000
+      },
+      "counts": {
+        "family_identities": {
+          "DoS": 1149,
+          "Exploits": 7041,
+          "Generic": 3379,
+          "Normal": 33662,
+          "Reconnaissance": 2213,
+          "Shellcode": 364
+        },
+        "family_rows": {
+          "DoS": 1170,
+          "Exploits": 7931,
+          "Generic": 17123,
+          "Normal": 35524,
+          "Reconnaissance": 2268,
+          "Shellcode": 364
+        },
+        "known_identities": 47444,
+        "known_rows": 64016,
+        "positive_identities": 364,
+        "positive_rows": 364,
+        "primary_surface": "official-test-clean",
+        "small_n_warning": null,
+        "split_seed": 42,
+        "target": "Shellcode"
+      },
+      "identity_metrics": {
+        "AUROC": 0.5595228637394138,
+        "Average_Precision": 0.008318557463739322,
+        "F1": 0.01403130059363195,
+        "FN": 351,
+        "FP": 1476,
+        "FPR": 0.031110361689570862,
+        "TN": 45968,
+        "TP": 13,
+        "TPR": 0.03571428571428571,
+        "balanced_accuracy": 0.5023019620123574,
+        "precision": 0.008730691739422432,
+        "specificity": 0.9688896383104292
+      },
+      "p6_calibration_artifact_sha256": "83dc12e83d8e2d17c3b47af7c678e35c9eb4abe0fbca6c507bcc179e0b9ed7a6",
+      "p6_scorer_state_sha256": "16b327bdf0dc8ecd30625fa89ec2b99c62841e5c715cb82c75ea5702cb744824",
+      "selected_scorer": "nearest_centroid_l2",
+      "small_n_warning": null,
+      "split_seed": 42,
+      "target": "Shellcode",
+      "threshold": 5.705889246261508
+    },
+    {
+      "checkpoint_state_sha256": "db97f91a7d2c0338d01ddf58d9b4a11b425b00a166fb4c86bb6fbfe59cabd75b",
+      "confidence_intervals": {
+        "confidence_level": 0.95,
+        "discarded_replicates": 0,
+        "intervals": {
+          "AUROC": [
+            0.654569965539477,
+            0.6958870423059783
+          ],
+          "Average_Precision": [
+            0.010659352503294061,
+            0.012627401011564041
+          ],
+          "FPR": [
+            0.01167692437399882,
+            0.013658734508051594
+          ],
+          "TPR": [
+            0.0,
+            0.013736263736263736
+          ]
+        },
+        "method": "stratified canonical-identity bootstrap",
+        "replicates": 2000,
+        "rng": "NumPy PCG64",
+        "seed": 700343,
+        "valid_replicates": 2000
+      },
+      "counts": {
+        "family_identities": {
+          "DoS": 1149,
+          "Exploits": 7041,
+          "Generic": 3379,
+          "Normal": 33662,
+          "Reconnaissance": 2213,
+          "Shellcode": 364
+        },
+        "family_rows": {
+          "DoS": 1170,
+          "Exploits": 7931,
+          "Generic": 17123,
+          "Normal": 35524,
+          "Reconnaissance": 2268,
+          "Shellcode": 364
+        },
+        "known_identities": 47444,
+        "known_rows": 64016,
+        "positive_identities": 364,
+        "positive_rows": 364,
+        "primary_surface": "official-test-clean",
+        "small_n_warning": null,
+        "split_seed": 43,
+        "target": "Shellcode"
+      },
+      "identity_metrics": {
+        "AUROC": 0.6765208907945607,
+        "Average_Precision": 0.011511686723456219,
+        "F1": 0.004132231404958677,
+        "FN": 362,
+        "FP": 602,
+        "FPR": 0.012688643453334458,
+        "TN": 46842,
+        "TP": 2,
+        "TPR": 0.005494505494505495,
+        "balanced_accuracy": 0.4964029310205855,
+        "precision": 0.0033112582781456954,
+        "specificity": 0.9873113565466656
+      },
+      "p6_calibration_artifact_sha256": "d33245ab5b13edc2647a63c4b241dd15e0133ec77bf6a04066e34117e2158d3e",
+      "p6_scorer_state_sha256": "09c05314c7e4836b27d21b97d9b6176c1827f1237a8f57f71648130ab59aae6a",
+      "selected_scorer": "nearest_centroid_l2",
+      "small_n_warning": null,
+      "split_seed": 43,
+      "target": "Shellcode",
+      "threshold": 5.654274056850929
+    },
+    {
+      "checkpoint_state_sha256": "e2ae9b5494ad5587e056f1fe68bccf430ef1473173c03ec61ad056516a9e0a79",
+      "confidence_intervals": {
+        "confidence_level": 0.95,
+        "discarded_replicates": 0,
+        "intervals": {
+          "AUROC": [
+            0.636720854129009,
+            0.6827689104378464
+          ],
+          "Average_Precision": [
+            0.010371435376540354,
+            0.012346439179872718
+          ],
+          "FPR": [
+            0.010075035831717392,
+            0.01184554422055476
+          ],
+          "TPR": [
+            0.0,
+            0.013736263736263736
+          ]
+        },
+        "method": "stratified canonical-identity bootstrap",
+        "replicates": 2000,
+        "rng": "NumPy PCG64",
+        "seed": 700344,
+        "valid_replicates": 2000
+      },
+      "counts": {
+        "family_identities": {
+          "DoS": 1149,
+          "Exploits": 7041,
+          "Generic": 3379,
+          "Normal": 33662,
+          "Reconnaissance": 2213,
+          "Shellcode": 364
+        },
+        "family_rows": {
+          "DoS": 1170,
+          "Exploits": 7931,
+          "Generic": 17123,
+          "Normal": 35524,
+          "Reconnaissance": 2268,
+          "Shellcode": 364
+        },
+        "known_identities": 47444,
+        "known_rows": 64016,
+        "positive_identities": 364,
+        "positive_rows": 364,
+        "primary_surface": "official-test-clean",
+        "small_n_warning": null,
+        "split_seed": 44,
+        "target": "Shellcode"
+      },
+      "identity_metrics": {
+        "AUROC": 0.6605713757619163,
+        "Average_Precision": 0.01118768287471888,
+        "F1": 0.004509582863585118,
+        "FN": 362,
+        "FP": 521,
+        "FPR": 0.010981367506955568,
+        "TN": 46923,
+        "TP": 2,
+        "TPR": 0.005494505494505495,
+        "balanced_accuracy": 0.49725656899377496,
+        "precision": 0.0038240917782026767,
+        "specificity": 0.9890186324930444
+      },
+      "p6_calibration_artifact_sha256": "f2209c40ad5d6943ab16e63f402bf225ef9da13333751c6e3118bf1b37bba615",
+      "p6_scorer_state_sha256": "eaf2d10e0d17c3b05ab82bdb057e8dea8fa5ad97135b834c6c8af51b6cba6ebb",
+      "selected_scorer": "nearest_centroid_l2",
+      "small_n_warning": null,
+      "split_seed": 44,
+      "target": "Shellcode",
+      "threshold": 5.971600926934242
+    },
+    {
+      "checkpoint_state_sha256": "ddeafc584ec0b6700cd51d31b8df8d079798cf0bc2209eea9cfcd2ca06470b40",
+      "confidence_intervals": {
+        "confidence_level": 0.95,
+        "discarded_replicates": 0,
+        "intervals": {
+          "AUROC": [
+            0.5636579012122983,
+            0.6924940517388432
+          ],
+          "Average_Precision": [
+            0.0010770970902807427,
+            0.0022275297878525395
+          ],
+          "FPR": [
+            0.02963493803220639,
+            0.032691172751032796
+          ],
+          "TPR": [
+            0.0,
+            0.16279069767441862
+          ]
+        },
+        "method": "stratified canonical-identity bootstrap",
+        "replicates": 2000,
+        "rng": "NumPy PCG64",
+        "seed": 700442,
+        "valid_replicates": 2000
+      },
+      "counts": {
+        "family_identities": {
+          "DoS": 1149,
+          "Exploits": 7041,
+          "Generic": 3379,
+          "Normal": 33662,
+          "Reconnaissance": 2213,
+          "Worms": 43
+        },
+        "family_rows": {
+          "DoS": 1170,
+          "Exploits": 7931,
+          "Generic": 17123,
+          "Normal": 35524,
+          "Reconnaissance": 2268,
+          "Worms": 43
+        },
+        "known_identities": 47444,
+        "known_rows": 64016,
+        "positive_identities": 43,
+        "positive_rows": 43,
+        "primary_surface": "official-test-clean",
+        "small_n_warning": "SMALL-N EXTERNAL TARGET",
+        "split_seed": 42,
+        "target": "Worms"
+      },
+      "identity_metrics": {
+        "AUROC": 0.6288549732070907,
+        "Average_Precision": 0.0013398793207946482,
+        "F1": 0.003942181340341655,
+        "FN": 40,
+        "FP": 1476,
+        "FPR": 0.031110361689570862,
+        "TN": 45968,
+        "TP": 3,
+        "TPR": 0.06976744186046512,
+        "balanced_accuracy": 0.519328540085447,
+        "precision": 0.002028397565922921,
+        "specificity": 0.9688896383104292
+      },
+      "p6_calibration_artifact_sha256": "8ef7de915b1bc1a42d0a265f019362e82b85a0fe2cf5fbf011a4d9b4b22586d5",
+      "p6_scorer_state_sha256": "16b327bdf0dc8ecd30625fa89ec2b99c62841e5c715cb82c75ea5702cb744824",
+      "selected_scorer": "nearest_centroid_l2",
+      "small_n_warning": "SMALL-N EXTERNAL TARGET",
+      "split_seed": 42,
+      "target": "Worms",
+      "threshold": 5.705889246261508
+    },
+    {
+      "checkpoint_state_sha256": "db97f91a7d2c0338d01ddf58d9b4a11b425b00a166fb4c86bb6fbfe59cabd75b",
+      "confidence_intervals": {
+        "confidence_level": 0.95,
+        "discarded_replicates": 0,
+        "intervals": {
+          "AUROC": [
+            0.6589737129502004,
+            0.7806666807183205
+          ],
+          "Average_Precision": [
+            0.0015478464254676738,
+            0.004932625012640492
+          ],
+          "FPR": [
+            0.011740156816457297,
+            0.013700362532670094
+          ],
+          "TPR": [
+            0.0,
+            0.16279069767441862
+          ]
+        },
+        "method": "stratified canonical-identity bootstrap",
+        "replicates": 2000,
+        "rng": "NumPy PCG64",
+        "seed": 700443,
+        "valid_replicates": 2000
+      },
+      "counts": {
+        "family_identities": {
+          "DoS": 1149,
+          "Exploits": 7041,
+          "Generic": 3379,
+          "Normal": 33662,
+          "Reconnaissance": 2213,
+          "Worms": 43
+        },
+        "family_rows": {
+          "DoS": 1170,
+          "Exploits": 7931,
+          "Generic": 17123,
+          "Normal": 35524,
+          "Reconnaissance": 2268,
+          "Worms": 43
+        },
+        "known_identities": 47444,
+        "known_rows": 64016,
+        "positive_identities": 43,
+        "positive_rows": 43,
+        "primary_surface": "official-test-clean",
+        "small_n_warning": "SMALL-N EXTERNAL TARGET",
+        "split_seed": 43,
+        "target": "Worms"
+      },
+      "identity_metrics": {
+        "AUROC": 0.7224502620470057,
+        "Average_Precision": 0.0022243626285211406,
+        "F1": 0.00925925925925926,
+        "FN": 40,
+        "FP": 602,
+        "FPR": 0.012688643453334458,
+        "TN": 46842,
+        "TP": 3,
+        "TPR": 0.06976744186046512,
+        "balanced_accuracy": 0.5285393992035653,
+        "precision": 0.0049586776859504135,
+        "specificity": 0.9873113565466656
+      },
+      "p6_calibration_artifact_sha256": "6f1dc400d34556581a0cb49bd9801688d686337620490f240fc771f90a2bc069",
+      "p6_scorer_state_sha256": "09c05314c7e4836b27d21b97d9b6176c1827f1237a8f57f71648130ab59aae6a",
+      "selected_scorer": "nearest_centroid_l2",
+      "small_n_warning": "SMALL-N EXTERNAL TARGET",
+      "split_seed": 43,
+      "target": "Worms",
+      "threshold": 5.654274056850929
+    },
+    {
+      "checkpoint_state_sha256": "e2ae9b5494ad5587e056f1fe68bccf430ef1473173c03ec61ad056516a9e0a79",
+      "confidence_intervals": {
+        "confidence_level": 0.95,
+        "discarded_replicates": 0,
+        "intervals": {
+          "AUROC": [
+            0.5489716517686457,
+            0.6943549114451699
+          ],
+          "Average_Precision": [
+            0.0010387763291706375,
+            0.0017810856791244324
+          ],
+          "FPR": [
+            0.010011803389258916,
+            0.011929854143832729
+          ],
+          "TPR": [
+            0.0,
+            0.0
+          ]
+        },
+        "method": "stratified canonical-identity bootstrap",
+        "replicates": 2000,
+        "rng": "NumPy PCG64",
+        "seed": 700444,
+        "valid_replicates": 2000
+      },
+      "counts": {
+        "family_identities": {
+          "DoS": 1149,
+          "Exploits": 7041,
+          "Generic": 3379,
+          "Normal": 33662,
+          "Reconnaissance": 2213,
+          "Worms": 43
+        },
+        "family_rows": {
+          "DoS": 1170,
+          "Exploits": 7931,
+          "Generic": 17123,
+          "Normal": 35524,
+          "Reconnaissance": 2268,
+          "Worms": 43
+        },
+        "known_identities": 47444,
+        "known_rows": 64016,
+        "positive_identities": 43,
+        "positive_rows": 43,
+        "primary_surface": "official-test-clean",
+        "small_n_warning": "SMALL-N EXTERNAL TARGET",
+        "split_seed": 44,
+        "target": "Worms"
+      },
+      "identity_metrics": {
+        "AUROC": 0.6226312342776698,
+        "Average_Precision": 0.0012462019690193562,
+        "F1": 0.0,
+        "FN": 43,
+        "FP": 521,
+        "FPR": 0.010981367506955568,
+        "TN": 46923,
+        "TP": 0,
+        "TPR": 0.0,
+        "balanced_accuracy": 0.4945093162465222,
+        "precision": 0.0,
+        "specificity": 0.9890186324930444
+      },
+      "p6_calibration_artifact_sha256": "5b0ba111498095ba9dea480fcdd36e0af6001c6ba44b8f4d38c1a04b9f174852",
+      "p6_scorer_state_sha256": "eaf2d10e0d17c3b05ab82bdb057e8dea8fa5ad97135b834c6c8af51b6cba6ebb",
+      "selected_scorer": "nearest_centroid_l2",
+      "small_n_warning": "SMALL-N EXTERNAL TARGET",
+      "split_seed": 44,
+      "target": "Worms",
+      "threshold": 5.971600926934242
+    }
+  ],
+  "no_pooled_cross_target_metric": true,
+  "per_target_descriptive": {
+    "Analysis": {
+      "interpretation": "descriptive only; seeds not independent deployment samples",
+      "metrics": {
+        "AUROC": {
+          "max": 0.900848259581532,
+          "mean": 0.8187467475266667,
+          "min": 0.7214385598702209,
+          "sample_sd": 0.09066637924150543
+        },
+        "Average_Precision": {
+          "max": 0.008499508673790393,
+          "mean": 0.004688739260444864,
+          "min": 0.002030196361622105,
+          "sample_sd": 0.003385073101672993
+        },
+        "F1": {
+          "max": 0.01808785529715762,
+          "mean": 0.00602928509905254,
+          "min": 0.0,
+          "sample_sd": 0.01044302812487695
+        },
+        "FPR": {
+          "max": 0.031110361689570862,
+          "mean": 0.018260124216620297,
+          "min": 0.010981367506955568,
+          "sample_sd": 0.011161323851707206
+        },
+        "TPR": {
+          "max": 0.2413793103448276,
+          "mean": 0.08045977011494253,
+          "min": 0.0,
+          "sample_sd": 0.13936040980439243
+        },
+        "balanced_accuracy": {
+          "max": 0.6051344743276283,
+          "mean": 0.5310998229491611,
+          "min": 0.4936556782733328,
+          "sample_sd": 0.06411730950371906
+        },
+        "precision": {
+          "max": 0.009395973154362415,
+          "mean": 0.0031319910514541385,
+          "min": 0.0,
+          "sample_sd": 0.005424767629969638
+        },
+        "specificity": {
+          "max": 0.9890186324930444,
+          "mean": 0.9817398757833797,
+          "min": 0.9688896383104292,
+          "sample_sd": 0.011161323851707195
+        }
+      },
+      "seed_count": 3,
+      "target": "Analysis"
+    },
+    "Backdoors": {
+      "interpretation": "descriptive only; seeds not independent deployment samples",
+      "metrics": {
+        "AUROC": {
+          "max": 0.6473582151145506,
+          "mean": 0.579259586309449,
+          "min": 0.5109392125453166,
+          "sample_sd": 0.06820977161387004
+        },
+        "Average_Precision": {
+          "max": 0.0017585384744351388,
+          "mean": 0.0014361469550671715,
+          "min": 0.0011298311195883128,
+          "sample_sd": 0.00031466181086843077
+        },
+        "F1": {
+          "max": 0.003454231433506045,
+          "mean": 0.0011514104778353484,
+          "min": 0.0,
+          "sample_sd": 0.0019943014479779824
+        },
+        "FPR": {
+          "max": 0.031110361689570862,
+          "mean": 0.018260124216620297,
+          "min": 0.010981367506955568,
+          "sample_sd": 0.011161323851707206
+        },
+        "TPR": {
+          "max": 0.017543859649122806,
+          "mean": 0.005847953216374269,
+          "min": 0.0,
+          "sample_sd": 0.010128952091046065
+        },
+        "balanced_accuracy": {
+          "max": 0.5032812460710836,
+          "mean": 0.49379391449987703,
+          "min": 0.4844448191552146,
+          "sample_sd": 0.00941897429022744
+        },
+        "precision": {
+          "max": 0.0019157088122605363,
+          "mean": 0.0006385696040868454,
+          "min": 0.0,
+          "sample_sd": 0.0011060349984475589
+        },
+        "specificity": {
+          "max": 0.9890186324930444,
+          "mean": 0.9817398757833797,
+          "min": 0.9688896383104292,
+          "sample_sd": 0.011161323851707195
+        }
+      },
+      "seed_count": 3,
+      "target": "Backdoors"
+    },
+    "Fuzzers": {
+      "interpretation": "descriptive only; seeds not independent deployment samples",
+      "metrics": {
+        "AUROC": {
+          "max": 0.6578994453102307,
+          "mean": 0.6556640019692236,
+          "min": 0.651329506166684,
+          "sample_sd": 0.003754402883905248
+        },
+        "Average_Precision": {
+          "max": 0.1259753190400636,
+          "mean": 0.11958949127008121,
+          "min": 0.11292534247306854,
+          "sample_sd": 0.006529438647031258
+        },
+        "F1": {
+          "max": 0.0725,
+          "mean": 0.06734132438598331,
+          "min": 0.06008722338879017,
+          "sample_sd": 0.006466247865052387
+        },
+        "FPR": {
+          "max": 0.035578787623303264,
+          "mean": 0.02584099148469775,
+          "min": 0.019180507545738135,
+          "sample_sd": 0.008621385338571434
+        },
+        "TPR": {
+          "max": 0.04702339587676627,
+          "mean": 0.04455254420508068,
+          "min": 0.043085476025017375,
+          "sample_sd": 0.0021523218075463436
+        },
+        "balanced_accuracy": {
+          "max": 0.5121841265838601,
+          "mean": 0.5093557763601915,
+          "min": 0.503753344200857,
+          "sample_sd": 0.004851924446725148
+        },
+        "precision": {
+          "max": 0.17122040072859745,
+          "mean": 0.14289875022335943,
+          "min": 0.09925293489861259,
+          "sample_sd": 0.03835298625999173
+        },
+        "specificity": {
+          "max": 0.9808194924542619,
+          "mean": 0.9741590085153023,
+          "min": 0.9644212123766968,
+          "sample_sd": 0.008621385338571442
+        }
+      },
+      "seed_count": 3,
+      "target": "Fuzzers"
+    },
+    "Shellcode": {
+      "interpretation": "descriptive only; seeds not independent deployment samples",
+      "metrics": {
+        "AUROC": {
+          "max": 0.6765208907945607,
+          "mean": 0.6322050434319636,
+          "min": 0.5595228637394138,
+          "sample_sd": 0.06344778318498769
+        },
+        "Average_Precision": {
+          "max": 0.011511686723456219,
+          "mean": 0.01033930902063814,
+          "min": 0.008318557463739322,
+          "sample_sd": 0.0017575045560484048
+        },
+        "F1": {
+          "max": 0.01403130059363195,
+          "mean": 0.007557704954058581,
+          "min": 0.004132231404958677,
+          "sample_sd": 0.005609472248737787
+        },
+        "FPR": {
+          "max": 0.031110361689570862,
+          "mean": 0.018260124216620297,
+          "min": 0.010981367506955568,
+          "sample_sd": 0.011161323851707206
+        },
+        "TPR": {
+          "max": 0.03571428571428571,
+          "mean": 0.015567765567765568,
+          "min": 0.005494505494505495,
+          "sample_sd": 0.017447398244741435
+        },
+        "balanced_accuracy": {
+          "max": 0.5023019620123574,
+          "mean": 0.4986538206755726,
+          "min": 0.4964029310205855,
+          "sample_sd": 0.003188083414402173
+        },
+        "precision": {
+          "max": 0.008730691739422432,
+          "mean": 0.005288680598590268,
+          "min": 0.0033112582781456954,
+          "sample_sd": 0.002991877348740206
+        },
+        "specificity": {
+          "max": 0.9890186324930444,
+          "mean": 0.9817398757833797,
+          "min": 0.9688896383104292,
+          "sample_sd": 0.011161323851707195
+        }
+      },
+      "seed_count": 3,
+      "target": "Shellcode"
+    },
+    "Worms": {
+      "interpretation": "descriptive only; seeds not independent deployment samples",
+      "metrics": {
+        "AUROC": {
+          "max": 0.7224502620470057,
+          "mean": 0.6579788231772553,
+          "min": 0.6226312342776698,
+          "sample_sd": 0.055920555737737083
+        },
+        "Average_Precision": {
+          "max": 0.0022243626285211406,
+          "mean": 0.001603481306111715,
+          "min": 0.0012462019690193562,
+          "sample_sd": 0.0005397351887236608
+        },
+        "F1": {
+          "max": 0.00925925925925926,
+          "mean": 0.004400480199866972,
+          "min": 0.0,
+          "sample_sd": 0.004646611549400944
+        },
+        "FPR": {
+          "max": 0.031110361689570862,
+          "mean": 0.018260124216620297,
+          "min": 0.010981367506955568,
+          "sample_sd": 0.011161323851707206
+        },
+        "TPR": {
+          "max": 0.06976744186046512,
+          "mean": 0.046511627906976744,
+          "min": 0.0,
+          "sample_sd": 0.0402802513388111
+        },
+        "balanced_accuracy": {
+          "max": 0.5285393992035653,
+          "mean": 0.5141257518451782,
+          "min": 0.4945093162465222,
+          "sample_sd": 0.017601516713641987
+        },
+        "precision": {
+          "max": 0.0049586776859504135,
+          "mean": 0.002329025083957778,
+          "min": 0.0,
+          "sample_sd": 0.0024929708736235743
+        },
+        "specificity": {
+          "max": 0.9890186324930444,
+          "mean": 0.9817398757833797,
+          "min": 0.9688896383104292,
+          "sample_sd": 0.011161323851707195
+        }
+      },
+      "seed_count": 3,
+      "target": "Worms"
+    }
+  },
+  "primary_unit": "canonical_identity",
+  "protocol_sha256": "d8d88c95a3ca238b5295b29da7bffd9aa12781be575d2e4d38f6f7469933a244",
+  "status": "PRIMARY_CLEAN_FROZEN"
+}

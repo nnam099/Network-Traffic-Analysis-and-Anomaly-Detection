@@ -1,0 +1,51 @@
+{
+  "canonical_identities": 474,
+  "family_rows": {
+    "Analysis": 605,
+    "Backdoors": 522,
+    "DoS": 1804,
+    "Exploits": 2176,
+    "Fuzzers": 1137,
+    "Generic": 27,
+    "Normal": 8,
+    "Reconnaissance": 201,
+    "Shellcode": 1,
+    "Worms": 1
+  },
+  "identity_score_summary": {
+    "max": 0.6220570563827428,
+    "mean": 0.04629694848936982,
+    "median": 0.007839090218454747,
+    "min": 0.00018605796545601017,
+    "n": 474,
+    "quantiles": {
+      "0.05": 0.0003668050046268689,
+      "0.25": 0.003594813320714957,
+      "0.50": 0.007839090218454747,
+      "0.75": 0.01838593784239481,
+      "0.95": 0.2857113375152177
+    }
+  },
+  "label": "AMBIGUOUS-LABEL DIAGNOSTIC",
+  "performance_metric_computed": false,
+  "primary_hash_frozen_before_diagnostic": "33018692177a589e8a863c18abb8aa008cb36f740fe586082ded059c6ec5bc95",
+  "row_score_summary": {
+    "max": 0.6220570563827428,
+    "mean": 0.021766146787786773,
+    "median": 0.0070268600940315284,
+    "min": 0.00018605796545601017,
+    "n": 6482,
+    "quantiles": {
+      "0.05": 0.0009027583074076029,
+      "0.25": 0.003367701639495957,
+      "0.50": 0.0070268600940315284,
+      "0.75": 0.015421662532943081,
+      "0.95": 0.0850713800932712
+    }
+  },
+  "rows": 6482,
+  "split_seed": 44,
+  "surface": "TEST-INTERNAL-AMBIGUOUS",
+  "target": "Fuzzers",
+  "used_to_modify_detector": false
+}

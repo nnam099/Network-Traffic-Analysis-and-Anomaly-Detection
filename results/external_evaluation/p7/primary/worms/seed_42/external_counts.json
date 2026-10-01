@@ -1,0 +1,26 @@
+{
+  "family_identities": {
+    "DoS": 1149,
+    "Exploits": 7041,
+    "Generic": 3379,
+    "Normal": 33662,
+    "Reconnaissance": 2213,
+    "Worms": 43
+  },
+  "family_rows": {
+    "DoS": 1170,
+    "Exploits": 7931,
+    "Generic": 17123,
+    "Normal": 35524,
+    "Reconnaissance": 2268,
+    "Worms": 43
+  },
+  "known_identities": 47444,
+  "known_rows": 64016,
+  "positive_identities": 43,
+  "positive_rows": 43,
+  "primary_surface": "official-test-clean",
+  "small_n_warning": "SMALL-N EXTERNAL TARGET",
+  "split_seed": 42,
+  "target": "Worms"
+}

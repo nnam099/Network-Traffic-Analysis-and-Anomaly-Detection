@@ -1,0 +1,28 @@
+{
+  "byteorder": "little",
+  "development_tool_versions": {
+    "pytest": "8.2.2",
+    "ruff": "0.8.6"
+  },
+  "external_binaries": {},
+  "extractor_runtime_dependencies": "Python standard library only",
+  "historical_argus_version": null,
+  "historical_bro_version": null,
+  "implementation": "CPython",
+  "platform": "Linux-7.0.13+parrot7-amd64-x86_64-with-glibc2.41",
+  "python": "3.13.5 (main, Aug 10 2026, 12:06:59) [GCC 14.2.0]",
+  "source_code_sha256": {
+    "scripts/audit_p11_extractor.py": "14f194ea757ee05e668c75bce750efcde5bd35fd7ab501ae1ed6f1aacc597c84",
+    "src/ids/p11_extractor/__init__.py": "fad0c8229499c30c8d535fee21955af479e07b9e6df0e17c0b1c6a0c2d8629f6",
+    "src/ids/p11_extractor/audit.py": "24604690482b51e11000092b3dbf581515a7f83e2043ae03b60d7c19b070c033",
+    "src/ids/p11_extractor/categorical_features.py": "25c1348439e1b69374cb935eb4fb045bac9a5a5794558ce098af128f16ad49b8",
+    "src/ids/p11_extractor/context_features.py": "7fe16a34c6b4d06657af36c302e32f211a77799e5c44f896d340e2eac4f46828",
+    "src/ids/p11_extractor/continuous_features.py": "85b5ea2d402c1c166883abb07947f99420eeebeab33e8b12f2869b689b7c3dfe",
+    "src/ids/p11_extractor/flow_builder.py": "1db471473496103256ae2385cc76fa989431589271d2bceb75f74b12cff49dfa",
+    "src/ids/p11_extractor/packet_reader.py": "78e780e5f799dde43dcbc381d2ecc4aba3da59c06a166d01f34a554e29ddc0e1",
+    "src/ids/p11_extractor/schema.py": "5042c8b6c36b8381946e03a31626a5e444af4df2d797c029191b905e9bfe93ac",
+    "src/ids/p11_extractor/serialization.py": "be201c247571997a3e26d78e48134ba02c642ed3cc89befb1ae1152f834577d1",
+    "src/ids/p11_extractor/validation.py": "5fff4c5c59e35fd28aeccce4216eb2d47ea7e1f206e71fbb92b7546080060a6c"
+  },
+  "version": "p11-semantic-extractor-v1"
+}

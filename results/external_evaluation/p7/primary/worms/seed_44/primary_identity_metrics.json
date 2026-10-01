@@ -1,0 +1,48 @@
+{
+  "confidence_intervals": {
+    "confidence_level": 0.95,
+    "discarded_replicates": 0,
+    "intervals": {
+      "AUROC": [
+        0.5489716517686457,
+        0.6943549114451699
+      ],
+      "Average_Precision": [
+        0.0010387763291706375,
+        0.0017810856791244324
+      ],
+      "FPR": [
+        0.010011803389258916,
+        0.011929854143832729
+      ],
+      "TPR": [
+        0.0,
+        0.0
+      ]
+    },
+    "method": "stratified canonical-identity bootstrap",
+    "replicates": 2000,
+    "rng": "NumPy PCG64",
+    "seed": 700444,
+    "valid_replicates": 2000
+  },
+  "label": "PRIMARY EXTERNAL CANONICAL-IDENTITY RESULT",
+  "metrics": {
+    "AUROC": 0.6226312342776698,
+    "Average_Precision": 0.0012462019690193562,
+    "F1": 0.0,
+    "FN": 43,
+    "FP": 521,
+    "FPR": 0.010981367506955568,
+    "TN": 46923,
+    "TP": 0,
+    "TPR": 0.0,
+    "balanced_accuracy": 0.4945093162465222,
+    "precision": 0.0,
+    "specificity": 0.9890186324930444
+  },
+  "small_n_warning": "SMALL-N EXTERNAL TARGET",
+  "split_seed": 44,
+  "target": "Worms",
+  "uncertainty_caution": "A finite confidence interval does not imply adequate sample size or broad population representativeness."
+}

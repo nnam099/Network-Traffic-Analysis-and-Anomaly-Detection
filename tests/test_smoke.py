@@ -27,7 +27,7 @@ if DASHBOARD_DIR not in sys.path:
 
 class CoreSmokeTests(unittest.TestCase):
     def test_artifact_validator_accepts_matching_metadata(self):
-        from artifact_validator import validate_artifact_contract
+        from ids.artifact_validator import validate_artifact_contract
 
         checkpoint = {
             "model_state_dict": {},
@@ -51,7 +51,7 @@ class CoreSmokeTests(unittest.TestCase):
         self.assertEqual(result.errors, [])
 
     def test_artifact_validator_rejects_feature_mismatch(self):
-        from artifact_validator import validate_artifact_contract
+        from ids.artifact_validator import validate_artifact_contract
 
         checkpoint = {"model_state_dict": {}, "n_features": 4, "n_classes": 2}
         scaler = RobustScaler().fit([[0, 1, 2], [3, 4, 5]])
@@ -68,7 +68,7 @@ class CoreSmokeTests(unittest.TestCase):
         self.assertTrue(any("feature count mismatch" in err for err in result.errors))
 
     def test_artifact_validator_rejects_duplicate_feature_names(self):
-        from artifact_validator import validate_artifact_contract
+        from ids.artifact_validator import validate_artifact_contract
 
         scaler = RobustScaler().fit([[0, 1, 2], [3, 4, 5]])
         label_encoder = LabelEncoder().fit(["Normal", "DoS"])
@@ -85,7 +85,7 @@ class CoreSmokeTests(unittest.TestCase):
         self.assertTrue(any("duplicates" in err for err in result.errors))
 
     def test_artifact_validator_rejects_invalid_thresholds(self):
-        from artifact_validator import validate_artifact_contract
+        from ids.artifact_validator import validate_artifact_contract
 
         scaler = RobustScaler().fit([[0, 1, 2], [3, 4, 5]])
         label_encoder = LabelEncoder().fit(["Normal", "DoS"])
@@ -102,7 +102,7 @@ class CoreSmokeTests(unittest.TestCase):
         self.assertTrue(any("non-negative" in err for err in result.errors))
 
     def test_artifact_validator_allows_negative_energy_threshold(self):
-        from artifact_validator import validate_artifact_contract
+        from ids.artifact_validator import validate_artifact_contract
 
         scaler = RobustScaler().fit([[0, 1, 2], [3, 4, 5]])
         label_encoder = LabelEncoder().fit(["Normal", "DoS"])
@@ -123,7 +123,7 @@ class CoreSmokeTests(unittest.TestCase):
         self.assertTrue(result.ok)
 
     def test_artifact_validator_accepts_vote_threshold_controls(self):
-        from artifact_validator import validate_artifact_contract
+        from ids.artifact_validator import validate_artifact_contract
 
         scaler = RobustScaler().fit([[0, 1, 2], [3, 4, 5]])
         label_encoder = LabelEncoder().fit(["Normal", "DoS"])
@@ -146,7 +146,7 @@ class CoreSmokeTests(unittest.TestCase):
         self.assertTrue(result.ok)
 
     def test_artifact_validator_rejects_invalid_vote_threshold_controls(self):
-        from artifact_validator import validate_artifact_contract
+        from ids.artifact_validator import validate_artifact_contract
 
         scaler = RobustScaler().fit([[0, 1, 2], [3, 4, 5]])
         label_encoder = LabelEncoder().fit(["Normal", "DoS"])
@@ -173,7 +173,7 @@ class CoreSmokeTests(unittest.TestCase):
         self.assertTrue(any("thresholds.min_votes must be positive" in err for err in result.errors))
 
     def test_patch_checkpoint_infers_dims_from_state_dict(self):
-        from patch_checkpoint import infer_dims
+        from scripts.checkpoint_metadata import infer_dims
 
         checkpoint = {
             "model_state_dict": {
@@ -184,36 +184,10 @@ class CoreSmokeTests(unittest.TestCase):
 
         self.assertEqual(infer_dims(checkpoint), (128, 256))
 
-    def test_export_model_build_config_overrides_defaults(self):
-        from export_model import build_config
-
-        args = type(
-            "Args",
-            (),
-            {
-                "data_dir": "data",
-                "save_dir": "checkpoints",
-                "plot_dir": "plots",
-                "epochs": 2,
-                "patience": 1,
-                "batch_size": 16,
-                "num_workers": 0,
-                "demo": True,
-                "seed": 123,
-            },
-        )()
-
-        cfg = build_config(args)
-
-        self.assertEqual(cfg.data_dir, "data")
-        self.assertEqual(cfg.epochs, 2)
-        self.assertTrue(cfg.demo)
-        self.assertEqual(cfg.seed, 123)
-
     def test_train_class_weight_overrides_target_weak_classes(self):
         from ids.dataset import make_loaders
         from ids.losses import IDSLoss
-        from train import parse_class_weight_overrides
+        from ids.training import parse_class_weight_overrides
 
         labels = ["Normal", "DoS", "Exploits", "Reconnaissance", "Generic"]
         overrides = parse_class_weight_overrides("Exploits=3.0,Reconnaissance=4.0", labels)
@@ -275,7 +249,7 @@ class CoreSmokeTests(unittest.TestCase):
         self.assertAlmostEqual(metrics["auc"], 1.0)
 
     def test_runtime_rejects_v15_until_scoring_parity(self):
-        from batch_evaluator import load_ids_artifacts
+        from ids.batch_evaluator import load_ids_artifacts
 
         with self.assertRaisesRegex(
             ValueError,
@@ -403,7 +377,7 @@ class CoreSmokeTests(unittest.TestCase):
             self.assertTrue(any("sha256" in err for err in result["errors"]))
 
     def test_alert_store_persists_alert_history_and_status(self):
-        from alert_store import list_alerts, save_alert, update_alert_status
+        from ids.alert_store import list_alerts, save_alert, update_alert_status
 
         with tempfile.TemporaryDirectory() as tmp:
             db_path = os.path.join(tmp, "alerts.sqlite3")
@@ -436,7 +410,7 @@ class CoreSmokeTests(unittest.TestCase):
             self.assertEqual(rows[0]["analyst_note"], "benign scan")
 
     def test_alert_store_rejects_missing_alert_status_update(self):
-        from alert_store import list_alerts, update_alert_status
+        from ids.alert_store import list_alerts, update_alert_status
 
         with tempfile.TemporaryDirectory() as tmp:
             db_path = os.path.join(tmp, "alerts.sqlite3")
@@ -447,7 +421,7 @@ class CoreSmokeTests(unittest.TestCase):
             self.assertEqual(list_alerts(db_path), [])
 
     def test_log_normalizer_maps_common_firewall_csv(self):
-        from log_normalizer import normalize_real_world_logs
+        from ids.log_normalizer import normalize_real_world_logs
 
         df = pd.DataFrame(
             {
@@ -474,7 +448,7 @@ class CoreSmokeTests(unittest.TestCase):
         self.assertEqual(report.schema, "firewall_or_flow_csv")
 
     def test_production_schema_prepares_cicflowmeter_rows(self):
-        from production_schema import (
+        from ids.production_schema import (
             PRODUCTION_FLOW_COLUMNS,
             apply_label_overrides,
             normalize_to_production_schema,
@@ -543,7 +517,7 @@ class CoreSmokeTests(unittest.TestCase):
             self.assertEqual(manifest["schema_version"], 1)
 
     def test_input_guard_rejects_bad_csv_shape(self):
-        from input_guard import CSVInputPolicy, validate_uploaded_csv
+        from ids.input_guard import CSVInputPolicy, validate_uploaded_csv
 
         empty_df = pd.DataFrame()
         result = validate_uploaded_csv(empty_df, size_bytes=10, policy=CSVInputPolicy(max_rows=10, min_columns=3))
@@ -565,7 +539,7 @@ class CoreSmokeTests(unittest.TestCase):
         self.assertTrue(any("duplicate column" in err for err in result.errors))
 
     def test_mitre_mapper_known_attack(self):
-        from mitre_mapper import MITREMapper
+        from ids.mitre_mapper import MITREMapper
 
         result = MITREMapper().map_known_attack(1, class_names=["Normal", "DoS"])
 
@@ -574,7 +548,7 @@ class CoreSmokeTests(unittest.TestCase):
         self.assertTrue(result["techniques"])
 
     def test_inference_runtime_verdict_and_risk_helpers(self):
-        from inference_runtime import (
+        from ids.inference_runtime import (
             assess_normalization_quality,
             ground_truth_verdict,
             hybrid_score_from_meta,
@@ -622,7 +596,7 @@ class CoreSmokeTests(unittest.TestCase):
         self.assertTrue(any("directional" in warning for warning in quality["warnings"]))
 
     def test_dashboard_runtime_preprocess_aligns_features(self):
-        from dashboard_runtime import preprocess_dashboard_df
+        from ids.dashboard_runtime import preprocess_dashboard_df
 
         df = pd.DataFrame({
             "proto": ["tcp"],
@@ -655,7 +629,7 @@ class CoreSmokeTests(unittest.TestCase):
         self.assertIsNone(result.normalization_report)
 
     def test_dashboard_runtime_preprocess_reports_normalizer_failure(self):
-        from dashboard_runtime import preprocess_dashboard_df
+        from ids.dashboard_runtime import preprocess_dashboard_df
 
         def broken_normalizer(_df):
             raise ValueError("bad schema")
@@ -672,7 +646,7 @@ class CoreSmokeTests(unittest.TestCase):
         self.assertIn("bad schema", result.normalization_report["error"])
 
     def test_dashboard_runtime_builds_alert_context_contract(self):
-        from dashboard_runtime import build_alert_context_from_log
+        from ids.dashboard_runtime import build_alert_context_from_log
 
         context = build_alert_context_from_log(
             {
@@ -696,7 +670,7 @@ class CoreSmokeTests(unittest.TestCase):
         self.assertIn("hybrid_score", context["raw_scores"])
 
     def test_dashboard_runtime_builds_ai_context_options(self):
-        from dashboard_runtime import build_ai_context_options, default_ai_context_index
+        from ids.dashboard_runtime import build_ai_context_options, default_ai_context_index
 
         history = [
             {"alert_id": "A1", "predicted_class": "Known-Attack", "hybrid_score": 0.4},
@@ -722,7 +696,7 @@ class CoreSmokeTests(unittest.TestCase):
         self.assertEqual(default_ai_context_index(options, "missing"), 0)
 
     def test_dashboard_runtime_llm_fallbacks_are_testable(self):
-        from dashboard_runtime import answer_analyst_question, triage_alert_with_fallback
+        from ids.dashboard_runtime import answer_analyst_question, triage_alert_with_fallback
 
         alert = {
             "hybrid_score": 0.7,
@@ -760,7 +734,7 @@ class CoreSmokeTests(unittest.TestCase):
         self.assertEqual(answer, "why:Zero-Day Candidate")
 
     def test_dashboard_runtime_filters_alert_history(self):
-        from dashboard_runtime import filter_alert_history
+        from ids.dashboard_runtime import filter_alert_history
 
         alerts = [
             {
@@ -787,7 +761,7 @@ class CoreSmokeTests(unittest.TestCase):
         self.assertEqual([a["alert_id"] for a in filter_alert_history(alerts, query="benign")], ["A2"])
 
     def test_dashboard_runtime_builds_top_batch_alerts(self):
-        from dashboard_runtime import build_top_batch_alerts
+        from ids.dashboard_runtime import build_top_batch_alerts
 
         scores = pd.DataFrame({
             "source_row": [0, 1, 2],
@@ -808,7 +782,7 @@ class CoreSmokeTests(unittest.TestCase):
         self.assertEqual(alerts[0]["source_file_hash"], "abcdef123456")
 
     def test_dashboard_runtime_enriches_batch_alert_entities(self):
-        from dashboard_runtime import build_top_batch_alerts
+        from ids.dashboard_runtime import build_top_batch_alerts
 
         scores = pd.DataFrame({
             "source_row": [0],
@@ -836,7 +810,7 @@ class CoreSmokeTests(unittest.TestCase):
         self.assertEqual(alert["service"], "https")
 
     def test_dashboard_runtime_correlates_alerts(self):
-        from dashboard_runtime import correlate_alerts
+        from ids.dashboard_runtime import correlate_alerts
 
         alerts = [
             {"alert_id": "A1", "src_ip": "10.0.0.5", "classifier_class": "DoS", "is_zeroday": True, "risk": 90, "timestamp": "2026-05-14 10:00:00"},
@@ -853,7 +827,7 @@ class CoreSmokeTests(unittest.TestCase):
         self.assertEqual(dos_group["max_risk"], 90)
 
     def test_dashboard_runtime_builds_time_window_incidents(self):
-        from dashboard_runtime import build_time_window_incidents
+        from ids.dashboard_runtime import build_time_window_incidents
 
         alerts = [
             {
@@ -975,7 +949,7 @@ class CoreSmokeTests(unittest.TestCase):
         self.assertEqual(score_table["Metric"].tolist(), ["hybrid_score"])
 
     def test_batch_evaluator_reports_labeled_metrics(self):
-        from batch_evaluator import summarize_scores
+        from ids.batch_evaluator import summarize_scores
 
         scores = pd.DataFrame({
             "predicted_class": ["Normal", "Known-Attack", "Zero-Day Candidate", "Known-Attack"],
@@ -1008,7 +982,7 @@ class CoreSmokeTests(unittest.TestCase):
         self.assertEqual(summary["threshold_profile"]["hybrid_meta"]["type"], "logistic_regression")
 
     def test_zero_day_vote_decision_requires_multiple_signals(self):
-        from inference_runtime import zero_day_decision
+        from ids.inference_runtime import zero_day_decision
 
         decision, rule = zero_day_decision(
             ae_score=[0.9, 0.2],
@@ -1027,7 +1001,7 @@ class CoreSmokeTests(unittest.TestCase):
         self.assertEqual(decision.tolist(), [True, False])
 
     def test_runtime_batch_inference_returns_dashboard_contract(self):
-        from inference_runtime import run_batch_inference
+        from ids.inference_runtime import run_batch_inference
 
         class IdentityScaler:
             def transform(self, values):
@@ -1083,7 +1057,7 @@ class CoreSmokeTests(unittest.TestCase):
         self.assertGreaterEqual(entropy, 0.0)
 
     def test_batch_evaluator_calibrates_threshold_profile(self):
-        from batch_evaluator import calibrate_thresholds
+        from ids.batch_evaluator import calibrate_thresholds
 
         scores = pd.DataFrame({
             "hybrid": [0.1, 0.2, 0.3, 0.4],
@@ -1099,11 +1073,11 @@ class CoreSmokeTests(unittest.TestCase):
         self.assertIn("hybrid", profile["thresholds"])
 
     def test_llm_agent_import_has_no_provider_side_effect(self):
-        sys.modules.pop("llm_agent", None)
+        sys.modules.pop("ids.llm_agent", None)
         buf = StringIO()
 
         with redirect_stdout(buf):
-            import llm_agent
+            import ids.llm_agent as llm_agent
 
         self.assertEqual(buf.getvalue(), "")
         status = llm_agent.get_llm_status()
@@ -1117,7 +1091,7 @@ class CoreSmokeTests(unittest.TestCase):
         os.environ["GROQ_API_KEY"] = ""
         sys.modules.pop("llm_agent", None)
         try:
-            from llm_agent import SOCTriageAgent
+            from ids.llm_agent import SOCTriageAgent
 
             result = SOCTriageAgent().triage_alert(
                 {
@@ -1185,7 +1159,7 @@ class CoreSmokeTests(unittest.TestCase):
         if not (os.path.exists(model_path) and os.path.exists(pipeline_path)):
             self.skipTest("v15 checkpoint/pipeline artifacts are not present")
 
-        from batch_evaluator import load_ids_artifacts
+        from ids.batch_evaluator import load_ids_artifacts
 
         artifacts = load_ids_artifacts(model_path, pipeline_path, "v15")
 

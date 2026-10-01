@@ -13,7 +13,7 @@ SRC_DIR = ROOT_DIR / "src"
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
-from production_schema import (  # noqa: E402
+from ids.production_schema import (  # noqa: E402
     PRODUCTION_FLOW_COLUMNS,
     apply_label_overrides,
     normalize_to_production_schema,

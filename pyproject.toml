@@ -35,14 +35,9 @@ ignore = [
 
 [tool.ruff.lint.per-file-ignores]
 "dashboard/app.py" = ["BLE001"]
-"src/batch_evaluator.py" = ["BLE001"]
-"src/dashboard_runtime.py" = ["BLE001"]
-"src/explainer.py" = ["BLE001", "E701", "E702", "F401"]
 "src/ids/*.py" = ["B007", "B023", "B905", "BLE001", "E401", "E701", "E702", "E722", "F401", "F841"]
 "src/ids_v14_unswnb15.py" = ["F401"]
 "src/ids_v15_unswnb15.py" = ["B007", "B023", "B905", "BLE001", "E401", "E701", "E702", "E722", "F401", "F403", "F405", "F841"]
-"src/llm_agent.py" = ["BLE001"]
-"src/train.py" = ["E401", "E701", "E702", "F401"]
 "tests/test_*.py" = ["B011"]
 
 [tool.ruff.format]

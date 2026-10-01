@@ -1,0 +1,210 @@
+{
+  "audit_basis": "official landing pages and published extractor/schema documentation only",
+  "audited_at_utc": "2026-09-23T04:54:32.264285Z",
+  "blocking_reason": "Every candidate has mandatory frozen P9 inputs marked MISSING or INCOMPATIBLE.",
+  "candidates": [
+    {
+      "candidate_id": "cic_ids_2017",
+      "capture": "2017-07-03 through 2017-07-07; independent UNB/CIC testbed",
+      "categorical_compatibility": "frozen vocabularies only; unseen tokens would map to OOV; no extension",
+      "dataset": "CIC-IDS2017",
+      "decision": "REJECT_SCHEMA_INCOMPATIBLE",
+      "extractor": "CICFlowMeter; more than 80 bidirectional-flow fields",
+      "family_mapping_quality": "partial",
+      "identity_quality": "flow identifiers/timestamps exist in labeled-flow products; raw artifact not reserved",
+      "independence": "metadata supports a distinct capture/testbed; no UNSW-NB15 incorporation found",
+      "labels": [
+        "BENIGN",
+        "FTP-Patator",
+        "SSH-Patator",
+        "DoS",
+        "Heartbleed",
+        "Web Attack",
+        "Infiltration",
+        "Bot",
+        "PortScan",
+        "DDoS"
+      ],
+      "license": "Publicly available for research; citation requested by the official page",
+      "official_url": "https://www.unb.ca/cic/datasets/ids-2017.html",
+      "raw_formats": [
+        "PCAP",
+        "CICFlowMeter CSV"
+      ],
+      "reproducibility": "official source is documented, but no raw file inventory/hash was acquired",
+      "schema_coverage": {
+        "DERIVABLE": 9,
+        "INCOMPATIBLE": 4,
+        "MISSING": 37,
+        "SEMANTICALLY_EQUIVALENT": 11
+      },
+      "schema_gate": "EXTERNAL_SCHEMA_INCOMPATIBLE",
+      "schema_reference": "https://github.com/ahlashkari/CICFlowMeter/blob/master/ReadMe.txt",
+      "support": "five capture days with benign and attack traffic; row counts not audited"
+    },
+    {
+      "candidate_id": "cse_cic_ids_2018",
+      "capture": "independent CSE/CIC testbed with 420 machines and 30 servers",
+      "categorical_compatibility": "frozen vocabularies only; unseen tokens would map to OOV; no extension",
+      "dataset": "CSE-CIC-IDS2018",
+      "decision": "REJECT_SCHEMA_INCOMPATIBLE",
+      "extractor": "CICFlowMeter-V3; 80 extracted fields",
+      "family_mapping_quality": "partial",
+      "identity_quality": "flow records available; exact raw file inventory not reserved",
+      "independence": "metadata supports a distinct capture/testbed; no UNSW-NB15 incorporation found",
+      "labels": [
+        "Benign",
+        "Brute Force",
+        "Heartbleed",
+        "Botnet",
+        "DoS",
+        "DDoS",
+        "Web attacks",
+        "Infiltration"
+      ],
+      "license": "Official public dataset page; exact redistribution terms not frozen here",
+      "official_url": "https://www.unb.ca/cic/datasets/ids-2018.html",
+      "raw_formats": [
+        "PCAP/system logs",
+        "CICFlowMeter CSV on AWS"
+      ],
+      "reproducibility": "official source is documented, but no raw file inventory/hash was acquired",
+      "schema_coverage": {
+        "DERIVABLE": 9,
+        "INCOMPATIBLE": 4,
+        "MISSING": 37,
+        "SEMANTICALLY_EQUIVALENT": 11
+      },
+      "schema_gate": "EXTERNAL_SCHEMA_INCOMPATIBLE",
+      "schema_reference": "https://github.com/ahlashkari/CICFlowMeter/blob/master/ReadMe.txt",
+      "support": "normal traffic and seven attack scenarios; row counts not audited"
+    },
+    {
+      "candidate_id": "ton_iot_network",
+      "capture": "new Industry 4.0/IoT testbed, distinct from UNSW-NB15",
+      "categorical_compatibility": "frozen vocabularies only; unseen tokens would map to OOV; no extension",
+      "dataset": "TON_IoT network",
+      "decision": "REJECT_SCHEMA_INCOMPATIBLE",
+      "extractor": "Zeek/Bro network logs; 44 network fields plus label/type",
+      "family_mapping_quality": "partial",
+      "identity_quality": "source/destination tuple and timestamp fields documented; raw artifact not reserved",
+      "independence": "metadata supports a distinct capture/testbed; no UNSW-NB15 incorporation found",
+      "labels": [
+        "normal",
+        "backdoor",
+        "ddos",
+        "dos",
+        "injection",
+        "mitm",
+        "password",
+        "ransomware",
+        "scanning",
+        "xss"
+      ],
+      "license": "Academic use granted; commercial use requires author permission; citation required",
+      "official_url": "https://research.unsw.edu.au/projects/toniot-datasets",
+      "raw_formats": [
+        "PCAP",
+        "Zeek log",
+        "Zeek-derived CSV"
+      ],
+      "reproducibility": "official source is documented, but no raw file inventory/hash was acquired",
+      "schema_coverage": {
+        "DERIVABLE": 10,
+        "INCOMPATIBLE": 2,
+        "MISSING": 40,
+        "SEMANTICALLY_EQUIVALENT": 9
+      },
+      "schema_gate": "EXTERNAL_SCHEMA_INCOMPATIBLE",
+      "schema_reference": "https://research.unsw.edu.au/projects/toniot-datasets",
+      "support": "normal plus nine attack types; row/identity counts not audited"
+    },
+    {
+      "candidate_id": "bot_iot",
+      "capture": "separate UNSW Canberra Cyber Range botnet/IoT environment",
+      "categorical_compatibility": "frozen vocabularies only; unseen tokens would map to OOV; no extension",
+      "dataset": "Bot-IoT",
+      "decision": "REJECT_SCHEMA_INCOMPATIBLE",
+      "extractor": "Argus CSV plus engineered flow statistics",
+      "family_mapping_quality": "partial",
+      "identity_quality": "flow tuple/time fields documented; raw artifact not reserved",
+      "independence": "metadata supports a distinct capture/testbed; no UNSW-NB15 incorporation found",
+      "labels": [
+        "Normal",
+        "DDoS",
+        "DoS",
+        "OS Scan",
+        "Service Scan",
+        "Keylogging",
+        "Data exfiltration"
+      ],
+      "license": "Academic use granted; commercial use requires author agreement; citation required",
+      "official_url": "https://research.unsw.edu.au/projects/bot-iot-dataset",
+      "raw_formats": [
+        "PCAP",
+        "Argus",
+        "CSV"
+      ],
+      "reproducibility": "official source is documented, but no raw file inventory/hash was acquired",
+      "schema_coverage": {
+        "DERIVABLE": 9,
+        "INCOMPATIBLE": 1,
+        "MISSING": 43,
+        "SEMANTICALLY_EQUIVALENT": 8
+      },
+      "schema_gate": "EXTERNAL_SCHEMA_INCOMPATIBLE",
+      "schema_reference": "https://arxiv.org/abs/1811.00701",
+      "support": "72M+ records; official 5% subset about 3M records; exact class counts not audited"
+    },
+    {
+      "candidate_id": "cic_ddos_2019",
+      "capture": "independent two-day UNB/CIC DDoS testbed",
+      "categorical_compatibility": "frozen vocabularies only; unseen tokens would map to OOV; no extension",
+      "dataset": "CIC-DDoS2019",
+      "decision": "REJECT_SCHEMA_INCOMPATIBLE",
+      "extractor": "CICFlowMeter-V3; more than 80 bidirectional-flow fields",
+      "family_mapping_quality": "DDoS-specific; not equivalent to UNSW-NB15 DoS",
+      "identity_quality": "flow identifiers/timestamps documented; raw artifact not reserved",
+      "independence": "metadata supports a distinct capture/testbed; no UNSW-NB15 incorporation found",
+      "labels": [
+        "BENIGN",
+        "NTP",
+        "DNS",
+        "LDAP",
+        "MSSQL",
+        "NetBIOS",
+        "SNMP",
+        "SSDP",
+        "UDP",
+        "UDP-Lag",
+        "WebDDoS",
+        "SYN",
+        "TFTP",
+        "PortScan"
+      ],
+      "license": "Official public dataset page; citation terms apply",
+      "official_url": "https://www.unb.ca/cic/datasets/ddos-2019.html",
+      "raw_formats": [
+        "PCAP/event logs",
+        "CICFlowMeter CSV"
+      ],
+      "reproducibility": "official source is documented, but no raw file inventory/hash was acquired",
+      "schema_coverage": {
+        "DERIVABLE": 9,
+        "INCOMPATIBLE": 4,
+        "MISSING": 37,
+        "SEMANTICALLY_EQUIVALENT": 11
+      },
+      "schema_gate": "EXTERNAL_SCHEMA_INCOMPATIBLE",
+      "schema_reference": "https://github.com/ahlashkari/CICFlowMeter/blob/master/ReadMe.txt",
+      "support": "benign plus twelve DDoS types across two days; row counts not audited"
+    }
+  ],
+  "external_raw_data_opened": false,
+  "model_scores_computed": false,
+  "performance_guided_selection": false,
+  "selected_external_source": null,
+  "selection_criterion": "schema compatibility, independence, reproducibility, label clarity, support",
+  "status": "P10_EXTERNAL_SOURCE_BLOCKED",
+  "version": "p10a-external-source-compatibility-v1"
+}

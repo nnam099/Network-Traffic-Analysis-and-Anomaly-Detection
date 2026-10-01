@@ -1,0 +1,31 @@
+{
+  "anomaly_scores_computed": false,
+  "artifact_sha256": {
+    "candidate_dataset_audit.json": "9eeb8456317a563d5cf7065916a107b1e083f2ee96edf3b4dec8d4f950b9115e",
+    "external_population_audit.json": "5ad183398ae3aa7a8c9fe8bbc46831b833987e8bd9954d7a46ab907009b84570",
+    "external_source_reservation.json": "f700232917b51df3c9e6b78f5aeb560e75a670cb1de16ab31d58827fb05df9f7",
+    "feature_mapping.json": "c2f3841df326fe9ac323fd09750ff676c5dcb38a4e982c357f54a25625790ac5",
+    "identity_contract.json": "87ad6f401885e19568cc540cd36c94126d4503ba4d6e18993d4721276c3e4021",
+    "label_mapping.json": "29d9c77aaaad8fe1441c52eace9e63e9b9efb88f51c5245aec69c0f0ea422977"
+  },
+  "created_at_utc": "2026-09-23T04:54:32.264285Z",
+  "external_metrics_computed": false,
+  "external_raw_data_opened": false,
+  "external_schema_gate": "EXTERNAL_SCHEMA_INCOMPATIBLE",
+  "external_source_reserved": false,
+  "identity_contract_frozen": false,
+  "label_mapping_frozen": false,
+  "model_changed": false,
+  "p8_protocol_sha256": "62916073ef6048503415d45e2605bbf475b729e032c838a60cc7e94c43768216",
+  "p9_artifact_aggregate_sha256": "0f11f518391a66a0ea320e0b3558ea5de9b7440910014f57457f0f0ae9908ed7",
+  "p9_checkpoint_opened": false,
+  "p9_freeze_commit": "3dd5f12a6bf3948efff817654111347d1fedc7ce",
+  "p9_model_evaluated": false,
+  "p9_protocol_sha256": "c1c7352a9ca546a3e8e456b112d09fd42f29243e205a8760703b27f68b5baf87",
+  "readiness": "P10B_NOT_AUTHORIZED",
+  "scorer_changed": false,
+  "selected_external_source": null,
+  "status": "P10_EXTERNAL_SOURCE_BLOCKED",
+  "threshold_changed": false,
+  "version": "p10a-external-source-compatibility-v1"
+}

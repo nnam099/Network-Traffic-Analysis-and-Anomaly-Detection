@@ -1,0 +1,48 @@
+{
+  "confidence_intervals": {
+    "confidence_level": 0.95,
+    "discarded_replicates": 0,
+    "intervals": {
+      "AUROC": [
+        0.5347447244918474,
+        0.5823246402815211
+      ],
+      "Average_Precision": [
+        0.007752283724108254,
+        0.009308066588476157
+      ],
+      "FPR": [
+        0.02955062810892842,
+        0.032691172751032796
+      ],
+      "TPR": [
+        0.019230769230769232,
+        0.05501373626373589
+      ]
+    },
+    "method": "stratified canonical-identity bootstrap",
+    "replicates": 2000,
+    "rng": "NumPy PCG64",
+    "seed": 700342,
+    "valid_replicates": 2000
+  },
+  "label": "PRIMARY EXTERNAL CANONICAL-IDENTITY RESULT",
+  "metrics": {
+    "AUROC": 0.5595228637394138,
+    "Average_Precision": 0.008318557463739322,
+    "F1": 0.01403130059363195,
+    "FN": 351,
+    "FP": 1476,
+    "FPR": 0.031110361689570862,
+    "TN": 45968,
+    "TP": 13,
+    "TPR": 0.03571428571428571,
+    "balanced_accuracy": 0.5023019620123574,
+    "precision": 0.008730691739422432,
+    "specificity": 0.9688896383104292
+  },
+  "small_n_warning": null,
+  "split_seed": 42,
+  "target": "Shellcode",
+  "uncertainty_caution": "A finite confidence interval does not imply adequate sample size or broad population representativeness."
+}

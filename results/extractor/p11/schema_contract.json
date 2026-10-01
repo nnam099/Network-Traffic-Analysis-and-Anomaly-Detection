@@ -1,0 +1,2071 @@
+{
+  "categorical_count": 3,
+  "comparison_stage": "before P9 RobustScaler",
+  "continuous_count": 58,
+  "continuous_dtype": "finite IEEE-754 binary64",
+  "contract_sha256": "2e412346f15d1d1de48ea183f8b110ffc049e2961dbb9bfffb2f6c4b118a6cfe",
+  "field_order": [
+    "ackdat",
+    "ct_dst_ltm",
+    "ct_dst_sport_ltm",
+    "ct_dst_src_ltm",
+    "ct_flw_http_mthd",
+    "ct_ftp_cmd",
+    "ct_src_dport_ltm",
+    "ct_src_ltm",
+    "ct_srv_dst",
+    "ct_srv_src",
+    "ct_state_ttl",
+    "dbytes",
+    "dinpkt",
+    "djit",
+    "dload",
+    "dloss",
+    "dmean",
+    "dpkts",
+    "dtcpb",
+    "dttl",
+    "dur",
+    "dwin",
+    "is_ftp_login",
+    "is_sm_ips_ports",
+    "rate",
+    "response_body_len",
+    "sbytes",
+    "sinpkt",
+    "sjit",
+    "sload",
+    "sloss",
+    "smean",
+    "spkts",
+    "stcpb",
+    "sttl",
+    "swin",
+    "synack",
+    "tcprtt",
+    "trans_depth",
+    "bytes_ratio",
+    "log_total_bytes",
+    "log_sbytes",
+    "log_dbytes",
+    "pkts_ratio",
+    "log_total_pkts",
+    "src_bps",
+    "log_src_bps",
+    "pkt_rate",
+    "load_asym",
+    "log_sload",
+    "ttl_diff",
+    "ttl_sum",
+    "loss_rate_src",
+    "loss_rate_dst",
+    "jit_ratio",
+    "log_sjit",
+    "handshake_ratio",
+    "incomplete_tcp",
+    "proto",
+    "service",
+    "state"
+  ],
+  "fields": [
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "destination SYN-ACK to source ACK",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Bidirectional flow semantic produced by the historical Argus/Bro/post-processing pipeline.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "ackdat",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "TCP_STATE_DERIVED",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "seconds"
+    },
+    {
+      "aggregation_window": "nominal last 100 connections; exact inclusion, ordering and boundary rules unverified",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Historical recent-connection statistic; exact C# ordering/window behavior is unavailable.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "ct_dst_ltm",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "LAST_N_CONNECTION_CONTEXT",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "count"
+    },
+    {
+      "aggregation_window": "nominal last 100 connections; exact inclusion, ordering and boundary rules unverified",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Historical recent-connection statistic; exact C# ordering/window behavior is unavailable.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "ct_dst_sport_ltm",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "LAST_N_CONNECTION_CONTEXT",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "count"
+    },
+    {
+      "aggregation_window": "nominal last 100 connections; exact inclusion, ordering and boundary rules unverified",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Historical recent-connection statistic; exact C# ordering/window behavior is unavailable.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "ct_dst_src_ltm",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "LAST_N_CONNECTION_CONTEXT",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "count"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Merged from historical Bro HTTP/FTP logs or application-aware post-processing.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "ct_flw_http_mthd",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "APPLICATION_PROTOCOL_DERIVED",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "count"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Merged from historical Bro HTTP/FTP logs or application-aware post-processing.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "ct_ftp_cmd",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "APPLICATION_PROTOCOL_DERIVED",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "commands"
+    },
+    {
+      "aggregation_window": "nominal last 100 connections; exact inclusion, ordering and boundary rules unverified",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Historical recent-connection statistic; exact C# ordering/window behavior is unavailable.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "ct_src_dport_ltm",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "LAST_N_CONNECTION_CONTEXT",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "count"
+    },
+    {
+      "aggregation_window": "nominal last 100 connections; exact inclusion, ordering and boundary rules unverified",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Historical recent-connection statistic; exact C# ordering/window behavior is unavailable.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "ct_src_ltm",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "LAST_N_CONNECTION_CONTEXT",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "count"
+    },
+    {
+      "aggregation_window": "nominal last 100 connections; exact inclusion, ordering and boundary rules unverified",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Historical recent-connection statistic; exact C# ordering/window behavior is unavailable.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "ct_srv_dst",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "LAST_N_CONNECTION_CONTEXT",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "count"
+    },
+    {
+      "aggregation_window": "nominal last 100 connections; exact inclusion, ordering and boundary rules unverified",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Historical recent-connection statistic; exact C# ordering/window behavior is unavailable.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "ct_srv_src",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "LAST_N_CONNECTION_CONTEXT",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "count"
+    },
+    {
+      "aggregation_window": "nominal last 100 connections; exact inclusion, ordering and boundary rules unverified",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Historical recent-connection statistic; exact C# ordering/window behavior is unavailable.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "ct_state_ttl",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "LAST_N_CONNECTION_CONTEXT",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "count"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "destination-to-source",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Bidirectional flow semantic produced by the historical Argus/Bro/post-processing pipeline.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "dbytes",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "FLOW_DERIVED",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "bytes"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "destination-to-source",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Bidirectional flow semantic produced by the historical Argus/Bro/post-processing pipeline.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "dinpkt",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "TEMPORAL_CONTEXT",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "milliseconds"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "destination-to-source",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Bidirectional flow semantic produced by the historical Argus/Bro/post-processing pipeline.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "djit",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "TEMPORAL_CONTEXT",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "milliseconds"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "destination-to-source",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Bidirectional flow semantic produced by the historical Argus/Bro/post-processing pipeline.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "dload",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "FLOW_DERIVED",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "bits/second"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "destination-to-source",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Bidirectional flow semantic produced by the historical Argus/Bro/post-processing pipeline.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "dloss",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "FLOW_DERIVED",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "packets"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "destination-to-source",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Bidirectional flow semantic produced by the historical Argus/Bro/post-processing pipeline.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "dmean",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "FLOW_DERIVED",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "bytes/packet"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "destination-to-source",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Bidirectional flow semantic produced by the historical Argus/Bro/post-processing pipeline.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "dpkts",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "FLOW_DERIVED",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "packets"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "destination-to-source",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Bidirectional flow semantic produced by the historical Argus/Bro/post-processing pipeline.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "dtcpb",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "TCP_STATE_DERIVED",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "TCP sequence number"
+    },
+    {
+      "aggregation_window": "single packet or flow representative, historical aggregation rule unverified",
+      "categorical_semantics": null,
+      "directionality": "destination-to-source",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Bidirectional flow semantic produced by the historical Argus/Bro/post-processing pipeline.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "dttl",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "PACKET_DIRECT",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "IP hops"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Bidirectional flow semantic produced by the historical Argus/Bro/post-processing pipeline.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "dur",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "FLOW_DERIVED",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "seconds"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "destination-to-source",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Bidirectional flow semantic produced by the historical Argus/Bro/post-processing pipeline.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "dwin",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "TCP_STATE_DERIVED",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "bytes"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Merged from historical Bro HTTP/FTP logs or application-aware post-processing.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "is_ftp_login",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "APPLICATION_PROTOCOL_DERIVED",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "binary"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Bidirectional flow semantic produced by the historical Argus/Bro/post-processing pipeline.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "is_sm_ips_ports",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "FLOW_DERIVED",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "binary"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Bidirectional flow semantic produced by the historical Argus/Bro/post-processing pipeline.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "rate",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "FLOW_DERIVED",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "packets/second"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Merged from historical Bro HTTP/FTP logs or application-aware post-processing.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "response_body_len",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "APPLICATION_PROTOCOL_DERIVED",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "bytes"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "source-to-destination",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Bidirectional flow semantic produced by the historical Argus/Bro/post-processing pipeline.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "sbytes",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "FLOW_DERIVED",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "bytes"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "source-to-destination",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Bidirectional flow semantic produced by the historical Argus/Bro/post-processing pipeline.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "sinpkt",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "TEMPORAL_CONTEXT",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "milliseconds"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "source-to-destination",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Bidirectional flow semantic produced by the historical Argus/Bro/post-processing pipeline.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "sjit",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "TEMPORAL_CONTEXT",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "milliseconds"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "source-to-destination",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Bidirectional flow semantic produced by the historical Argus/Bro/post-processing pipeline.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "sload",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "FLOW_DERIVED",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "bits/second"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "source-to-destination",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Bidirectional flow semantic produced by the historical Argus/Bro/post-processing pipeline.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "sloss",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "FLOW_DERIVED",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "packets"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "source-to-destination",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Bidirectional flow semantic produced by the historical Argus/Bro/post-processing pipeline.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "smean",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "FLOW_DERIVED",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "bytes/packet"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "source-to-destination",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Bidirectional flow semantic produced by the historical Argus/Bro/post-processing pipeline.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "spkts",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "FLOW_DERIVED",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "packets"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "source-to-destination",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Bidirectional flow semantic produced by the historical Argus/Bro/post-processing pipeline.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "stcpb",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "TCP_STATE_DERIVED",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "TCP sequence number"
+    },
+    {
+      "aggregation_window": "single packet or flow representative, historical aggregation rule unverified",
+      "categorical_semantics": null,
+      "directionality": "source-to-destination",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Bidirectional flow semantic produced by the historical Argus/Bro/post-processing pipeline.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "sttl",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "PACKET_DIRECT",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "IP hops"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "source-to-destination",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Bidirectional flow semantic produced by the historical Argus/Bro/post-processing pipeline.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "swin",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "TCP_STATE_DERIVED",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "bytes"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "source SYN to destination SYN-ACK",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Bidirectional flow semantic produced by the historical Argus/Bro/post-processing pipeline.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "synack",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "TCP_STATE_DERIVED",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "seconds"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Bidirectional flow semantic produced by the historical Argus/Bro/post-processing pipeline.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "tcprtt",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "TCP_STATE_DERIVED",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "seconds"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Merged from historical Bro HTTP/FTP logs or application-aware post-processing.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "trans_depth",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "APPLICATION_PROTOCOL_DERIVED",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "finite float64",
+      "units": "transactions"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Repository P0 post-flow engineered feature; depends on upstream raw semantics.",
+      "formula": "sbytes / (sbytes + dbytes + 1e-8)",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "bytes_ratio",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        },
+        {
+          "path": "src/ids/dataset.py",
+          "symbol": "engineer_features",
+          "type": "frozen_repository_formula"
+        }
+      ],
+      "semantic_class": "FLOW_DERIVED",
+      "source_dependency": [
+        "sbytes",
+        "dbytes"
+      ],
+      "type": "finite float64",
+      "units": "ratio"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Repository P0 post-flow engineered feature; depends on upstream raw semantics.",
+      "formula": "log1p(sbytes + dbytes + 1e-8)",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "log_total_bytes",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        },
+        {
+          "path": "src/ids/dataset.py",
+          "symbol": "engineer_features",
+          "type": "frozen_repository_formula"
+        }
+      ],
+      "semantic_class": "FLOW_DERIVED",
+      "source_dependency": [
+        "sbytes",
+        "dbytes"
+      ],
+      "type": "finite float64",
+      "units": "log(bytes)"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Repository P0 post-flow engineered feature; depends on upstream raw semantics.",
+      "formula": "log1p(max(sbytes, 0))",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "log_sbytes",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        },
+        {
+          "path": "src/ids/dataset.py",
+          "symbol": "engineer_features",
+          "type": "frozen_repository_formula"
+        }
+      ],
+      "semantic_class": "FLOW_DERIVED",
+      "source_dependency": [
+        "sbytes"
+      ],
+      "type": "finite float64",
+      "units": "log(bytes)"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Repository P0 post-flow engineered feature; depends on upstream raw semantics.",
+      "formula": "log1p(max(dbytes, 0))",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "log_dbytes",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        },
+        {
+          "path": "src/ids/dataset.py",
+          "symbol": "engineer_features",
+          "type": "frozen_repository_formula"
+        }
+      ],
+      "semantic_class": "FLOW_DERIVED",
+      "source_dependency": [
+        "dbytes"
+      ],
+      "type": "finite float64",
+      "units": "log(bytes)"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Repository P0 post-flow engineered feature; depends on upstream raw semantics.",
+      "formula": "spkts / (spkts + dpkts + 1e-8)",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "pkts_ratio",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        },
+        {
+          "path": "src/ids/dataset.py",
+          "symbol": "engineer_features",
+          "type": "frozen_repository_formula"
+        }
+      ],
+      "semantic_class": "FLOW_DERIVED",
+      "source_dependency": [
+        "spkts",
+        "dpkts"
+      ],
+      "type": "finite float64",
+      "units": "ratio"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Repository P0 post-flow engineered feature; depends on upstream raw semantics.",
+      "formula": "log1p(spkts + dpkts + 1e-8)",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "log_total_pkts",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        },
+        {
+          "path": "src/ids/dataset.py",
+          "symbol": "engineer_features",
+          "type": "frozen_repository_formula"
+        }
+      ],
+      "semantic_class": "FLOW_DERIVED",
+      "source_dependency": [
+        "spkts",
+        "dpkts"
+      ],
+      "type": "finite float64",
+      "units": "log(packets)"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Repository P0 post-flow engineered feature; depends on upstream raw semantics.",
+      "formula": "sbytes / max(dur, 1e-6)",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "src_bps",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        },
+        {
+          "path": "src/ids/dataset.py",
+          "symbol": "engineer_features",
+          "type": "frozen_repository_formula"
+        }
+      ],
+      "semantic_class": "FLOW_DERIVED",
+      "source_dependency": [
+        "sbytes",
+        "dur"
+      ],
+      "type": "finite float64",
+      "units": "bytes/second"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Repository P0 post-flow engineered feature; depends on upstream raw semantics.",
+      "formula": "log1p(sbytes / max(dur, 1e-6))",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "log_src_bps",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        },
+        {
+          "path": "src/ids/dataset.py",
+          "symbol": "engineer_features",
+          "type": "frozen_repository_formula"
+        }
+      ],
+      "semantic_class": "FLOW_DERIVED",
+      "source_dependency": [
+        "sbytes",
+        "dur"
+      ],
+      "type": "finite float64",
+      "units": "log(bytes/second)"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Repository P0 post-flow engineered feature; depends on upstream raw semantics.",
+      "formula": "(spkts + 1e-8) / max(dur, 1e-6)",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "pkt_rate",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        },
+        {
+          "path": "src/ids/dataset.py",
+          "symbol": "engineer_features",
+          "type": "frozen_repository_formula"
+        }
+      ],
+      "semantic_class": "FLOW_DERIVED",
+      "source_dependency": [
+        "spkts",
+        "dur"
+      ],
+      "type": "finite float64",
+      "units": "packets/second"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Repository P0 post-flow engineered feature; depends on upstream raw semantics.",
+      "formula": "abs(sload - dload) / (sload + dload + 1e-8)",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "load_asym",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        },
+        {
+          "path": "src/ids/dataset.py",
+          "symbol": "engineer_features",
+          "type": "frozen_repository_formula"
+        }
+      ],
+      "semantic_class": "FLOW_DERIVED",
+      "source_dependency": [
+        "sload",
+        "dload"
+      ],
+      "type": "finite float64",
+      "units": "ratio"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Repository P0 post-flow engineered feature; depends on upstream raw semantics.",
+      "formula": "log1p(max(sload, 0))",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "log_sload",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        },
+        {
+          "path": "src/ids/dataset.py",
+          "symbol": "engineer_features",
+          "type": "frozen_repository_formula"
+        }
+      ],
+      "semantic_class": "FLOW_DERIVED",
+      "source_dependency": [
+        "sload"
+      ],
+      "type": "finite float64",
+      "units": "log(bits/second)"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Repository P0 post-flow engineered feature; depends on upstream raw semantics.",
+      "formula": "abs(sttl - dttl)",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "ttl_diff",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        },
+        {
+          "path": "src/ids/dataset.py",
+          "symbol": "engineer_features",
+          "type": "frozen_repository_formula"
+        }
+      ],
+      "semantic_class": "FLOW_DERIVED",
+      "source_dependency": [
+        "sttl",
+        "dttl"
+      ],
+      "type": "finite float64",
+      "units": "IP hops"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Repository P0 post-flow engineered feature; depends on upstream raw semantics.",
+      "formula": "sttl + dttl",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "ttl_sum",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        },
+        {
+          "path": "src/ids/dataset.py",
+          "symbol": "engineer_features",
+          "type": "frozen_repository_formula"
+        }
+      ],
+      "semantic_class": "FLOW_DERIVED",
+      "source_dependency": [
+        "sttl",
+        "dttl"
+      ],
+      "type": "finite float64",
+      "units": "IP hops"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Repository P0 post-flow engineered feature; depends on upstream raw semantics.",
+      "formula": "sloss / (spkts + 1e-8)",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "loss_rate_src",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        },
+        {
+          "path": "src/ids/dataset.py",
+          "symbol": "engineer_features",
+          "type": "frozen_repository_formula"
+        }
+      ],
+      "semantic_class": "FLOW_DERIVED",
+      "source_dependency": [
+        "sloss",
+        "spkts"
+      ],
+      "type": "finite float64",
+      "units": "ratio"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Repository P0 post-flow engineered feature; depends on upstream raw semantics.",
+      "formula": "dloss / (dpkts + 1e-8)",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "loss_rate_dst",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        },
+        {
+          "path": "src/ids/dataset.py",
+          "symbol": "engineer_features",
+          "type": "frozen_repository_formula"
+        }
+      ],
+      "semantic_class": "FLOW_DERIVED",
+      "source_dependency": [
+        "dloss",
+        "dpkts"
+      ],
+      "type": "finite float64",
+      "units": "ratio"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Repository P0 post-flow engineered feature; depends on upstream raw semantics.",
+      "formula": "sjit / (djit + 1e-8)",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "jit_ratio",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        },
+        {
+          "path": "src/ids/dataset.py",
+          "symbol": "engineer_features",
+          "type": "frozen_repository_formula"
+        }
+      ],
+      "semantic_class": "TEMPORAL_CONTEXT",
+      "source_dependency": [
+        "sjit",
+        "djit"
+      ],
+      "type": "finite float64",
+      "units": "ratio"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Repository P0 post-flow engineered feature; depends on upstream raw semantics.",
+      "formula": "log1p(max(sjit, 0))",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "log_sjit",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        },
+        {
+          "path": "src/ids/dataset.py",
+          "symbol": "engineer_features",
+          "type": "frozen_repository_formula"
+        }
+      ],
+      "semantic_class": "TEMPORAL_CONTEXT",
+      "source_dependency": [
+        "sjit"
+      ],
+      "type": "finite float64",
+      "units": "log(milliseconds)"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Repository P0 post-flow engineered feature; depends on upstream raw semantics.",
+      "formula": "synack / (ackdat + 1e-8)",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "handshake_ratio",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        },
+        {
+          "path": "src/ids/dataset.py",
+          "symbol": "engineer_features",
+          "type": "frozen_repository_formula"
+        }
+      ],
+      "semantic_class": "TCP_STATE_DERIVED",
+      "source_dependency": [
+        "synack",
+        "ackdat"
+      ],
+      "type": "finite float64",
+      "units": "ratio"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": null,
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Repository P0 post-flow engineered feature; depends on upstream raw semantics.",
+      "formula": "float((synack > 0) and (ackdat == 0))",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "incomplete_tcp",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        },
+        {
+          "path": "src/ids/dataset.py",
+          "symbol": "engineer_features",
+          "type": "frozen_repository_formula"
+        }
+      ],
+      "semantic_class": "TCP_STATE_DERIVED",
+      "source_dependency": [
+        "synack",
+        "ackdat"
+      ],
+      "type": "finite float64",
+      "units": "binary"
+    },
+    {
+      "aggregation_window": "single packet or flow representative, historical aggregation rule unverified",
+      "categorical_semantics": "normalize only at the later frozen P9 vocabulary boundary; extractor emits semantic token",
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Bidirectional flow semantic produced by the historical Argus/Bro/post-processing pipeline.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "proto",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "PACKET_DIRECT",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "UTF-8 categorical token",
+      "units": "categorical token"
+    },
+    {
+      "aggregation_window": "single packet or flow representative, historical aggregation rule unverified",
+      "categorical_semantics": "normalize only at the later frozen P9 vocabulary boundary; extractor emits semantic token",
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Historical application service classification associated with Bro/Argus merge.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "service",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "SERVICE_DERIVED",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "UTF-8 categorical token",
+      "units": "categorical token"
+    },
+    {
+      "aggregation_window": "current reconstructed bidirectional flow",
+      "categorical_semantics": "normalize only at the later frozen P9 vocabulary boundary; extractor emits semantic token",
+      "directionality": "bidirectional/derived or not direction-specific",
+      "exactness_claim": "none until row-wise reference validation",
+      "flow_semantics": "Historical Argus connection state token; not interchangeable with Zeek conn_state.",
+      "formula": "UNVERIFIED_HISTORICAL_TOOL_OR_POSTPROCESSING_SEMANTIC",
+      "missing_value_behavior": "fail closed; use explicit null in intermediate output; never zero-impute",
+      "name": "state",
+      "reference_provenance": [
+        {
+          "path": "results/data_quality/p3/schema_v2.json",
+          "type": "frozen_repository_schema"
+        },
+        {
+          "type": "official_dataset_page",
+          "url": "https://research.unsw.edu.au/projects/unsw-nb15-dataset"
+        },
+        {
+          "type": "dataset_generation_paper",
+          "url": "https://doi.org/10.1109/MilCIS.2015.7348942"
+        }
+      ],
+      "semantic_class": "TCP_STATE_DERIVED",
+      "source_dependency": [
+        "raw packets",
+        "historical Argus/Bro output or unavailable C# post-processing"
+      ],
+      "type": "UTF-8 categorical token",
+      "units": "categorical token"
+    }
+  ],
+  "float32_forbidden_in_p11": true,
+  "frozen_p3_schema_sha256": "f3ecf12891e5b0d9b5e1fe38a22c23720a71eaf1d5a47b763911df363b3b36d7",
+  "semantic_field_count": 61,
+  "source_code_sha256": {
+    "scripts/audit_p11_extractor.py": "14f194ea757ee05e668c75bce750efcde5bd35fd7ab501ae1ed6f1aacc597c84",
+    "src/ids/p11_extractor/__init__.py": "fad0c8229499c30c8d535fee21955af479e07b9e6df0e17c0b1c6a0c2d8629f6",
+    "src/ids/p11_extractor/audit.py": "24604690482b51e11000092b3dbf581515a7f83e2043ae03b60d7c19b070c033",
+    "src/ids/p11_extractor/categorical_features.py": "25c1348439e1b69374cb935eb4fb045bac9a5a5794558ce098af128f16ad49b8",
+    "src/ids/p11_extractor/context_features.py": "7fe16a34c6b4d06657af36c302e32f211a77799e5c44f896d340e2eac4f46828",
+    "src/ids/p11_extractor/continuous_features.py": "85b5ea2d402c1c166883abb07947f99420eeebeab33e8b12f2869b689b7c3dfe",
+    "src/ids/p11_extractor/flow_builder.py": "1db471473496103256ae2385cc76fa989431589271d2bceb75f74b12cff49dfa",
+    "src/ids/p11_extractor/packet_reader.py": "78e780e5f799dde43dcbc381d2ecc4aba3da59c06a166d01f34a554e29ddc0e1",
+    "src/ids/p11_extractor/schema.py": "5042c8b6c36b8381946e03a31626a5e444af4df2d797c029191b905e9bfe93ac",
+    "src/ids/p11_extractor/serialization.py": "be201c247571997a3e26d78e48134ba02c642ed3cc89befb1ae1152f834577d1",
+    "src/ids/p11_extractor/validation.py": "5fff4c5c59e35fd28aeccce4216eb2d47ea7e1f206e71fbb92b7546080060a6c"
+  },
+  "version": "p11-semantic-extractor-v1"
+}

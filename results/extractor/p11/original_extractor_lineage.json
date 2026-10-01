@@ -1,0 +1,100 @@
+{
+  "components": [
+    {
+      "component": "traffic generation",
+      "confidence": "HIGH",
+      "evidence": [
+        "https://research.unsw.edu.au/projects/unsw-nb15-dataset",
+        "https://doi.org/10.1109/MilCIS.2015.7348942"
+      ],
+      "finding": "IXIA PerfectStorm hybrid normal/attack traffic"
+    },
+    {
+      "component": "packet capture",
+      "confidence": "HIGH",
+      "evidence": [
+        "https://research.unsw.edu.au/projects/unsw-nb15-dataset",
+        "https://doi.org/10.1109/MilCIS.2015.7348942"
+      ],
+      "finding": "tcpdump; about 100 GB PCAP"
+    },
+    {
+      "component": "flow engine",
+      "confidence": "HIGH_TOOL_LOW_CONFIGURATION",
+      "evidence": [
+        "https://research.unsw.edu.au/projects/unsw-nb15-dataset",
+        "https://doi.org/10.1109/MilCIS.2015.7348942"
+      ],
+      "finding": "Argus server/client generated binary Argus and flow fields",
+      "unresolved": [
+        "Argus version",
+        "command line",
+        "timeouts",
+        "direction policy",
+        "metric modes"
+      ]
+    },
+    {
+      "component": "application analysis",
+      "confidence": "HIGH_TOOL_LOW_CONFIGURATION",
+      "evidence": [
+        "https://doi.org/10.1109/MilCIS.2015.7348942"
+      ],
+      "finding": "Bro-IDS conn/http/ftp logs",
+      "unresolved": [
+        "Bro version",
+        "scripts",
+        "service analyzer policy",
+        "log rotation"
+      ]
+    },
+    {
+      "component": "merge",
+      "confidence": "MEDIUM",
+      "evidence": [
+        "https://doi.org/10.1109/MilCIS.2015.7348942"
+      ],
+      "finding": "Argus and Bro outputs loaded into SQL Server 2008 and matched by flow features",
+      "unresolved": [
+        "join keys",
+        "tie handling",
+        "one-to-many handling",
+        "clock normalization"
+      ]
+    },
+    {
+      "component": "post-processing",
+      "confidence": "HIGH_EXISTENCE_LOW_REPRODUCIBILITY",
+      "evidence": [
+        "https://research.unsw.edu.au/projects/unsw-nb15-dataset",
+        "https://doi.org/10.1109/MilCIS.2015.7348942"
+      ],
+      "finding": "twelve C# algorithms generated additional/context fields",
+      "unresolved": [
+        "source code",
+        "exact last-100 ordering",
+        "capture boundaries",
+        "numeric types"
+      ]
+    },
+    {
+      "component": "labels",
+      "confidence": "MEDIUM",
+      "evidence": [
+        "https://research.unsw.edu.au/projects/unsw-nb15-dataset",
+        "https://doi.org/10.1109/MilCIS.2015.7348942"
+      ],
+      "finding": "IXIA event ground truth attached using GT and LIST_EVENTS artifacts",
+      "unresolved": [
+        "exact row association implementation"
+      ]
+    }
+  ],
+  "exact_reproduction_blockers": [
+    "historical Argus/Bro versions and configs are not frozen",
+    "twelve C# algorithm implementations are not present",
+    "row-level raw-PCAP to expected-CSV association has not been validated"
+  ],
+  "overall_confidence": "PARTIAL",
+  "version": "p11-semantic-extractor-v1"
+}

@@ -1,0 +1,865 @@
+{
+  "all_61_pass": false,
+  "reproduction_counts": {
+    "APPROXIMATE": 47,
+    "NOT_REPRODUCIBLE": 14
+  },
+  "row_count": 61,
+  "rows": [
+    {
+      "category": "TCP_STATE_DERIVED",
+      "error": null,
+      "feature": "ackdat",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "nanosecond parser resolution; declared before reference access",
+        "relative": 1e-12
+      }
+    },
+    {
+      "category": "LAST_N_CONNECTION_CONTEXT",
+      "error": null,
+      "feature": "ct_dst_ltm",
+      "gate": "BLOCK",
+      "reason": "original C# last-N algorithm and boundary/tie rules unavailable",
+      "reference_support": false,
+      "reproduction_class": "NOT_REPRODUCIBLE",
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      }
+    },
+    {
+      "category": "LAST_N_CONNECTION_CONTEXT",
+      "error": null,
+      "feature": "ct_dst_sport_ltm",
+      "gate": "BLOCK",
+      "reason": "original C# last-N algorithm and boundary/tie rules unavailable",
+      "reference_support": false,
+      "reproduction_class": "NOT_REPRODUCIBLE",
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      }
+    },
+    {
+      "category": "LAST_N_CONNECTION_CONTEXT",
+      "error": null,
+      "feature": "ct_dst_src_ltm",
+      "gate": "BLOCK",
+      "reason": "original C# last-N algorithm and boundary/tie rules unavailable",
+      "reference_support": false,
+      "reproduction_class": "NOT_REPRODUCIBLE",
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      }
+    },
+    {
+      "category": "APPLICATION_PROTOCOL_DERIVED",
+      "error": null,
+      "feature": "ct_flw_http_mthd",
+      "gate": "BLOCK",
+      "reason": "local payload parser is only a candidate and is not Bro-version equivalent",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      }
+    },
+    {
+      "category": "APPLICATION_PROTOCOL_DERIVED",
+      "error": null,
+      "feature": "ct_ftp_cmd",
+      "gate": "BLOCK",
+      "reason": "local payload parser is only a candidate and is not Bro-version equivalent",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      }
+    },
+    {
+      "category": "LAST_N_CONNECTION_CONTEXT",
+      "error": null,
+      "feature": "ct_src_dport_ltm",
+      "gate": "BLOCK",
+      "reason": "original C# last-N algorithm and boundary/tie rules unavailable",
+      "reference_support": false,
+      "reproduction_class": "NOT_REPRODUCIBLE",
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      }
+    },
+    {
+      "category": "LAST_N_CONNECTION_CONTEXT",
+      "error": null,
+      "feature": "ct_src_ltm",
+      "gate": "BLOCK",
+      "reason": "original C# last-N algorithm and boundary/tie rules unavailable",
+      "reference_support": false,
+      "reproduction_class": "NOT_REPRODUCIBLE",
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      }
+    },
+    {
+      "category": "LAST_N_CONNECTION_CONTEXT",
+      "error": null,
+      "feature": "ct_srv_dst",
+      "gate": "BLOCK",
+      "reason": "original C# last-N algorithm and boundary/tie rules unavailable",
+      "reference_support": false,
+      "reproduction_class": "NOT_REPRODUCIBLE",
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      }
+    },
+    {
+      "category": "LAST_N_CONNECTION_CONTEXT",
+      "error": null,
+      "feature": "ct_srv_src",
+      "gate": "BLOCK",
+      "reason": "original C# last-N algorithm and boundary/tie rules unavailable",
+      "reference_support": false,
+      "reproduction_class": "NOT_REPRODUCIBLE",
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      }
+    },
+    {
+      "category": "LAST_N_CONNECTION_CONTEXT",
+      "error": null,
+      "feature": "ct_state_ttl",
+      "gate": "BLOCK",
+      "reason": "original C# last-N algorithm and boundary/tie rules unavailable",
+      "reference_support": false,
+      "reproduction_class": "NOT_REPRODUCIBLE",
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      }
+    },
+    {
+      "category": "FLOW_DERIVED",
+      "error": null,
+      "feature": "dbytes",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      }
+    },
+    {
+      "category": "TEMPORAL_CONTEXT",
+      "error": null,
+      "feature": "dinpkt",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 1e-06,
+        "rationale": "nanosecond-to-millisecond conversion tolerance",
+        "relative": 1e-12
+      }
+    },
+    {
+      "category": "TEMPORAL_CONTEXT",
+      "error": null,
+      "feature": "djit",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 1e-06,
+        "rationale": "nanosecond-to-millisecond conversion tolerance",
+        "relative": 1e-12
+      }
+    },
+    {
+      "category": "FLOW_DERIVED",
+      "error": null,
+      "feature": "dload",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      }
+    },
+    {
+      "category": "FLOW_DERIVED",
+      "error": null,
+      "feature": "dloss",
+      "gate": "BLOCK",
+      "reason": "packet loss cannot be inferred faithfully from an arbitrary capture point",
+      "reference_support": false,
+      "reproduction_class": "NOT_REPRODUCIBLE",
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      }
+    },
+    {
+      "category": "FLOW_DERIVED",
+      "error": null,
+      "feature": "dmean",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "exact comparison unless amended before reference evaluation",
+        "relative": 0.0
+      }
+    },
+    {
+      "category": "FLOW_DERIVED",
+      "error": null,
+      "feature": "dpkts",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      }
+    },
+    {
+      "category": "TCP_STATE_DERIVED",
+      "error": null,
+      "feature": "dtcpb",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      }
+    },
+    {
+      "category": "PACKET_DIRECT",
+      "error": null,
+      "feature": "dttl",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      }
+    },
+    {
+      "category": "FLOW_DERIVED",
+      "error": null,
+      "feature": "dur",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "nanosecond parser resolution; declared before reference access",
+        "relative": 1e-12
+      }
+    },
+    {
+      "category": "TCP_STATE_DERIVED",
+      "error": null,
+      "feature": "dwin",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      }
+    },
+    {
+      "category": "APPLICATION_PROTOCOL_DERIVED",
+      "error": null,
+      "feature": "is_ftp_login",
+      "gate": "BLOCK",
+      "reason": "local payload parser is only a candidate and is not Bro-version equivalent",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      }
+    },
+    {
+      "category": "FLOW_DERIVED",
+      "error": null,
+      "feature": "is_sm_ips_ports",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      }
+    },
+    {
+      "category": "FLOW_DERIVED",
+      "error": null,
+      "feature": "rate",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      }
+    },
+    {
+      "category": "APPLICATION_PROTOCOL_DERIVED",
+      "error": null,
+      "feature": "response_body_len",
+      "gate": "BLOCK",
+      "reason": "local payload parser is only a candidate and is not Bro-version equivalent",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      }
+    },
+    {
+      "category": "FLOW_DERIVED",
+      "error": null,
+      "feature": "sbytes",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      }
+    },
+    {
+      "category": "TEMPORAL_CONTEXT",
+      "error": null,
+      "feature": "sinpkt",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 1e-06,
+        "rationale": "nanosecond-to-millisecond conversion tolerance",
+        "relative": 1e-12
+      }
+    },
+    {
+      "category": "TEMPORAL_CONTEXT",
+      "error": null,
+      "feature": "sjit",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 1e-06,
+        "rationale": "nanosecond-to-millisecond conversion tolerance",
+        "relative": 1e-12
+      }
+    },
+    {
+      "category": "FLOW_DERIVED",
+      "error": null,
+      "feature": "sload",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      }
+    },
+    {
+      "category": "FLOW_DERIVED",
+      "error": null,
+      "feature": "sloss",
+      "gate": "BLOCK",
+      "reason": "packet loss cannot be inferred faithfully from an arbitrary capture point",
+      "reference_support": false,
+      "reproduction_class": "NOT_REPRODUCIBLE",
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      }
+    },
+    {
+      "category": "FLOW_DERIVED",
+      "error": null,
+      "feature": "smean",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "exact comparison unless amended before reference evaluation",
+        "relative": 0.0
+      }
+    },
+    {
+      "category": "FLOW_DERIVED",
+      "error": null,
+      "feature": "spkts",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      }
+    },
+    {
+      "category": "TCP_STATE_DERIVED",
+      "error": null,
+      "feature": "stcpb",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      }
+    },
+    {
+      "category": "PACKET_DIRECT",
+      "error": null,
+      "feature": "sttl",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      }
+    },
+    {
+      "category": "TCP_STATE_DERIVED",
+      "error": null,
+      "feature": "swin",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      }
+    },
+    {
+      "category": "TCP_STATE_DERIVED",
+      "error": null,
+      "feature": "synack",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "nanosecond parser resolution; declared before reference access",
+        "relative": 1e-12
+      }
+    },
+    {
+      "category": "TCP_STATE_DERIVED",
+      "error": null,
+      "feature": "tcprtt",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "nanosecond parser resolution; declared before reference access",
+        "relative": 1e-12
+      }
+    },
+    {
+      "category": "APPLICATION_PROTOCOL_DERIVED",
+      "error": null,
+      "feature": "trans_depth",
+      "gate": "BLOCK",
+      "reason": "local payload parser is only a candidate and is not Bro-version equivalent",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      }
+    },
+    {
+      "category": "FLOW_DERIVED",
+      "error": null,
+      "feature": "bytes_ratio",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      }
+    },
+    {
+      "category": "FLOW_DERIVED",
+      "error": null,
+      "feature": "log_total_bytes",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      }
+    },
+    {
+      "category": "FLOW_DERIVED",
+      "error": null,
+      "feature": "log_sbytes",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      }
+    },
+    {
+      "category": "FLOW_DERIVED",
+      "error": null,
+      "feature": "log_dbytes",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      }
+    },
+    {
+      "category": "FLOW_DERIVED",
+      "error": null,
+      "feature": "pkts_ratio",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      }
+    },
+    {
+      "category": "FLOW_DERIVED",
+      "error": null,
+      "feature": "log_total_pkts",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      }
+    },
+    {
+      "category": "FLOW_DERIVED",
+      "error": null,
+      "feature": "src_bps",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      }
+    },
+    {
+      "category": "FLOW_DERIVED",
+      "error": null,
+      "feature": "log_src_bps",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      }
+    },
+    {
+      "category": "FLOW_DERIVED",
+      "error": null,
+      "feature": "pkt_rate",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      }
+    },
+    {
+      "category": "FLOW_DERIVED",
+      "error": null,
+      "feature": "load_asym",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      }
+    },
+    {
+      "category": "FLOW_DERIVED",
+      "error": null,
+      "feature": "log_sload",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      }
+    },
+    {
+      "category": "FLOW_DERIVED",
+      "error": null,
+      "feature": "ttl_diff",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      }
+    },
+    {
+      "category": "FLOW_DERIVED",
+      "error": null,
+      "feature": "ttl_sum",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      }
+    },
+    {
+      "category": "FLOW_DERIVED",
+      "error": null,
+      "feature": "loss_rate_src",
+      "gate": "BLOCK",
+      "reason": "packet loss cannot be inferred faithfully from an arbitrary capture point",
+      "reference_support": false,
+      "reproduction_class": "NOT_REPRODUCIBLE",
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      }
+    },
+    {
+      "category": "FLOW_DERIVED",
+      "error": null,
+      "feature": "loss_rate_dst",
+      "gate": "BLOCK",
+      "reason": "packet loss cannot be inferred faithfully from an arbitrary capture point",
+      "reference_support": false,
+      "reproduction_class": "NOT_REPRODUCIBLE",
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      }
+    },
+    {
+      "category": "TEMPORAL_CONTEXT",
+      "error": null,
+      "feature": "jit_ratio",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      }
+    },
+    {
+      "category": "TEMPORAL_CONTEXT",
+      "error": null,
+      "feature": "log_sjit",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      }
+    },
+    {
+      "category": "TCP_STATE_DERIVED",
+      "error": null,
+      "feature": "handshake_ratio",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      }
+    },
+    {
+      "category": "TCP_STATE_DERIVED",
+      "error": null,
+      "feature": "incomplete_tcp",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      }
+    },
+    {
+      "category": "PACKET_DIRECT",
+      "error": null,
+      "feature": "proto",
+      "gate": "BLOCK",
+      "reason": "candidate computation exists but has no row-wise authoritative reference comparison",
+      "reference_support": false,
+      "reproduction_class": "APPROXIMATE",
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "exact comparison unless amended before reference evaluation",
+        "relative": 0.0
+      }
+    },
+    {
+      "category": "SERVICE_DERIVED",
+      "error": null,
+      "feature": "service",
+      "gate": "BLOCK",
+      "reason": "historical analyzer/state-machine mapping and configuration unavailable",
+      "reference_support": false,
+      "reproduction_class": "NOT_REPRODUCIBLE",
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "exact comparison unless amended before reference evaluation",
+        "relative": 0.0
+      }
+    },
+    {
+      "category": "TCP_STATE_DERIVED",
+      "error": null,
+      "feature": "state",
+      "gate": "BLOCK",
+      "reason": "historical analyzer/state-machine mapping and configuration unavailable",
+      "reference_support": false,
+      "reproduction_class": "NOT_REPRODUCIBLE",
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "exact comparison unless amended before reference evaluation",
+        "relative": 0.0
+      }
+    }
+  ],
+  "version": "p11-semantic-extractor-v1"
+}

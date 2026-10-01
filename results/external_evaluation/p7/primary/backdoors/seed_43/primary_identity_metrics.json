@@ -1,0 +1,48 @@
+{
+  "confidence_intervals": {
+    "confidence_level": 0.95,
+    "discarded_replicates": 0,
+    "intervals": {
+      "AUROC": [
+        0.5866447627267309,
+        0.7070778827707495
+      ],
+      "Average_Precision": [
+        0.0014819715393349663,
+        0.0023576743722463177
+      ],
+      "FPR": [
+        0.01167692437399882,
+        0.013721440013489588
+      ],
+      "TPR": [
+        0.0,
+        0.0
+      ]
+    },
+    "method": "stratified canonical-identity bootstrap",
+    "replicates": 2000,
+    "rng": "NumPy PCG64",
+    "seed": 700243,
+    "valid_replicates": 2000
+  },
+  "label": "PRIMARY EXTERNAL CANONICAL-IDENTITY RESULT",
+  "metrics": {
+    "AUROC": 0.6473582151145506,
+    "Average_Precision": 0.0017585384744351388,
+    "F1": 0.0,
+    "FN": 57,
+    "FP": 602,
+    "FPR": 0.012688643453334458,
+    "TN": 46842,
+    "TP": 0,
+    "TPR": 0.0,
+    "balanced_accuracy": 0.4936556782733328,
+    "precision": 0.0,
+    "specificity": 0.9873113565466656
+  },
+  "small_n_warning": "SMALL-N EXTERNAL TARGET",
+  "split_seed": 43,
+  "target": "Backdoors",
+  "uncertainty_caution": "A finite confidence interval does not imply adequate sample size or broad population representativeness."
+}

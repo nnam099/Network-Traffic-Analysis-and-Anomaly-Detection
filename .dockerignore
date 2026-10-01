@@ -1,4 +1,7 @@
 .git/
+.github/
+.agents/
+.codex/
 .venv/
 venv/
 env/
@@ -25,13 +28,13 @@ checkpoints/
 !checkpoints/ids_v14_pipeline.pkl
 notebooks/
 new/
+docs/
 plots/
-assets/*.mp4
+results/
+tests/
+assets/
 *.sqlite
 *.sqlite3
 *.db
 *.db-wal
 *.db-shm
-results/*.log
-results/csv_eval/
-results/artifact_manifest.json

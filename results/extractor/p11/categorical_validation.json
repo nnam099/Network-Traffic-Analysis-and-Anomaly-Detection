@@ -1,0 +1,22 @@
+{
+  "features": {
+    "proto": {
+      "candidate": "IANA protocol number to lowercase token",
+      "normalization_validated": false,
+      "reproduction_class": "APPROXIMATE"
+    },
+    "service": {
+      "candidate": "payload-evidenced HTTP/FTP only; never destination-port lookup",
+      "historical_bro_mapping_validated": false,
+      "reproduction_class": "NOT_REPRODUCIBLE"
+    },
+    "state": {
+      "argus_transition_mapping_validated": false,
+      "candidate": "LOCAL_* TCP summary kept outside P9 token namespace",
+      "reproduction_class": "NOT_REPRODUCIBLE",
+      "zeek_conn_state_substitution_forbidden": true
+    }
+  },
+  "reference_corpus_available": false,
+  "version": "p11-semantic-extractor-v1"
+}

@@ -1,4 +1,4 @@
-"""Compatibility wrapper for IDS v14. New code lives in the ids package and src/train.py."""
+"""Compatibility imports for notebooks created before the ``ids`` package."""
 
 from ids.config import CFG, get_config, resolve_paths, seed_everything
 from ids.dataset import (
@@ -34,7 +34,7 @@ from ids.plots import (
     _attack_probs_batch, plot_soc_decision_space, plot_per_class_proper,
     plot_training_curve, plot_threshold_drift, plot_roc_curves, plot_confusion_matrix,
 )
-from train import save_artifacts, run_full, run_demo, main
+from ids.training import save_artifacts, run_full, run_demo, main
 
 
 if __name__ == '__main__':

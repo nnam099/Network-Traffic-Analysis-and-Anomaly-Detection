@@ -121,10 +121,10 @@ remain byte-identical.
 
 ## Legacy compatibility
 
-The existing `IDSModel`, old dataset transforms, `src/train.py`, checkpoint
+The existing `IDSModel`, old dataset transforms, `src/ids/training.py`, checkpoint
 validator, and runtime evaluator belong to historical flat interfaces. They
 are retained for reproducibility and demos but are not imported by P4.
-`src/train.py` is explicitly BLOCKING if reused for schema V2. A future runtime
+`src/ids/training.py` is explicitly BLOCKING if reused for schema V2. A future runtime
 adapter must be implemented before structured checkpoints can be served.
 
 The machine-readable inventory is

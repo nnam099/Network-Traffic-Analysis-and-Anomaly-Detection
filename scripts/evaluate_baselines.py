@@ -19,9 +19,9 @@ SRC_DIR = ROOT_DIR / "src"
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
-from batch_evaluator import load_ids_artifacts, preprocess_raw_df, run_batch_scores  # noqa: E402
+from ids.batch_evaluator import load_ids_artifacts, preprocess_raw_df, run_batch_scores  # noqa: E402
 from ids.dataset import normalize_labels  # noqa: E402
-from inference_runtime import ground_truth_verdict  # noqa: E402
+from ids.inference_runtime import ground_truth_verdict  # noqa: E402
 
 
 def parse_args() -> argparse.Namespace:

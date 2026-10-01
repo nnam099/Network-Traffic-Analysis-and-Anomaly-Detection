@@ -17,7 +17,7 @@ for path in [SRC_DIR, DASHBOARD_DIR, ROOT_DIR]:
     if str(path) not in sys.path:
         sys.path.insert(0, str(path))
 
-from batch_evaluator import _labeled_evaluation, summarize_scores  # noqa: E402
+from ids.batch_evaluator import _labeled_evaluation, summarize_scores  # noqa: E402
 from ids.dataset import normalize_labels, prepare_splits  # noqa: E402
 from scripts.evaluate_baselines import _labels, _method_metrics  # noqa: E402
 from views_batch import compute_normal_fpr_metrics  # noqa: E402

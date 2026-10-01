@@ -1,0 +1,48 @@
+{
+  "canonical_identities": 953,
+  "family_rows": {
+    "DoS": 11,
+    "Exploits": 11,
+    "Fuzzers": 23,
+    "Generic": 1695,
+    "Normal": 1244,
+    "Reconnaissance": 879,
+    "Shellcode": 12
+  },
+  "identity_score_summary": {
+    "max": 0.6880847976275544,
+    "mean": 0.05957017818353399,
+    "median": 0.0012737543695547915,
+    "min": 8.437446195042053e-05,
+    "n": 953,
+    "quantiles": {
+      "0.05": 0.0001331886653124892,
+      "0.25": 0.00022250847824367703,
+      "0.50": 0.0012737543695547915,
+      "0.75": 0.004560440671993682,
+      "0.95": 0.5523447437040183
+    }
+  },
+  "label": "CONTAMINATED DIAGNOSTIC — NOT EXTERNAL",
+  "performance_metric_computed": false,
+  "primary_hash_frozen_before_diagnostic": "33018692177a589e8a863c18abb8aa008cb36f740fe586082ded059c6ec5bc95",
+  "row_score_summary": {
+    "max": 0.6880847976275544,
+    "mean": 0.019552974706609823,
+    "median": 0.00028906448678711616,
+    "min": 8.437446195042053e-05,
+    "n": 3875,
+    "quantiles": {
+      "0.05": 0.00012747581749850134,
+      "0.25": 0.00016276279107130254,
+      "0.50": 0.00028906448678711616,
+      "0.75": 0.001446300931023603,
+      "0.95": 0.03797848561944943
+    }
+  },
+  "rows": 3875,
+  "split_seed": 43,
+  "surface": "DEVELOPMENT-OVERLAP",
+  "target": "Fuzzers",
+  "used_to_modify_detector": false
+}

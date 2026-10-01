@@ -150,7 +150,7 @@ def test_output_namespace_and_cli_default_do_not_train():
 
 
 def test_legacy_training_cli_rejects_schema_v2_request():
-    result = subprocess.run([sys.executable, str(ROOT / "src/train.py"),
+    result = subprocess.run([sys.executable, str(ROOT / "train.py"),
                              "--schema_version", "scientific-feature-schema-v2"],
                             cwd=ROOT, capture_output=True, text=True)
     assert result.returncode != 0

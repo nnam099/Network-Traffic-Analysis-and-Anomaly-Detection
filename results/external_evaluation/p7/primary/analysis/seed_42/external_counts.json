@@ -1,0 +1,26 @@
+{
+  "family_identities": {
+    "Analysis": 58,
+    "DoS": 1149,
+    "Exploits": 7041,
+    "Generic": 3379,
+    "Normal": 33662,
+    "Reconnaissance": 2213
+  },
+  "family_rows": {
+    "Analysis": 58,
+    "DoS": 1170,
+    "Exploits": 7931,
+    "Generic": 17123,
+    "Normal": 35524,
+    "Reconnaissance": 2268
+  },
+  "known_identities": 47444,
+  "known_rows": 64016,
+  "positive_identities": 58,
+  "positive_rows": 58,
+  "primary_surface": "official-test-clean",
+  "small_n_warning": "SMALL-N EXTERNAL TARGET",
+  "split_seed": 42,
+  "target": "Analysis"
+}

@@ -114,7 +114,7 @@ hash, P4 config hash, training/source hashes, vocab/scaler hashes, environment,
 role row and identity counts, optimizer config, epoch validation history,
 selected epoch and checkpoint/state hashes. Development val CE is recorded
 only as a smoke diagnostic. Files are isolated under
-`results/training_protocol/p5/`; legacy `src/train.py` and flat schema-V1
+`results/training_protocol/p5/`; legacy `src/ids/training.py` and flat schema-V1
 artifacts are not imported or reused. The new CLI without
 `--enable-training` only validates and exits. Unsupported cells and manifests
 fail closed.

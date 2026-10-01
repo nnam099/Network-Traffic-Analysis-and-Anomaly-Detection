@@ -13,7 +13,7 @@ SRC_DIR = os.path.join(ROOT_DIR, "src")
 if SRC_DIR not in sys.path:
     sys.path.insert(0, SRC_DIR)
 
-from batch_evaluator import (  # noqa: E402
+from ids.batch_evaluator import (  # noqa: E402
     calibrate_thresholds,
     load_ids_artifacts,
     preprocess_raw_df,

@@ -1,9 +1,5 @@
 ﻿# -*- coding: utf-8 -*-
-"""
-SOC AI Platform v15 - Dashboard
-Compatible: Windows, Python 3.9+
-Run: streamlit run app.py
-"""
+"""Streamlit dashboard for IDS alert review and triage."""
 
 import streamlit as st
 import sys
@@ -19,7 +15,7 @@ from datetime import datetime
 
 # ── Page config (phai dat truoc bat ky st.* nao) ─────────────────
 st.set_page_config(
-    page_title="SOC AI Platform v15",
+    page_title="Zero-Day IDS",
     page_icon="[SOC]",
     layout="wide"
 )
@@ -298,7 +294,7 @@ except ImportError:
 
 LLM_PROVIDER = None
 try:
-    from llm_agent import LLM_PROVIDER as _LLM_PROVIDER
+    from ids.llm_agent import LLM_PROVIDER as _LLM_PROVIDER
     LLM_PROVIDER = (_LLM_PROVIDER or "").lower()
 except Exception:
     LLM_PROVIDER = None
@@ -329,24 +325,24 @@ PROVIDER_KEYS = {
 LLM_KEY_ENV = PROVIDER_KEYS.get(LLM_PROVIDER or "")
 LLM_KEY_OK = bool(os.getenv(LLM_KEY_ENV, "").strip()) if LLM_KEY_ENV else False
 
-# ── Import modules v15 ────────────────────────────────────────────
+# ── Runtime modules ───────────────────────────────────────────────
 HAS_EXPLAINER = False
 if HAS_SHAP:
     try:
-        from explainer import SHAPExplainer
+        from ids.explainer import SHAPExplainer
         HAS_EXPLAINER = True
     except ImportError:
         st.warning("[!] Khong tim thay explainer.py trong src/ - SHAP se bi tat")
 
 try:
-    from mitre_mapper import MITREMapper
+    from ids.mitre_mapper import MITREMapper
     HAS_MITRE = True
 except ImportError:
     HAS_MITRE = False
     st.warning("[!] Khong tim thay mitre_mapper.py trong src/")
 
 try:
-    from log_normalizer import normalize_real_world_logs
+    from ids.log_normalizer import normalize_real_world_logs
     HAS_LOG_NORMALIZER = True
 except ImportError:
     HAS_LOG_NORMALIZER = False
@@ -354,21 +350,21 @@ except ImportError:
     st.warning("[!] Khong tim thay log_normalizer.py trong src/ - CSV thuc te se khong duoc chuan hoa nang cao")
 
 try:
-    from artifact_validator import validate_artifact_contract
+    from ids.artifact_validator import validate_artifact_contract
     HAS_ARTIFACT_VALIDATOR = True
 except ImportError:
     HAS_ARTIFACT_VALIDATOR = False
     validate_artifact_contract = None
 
 try:
-    from input_guard import CSVInputPolicy, validate_uploaded_csv
+    from ids.input_guard import CSVInputPolicy, validate_uploaded_csv
     HAS_INPUT_GUARD = True
 except ImportError:
     HAS_INPUT_GUARD = False
     CSVInputPolicy = None
     validate_uploaded_csv = None
 
-from inference_runtime import (
+from ids.inference_runtime import (
     assess_normalization_quality as runtime_assess_normalization_quality,
     ground_truth_verdict as runtime_ground_truth_verdict,
     hybrid_score_from_meta as runtime_hybrid_score_from_meta,
@@ -379,7 +375,7 @@ from inference_runtime import (
     traffic_verdict as runtime_traffic_verdict,
     zero_day_decision as runtime_zero_day_decision,
 )
-from dashboard_runtime import (
+from ids.dashboard_runtime import (
     answer_analyst_question as runtime_answer_analyst_question,
     build_alert_context_from_log as runtime_build_alert_context_from_log,
     build_ai_context_options as runtime_build_ai_context_options,
@@ -396,7 +392,7 @@ from views_ood import build_feature_table, build_score_table, enrich_ood_row
 from views_queue import queue_summary, render_queue_view
 from views_report import render_raw_report, render_report_download
 from views_setup import render_setup_status
-from alert_store import (
+from ids.alert_store import (
     init_alert_store,
     list_alerts as alert_store_list_alerts,
     save_alert as alert_store_save_alert,
@@ -406,7 +402,7 @@ from alert_store import (
 HAS_LLM = False
 if LLM_DEP and HAS_LLM_DEPS:
     try:
-        from llm_agent import SOCTriageAgent
+        from ids.llm_agent import SOCTriageAgent
         HAS_LLM = True
     except ImportError:
         st.warning("[!] Khong tim thay llm_agent.py trong src/")
@@ -487,7 +483,7 @@ if "nav_page" not in st.session_state:
 st.sidebar.markdown(
     f"""
     <div class="sidebar-brand">
-        <div class="sidebar-brand-title">SOC AI Workbench</div>
+        <div class="sidebar-brand-title">Zero-Day IDS</div>
         <div class="sidebar-brand-sub">IDS {MODEL_VERSION.upper()} | Detection | Triage | Response</div>
     </div>
     """,
@@ -1623,7 +1619,7 @@ elif page == "[3] OOD Candidate Logs":
 # ═════════════════════════════════════════════════════════════════
 elif page == "[4] Ask AI":
     render_soc_header(
-        "SOC AI Analyst",
+        "Triage Assistant",
         "Ask follow-up questions against the latest alert context, MITRE mapping and model evidence.",
     )
 
@@ -1657,7 +1653,7 @@ elif page == "[4] Ask AI":
         st.session_state.messages = []
 
     for msg in st.session_state.messages:
-        role_label = "Analyst" if msg["role"] == "user" else "SOC AI"
+        role_label = "Analyst" if msg["role"] == "user" else "Assistant"
         with st.chat_message(msg["role"]):
             st.write(f"**{role_label}:** {msg['content']}")
 
@@ -1683,7 +1679,7 @@ elif page == "[4] Ask AI":
                     has_llm_dependency=HAS_LLM_DEPS,
                 )
 
-            st.write(f"**SOC AI:** {answer}")
+            st.write(f"**Assistant:** {answer}")
             st.session_state.messages.append({"role": "assistant", "content": answer})
 
     if st.button("Xoa lich su chat"):
@@ -1701,13 +1697,14 @@ elif page == "[5] Setup Guide":
 
     st.markdown("### Buoc 1: Cau truc thu muc")
     st.code("""
-SOC-AI-Platform-v15/
+ZeroDay-Detection-AutoEncoder-IDS/
 ├── dashboard/
 │   └── app.py          <- file nay
 ├── src/
-│   ├── explainer.py
-│   ├── mitre_mapper.py
-│   └── llm_agent.py
+│   └── ids/
+│       ├── explainer.py
+│       ├── mitre_mapper.py
+│       └── llm_agent.py
 ├── checkpoints/
 │   ├── ids_v14_model.pth
 │   └── ids_v14_pipeline.pkl

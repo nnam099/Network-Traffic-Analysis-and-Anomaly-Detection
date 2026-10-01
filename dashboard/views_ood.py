@@ -4,7 +4,7 @@ from typing import Any
 
 import pandas as pd
 
-from inference_runtime import risk_score, traffic_verdict
+from ids.inference_runtime import risk_score, traffic_verdict
 
 
 PRIORITY_FEATURES = [

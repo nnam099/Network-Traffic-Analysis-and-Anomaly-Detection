@@ -1,0 +1,1110 @@
+{
+  "comparison_stage": "pre-RobustScaler float64",
+  "features": [
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "ackdat",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "nanosecond parser resolution; declared before reference access",
+        "relative": 1e-12
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "ct_dst_ltm",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "NOT_REPRODUCIBLE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "ct_dst_sport_ltm",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "NOT_REPRODUCIBLE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "ct_dst_src_ltm",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "NOT_REPRODUCIBLE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "ct_flw_http_mthd",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "ct_ftp_cmd",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "ct_src_dport_ltm",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "NOT_REPRODUCIBLE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "ct_src_ltm",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "NOT_REPRODUCIBLE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "ct_srv_dst",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "NOT_REPRODUCIBLE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "ct_srv_src",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "NOT_REPRODUCIBLE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "ct_state_ttl",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "NOT_REPRODUCIBLE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "dbytes",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "dinpkt",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 1e-06,
+        "rationale": "nanosecond-to-millisecond conversion tolerance",
+        "relative": 1e-12
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "djit",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 1e-06,
+        "rationale": "nanosecond-to-millisecond conversion tolerance",
+        "relative": 1e-12
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "dload",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "dloss",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "NOT_REPRODUCIBLE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "dmean",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "exact comparison unless amended before reference evaluation",
+        "relative": 0.0
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "dpkts",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "dtcpb",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "dttl",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "dur",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "nanosecond parser resolution; declared before reference access",
+        "relative": 1e-12
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "dwin",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "is_ftp_login",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "is_sm_ips_ports",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "rate",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "response_body_len",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "sbytes",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "sinpkt",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 1e-06,
+        "rationale": "nanosecond-to-millisecond conversion tolerance",
+        "relative": 1e-12
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "sjit",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 1e-06,
+        "rationale": "nanosecond-to-millisecond conversion tolerance",
+        "relative": 1e-12
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "sload",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "sloss",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "NOT_REPRODUCIBLE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "smean",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "exact comparison unless amended before reference evaluation",
+        "relative": 0.0
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "spkts",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "stcpb",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "sttl",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "swin",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "synack",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "nanosecond parser resolution; declared before reference access",
+        "relative": 1e-12
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "tcprtt",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "nanosecond parser resolution; declared before reference access",
+        "relative": 1e-12
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "trans_depth",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "bytes_ratio",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "log_total_bytes",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "log_sbytes",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "log_dbytes",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "pkts_ratio",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "log_total_pkts",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "src_bps",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "log_src_bps",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "pkt_rate",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "load_asym",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "log_sload",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "ttl_diff",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "ttl_sum",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "loss_rate_src",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "NOT_REPRODUCIBLE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "loss_rate_dst",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "NOT_REPRODUCIBLE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "jit_ratio",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "log_sjit",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "handshake_ratio",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 1e-09,
+        "rationale": "float64 arithmetic tolerance",
+        "relative": 1e-09
+      },
+      "validated": false
+    },
+    {
+      "absolute_error": null,
+      "error_quantiles": null,
+      "exact_match_count": 0,
+      "feature": "incomplete_tcp",
+      "inf_mismatch_count": null,
+      "maximum_error": null,
+      "nan_mismatch_count": null,
+      "reference_row_count": 0,
+      "relative_error": null,
+      "reproduction_class": "APPROXIMATE",
+      "sign_mismatch_count": null,
+      "tolerance": {
+        "absolute": 0.0,
+        "rationale": "integer semantic requires exact equality",
+        "relative": 0.0
+      },
+      "validated": false
+    }
+  ],
+  "float32_used": false,
+  "reference_corpus_available": false,
+  "version": "p11-semantic-extractor-v1"
+}

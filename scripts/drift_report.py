@@ -16,7 +16,7 @@ SRC_DIR = ROOT_DIR / "src"
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
-from batch_evaluator import load_ids_artifacts, preprocess_raw_df, run_batch_scores, summarize_scores  # noqa: E402
+from ids.batch_evaluator import load_ids_artifacts, preprocess_raw_df, run_batch_scores, summarize_scores  # noqa: E402
 
 
 SCORE_COLUMNS = ["hybrid", "ae_re", "softmax", "max_prob", "fv_cluster"]

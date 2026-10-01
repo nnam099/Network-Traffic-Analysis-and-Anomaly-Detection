@@ -1,0 +1,30 @@
+{
+  "features": {
+    "proto": {
+      "known_row_oov_rate": 0.0,
+      "oov_identities": 0,
+      "oov_row_rate": 0.0,
+      "oov_rows": 0,
+      "target_row_oov_rate": 0.0,
+      "vocabulary_expanded": false
+    },
+    "service": {
+      "known_row_oov_rate": 0.0,
+      "oov_identities": 0,
+      "oov_row_rate": 0.0,
+      "oov_rows": 0,
+      "target_row_oov_rate": 0.0,
+      "vocabulary_expanded": false
+    },
+    "state": {
+      "known_row_oov_rate": 6.248437890527369e-05,
+      "oov_identities": 4,
+      "oov_row_rate": 6.242781783562755e-05,
+      "oov_rows": 4,
+      "target_row_oov_rate": 0.0,
+      "vocabulary_expanded": false
+    }
+  },
+  "label": "TEST-TIME OOV DIAGNOSTIC ONLY",
+  "population": "primary CLEAN target + known"
+}

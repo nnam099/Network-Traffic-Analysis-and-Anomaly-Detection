@@ -1,0 +1,16 @@
+{
+  "activation_condition": "all 61 feature semantics pass and raw source is cryptographically reserved",
+  "contract_state": "INACTIVE_NO_COMPATIBLE_SOURCE",
+  "definition": "SHA-256 over canonical finite pre-scaled values for the 58 frozen continuous semantics plus normalized proto/service/state tokens, with field names and length prefixes",
+  "duplicate_audit": "within and across raw files before any scoring",
+  "forbidden_inputs": [
+    "row index",
+    "model score",
+    "threshold result",
+    "label"
+  ],
+  "frozen_for_execution": false,
+  "identity_version": "p10-semantic-model-input-identity-v1",
+  "timestamp_policy": "timestamp excluded from identity; retained only as provenance",
+  "version": "p10a-external-source-compatibility-v1"
+}

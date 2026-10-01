@@ -1,0 +1,14 @@
+{
+  "acquisition_date_utc": null,
+  "aggregate_dataset_sha256": null,
+  "external_raw_data_opened": false,
+  "license_version": null,
+  "preprocessing_script": "src/ids/p10_external_source.py",
+  "preprocessing_script_sha256": "f6a1dca0e7283fbd743cadc9cbf2dbc7b7d603b88d7eb1c0af576f4947b90320",
+  "raw_files": [],
+  "reason": "No candidate passed schema compatibility; downloading or hashing raw data was not justified.",
+  "reservation_status": "NOT_RESERVED",
+  "selected_external_source": null,
+  "source_url": null,
+  "version": "p10a-external-source-compatibility-v1"
+}

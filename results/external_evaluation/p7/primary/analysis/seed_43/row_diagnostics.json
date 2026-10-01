@@ -1,0 +1,23 @@
+{
+  "difference_from_identity": {
+    "AUROC": 0.028954502907485358,
+    "Average_Precision": -0.0003437495670253216,
+    "FPR": -0.0027536272073959422,
+    "TPR": 0.0
+  },
+  "label": "ROW-LEVEL DIAGNOSTIC",
+  "metrics": {
+    "AUROC": 0.8629079260357324,
+    "Average_Precision": 0.003192763178896773,
+    "F1": 0.0,
+    "FN": 58,
+    "FP": 636,
+    "FPR": 0.009935016245938516,
+    "TN": 63380,
+    "TP": 0,
+    "TPR": 0.0,
+    "balanced_accuracy": 0.49503249187703074,
+    "precision": 0.0,
+    "specificity": 0.9900649837540615
+  }
+}

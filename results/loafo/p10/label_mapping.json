@@ -1,0 +1,441 @@
+{
+  "candidate_target_mappings": {
+    "bot_iot": {
+      "dataset": "Bot-IoT",
+      "targets": [
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [],
+          "p9_target": "Analysis",
+          "rationale": "No documented external category supports this P9 family.",
+          "relationship": "UNMAPPABLE",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [],
+          "p9_target": "Backdoors",
+          "rationale": "No documented external category supports this P9 family.",
+          "relationship": "UNMAPPABLE",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [
+            "DoS"
+          ],
+          "p9_target": "DoS",
+          "rationale": "Candidate failed the frozen 61-input schema gate; label similarity cannot override it.",
+          "relationship": "DIRECTLY_COMPARABLE",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [],
+          "p9_target": "Exploits",
+          "rationale": "No documented external category supports this P9 family.",
+          "relationship": "UNMAPPABLE",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [],
+          "p9_target": "Fuzzers",
+          "rationale": "No documented external category supports this P9 family.",
+          "relationship": "UNMAPPABLE",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [],
+          "p9_target": "Generic",
+          "rationale": "No documented external category supports this P9 family.",
+          "relationship": "UNMAPPABLE",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [
+            "OS Scan",
+            "Service Scan"
+          ],
+          "p9_target": "Reconnaissance",
+          "rationale": "Candidate failed the frozen 61-input schema gate; label similarity cannot override it.",
+          "relationship": "NARROWER_THAN_P9_TARGET",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [],
+          "p9_target": "Shellcode",
+          "rationale": "No documented external category supports this P9 family.",
+          "relationship": "UNMAPPABLE",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [],
+          "p9_target": "Worms",
+          "rationale": "No documented external category supports this P9 family.",
+          "relationship": "UNMAPPABLE",
+          "target_status": "NOT_COMPARABLE"
+        }
+      ]
+    },
+    "cic_ddos_2019": {
+      "dataset": "CIC-DDoS2019",
+      "targets": [
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [],
+          "p9_target": "Analysis",
+          "rationale": "No documented external category supports this P9 family.",
+          "relationship": "UNMAPPABLE",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [],
+          "p9_target": "Backdoors",
+          "rationale": "No documented external category supports this P9 family.",
+          "relationship": "UNMAPPABLE",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [
+            "NTP",
+            "DNS",
+            "LDAP",
+            "MSSQL",
+            "NetBIOS",
+            "SNMP",
+            "SSDP",
+            "UDP",
+            "UDP-Lag",
+            "WebDDoS",
+            "SYN",
+            "TFTP"
+          ],
+          "p9_target": "DoS",
+          "rationale": "Candidate failed the frozen 61-input schema gate; label similarity cannot override it.",
+          "relationship": "SEMANTICALLY_DIFFERENT",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [],
+          "p9_target": "Exploits",
+          "rationale": "No documented external category supports this P9 family.",
+          "relationship": "UNMAPPABLE",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [],
+          "p9_target": "Fuzzers",
+          "rationale": "No documented external category supports this P9 family.",
+          "relationship": "UNMAPPABLE",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [],
+          "p9_target": "Generic",
+          "rationale": "No documented external category supports this P9 family.",
+          "relationship": "UNMAPPABLE",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [
+            "PortScan"
+          ],
+          "p9_target": "Reconnaissance",
+          "rationale": "Candidate failed the frozen 61-input schema gate; label similarity cannot override it.",
+          "relationship": "NARROWER_THAN_P9_TARGET",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [],
+          "p9_target": "Shellcode",
+          "rationale": "No documented external category supports this P9 family.",
+          "relationship": "UNMAPPABLE",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [],
+          "p9_target": "Worms",
+          "rationale": "No documented external category supports this P9 family.",
+          "relationship": "UNMAPPABLE",
+          "target_status": "NOT_COMPARABLE"
+        }
+      ]
+    },
+    "cic_ids_2017": {
+      "dataset": "CIC-IDS2017",
+      "targets": [
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [],
+          "p9_target": "Analysis",
+          "rationale": "No documented external category supports this P9 family.",
+          "relationship": "UNMAPPABLE",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [
+            "Infiltration"
+          ],
+          "p9_target": "Backdoors",
+          "rationale": "Candidate failed the frozen 61-input schema gate; label similarity cannot override it.",
+          "relationship": "BROADER_THAN_P9_TARGET",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [
+            "DoS",
+            "DDoS"
+          ],
+          "p9_target": "DoS",
+          "rationale": "Candidate failed the frozen 61-input schema gate; label similarity cannot override it.",
+          "relationship": "BROADER_THAN_P9_TARGET",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [
+            "Heartbleed",
+            "Web Attack"
+          ],
+          "p9_target": "Exploits",
+          "rationale": "Candidate failed the frozen 61-input schema gate; label similarity cannot override it.",
+          "relationship": "NARROWER_THAN_P9_TARGET",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [],
+          "p9_target": "Fuzzers",
+          "rationale": "No documented external category supports this P9 family.",
+          "relationship": "UNMAPPABLE",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [],
+          "p9_target": "Generic",
+          "rationale": "No documented external category supports this P9 family.",
+          "relationship": "UNMAPPABLE",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [
+            "PortScan"
+          ],
+          "p9_target": "Reconnaissance",
+          "rationale": "Candidate failed the frozen 61-input schema gate; label similarity cannot override it.",
+          "relationship": "NARROWER_THAN_P9_TARGET",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [],
+          "p9_target": "Shellcode",
+          "rationale": "No documented external category supports this P9 family.",
+          "relationship": "UNMAPPABLE",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [],
+          "p9_target": "Worms",
+          "rationale": "No documented external category supports this P9 family.",
+          "relationship": "UNMAPPABLE",
+          "target_status": "NOT_COMPARABLE"
+        }
+      ]
+    },
+    "cse_cic_ids_2018": {
+      "dataset": "CSE-CIC-IDS2018",
+      "targets": [
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [],
+          "p9_target": "Analysis",
+          "rationale": "No documented external category supports this P9 family.",
+          "relationship": "UNMAPPABLE",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [
+            "Infiltration"
+          ],
+          "p9_target": "Backdoors",
+          "rationale": "Candidate failed the frozen 61-input schema gate; label similarity cannot override it.",
+          "relationship": "BROADER_THAN_P9_TARGET",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [
+            "DoS",
+            "DDoS"
+          ],
+          "p9_target": "DoS",
+          "rationale": "Candidate failed the frozen 61-input schema gate; label similarity cannot override it.",
+          "relationship": "BROADER_THAN_P9_TARGET",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [
+            "Heartbleed",
+            "Web attacks"
+          ],
+          "p9_target": "Exploits",
+          "rationale": "Candidate failed the frozen 61-input schema gate; label similarity cannot override it.",
+          "relationship": "NARROWER_THAN_P9_TARGET",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [],
+          "p9_target": "Fuzzers",
+          "rationale": "No documented external category supports this P9 family.",
+          "relationship": "UNMAPPABLE",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [],
+          "p9_target": "Generic",
+          "rationale": "No documented external category supports this P9 family.",
+          "relationship": "UNMAPPABLE",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [],
+          "p9_target": "Reconnaissance",
+          "rationale": "No documented external category supports this P9 family.",
+          "relationship": "UNMAPPABLE",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [],
+          "p9_target": "Shellcode",
+          "rationale": "No documented external category supports this P9 family.",
+          "relationship": "UNMAPPABLE",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [],
+          "p9_target": "Worms",
+          "rationale": "No documented external category supports this P9 family.",
+          "relationship": "UNMAPPABLE",
+          "target_status": "NOT_COMPARABLE"
+        }
+      ]
+    },
+    "ton_iot_network": {
+      "dataset": "TON_IoT network",
+      "targets": [
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [],
+          "p9_target": "Analysis",
+          "rationale": "No documented external category supports this P9 family.",
+          "relationship": "UNMAPPABLE",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [
+            "backdoor"
+          ],
+          "p9_target": "Backdoors",
+          "rationale": "Candidate failed the frozen 61-input schema gate; label similarity cannot override it.",
+          "relationship": "DIRECTLY_COMPARABLE",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [
+            "dos"
+          ],
+          "p9_target": "DoS",
+          "rationale": "Candidate failed the frozen 61-input schema gate; label similarity cannot override it.",
+          "relationship": "DIRECTLY_COMPARABLE",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [
+            "injection",
+            "xss"
+          ],
+          "p9_target": "Exploits",
+          "rationale": "Candidate failed the frozen 61-input schema gate; label similarity cannot override it.",
+          "relationship": "NARROWER_THAN_P9_TARGET",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [],
+          "p9_target": "Fuzzers",
+          "rationale": "No documented external category supports this P9 family.",
+          "relationship": "UNMAPPABLE",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [],
+          "p9_target": "Generic",
+          "rationale": "No documented external category supports this P9 family.",
+          "relationship": "UNMAPPABLE",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [
+            "scanning"
+          ],
+          "p9_target": "Reconnaissance",
+          "rationale": "Candidate failed the frozen 61-input schema gate; label similarity cannot override it.",
+          "relationship": "NARROWER_THAN_P9_TARGET",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [],
+          "p9_target": "Shellcode",
+          "rationale": "No documented external category supports this P9 family.",
+          "relationship": "UNMAPPABLE",
+          "target_status": "NOT_COMPARABLE"
+        },
+        {
+          "eligible_for_evaluation": false,
+          "external_labels": [],
+          "p9_target": "Worms",
+          "rationale": "No documented external category supports this P9 family.",
+          "relationship": "UNMAPPABLE",
+          "target_status": "NOT_COMPARABLE"
+        }
+      ]
+    }
+  },
+  "contract_state": "PROVISIONAL_INACTIVE",
+  "ddos_is_not_automatically_unsw_dos": true,
+  "evaluation_mode_if_a_source_later_passes": "A_GENERIC_UNSEEN_ATTACK_VS_EXTERNAL_NORMAL",
+  "normal_mapping": "candidate benign/normal only; background semantics remain dataset-specific",
+  "version": "p10a-external-source-compatibility-v1"
+}

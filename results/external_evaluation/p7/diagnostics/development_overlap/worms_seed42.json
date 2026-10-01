@@ -1,0 +1,48 @@
+{
+  "canonical_identities": 953,
+  "family_rows": {
+    "DoS": 11,
+    "Exploits": 11,
+    "Fuzzers": 23,
+    "Generic": 1695,
+    "Normal": 1244,
+    "Reconnaissance": 879,
+    "Shellcode": 12
+  },
+  "identity_score_summary": {
+    "max": 6.826987113993359,
+    "mean": 2.759841592611542,
+    "median": 2.374952107920035,
+    "min": 0.4485876409195015,
+    "n": 953,
+    "quantiles": {
+      "0.05": 0.6228442894737448,
+      "0.25": 1.7955821086498196,
+      "0.50": 2.374952107920035,
+      "0.75": 4.033259006590274,
+      "0.95": 5.799727215270952
+    }
+  },
+  "label": "CONTAMINATED DIAGNOSTIC — NOT EXTERNAL",
+  "performance_metric_computed": false,
+  "primary_hash_frozen_before_diagnostic": "33018692177a589e8a863c18abb8aa008cb36f740fe586082ded059c6ec5bc95",
+  "row_score_summary": {
+    "max": 6.826987113993359,
+    "mean": 1.993153325762633,
+    "median": 1.9549539364815833,
+    "min": 0.4485876409195015,
+    "n": 3875,
+    "quantiles": {
+      "0.05": 0.5352141273102612,
+      "0.25": 0.7776235401541125,
+      "0.50": 1.9549539364815833,
+      "0.75": 2.731116169873851,
+      "0.95": 4.96552276138903
+    }
+  },
+  "rows": 3875,
+  "split_seed": 42,
+  "surface": "DEVELOPMENT-OVERLAP",
+  "target": "Worms",
+  "used_to_modify_detector": false
+}

@@ -1,0 +1,21 @@
+{
+  "calibration_known_row_alert_fraction": 0.00996126175982291,
+  "checkpoint_file_sha256": "8a0a5edc4900b6c41667190640fe89a2c92338ac2e2e765b3bb5556d36e1fbc0",
+  "checkpoint_state_sha256": "db97f91a7d2c0338d01ddf58d9b4a11b425b00a166fb4c86bb6fbfe59cabd75b",
+  "external_clean_known_row_alert_fraction": 0.014621344663834041,
+  "frozen_threshold": 0.5343232987839239,
+  "official_test_clean_surface_sha256": "5a632b084b66caf4a502ebed178d21a462ace22771978f0ef7d3036657fe7f36",
+  "official_test_source_sha256": "734fe6642edf758f7c94d7d9149426b49d202fe8e7bf0bef47392489c3c0a559",
+  "official_test_used_for_fitting": false,
+  "p3_collection_sha256": "1443746a4f024b3d7c1569ba9bbd31987933b5f9e2fb0ce6507ba5e57ddbab21",
+  "p3_manifest_sha256": "89c9dc3eb0ab8bd3162c259622e51a601466cc7a68de70ce5a46f798c4ba1bd7",
+  "p4_model_config_sha256": "f99d5584539642b64cbebc48a72815af9c40f7bd2f987203b931c82c77ef5d08",
+  "p5_training_config_sha256": "d2760152bce8b91e1bc166e13a9908be5c291332b00201c7c45b19bc1a92a5b5",
+  "p6_calibration_artifact_sha256": "14e3c535a983ba48c453af52bc23f2528008c108aacb52688a34a8172ee9bf67",
+  "p6_scorer_state_sha256": "945907b891969e239de460ffa50bb1cbbe1f73804d9dc5b3fada22997d2f0a69",
+  "p7_protocol_sha256": "d8d88c95a3ca238b5295b29da7bffd9aa12781be575d2e4d38f6f7469933a244",
+  "scorer_refitted": false,
+  "selected_scorer": "negative_max_softmax",
+  "source_code_sha256": "89b4ff7ff9cb96b380d06bf2400eb473405112dc3e93c7c4cb2b54dcf345dac9",
+  "threshold_changed": false
+}

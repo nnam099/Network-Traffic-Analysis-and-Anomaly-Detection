@@ -9,12 +9,12 @@ try:
 except ModuleNotFoundError:
     st = None
 
-from dashboard_runtime import (
+from ids.dashboard_runtime import (
     build_time_window_incidents,
     correlate_alerts,
     filter_alert_history,
 )
-from inference_runtime import risk_score
+from ids.inference_runtime import risk_score
 from ui_safety import render_safety_notice
 
 

@@ -1,0 +1,12 @@
+{
+  "content_equal": true,
+  "output_sha256": [
+    "fd87e27a150658890950da0acb5fcb5c8bf1c551db19e1d3864e54c5a61c1a94",
+    "fd87e27a150658890950da0acb5fcb5c8bf1c551db19e1d3864e54c5a61c1a94"
+  ],
+  "pass": true,
+  "probe": "synthetic three-way handshake in two input orders",
+  "runs": 2,
+  "scope": "synthetic candidate extractor only; not reference semantic validation",
+  "version": "p11-semantic-extractor-v1"
+}

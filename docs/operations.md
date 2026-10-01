@@ -43,7 +43,7 @@ docker run --rm -p 8080:8080 `
   ids-v14-serve
 ```
 
-The Dockerfile runs `uvicorn src.serve:app` on port `8080`. Run the Streamlit dashboard directly with `streamlit run dashboard/app.py` for interactive SOC demos.
+The Dockerfile runs `uvicorn ids.api:app --app-dir src` on port `8080`. Run the Streamlit dashboard directly with `streamlit run dashboard/app.py` for interactive SOC demos.
 
 Upload CSV files with flow-like fields when possible:
 

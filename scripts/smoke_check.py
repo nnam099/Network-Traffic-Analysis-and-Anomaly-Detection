@@ -24,7 +24,7 @@ def run(cmd: list[str]) -> None:
 def main() -> int:
     try:
         run([sys.executable, "-m", "ruff", "check", "."])
-        run([sys.executable, "-m", "compileall", "src", "dashboard", "scripts", "export_model.py", "patch_checkpoint.py", "tests"])
+        run([sys.executable, "-m", "compileall", "src", "dashboard", "scripts", "tests"])
         run([sys.executable, "-m", "unittest", "discover", "-f", "-s", "tests"])
     except subprocess.CalledProcessError as exc:
         return int(exc.returncode)

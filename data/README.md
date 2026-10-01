@@ -1,9 +1,9 @@
-# Data Directory
+# Data
 
-This folder is for local UNSW-NB15, CICFlowMeter and other flow CSV files.
-Large data files are ignored by git.
+Put local UNSW-NB15 or flow CSV files in this directory. Large datasets are
+ignored by Git; only small parser fixtures under `samples/` are committed.
 
-Expected examples:
+Expected UNSW-NB15 files:
 
 ```text
 UNSW-NB15_1.csv
@@ -14,23 +14,14 @@ UNSW_NB15_training-set.csv
 UNSW_NB15_testing-set.csv
 ```
 
-Source: https://www.kaggle.com/datasets/mrwellsdavid/unsw-nb15
+Dataset source: [UNSW-NB15 on Kaggle](https://www.kaggle.com/datasets/mrwellsdavid/unsw-nb15).
 
-Small committed samples live in `data/samples/` for parser and CI tests. They
-are not training datasets.
+Normalize a CICFlowMeter-style export with:
 
-For production-like flow data preparation, export CICFlowMeter CSVs locally and
-run:
-
-```powershell
-python scripts/prepare_production_flow_data.py data\your_cicflowmeter.csv `
-  --output-dir results\production_flow_data
+```bash
+python scripts/prepare_production_flow_data.py input.csv \
+  --output-dir results/production_flow_data
 ```
 
-The script writes:
-
-- `production_flows.csv`
-- `train.csv`
-- `validation.csv`
-- `test.csv`
-- `manifest.json`
+The command creates normalized data, train/validation/test splits, and a
+manifest in the selected output directory.

@@ -13,6 +13,9 @@ __pycache__/
 .coverage
 coverage.xml
 htmlcov/
+build/
+dist/
+*.egg-info/
 
 # Virtual environments
 .venv/
@@ -38,5 +41,10 @@ new/
 *.db
 *.db-wal
 *.db-shm
+plots/*
 results/*.log
 results/csv_eval/
+results/**/checkpoints/
+results/**/runs/
+results/**/pilot_rerun/
+results/step2_seed*/

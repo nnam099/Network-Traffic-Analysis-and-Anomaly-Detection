@@ -7,7 +7,7 @@ $DataDir = if ($env:DATA_DIR) { $env:DATA_DIR } else { "data/" }
 $SaveDir = if ($env:SAVE_DIR) { $env:SAVE_DIR } else { "checkpoints/" }
 $PlotDir = if ($env:PLOT_DIR) { $env:PLOT_DIR } else { "plots/" }
 
-python src/ids_v14_unswnb15.py `
+python train.py `
   --data_dir $DataDir `
   --save_dir $SaveDir `
   --plot_dir $PlotDir `

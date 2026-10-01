@@ -22,4 +22,4 @@ EXPOSE 8080
 
 USER appuser
 
-CMD ["uvicorn", "src.serve:app", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["uvicorn", "ids.api:app", "--app-dir", "src", "--host", "0.0.0.0", "--port", "8080"]

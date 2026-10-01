@@ -47,8 +47,8 @@ from ids.target_isolation import (  # noqa: E402
     canonical_feature_fingerprints,
     prepare_target_isolated_fold,
 )
-from artifact_validator import validate_artifact_contract  # noqa: E402
-from train import run_full  # noqa: E402
+from ids.artifact_validator import validate_artifact_contract  # noqa: E402
+from ids.training import run_full  # noqa: E402
 
 
 def _row(label: str, value: float) -> dict:

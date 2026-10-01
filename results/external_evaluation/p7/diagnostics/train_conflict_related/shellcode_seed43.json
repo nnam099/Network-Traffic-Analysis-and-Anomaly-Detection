@@ -1,0 +1,50 @@
+{
+  "canonical_identities": 236,
+  "family_rows": {
+    "Analysis": 14,
+    "Backdoors": 4,
+    "DoS": 1104,
+    "Exploits": 1014,
+    "Fuzzers": 125,
+    "Generic": 26,
+    "Normal": 224,
+    "Reconnaissance": 148,
+    "Shellcode": 1
+  },
+  "identity_score_summary": {
+    "max": 6.080618907666614,
+    "mean": 4.403346674925915,
+    "median": 4.68874104837665,
+    "min": 2.316938578745888,
+    "n": 236,
+    "quantiles": {
+      "0.05": 2.3682059536485243,
+      "0.25": 3.498996061433916,
+      "0.50": 4.68874104837665,
+      "0.75": 5.36247727052945,
+      "0.95": 5.881776805261052
+    }
+  },
+  "label": "TRAIN-CONFLICT DIAGNOSTIC",
+  "performance_metric_computed": false,
+  "primary_hash_frozen_before_diagnostic": "33018692177a589e8a863c18abb8aa008cb36f740fe586082ded059c6ec5bc95",
+  "row_score_summary": {
+    "max": 6.080618907666614,
+    "mean": 4.906838911287889,
+    "median": 5.258355794761529,
+    "min": 2.316938578745888,
+    "n": 2660,
+    "quantiles": {
+      "0.05": 2.3682059546187286,
+      "0.25": 4.788959593507718,
+      "0.50": 5.258355794761529,
+      "0.75": 5.660877367088623,
+      "0.95": 5.949128093240502
+    }
+  },
+  "rows": 2660,
+  "split_seed": 43,
+  "surface": "TRAIN-CONFLICT-RELATED",
+  "target": "Shellcode",
+  "used_to_modify_detector": false
+}

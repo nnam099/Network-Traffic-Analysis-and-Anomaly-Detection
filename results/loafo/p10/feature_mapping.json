@@ -1,0 +1,2990 @@
+{
+  "candidate_mappings": {
+    "bot_iot": {
+      "blocking_features": [
+        "ackdat",
+        "ct_dst_ltm",
+        "ct_dst_sport_ltm",
+        "ct_dst_src_ltm",
+        "ct_flw_http_mthd",
+        "ct_ftp_cmd",
+        "ct_src_dport_ltm",
+        "ct_src_ltm",
+        "ct_srv_dst",
+        "ct_srv_src",
+        "ct_state_ttl",
+        "dinpkt",
+        "djit",
+        "dload",
+        "dloss",
+        "dmean",
+        "dtcpb",
+        "dttl",
+        "dwin",
+        "is_ftp_login",
+        "is_sm_ips_ports",
+        "response_body_len",
+        "sinpkt",
+        "sjit",
+        "sload",
+        "sloss",
+        "smean",
+        "stcpb",
+        "sttl",
+        "swin",
+        "synack",
+        "tcprtt",
+        "trans_depth",
+        "load_asym",
+        "log_sload",
+        "ttl_diff",
+        "ttl_sum",
+        "loss_rate_src",
+        "loss_rate_dst",
+        "jit_ratio",
+        "log_sjit",
+        "handshake_ratio",
+        "incomplete_tcp",
+        "service"
+      ],
+      "classification_counts": {
+        "DERIVABLE": 9,
+        "INCOMPATIBLE": 1,
+        "MISSING": 43,
+        "SEMANTICALLY_EQUIVALENT": 8
+      },
+      "dataset": "Bot-IoT",
+      "gate": "EXTERNAL_SCHEMA_INCOMPATIBLE",
+      "mapping": [
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ackdat",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_dst_ltm",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_dst_sport_ltm",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_dst_src_ltm",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_flw_http_mthd",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_ftp_cmd",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_src_dport_ltm",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_src_ltm",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_srv_dst",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_srv_src",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_state_ttl",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": null,
+          "kind": "continuous",
+          "p9_feature": "dbytes",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "dbytes"
+          ],
+          "units": "bytes"
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "dinpkt",
+          "rationale": "no documented bot_argus field reproduces this frozen P9 semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "djit",
+          "rationale": "candidate timing dispersion is absent or not equivalent to Argus jitter",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "dload",
+          "rationale": "candidate schema does not expose equivalent direction-specific Argus load values",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "dloss",
+          "rationale": "candidate schema lacks direction-specific packet-loss counts",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "dmean",
+          "rationale": "no documented bot_argus field reproduces this frozen P9 semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": null,
+          "kind": "continuous",
+          "p9_feature": "dpkts",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "dpkts"
+          ],
+          "units": "packets"
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "dtcpb",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "dttl",
+          "rationale": "candidate flow product lacks direction-specific TTL semantics required by P9",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": null,
+          "kind": "continuous",
+          "p9_feature": "dur",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "dur"
+          ],
+          "units": "seconds"
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "dwin",
+          "rationale": "no documented bot_argus field reproduces this frozen P9 semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "is_ftp_login",
+          "rationale": "candidate schema lacks equivalent FTP login/command semantics",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "is_sm_ips_ports",
+          "rationale": "no documented bot_argus field reproduces this frozen P9 semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": null,
+          "kind": "continuous",
+          "p9_feature": "rate",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "rate"
+          ],
+          "units": "packets/second"
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "response_body_len",
+          "rationale": "no documented bot_argus field reproduces this frozen P9 semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": null,
+          "kind": "continuous",
+          "p9_feature": "sbytes",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "sbytes"
+          ],
+          "units": "bytes"
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "sinpkt",
+          "rationale": "no documented bot_argus field reproduces this frozen P9 semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "sjit",
+          "rationale": "candidate timing dispersion is absent or not equivalent to Argus jitter",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "sload",
+          "rationale": "candidate schema does not expose equivalent direction-specific Argus load values",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "sloss",
+          "rationale": "candidate schema lacks direction-specific packet-loss counts",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "smean",
+          "rationale": "no documented bot_argus field reproduces this frozen P9 semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": null,
+          "kind": "continuous",
+          "p9_feature": "spkts",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "spkts"
+          ],
+          "units": "packets"
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "stcpb",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "sttl",
+          "rationale": "candidate flow product lacks direction-specific TTL semantics required by P9",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "swin",
+          "rationale": "no documented bot_argus field reproduces this frozen P9 semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "synack",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "tcprtt",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "trans_depth",
+          "rationale": "no documented bot_argus field reproduces this frozen P9 semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(sbytes / (sbytes + dbytes + 1e-8))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "bytes_ratio",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "sbytes",
+            "dbytes"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(log1p(sbytes + dbytes + 1e-8))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "log_total_bytes",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "sbytes",
+            "dbytes"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(log1p(max(sbytes, 0)))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "log_sbytes",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "sbytes"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(log1p(max(dbytes, 0)))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "log_dbytes",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "dbytes"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(spkts / (spkts + dpkts + 1e-8))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "pkts_ratio",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "spkts",
+            "dpkts"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(log1p(spkts + dpkts + 1e-8))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "log_total_pkts",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "spkts",
+            "dpkts"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(sbytes / max(dur_seconds, 1e-6))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "src_bps",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "sbytes",
+            "dur"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(log1p(sbytes / max(dur_seconds, 1e-6)))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "log_src_bps",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "sbytes",
+            "dur"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32((spkts + 1e-8) / max(dur_seconds, 1e-6))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "pkt_rate",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "spkts",
+            "dur"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "load_asym",
+          "rationale": "candidate schema does not expose equivalent direction-specific Argus load values",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "log_sload",
+          "rationale": "candidate schema does not expose equivalent direction-specific Argus load values",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ttl_diff",
+          "rationale": "candidate flow product lacks direction-specific TTL semantics required by P9",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ttl_sum",
+          "rationale": "candidate flow product lacks direction-specific TTL semantics required by P9",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "loss_rate_src",
+          "rationale": "candidate schema lacks direction-specific packet-loss counts",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "loss_rate_dst",
+          "rationale": "candidate schema lacks direction-specific packet-loss counts",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "jit_ratio",
+          "rationale": "candidate timing dispersion is absent or not equivalent to Argus jitter",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "log_sjit",
+          "rationale": "candidate timing dispersion is absent or not equivalent to Argus jitter",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "handshake_ratio",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "incomplete_tcp",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": "normalize then frozen per-cell OOV lookup",
+          "kind": "categorical",
+          "p9_feature": "proto",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "proto"
+          ],
+          "units": "Argus token"
+        },
+        {
+          "classification": "INCOMPATIBLE",
+          "kind": "categorical",
+          "p9_feature": "service",
+          "rationale": "Bot-IoT CSV does not provide the frozen UNSW service semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": "normalize then frozen per-cell OOV lookup",
+          "kind": "categorical",
+          "p9_feature": "state",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "state"
+          ],
+          "units": "Argus state token"
+        }
+      ]
+    },
+    "cic_ddos_2019": {
+      "blocking_features": [
+        "ackdat",
+        "ct_dst_ltm",
+        "ct_dst_sport_ltm",
+        "ct_dst_src_ltm",
+        "ct_flw_http_mthd",
+        "ct_ftp_cmd",
+        "ct_src_dport_ltm",
+        "ct_src_ltm",
+        "ct_srv_dst",
+        "ct_srv_src",
+        "ct_state_ttl",
+        "djit",
+        "dload",
+        "dloss",
+        "dtcpb",
+        "dttl",
+        "dwin",
+        "is_ftp_login",
+        "is_sm_ips_ports",
+        "response_body_len",
+        "sjit",
+        "sload",
+        "sloss",
+        "stcpb",
+        "sttl",
+        "swin",
+        "synack",
+        "tcprtt",
+        "trans_depth",
+        "load_asym",
+        "log_sload",
+        "ttl_diff",
+        "ttl_sum",
+        "loss_rate_src",
+        "loss_rate_dst",
+        "jit_ratio",
+        "log_sjit",
+        "handshake_ratio",
+        "incomplete_tcp",
+        "service",
+        "state"
+      ],
+      "classification_counts": {
+        "DERIVABLE": 9,
+        "INCOMPATIBLE": 4,
+        "MISSING": 37,
+        "SEMANTICALLY_EQUIVALENT": 11
+      },
+      "dataset": "CIC-DDoS2019",
+      "gate": "EXTERNAL_SCHEMA_INCOMPATIBLE",
+      "mapping": [
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ackdat",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_dst_ltm",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_dst_sport_ltm",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_dst_src_ltm",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_flw_http_mthd",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_ftp_cmd",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_src_dport_ltm",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_src_ltm",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_srv_dst",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_srv_src",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_state_ttl",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": null,
+          "kind": "continuous",
+          "p9_feature": "dbytes",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "Total Length of Bwd Packets"
+          ],
+          "units": "bytes"
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": "float32(Bwd IAT Mean / 1e6)",
+          "kind": "continuous",
+          "p9_feature": "dinpkt",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "Bwd IAT Mean"
+          ],
+          "units": "microseconds"
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "djit",
+          "rationale": "candidate timing dispersion is absent or not equivalent to Argus jitter",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "dload",
+          "rationale": "candidate schema does not expose equivalent direction-specific Argus load values",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "dloss",
+          "rationale": "candidate schema lacks direction-specific packet-loss counts",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": null,
+          "kind": "continuous",
+          "p9_feature": "dmean",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "Bwd Packet Length Mean"
+          ],
+          "units": "bytes"
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": null,
+          "kind": "continuous",
+          "p9_feature": "dpkts",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "Total Backward Packets"
+          ],
+          "units": "packets"
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "dtcpb",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "dttl",
+          "rationale": "candidate flow product lacks direction-specific TTL semantics required by P9",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": "float32(Flow Duration / 1e6)",
+          "kind": "continuous",
+          "p9_feature": "dur",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "Flow Duration"
+          ],
+          "units": "microseconds"
+        },
+        {
+          "classification": "INCOMPATIBLE",
+          "kind": "continuous",
+          "p9_feature": "dwin",
+          "rationale": "CIC initial backward-window bytes is not UNSW/Argus destination TCP window semantics",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "is_ftp_login",
+          "rationale": "candidate schema lacks equivalent FTP login/command semantics",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "is_sm_ips_ports",
+          "rationale": "no documented cicflowmeter field reproduces this frozen P9 semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": null,
+          "kind": "continuous",
+          "p9_feature": "rate",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "Flow Packets/s"
+          ],
+          "units": "packets/second"
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "response_body_len",
+          "rationale": "no documented cicflowmeter field reproduces this frozen P9 semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": null,
+          "kind": "continuous",
+          "p9_feature": "sbytes",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "Total Length of Fwd Packets"
+          ],
+          "units": "bytes"
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": "float32(Fwd IAT Mean / 1e6)",
+          "kind": "continuous",
+          "p9_feature": "sinpkt",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "Fwd IAT Mean"
+          ],
+          "units": "microseconds"
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "sjit",
+          "rationale": "candidate timing dispersion is absent or not equivalent to Argus jitter",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "sload",
+          "rationale": "candidate schema does not expose equivalent direction-specific Argus load values",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "sloss",
+          "rationale": "candidate schema lacks direction-specific packet-loss counts",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": null,
+          "kind": "continuous",
+          "p9_feature": "smean",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "Fwd Packet Length Mean"
+          ],
+          "units": "bytes"
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": null,
+          "kind": "continuous",
+          "p9_feature": "spkts",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "Total Fwd Packets"
+          ],
+          "units": "packets"
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "stcpb",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "sttl",
+          "rationale": "candidate flow product lacks direction-specific TTL semantics required by P9",
+          "source_columns": []
+        },
+        {
+          "classification": "INCOMPATIBLE",
+          "kind": "continuous",
+          "p9_feature": "swin",
+          "rationale": "CIC initial forward-window bytes is not UNSW/Argus source TCP window semantics",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "synack",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "tcprtt",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "trans_depth",
+          "rationale": "no documented cicflowmeter field reproduces this frozen P9 semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(sbytes / (sbytes + dbytes + 1e-8))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "bytes_ratio",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "sbytes",
+            "dbytes"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(log1p(sbytes + dbytes + 1e-8))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "log_total_bytes",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "sbytes",
+            "dbytes"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(log1p(max(sbytes, 0)))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "log_sbytes",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "sbytes"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(log1p(max(dbytes, 0)))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "log_dbytes",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "dbytes"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(spkts / (spkts + dpkts + 1e-8))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "pkts_ratio",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "spkts",
+            "dpkts"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(log1p(spkts + dpkts + 1e-8))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "log_total_pkts",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "spkts",
+            "dpkts"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(sbytes / max(dur_seconds, 1e-6))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "src_bps",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "sbytes",
+            "dur"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(log1p(sbytes / max(dur_seconds, 1e-6)))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "log_src_bps",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "sbytes",
+            "dur"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32((spkts + 1e-8) / max(dur_seconds, 1e-6))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "pkt_rate",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "spkts",
+            "dur"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "load_asym",
+          "rationale": "candidate schema does not expose equivalent direction-specific Argus load values",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "log_sload",
+          "rationale": "candidate schema does not expose equivalent direction-specific Argus load values",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ttl_diff",
+          "rationale": "candidate flow product lacks direction-specific TTL semantics required by P9",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ttl_sum",
+          "rationale": "candidate flow product lacks direction-specific TTL semantics required by P9",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "loss_rate_src",
+          "rationale": "candidate schema lacks direction-specific packet-loss counts",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "loss_rate_dst",
+          "rationale": "candidate schema lacks direction-specific packet-loss counts",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "jit_ratio",
+          "rationale": "candidate timing dispersion is absent or not equivalent to Argus jitter",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "log_sjit",
+          "rationale": "candidate timing dispersion is absent or not equivalent to Argus jitter",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "handshake_ratio",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "incomplete_tcp",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": "normalize then frozen per-cell OOV lookup",
+          "kind": "categorical",
+          "p9_feature": "proto",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "Protocol"
+          ],
+          "units": "token"
+        },
+        {
+          "classification": "INCOMPATIBLE",
+          "kind": "categorical",
+          "p9_feature": "service",
+          "rationale": "CIC ML CSV has no authoritative application-service field; port inference is forbidden",
+          "source_columns": []
+        },
+        {
+          "classification": "INCOMPATIBLE",
+          "kind": "categorical",
+          "p9_feature": "state",
+          "rationale": "CIC TCP flag counters do not reproduce the UNSW/Argus connection-state token",
+          "source_columns": []
+        }
+      ]
+    },
+    "cic_ids_2017": {
+      "blocking_features": [
+        "ackdat",
+        "ct_dst_ltm",
+        "ct_dst_sport_ltm",
+        "ct_dst_src_ltm",
+        "ct_flw_http_mthd",
+        "ct_ftp_cmd",
+        "ct_src_dport_ltm",
+        "ct_src_ltm",
+        "ct_srv_dst",
+        "ct_srv_src",
+        "ct_state_ttl",
+        "djit",
+        "dload",
+        "dloss",
+        "dtcpb",
+        "dttl",
+        "dwin",
+        "is_ftp_login",
+        "is_sm_ips_ports",
+        "response_body_len",
+        "sjit",
+        "sload",
+        "sloss",
+        "stcpb",
+        "sttl",
+        "swin",
+        "synack",
+        "tcprtt",
+        "trans_depth",
+        "load_asym",
+        "log_sload",
+        "ttl_diff",
+        "ttl_sum",
+        "loss_rate_src",
+        "loss_rate_dst",
+        "jit_ratio",
+        "log_sjit",
+        "handshake_ratio",
+        "incomplete_tcp",
+        "service",
+        "state"
+      ],
+      "classification_counts": {
+        "DERIVABLE": 9,
+        "INCOMPATIBLE": 4,
+        "MISSING": 37,
+        "SEMANTICALLY_EQUIVALENT": 11
+      },
+      "dataset": "CIC-IDS2017",
+      "gate": "EXTERNAL_SCHEMA_INCOMPATIBLE",
+      "mapping": [
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ackdat",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_dst_ltm",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_dst_sport_ltm",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_dst_src_ltm",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_flw_http_mthd",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_ftp_cmd",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_src_dport_ltm",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_src_ltm",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_srv_dst",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_srv_src",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_state_ttl",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": null,
+          "kind": "continuous",
+          "p9_feature": "dbytes",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "Total Length of Bwd Packets"
+          ],
+          "units": "bytes"
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": "float32(Bwd IAT Mean / 1e6)",
+          "kind": "continuous",
+          "p9_feature": "dinpkt",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "Bwd IAT Mean"
+          ],
+          "units": "microseconds"
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "djit",
+          "rationale": "candidate timing dispersion is absent or not equivalent to Argus jitter",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "dload",
+          "rationale": "candidate schema does not expose equivalent direction-specific Argus load values",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "dloss",
+          "rationale": "candidate schema lacks direction-specific packet-loss counts",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": null,
+          "kind": "continuous",
+          "p9_feature": "dmean",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "Bwd Packet Length Mean"
+          ],
+          "units": "bytes"
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": null,
+          "kind": "continuous",
+          "p9_feature": "dpkts",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "Total Backward Packets"
+          ],
+          "units": "packets"
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "dtcpb",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "dttl",
+          "rationale": "candidate flow product lacks direction-specific TTL semantics required by P9",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": "float32(Flow Duration / 1e6)",
+          "kind": "continuous",
+          "p9_feature": "dur",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "Flow Duration"
+          ],
+          "units": "microseconds"
+        },
+        {
+          "classification": "INCOMPATIBLE",
+          "kind": "continuous",
+          "p9_feature": "dwin",
+          "rationale": "CIC initial backward-window bytes is not UNSW/Argus destination TCP window semantics",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "is_ftp_login",
+          "rationale": "candidate schema lacks equivalent FTP login/command semantics",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "is_sm_ips_ports",
+          "rationale": "no documented cicflowmeter field reproduces this frozen P9 semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": null,
+          "kind": "continuous",
+          "p9_feature": "rate",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "Flow Packets/s"
+          ],
+          "units": "packets/second"
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "response_body_len",
+          "rationale": "no documented cicflowmeter field reproduces this frozen P9 semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": null,
+          "kind": "continuous",
+          "p9_feature": "sbytes",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "Total Length of Fwd Packets"
+          ],
+          "units": "bytes"
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": "float32(Fwd IAT Mean / 1e6)",
+          "kind": "continuous",
+          "p9_feature": "sinpkt",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "Fwd IAT Mean"
+          ],
+          "units": "microseconds"
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "sjit",
+          "rationale": "candidate timing dispersion is absent or not equivalent to Argus jitter",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "sload",
+          "rationale": "candidate schema does not expose equivalent direction-specific Argus load values",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "sloss",
+          "rationale": "candidate schema lacks direction-specific packet-loss counts",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": null,
+          "kind": "continuous",
+          "p9_feature": "smean",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "Fwd Packet Length Mean"
+          ],
+          "units": "bytes"
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": null,
+          "kind": "continuous",
+          "p9_feature": "spkts",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "Total Fwd Packets"
+          ],
+          "units": "packets"
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "stcpb",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "sttl",
+          "rationale": "candidate flow product lacks direction-specific TTL semantics required by P9",
+          "source_columns": []
+        },
+        {
+          "classification": "INCOMPATIBLE",
+          "kind": "continuous",
+          "p9_feature": "swin",
+          "rationale": "CIC initial forward-window bytes is not UNSW/Argus source TCP window semantics",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "synack",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "tcprtt",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "trans_depth",
+          "rationale": "no documented cicflowmeter field reproduces this frozen P9 semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(sbytes / (sbytes + dbytes + 1e-8))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "bytes_ratio",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "sbytes",
+            "dbytes"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(log1p(sbytes + dbytes + 1e-8))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "log_total_bytes",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "sbytes",
+            "dbytes"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(log1p(max(sbytes, 0)))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "log_sbytes",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "sbytes"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(log1p(max(dbytes, 0)))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "log_dbytes",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "dbytes"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(spkts / (spkts + dpkts + 1e-8))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "pkts_ratio",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "spkts",
+            "dpkts"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(log1p(spkts + dpkts + 1e-8))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "log_total_pkts",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "spkts",
+            "dpkts"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(sbytes / max(dur_seconds, 1e-6))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "src_bps",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "sbytes",
+            "dur"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(log1p(sbytes / max(dur_seconds, 1e-6)))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "log_src_bps",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "sbytes",
+            "dur"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32((spkts + 1e-8) / max(dur_seconds, 1e-6))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "pkt_rate",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "spkts",
+            "dur"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "load_asym",
+          "rationale": "candidate schema does not expose equivalent direction-specific Argus load values",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "log_sload",
+          "rationale": "candidate schema does not expose equivalent direction-specific Argus load values",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ttl_diff",
+          "rationale": "candidate flow product lacks direction-specific TTL semantics required by P9",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ttl_sum",
+          "rationale": "candidate flow product lacks direction-specific TTL semantics required by P9",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "loss_rate_src",
+          "rationale": "candidate schema lacks direction-specific packet-loss counts",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "loss_rate_dst",
+          "rationale": "candidate schema lacks direction-specific packet-loss counts",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "jit_ratio",
+          "rationale": "candidate timing dispersion is absent or not equivalent to Argus jitter",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "log_sjit",
+          "rationale": "candidate timing dispersion is absent or not equivalent to Argus jitter",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "handshake_ratio",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "incomplete_tcp",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": "normalize then frozen per-cell OOV lookup",
+          "kind": "categorical",
+          "p9_feature": "proto",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "Protocol"
+          ],
+          "units": "token"
+        },
+        {
+          "classification": "INCOMPATIBLE",
+          "kind": "categorical",
+          "p9_feature": "service",
+          "rationale": "CIC ML CSV has no authoritative application-service field; port inference is forbidden",
+          "source_columns": []
+        },
+        {
+          "classification": "INCOMPATIBLE",
+          "kind": "categorical",
+          "p9_feature": "state",
+          "rationale": "CIC TCP flag counters do not reproduce the UNSW/Argus connection-state token",
+          "source_columns": []
+        }
+      ]
+    },
+    "cse_cic_ids_2018": {
+      "blocking_features": [
+        "ackdat",
+        "ct_dst_ltm",
+        "ct_dst_sport_ltm",
+        "ct_dst_src_ltm",
+        "ct_flw_http_mthd",
+        "ct_ftp_cmd",
+        "ct_src_dport_ltm",
+        "ct_src_ltm",
+        "ct_srv_dst",
+        "ct_srv_src",
+        "ct_state_ttl",
+        "djit",
+        "dload",
+        "dloss",
+        "dtcpb",
+        "dttl",
+        "dwin",
+        "is_ftp_login",
+        "is_sm_ips_ports",
+        "response_body_len",
+        "sjit",
+        "sload",
+        "sloss",
+        "stcpb",
+        "sttl",
+        "swin",
+        "synack",
+        "tcprtt",
+        "trans_depth",
+        "load_asym",
+        "log_sload",
+        "ttl_diff",
+        "ttl_sum",
+        "loss_rate_src",
+        "loss_rate_dst",
+        "jit_ratio",
+        "log_sjit",
+        "handshake_ratio",
+        "incomplete_tcp",
+        "service",
+        "state"
+      ],
+      "classification_counts": {
+        "DERIVABLE": 9,
+        "INCOMPATIBLE": 4,
+        "MISSING": 37,
+        "SEMANTICALLY_EQUIVALENT": 11
+      },
+      "dataset": "CSE-CIC-IDS2018",
+      "gate": "EXTERNAL_SCHEMA_INCOMPATIBLE",
+      "mapping": [
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ackdat",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_dst_ltm",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_dst_sport_ltm",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_dst_src_ltm",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_flw_http_mthd",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_ftp_cmd",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_src_dport_ltm",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_src_ltm",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_srv_dst",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_srv_src",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_state_ttl",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": null,
+          "kind": "continuous",
+          "p9_feature": "dbytes",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "Total Length of Bwd Packets"
+          ],
+          "units": "bytes"
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": "float32(Bwd IAT Mean / 1e6)",
+          "kind": "continuous",
+          "p9_feature": "dinpkt",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "Bwd IAT Mean"
+          ],
+          "units": "microseconds"
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "djit",
+          "rationale": "candidate timing dispersion is absent or not equivalent to Argus jitter",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "dload",
+          "rationale": "candidate schema does not expose equivalent direction-specific Argus load values",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "dloss",
+          "rationale": "candidate schema lacks direction-specific packet-loss counts",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": null,
+          "kind": "continuous",
+          "p9_feature": "dmean",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "Bwd Packet Length Mean"
+          ],
+          "units": "bytes"
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": null,
+          "kind": "continuous",
+          "p9_feature": "dpkts",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "Total Backward Packets"
+          ],
+          "units": "packets"
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "dtcpb",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "dttl",
+          "rationale": "candidate flow product lacks direction-specific TTL semantics required by P9",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": "float32(Flow Duration / 1e6)",
+          "kind": "continuous",
+          "p9_feature": "dur",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "Flow Duration"
+          ],
+          "units": "microseconds"
+        },
+        {
+          "classification": "INCOMPATIBLE",
+          "kind": "continuous",
+          "p9_feature": "dwin",
+          "rationale": "CIC initial backward-window bytes is not UNSW/Argus destination TCP window semantics",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "is_ftp_login",
+          "rationale": "candidate schema lacks equivalent FTP login/command semantics",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "is_sm_ips_ports",
+          "rationale": "no documented cicflowmeter field reproduces this frozen P9 semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": null,
+          "kind": "continuous",
+          "p9_feature": "rate",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "Flow Packets/s"
+          ],
+          "units": "packets/second"
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "response_body_len",
+          "rationale": "no documented cicflowmeter field reproduces this frozen P9 semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": null,
+          "kind": "continuous",
+          "p9_feature": "sbytes",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "Total Length of Fwd Packets"
+          ],
+          "units": "bytes"
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": "float32(Fwd IAT Mean / 1e6)",
+          "kind": "continuous",
+          "p9_feature": "sinpkt",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "Fwd IAT Mean"
+          ],
+          "units": "microseconds"
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "sjit",
+          "rationale": "candidate timing dispersion is absent or not equivalent to Argus jitter",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "sload",
+          "rationale": "candidate schema does not expose equivalent direction-specific Argus load values",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "sloss",
+          "rationale": "candidate schema lacks direction-specific packet-loss counts",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": null,
+          "kind": "continuous",
+          "p9_feature": "smean",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "Fwd Packet Length Mean"
+          ],
+          "units": "bytes"
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": null,
+          "kind": "continuous",
+          "p9_feature": "spkts",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "Total Fwd Packets"
+          ],
+          "units": "packets"
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "stcpb",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "sttl",
+          "rationale": "candidate flow product lacks direction-specific TTL semantics required by P9",
+          "source_columns": []
+        },
+        {
+          "classification": "INCOMPATIBLE",
+          "kind": "continuous",
+          "p9_feature": "swin",
+          "rationale": "CIC initial forward-window bytes is not UNSW/Argus source TCP window semantics",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "synack",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "tcprtt",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "trans_depth",
+          "rationale": "no documented cicflowmeter field reproduces this frozen P9 semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(sbytes / (sbytes + dbytes + 1e-8))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "bytes_ratio",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "sbytes",
+            "dbytes"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(log1p(sbytes + dbytes + 1e-8))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "log_total_bytes",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "sbytes",
+            "dbytes"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(log1p(max(sbytes, 0)))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "log_sbytes",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "sbytes"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(log1p(max(dbytes, 0)))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "log_dbytes",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "dbytes"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(spkts / (spkts + dpkts + 1e-8))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "pkts_ratio",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "spkts",
+            "dpkts"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(log1p(spkts + dpkts + 1e-8))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "log_total_pkts",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "spkts",
+            "dpkts"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(sbytes / max(dur_seconds, 1e-6))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "src_bps",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "sbytes",
+            "dur"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(log1p(sbytes / max(dur_seconds, 1e-6)))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "log_src_bps",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "sbytes",
+            "dur"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32((spkts + 1e-8) / max(dur_seconds, 1e-6))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "pkt_rate",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "spkts",
+            "dur"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "load_asym",
+          "rationale": "candidate schema does not expose equivalent direction-specific Argus load values",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "log_sload",
+          "rationale": "candidate schema does not expose equivalent direction-specific Argus load values",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ttl_diff",
+          "rationale": "candidate flow product lacks direction-specific TTL semantics required by P9",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ttl_sum",
+          "rationale": "candidate flow product lacks direction-specific TTL semantics required by P9",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "loss_rate_src",
+          "rationale": "candidate schema lacks direction-specific packet-loss counts",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "loss_rate_dst",
+          "rationale": "candidate schema lacks direction-specific packet-loss counts",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "jit_ratio",
+          "rationale": "candidate timing dispersion is absent or not equivalent to Argus jitter",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "log_sjit",
+          "rationale": "candidate timing dispersion is absent or not equivalent to Argus jitter",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "handshake_ratio",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "incomplete_tcp",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": "normalize then frozen per-cell OOV lookup",
+          "kind": "categorical",
+          "p9_feature": "proto",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "Protocol"
+          ],
+          "units": "token"
+        },
+        {
+          "classification": "INCOMPATIBLE",
+          "kind": "categorical",
+          "p9_feature": "service",
+          "rationale": "CIC ML CSV has no authoritative application-service field; port inference is forbidden",
+          "source_columns": []
+        },
+        {
+          "classification": "INCOMPATIBLE",
+          "kind": "categorical",
+          "p9_feature": "state",
+          "rationale": "CIC TCP flag counters do not reproduce the UNSW/Argus connection-state token",
+          "source_columns": []
+        }
+      ]
+    },
+    "ton_iot_network": {
+      "blocking_features": [
+        "ackdat",
+        "ct_dst_ltm",
+        "ct_dst_sport_ltm",
+        "ct_dst_src_ltm",
+        "ct_flw_http_mthd",
+        "ct_ftp_cmd",
+        "ct_src_dport_ltm",
+        "ct_src_ltm",
+        "ct_srv_dst",
+        "ct_srv_src",
+        "ct_state_ttl",
+        "dinpkt",
+        "djit",
+        "dload",
+        "dloss",
+        "dmean",
+        "dtcpb",
+        "dttl",
+        "dwin",
+        "is_ftp_login",
+        "rate",
+        "sinpkt",
+        "sjit",
+        "sload",
+        "sloss",
+        "smean",
+        "stcpb",
+        "sttl",
+        "swin",
+        "synack",
+        "tcprtt",
+        "load_asym",
+        "log_sload",
+        "ttl_diff",
+        "ttl_sum",
+        "loss_rate_src",
+        "loss_rate_dst",
+        "jit_ratio",
+        "log_sjit",
+        "handshake_ratio",
+        "incomplete_tcp",
+        "state"
+      ],
+      "classification_counts": {
+        "DERIVABLE": 10,
+        "INCOMPATIBLE": 2,
+        "MISSING": 40,
+        "SEMANTICALLY_EQUIVALENT": 9
+      },
+      "dataset": "TON_IoT network",
+      "gate": "EXTERNAL_SCHEMA_INCOMPATIBLE",
+      "mapping": [
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ackdat",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_dst_ltm",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_dst_sport_ltm",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_dst_src_ltm",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "INCOMPATIBLE",
+          "kind": "continuous",
+          "p9_feature": "ct_flw_http_mthd",
+          "rationale": "http_method presence is not the UNSW rolling flow-method count",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_ftp_cmd",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_src_dport_ltm",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_src_ltm",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_srv_dst",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_srv_src",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ct_state_ttl",
+          "rationale": "candidate schema lacks the documented UNSW last-100-connection context statistic",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": null,
+          "kind": "continuous",
+          "p9_feature": "dbytes",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "dst_bytes"
+          ],
+          "units": "payload bytes"
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "dinpkt",
+          "rationale": "no documented ton_zeek field reproduces this frozen P9 semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "djit",
+          "rationale": "candidate timing dispersion is absent or not equivalent to Argus jitter",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "dload",
+          "rationale": "candidate schema does not expose equivalent direction-specific Argus load values",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "dloss",
+          "rationale": "candidate schema lacks direction-specific packet-loss counts",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "dmean",
+          "rationale": "no documented ton_zeek field reproduces this frozen P9 semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": null,
+          "kind": "continuous",
+          "p9_feature": "dpkts",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "dst_pkts"
+          ],
+          "units": "packets"
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "dtcpb",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "dttl",
+          "rationale": "candidate flow product lacks direction-specific TTL semantics required by P9",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": null,
+          "kind": "continuous",
+          "p9_feature": "dur",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "duration"
+          ],
+          "units": "seconds"
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "dwin",
+          "rationale": "no documented ton_zeek field reproduces this frozen P9 semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "is_ftp_login",
+          "rationale": "candidate schema lacks equivalent FTP login/command semantics",
+          "source_columns": []
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "none",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32((src_ip == dst_ip) and (src_port == dst_port))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "is_sm_ips_ports",
+          "rationale": "Exact P9 formula can be applied to documented source metadata.",
+          "source_columns": [
+            "src_ip",
+            "dst_ip",
+            "src_port",
+            "dst_port"
+          ],
+          "units": "binary indicator"
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "rate",
+          "rationale": "no documented ton_zeek field reproduces this frozen P9 semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": null,
+          "kind": "continuous",
+          "p9_feature": "response_body_len",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "http_response_body_len"
+          ],
+          "units": "bytes"
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": null,
+          "kind": "continuous",
+          "p9_feature": "sbytes",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "src_bytes"
+          ],
+          "units": "payload bytes"
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "sinpkt",
+          "rationale": "no documented ton_zeek field reproduces this frozen P9 semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "sjit",
+          "rationale": "candidate timing dispersion is absent or not equivalent to Argus jitter",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "sload",
+          "rationale": "candidate schema does not expose equivalent direction-specific Argus load values",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "sloss",
+          "rationale": "candidate schema lacks direction-specific packet-loss counts",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "smean",
+          "rationale": "no documented ton_zeek field reproduces this frozen P9 semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": null,
+          "kind": "continuous",
+          "p9_feature": "spkts",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "src_pkts"
+          ],
+          "units": "packets"
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "stcpb",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "sttl",
+          "rationale": "candidate flow product lacks direction-specific TTL semantics required by P9",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "swin",
+          "rationale": "no documented ton_zeek field reproduces this frozen P9 semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "synack",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "tcprtt",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": null,
+          "kind": "continuous",
+          "p9_feature": "trans_depth",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "http_trans_depth"
+          ],
+          "units": "transactions"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(sbytes / (sbytes + dbytes + 1e-8))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "bytes_ratio",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "sbytes",
+            "dbytes"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(log1p(sbytes + dbytes + 1e-8))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "log_total_bytes",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "sbytes",
+            "dbytes"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(log1p(max(sbytes, 0)))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "log_sbytes",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "sbytes"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(log1p(max(dbytes, 0)))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "log_dbytes",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "dbytes"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(spkts / (spkts + dpkts + 1e-8))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "pkts_ratio",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "spkts",
+            "dpkts"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(log1p(spkts + dpkts + 1e-8))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "log_total_pkts",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "spkts",
+            "dpkts"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(sbytes / max(dur_seconds, 1e-6))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "src_bps",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "sbytes",
+            "dur"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32(log1p(sbytes / max(dur_seconds, 1e-6)))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "log_src_bps",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "sbytes",
+            "dur"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "DERIVABLE",
+          "clipping": "only max/clip explicitly present in the frozen formula",
+          "dtype": "float32 before frozen per-cell RobustScaler; float64 at model boundary",
+          "formula": "float32((spkts + 1e-8) / max(dur_seconds, 1e-6))",
+          "kind": "continuous",
+          "missing_policy": "fail closed",
+          "p9_feature": "pkt_rate",
+          "rationale": "Formula copied from the frozen repository feature-engineering contract.",
+          "source_columns": [
+            "spkts",
+            "dur"
+          ],
+          "units": "dimensionless or formula-defined"
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "load_asym",
+          "rationale": "candidate schema does not expose equivalent direction-specific Argus load values",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "log_sload",
+          "rationale": "candidate schema does not expose equivalent direction-specific Argus load values",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ttl_diff",
+          "rationale": "candidate flow product lacks direction-specific TTL semantics required by P9",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "ttl_sum",
+          "rationale": "candidate flow product lacks direction-specific TTL semantics required by P9",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "loss_rate_src",
+          "rationale": "candidate schema lacks direction-specific packet-loss counts",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "loss_rate_dst",
+          "rationale": "candidate schema lacks direction-specific packet-loss counts",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "jit_ratio",
+          "rationale": "candidate timing dispersion is absent or not equivalent to Argus jitter",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "log_sjit",
+          "rationale": "candidate timing dispersion is absent or not equivalent to Argus jitter",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "handshake_ratio",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "MISSING",
+          "kind": "continuous",
+          "p9_feature": "incomplete_tcp",
+          "rationale": "candidate schema lacks the frozen Argus TCP sequence/handshake timing semantic",
+          "source_columns": []
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": "normalize then frozen per-cell OOV lookup",
+          "kind": "categorical",
+          "p9_feature": "proto",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "proto"
+          ],
+          "units": "token"
+        },
+        {
+          "classification": "SEMANTICALLY_EQUIVALENT",
+          "conversion": "normalize then frozen per-cell OOV lookup",
+          "kind": "categorical",
+          "p9_feature": "service",
+          "rationale": "Same high-level quantity, but extractor/version/direction conventions are not proven byte-for-byte identical to the frozen UNSW/Argus/Bro pipeline.",
+          "source_columns": [
+            "service"
+          ],
+          "units": "Zeek-detected service token"
+        },
+        {
+          "classification": "INCOMPATIBLE",
+          "kind": "categorical",
+          "p9_feature": "state",
+          "rationale": "Zeek conn_state is a different state machine from the frozen UNSW/Argus state field",
+          "source_columns": []
+        }
+      ]
+    }
+  },
+  "classification_vocabulary": [
+    "DERIVABLE",
+    "EXACT",
+    "INCOMPATIBLE",
+    "MISSING",
+    "SEMANTICALLY_EQUIVALENT"
+  ],
+  "exact_name_is_not_semantic_equivalence": true,
+  "frozen_schema_sha256": "f3ecf12891e5b0d9b5e1fe38a22c23720a71eaf1d5a47b763911df363b3b36d7",
+  "required_categorical_count": 3,
+  "required_continuous_count": 58,
+  "version": "p10a-external-source-compatibility-v1"
+}
