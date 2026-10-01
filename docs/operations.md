@@ -17,7 +17,28 @@ Expected minimum state:
 - smoke checks pass
 - artifact manifest verifies cleanly
 
-## Dashboard Use
+## Application Use
+
+Start the FastAPI backend from the repository root:
+
+```bash
+export IDS_MODEL_PATH=checkpoints/ids_v14_model.pth
+export IDS_PIPELINE_PATH=checkpoints/ids_v14_pipeline.pkl
+uvicorn ids.api:app --app-dir src --host 127.0.0.1 --port 8080
+```
+
+Start the React frontend in a second terminal:
+
+```bash
+cd frontend
+npm ci
+npm run dev
+```
+
+Open <http://127.0.0.1:5173>. The Streamlit interface below is retained for
+older research demonstrations.
+
+## Legacy Streamlit Interface
 
 Start v14 dashboard:
 
@@ -43,7 +64,9 @@ docker run --rm -p 8080:8080 `
   ids-v14-serve
 ```
 
-The Dockerfile runs `uvicorn ids.api:app --app-dir src` on port `8080`. Run the Streamlit dashboard directly with `streamlit run dashboard/app.py` for interactive SOC demos.
+The Dockerfile runs `uvicorn ids.api:app --app-dir src` on port `8080`. Run the
+Streamlit dashboard directly with `streamlit run dashboard/app.py` only when
+using its legacy analyst workflow.
 
 Upload CSV files with flow-like fields when possible:
 

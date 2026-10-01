@@ -57,7 +57,7 @@ def add_threshold_leakage_warning(summary: dict, csv_path: str) -> None:
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Evaluate IDS zero-day behavior on a CSV file.")
+    parser = argparse.ArgumentParser(description="Evaluate IDS anomaly detection on a CSV file.")
     parser.add_argument("csv_path", help="Path to a UNSW/CICIDS/firewall/flow CSV file.")
     parser.add_argument("--model-version", default=os.getenv("IDS_MODEL_VERSION", "v14"), choices=["v14", "v15"])
     parser.add_argument("--model-path", default=os.path.join(ROOT_DIR, "checkpoints", "ids_v14_model.pth"))
@@ -129,7 +129,7 @@ def main() -> int:
 
     print(f"Report: {report_path}")
     print(f"Rows: {summary['rows']:,}")
-    print(f"Zero-day rate: {summary['zero_day_rate']:.2%}")
+    print(f"Anomaly rate: {summary['zero_day_rate']:.2%}")
     if "normal_ood_fpr" in summary:
         print(f"Normal OOD FPR: {summary['normal_ood_fpr']:.2%}")
         print(f"Normal alert FPR: {summary['normal_alert_fpr']:.2%}")

@@ -35,7 +35,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output-dir", default=str(ROOT_DIR / "results" / "drift"))
     parser.add_argument("--name", default=None)
     parser.add_argument("--scores-csv", action="store_true")
-    parser.add_argument("--zero-day-rate-delta", type=float, default=0.10)
+    parser.add_argument("--anomaly-rate-delta", type=float, default=0.10)
+    parser.add_argument("--zero-day-rate-delta", dest="anomaly_rate_delta", type=float, help=argparse.SUPPRESS)
     parser.add_argument("--p95-ratio-threshold", type=float, default=1.50)
     return parser.parse_args()
 
@@ -83,7 +84,7 @@ def main() -> int:
         "drift": drift,
         "notes": [
             "This is a lightweight deployment drift report based on score and normalization summaries.",
-            "Investigate high drift before trusting zero-day candidate rates on a new environment.",
+            "Investigate high drift before trusting anomaly rates on a new environment.",
             "Use scripts/evaluate_csv.py --calibrate-thresholds on representative benign traffic after drift.",
         ],
     }
@@ -137,9 +138,9 @@ def _compare_reports(
         cur_zero_day_rate = _to_float(current.get("zero_day_rate"))
         if ref_zero_day_rate is not None and cur_zero_day_rate is not None:
             delta = cur_zero_day_rate - ref_zero_day_rate
-            if abs(delta) >= args.zero_day_rate_delta:
+            if abs(delta) >= args.anomaly_rate_delta:
                 warnings.append(
-                    f"Zero-day candidate rate changed by {delta:+.1%} "
+                    f"Anomaly rate changed by {delta:+.1%} "
                     f"(reference {ref_zero_day_rate:.1%}, current {cur_zero_day_rate:.1%})."
                 )
 

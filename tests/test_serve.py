@@ -138,7 +138,7 @@ class ServeApiTests(unittest.TestCase):
                 "ae_re",
                 "hybrid_score",
                 "is_anomaly",
-                "zero_day_rule",
+                "anomaly_rule",
                 "risk",
                 "normalization",
             },
@@ -147,6 +147,7 @@ class ServeApiTests(unittest.TestCase):
         self.assertEqual(body["normalization"]["mapped_columns"]["srcip"], "src_ip")
         self.assertIsInstance(body["risk"], int)
         self.assertIsInstance(body["is_anomaly"], bool)
+        self.assertIn(body["label"], {"Normal Traffic", "Known Attack", "Anomalous Traffic"})
 
     def test_predict_flow_rejects_empty_event(self):
         response = self._request("POST", "/predict/flow", json={"event": {}})

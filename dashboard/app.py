@@ -1407,7 +1407,7 @@ elif page == "[2] Analyze Traffic":
 elif page == "[3] OOD Candidate Logs":
     render_soc_header(
         "OOD Candidate Logs",
-        "OOD/zero-day candidates are hypotheses for analyst review. Dataset family values are kept only as optional reference metadata.",
+        "Anomaly flags are hypotheses for analyst review. Dataset family values are optional reference metadata.",
     )
 
     result_df = st.session_state.get('bulk_result_df')
@@ -1444,16 +1444,16 @@ elif page == "[3] OOD Candidate Logs":
 
         c1, c2, c3, c4 = st.columns(4)
         c1.metric("Batch Rows", f"{total:,}")
-        c2.metric("OOD Candidate Logs", f"{zd_total:,}")
-        c3.metric("OOD Candidate Rate", f"{(zd_total / total * 100):.2f}%" if total else "0.00%")
+        c2.metric("Anomalous Traffic Logs", f"{zd_total:,}")
+        c3.metric("Anomaly Rate", f"{(zd_total / total * 100):.2f}%" if total else "0.00%")
         c4.metric("Verdict Labels", len(verdicts))
 
         st.markdown("### Filters")
         f1, f2, f3, f4 = st.columns([1, 1, 1, 1])
-        show_only_zd = f1.toggle("Only OOD candidates", value=True)
+        show_only_zd = f1.toggle("Only anomalous traffic", value=True)
         selected_verdict = f2.selectbox("Verdict", ["All"] + verdicts)
         selected_class = f3.selectbox("Classifier class", ["All"] + classifier_classes)
-        min_score = f4.number_input("Min hybrid score", min_value=0.0, value=0.0, step=0.1)
+        min_score = f4.number_input("Min anomaly score", min_value=0.0, value=0.0, step=0.1)
 
         view_df = zd_logs if show_only_zd else logs
         if selected_verdict != "All":
@@ -1506,7 +1506,7 @@ elif page == "[3] OOD Candidate Logs":
                     selected_source_row = int(view_df.head(500).iloc[selected_pos]["source_row"])
 
             st.download_button(
-                "Download filtered OOD candidate log",
+                "Download filtered anomaly log",
                 data=view_df.to_csv(index=False).encode("utf-8"),
                 file_name="ood_candidate_logs_filtered.csv",
                 mime="text/csv",
@@ -1528,7 +1528,7 @@ elif page == "[3] OOD Candidate Logs":
                 row_scores = enrich_ood_row(logs[logs["source_row"] == selected_source_row].iloc[0].to_dict())
                 classifier_class = str(row_scores.get("classifier_class", "Unknown"))
                 detection = str(row_scores.get("detection", "Unknown"))
-                verdict_badge = "OOD CANDIDATE" if row_scores.get("is_zeroday") else "KNOWN"
+                verdict_badge = "ANOMALOUS TRAFFIC" if row_scores.get("is_zeroday") else "KNOWN"
                 badge_class = "soc-pill-red" if row_scores.get("is_zeroday") else "soc-pill-green"
 
                 st.markdown(

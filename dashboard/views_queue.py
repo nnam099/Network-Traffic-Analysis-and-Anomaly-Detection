@@ -55,7 +55,11 @@ def render_queue_view(
     )
     hist_df = build_history_dataframe(filtered_history)
     st.caption(f"Showing {len(filtered_history):,} of {len(history):,} persisted alerts")
-    st.dataframe(hist_df, use_container_width=True, hide_index=True)
+    st.dataframe(
+        hist_df.rename(columns={"Hybrid Score": "Anomaly Score", "OOD Candidate": "Anomalous Traffic"}),
+        use_container_width=True,
+        hide_index=True,
+    )
 
     if hist_df.empty:
         st.info("No persisted alerts match the current filters.")
@@ -96,7 +100,7 @@ def render_queue_charts(hist_df: pd.DataFrame) -> None:
         sev_counts = hist_df["Severity"].value_counts().rename_axis("Severity").reset_index(name="Count")
         st.bar_chart(sev_counts.set_index("Severity"))
     with right:
-        st.markdown("### OOD Candidate Mix")
+        st.markdown("### Anomalous Traffic Mix")
         zd_counts = hist_df["OOD Candidate"].value_counts().rename_axis("OOD Candidate").reset_index(name="Count")
         st.bar_chart(zd_counts.set_index("OOD Candidate"))
 

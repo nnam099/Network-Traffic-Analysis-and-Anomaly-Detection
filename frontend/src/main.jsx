@@ -19,8 +19,8 @@ function App() {
   const summary = useMemo(() => ({
     total: results.length,
     anomalies: results.filter((item) => item.is_anomaly).length,
-    knownAttacks: results.filter((item) => !item.is_anomaly && item.label === "Known-Attack").length,
-    normal: results.filter((item) => !item.is_anomaly && item.label === "Normal").length,
+    knownAttacks: results.filter((item) => !item.is_anomaly && ["Known Attack", "Known-Attack"].includes(item.label)).length,
+    normal: results.filter((item) => !item.is_anomaly && ["Normal Traffic", "Normal"].includes(item.label)).length,
   }), [results]);
 
   async function checkHealth() {
@@ -28,7 +28,7 @@ function App() {
       const response = await fetch(`${API}/health`);
       if (!response.ok) throw new Error("API unavailable");
       setHealth(await response.json()); setError("");
-    } catch (err) { setHealth(null); setError("Cannot connect to the Inference API. Start FastAPI on http://127.0.0.1:8080 and try again."); }
+    } catch (err) { setHealth(null); setError(`Cannot connect to the Inference API at ${API}. Start FastAPI and try again.`); }
   }
 
   function loadCsv(file) {
@@ -53,7 +53,7 @@ function App() {
     } catch (err) {
       const detail = String(err.message || "");
       setError(detail.includes("Failed to fetch")
-        ? "Cannot connect to the Inference API. Start FastAPI on http://127.0.0.1:8080, then click Check API."
+        ? `Cannot connect to the Inference API at ${API}. Start FastAPI, then click Check API.`
         : `Analysis failed: ${detail}`);
     }
     finally { setBusy(false); }
@@ -61,7 +61,7 @@ function App() {
 
   return <div className="app-shell">
     <aside className="sidebar">
-      <div className="brand"><div className="brand-mark"><ShieldCheck size={19} /></div><div><strong>Network IDS</strong><span>Network traffic analysis</span></div></div>
+      <div className="brand"><div className="brand-mark"><ShieldCheck size={19} /></div><div><strong>Network Anomaly IDS</strong><span>Traffic analysis and detection</span></div></div>
       <nav><button className={activeView === "dashboard" ? "active" : ""} onClick={() => setActiveView("dashboard")}><Activity size={17} />Dashboard</button><button className={activeView === "model" ? "active" : ""} onClick={() => setActiveView("model")}><ShieldCheck size={17} />Model architecture</button></nav>
       <div className="side-note"><span className={health ? "dot online" : "dot"}></span><div><b>Inference API</b><small>{health ? `Online · ${health.model_version}` : "Not checked"}</small></div></div>
     </aside>
@@ -74,7 +74,7 @@ function App() {
         {rows.length > 0 && <div className="file-row"><span>{rows.length} rows loaded</span><button className="primary" disabled={busy} onClick={analyze}>{busy ? "Analyzing…" : "Run analysis"}</button></div>}
       </section>
       {error && <div className="error"><AlertTriangle size={18} />{error}</div>}
-      {results.length > 0 && <section className="workspace"><div className="section-heading"><div><p className="eyebrow">RESULTS</p><h2>Detection results</h2></div></div><div className="table-wrap"><table><thead><tr><th>#</th><th>Label</th><th>Confidence</th><th>Hybrid score</th><th>Status</th></tr></thead><tbody>{results.map((item, index) => { const anomalous = item.is_anomaly; const label = anomalous ? "Anomalous Traffic" : item.label; const status = anomalous ? "Anomalous Traffic" : item.label === "Known-Attack" ? "Known attack" : "Normal"; const tone = anomalous || item.label === "Known-Attack" ? "danger" : "safe"; return <tr key={index}><td>{index + 1}</td><td><b>{label}</b></td><td>{(item.confidence * 100).toFixed(1)}%</td><td>{Number(item.hybrid_score).toFixed(4)}</td><td><span className={`badge ${tone}`}>{status}</span></td></tr>; })}</tbody></table></div></section>}
+      {results.length > 0 && <section className="workspace"><div className="section-heading"><div><p className="eyebrow">RESULTS</p><h2>Detection results</h2></div></div><div className="table-wrap"><table><thead><tr><th>#</th><th>Verdict</th><th>Classifier confidence</th><th>Anomaly score</th></tr></thead><tbody>{results.map((item, index) => { const verdict = item.is_anomaly ? "Anomalous Traffic" : ["Known Attack", "Known-Attack"].includes(item.label) ? "Known Attack" : "Normal Traffic"; const tone = verdict === "Normal Traffic" ? "safe" : "danger"; return <tr key={index}><td>{index + 1}</td><td><span className={`badge ${tone}`}>{verdict}</span></td><td>{(item.confidence * 100).toFixed(1)}%</td><td>{Number(item.hybrid_score).toFixed(4)}</td></tr>; })}</tbody></table></div></section>}
       </>}
     </main>
   </div>;
@@ -83,8 +83,8 @@ function App() {
 function ModelArchitecture({ onBack }) {
   return <>
     <header><div><p className="eyebrow">MODEL OVERVIEW</p><h1>Model architecture</h1><p className="subtitle">How the IDS combines supervised classification with autoencoder-based anomaly detection.</p></div><button className="secondary" onClick={onBack}>Back to dashboard</button></header>
-    <section className="workspace"><div className="section-heading"><div><p className="eyebrow">INFERENCE PIPELINE</p><h2>From network flow to detection verdict</h2></div></div><div className="pipeline"><PipelineStep number="01" title="Raw network flow" text="CSV or flow event from UNSW-NB15, CICFlowMeter, firewall or NetFlow." /><span className="arrow">→</span><PipelineStep number="02" title="Normalization" text="Schema mapping, categorical encoding, feature scaling and validation." /><span className="arrow">→</span><PipelineStep number="03" title="Hybrid model" text="Classifier predicts known classes while the Autoencoder measures reconstruction error." /><span className="arrow">→</span><PipelineStep number="04" title="Decision" text="Calibrated hybrid score identifies normal, known attack or zero-day candidate." /></div></section>
-    <section className="architecture-grid"><div className="workspace"><p className="eyebrow">MODEL COMPONENTS</p><h2>Two complementary signals</h2><div className="component-card"><span className="component-tag classifier">CLASSIFIER</span><h3>Known-attack classification</h3><p>Estimates the most likely traffic class and its confidence from learned labeled examples.</p></div><div className="component-card"><span className="component-tag autoencoder">AUTOENCODER</span><h3>Reconstruction error</h3><p>Measures how different a flow is from the learned normal traffic representation.</p></div></div><div className="workspace"><p className="eyebrow">OUTPUT</p><h2>Detection verdicts</h2><div className="verdict-row"><span className="badge safe">Normal</span><span>Traffic matches the learned normal profile.</span></div><div className="verdict-row"><span className="badge danger">Known attack</span><span>Classifier recognizes a known attack class.</span></div><div className="verdict-row"><span className="badge danger">Anomalous Traffic</span><span>Hybrid anomaly score crosses the calibrated threshold.</span></div></div></section>
+    <section className="workspace"><div className="section-heading"><div><p className="eyebrow">INFERENCE PIPELINE</p><h2>From network flow to detection verdict</h2></div></div><div className="pipeline"><PipelineStep number="01" title="Raw network flow" text="CSV or flow event from UNSW-NB15, CICFlowMeter, firewall or NetFlow." /><span className="arrow">→</span><PipelineStep number="02" title="Normalization" text="Schema mapping, categorical encoding, feature scaling and validation." /><span className="arrow">→</span><PipelineStep number="03" title="Hybrid model" text="Classifier predicts known classes while the autoencoder measures reconstruction error." /><span className="arrow">→</span><PipelineStep number="04" title="Anomaly decision" text="The calibrated anomaly rule assigns Normal Traffic, Known Attack or Anomalous Traffic." /></div></section>
+    <section className="architecture-grid"><div className="workspace"><p className="eyebrow">MODEL COMPONENTS</p><h2>Two complementary signals</h2><div className="component-card"><span className="component-tag classifier">CLASSIFIER</span><h3>Known attack classification</h3><p>Estimates the most likely traffic class and its confidence from learned labeled examples.</p></div><div className="component-card"><span className="component-tag autoencoder">AUTOENCODER</span><h3>Reconstruction error</h3><p>Measures how different a flow is from the learned traffic representation.</p></div></div><div className="workspace"><p className="eyebrow">OUTPUT</p><h2>Detection verdicts</h2><div className="verdict-row"><span className="badge safe">Normal Traffic</span><span>Traffic is not flagged and the classifier predicts Normal.</span></div><div className="verdict-row"><span className="badge danger">Known Attack</span><span>Classifier recognizes a known attack class.</span></div><div className="verdict-row"><span className="badge danger">Anomalous Traffic</span><span>The calibrated anomaly rule flags this flow for review.</span></div></div></section>
   </>;
 }
 

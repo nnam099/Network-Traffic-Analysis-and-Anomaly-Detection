@@ -100,7 +100,7 @@ def validate_artifact_contract(checkpoint: dict[str, Any], pipeline: dict[str, A
 
     thresholds = pipeline.get("thresholds", checkpoint.get("thresholds"))
     if thresholds is None:
-        result.warnings.append("thresholds are missing; dashboard will use fallback zero-day rule")
+        result.warnings.append("thresholds are missing; dashboard will use the fallback anomaly rule")
     elif not isinstance(thresholds, dict):
         result.errors.append("thresholds must be a dict when present")
     else:
@@ -133,7 +133,7 @@ def validate_artifact_contract(checkpoint: dict[str, Any], pipeline: dict[str, A
                 result.errors.append("vote thresholds require at least one of: hybrid, ae_re, softmax")
 
         if not any(k in thresholds for k in ("hybrid", "ae_re", "vae_recon", "ood_ensemble", "softmax")):
-            result.warnings.append("thresholds do not include a recognized zero-day score key")
+            result.warnings.append("thresholds do not include a recognized anomaly score key")
 
     checkpoint_version = checkpoint.get("version")
     pipeline_version = pipeline.get("version")

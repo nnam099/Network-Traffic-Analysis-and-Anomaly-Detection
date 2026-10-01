@@ -1,7 +1,7 @@
 [project]
-name = "zeroday-detection-autoencoder-ids"
+name = "network-traffic-analysis-anomaly-detection"
 version = "0.1.0"
-description = "Research IDS prototype for UNSW-NB15 zero-day/OOD detection."
+description = "Research IDS prototype for network traffic analysis and anomaly detection."
 readme = "README.md"
 requires-python = ">=3.11,<3.13"
 license = { text = "MIT" }

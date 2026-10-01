@@ -53,7 +53,7 @@ async def lifespan(app: FastAPI):
     yield
 
 
-app = FastAPI(title="IDS v14 Inference API", version=MODEL_VERSION, lifespan=lifespan)
+app = FastAPI(title="Network Anomaly Detection API", version=MODEL_VERSION, lifespan=lifespan)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
@@ -68,6 +68,14 @@ def _artifacts() -> IDSArtifacts:
     if artifacts is None:
         raise HTTPException(status_code=503, detail="IDS artifacts are not loaded")
     return artifacts
+
+
+def _public_verdict(row: dict[str, Any]) -> str:
+    if bool(row.get("is_zeroday", False)):
+        return "Anomalous Traffic"
+    if str(row.get("predicted_class", "")).strip().lower() == "normal":
+        return "Normal Traffic"
+    return "Known Attack"
 
 
 def _prediction_row(features: list[float], artifacts: IDSArtifacts) -> dict[str, Any]:
@@ -119,13 +127,13 @@ def _flow_prediction(event: dict[str, Any], artifacts: IDSArtifacts) -> dict[str
     severity = "HIGH" if bool(row.get("is_zeroday", False)) else "LOW"
     risk = risk_score(row, severity=severity)
     return {
-        "label": str(row.get("predicted_class", "Unknown")),
+        "label": _public_verdict(row),
         "classifier_class": str(row.get("classifier_class", "Unknown")),
         "confidence": float(row.get("max_prob", 0.0)),
         "ae_re": float(row.get("ae_re", row.get("ae_score", 0.0))),
         "hybrid_score": float(row.get("hybrid_score", row.get("hybrid", 0.0))),
         "is_anomaly": bool(row.get("is_zeroday", False)),
-        "zero_day_rule": str(row.get("zero_day_rule", "")),
+        "anomaly_rule": str(row.get("zero_day_rule", "")),
         "risk": risk,
         "normalization": {
             "schema": str(normalization_report.get("schema", "unknown")),
@@ -147,7 +155,7 @@ async def predict(payload: PredictRequest) -> dict[str, Any]:
     row = _prediction_row(payload.features, _artifacts())
     uncertainty = row.get("uncertainty", {})
     entropy = float(uncertainty.get("entropy", 0.0))
-    label = "LOW_CONFIDENCE" if entropy > LOW_CONFIDENCE_ENTROPY else str(row.get("predicted_class", "Unknown"))
+    label = "LOW_CONFIDENCE" if entropy > LOW_CONFIDENCE_ENTROPY else _public_verdict(row)
     return {
         "label": label,
         "confidence": float(row.get("max_prob", 0.0)),

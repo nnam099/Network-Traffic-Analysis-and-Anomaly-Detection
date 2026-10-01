@@ -12,19 +12,23 @@ from ui_safety import render_safety_notice
 def render_batch_safety_notice() -> None:
     render_safety_notice()
     st.caption(
-        "Batch CSV analysis is best used for prioritization. Low feature coverage or missing flow counters can change OOD rates."
+        "Batch CSV analysis is best used for prioritization. Low feature coverage or missing flow counters can change anomaly rates."
     )
 
 
 def render_bulk_detection_summary(result_df: pd.DataFrame) -> None:
     total = len(result_df)
     zd_cnt = int(result_df["is_zeroday"].sum())
-    st.metric("OOD candidates", zd_cnt)
-    st.metric("OOD candidate rate", f"{(zd_cnt / total * 100):.2f}%" if total else "0.00%")
+    st.metric("Anomalous traffic", zd_cnt)
+    st.metric("Anomaly rate", f"{(zd_cnt / total * 100):.2f}%" if total else "0.00%")
     verdict_counts = (
-        result_df["detection"]
+        result_df["detection"].replace({
+            "Normal": "Normal Traffic",
+            "Known-Attack": "Known Attack",
+            "Zero-Day Candidate": "Anomalous Traffic",
+        })
         .value_counts()
-        .reindex(["Normal", "Known-Attack", "Zero-Day Candidate"], fill_value=0)
+        .reindex(["Normal Traffic", "Known Attack", "Anomalous Traffic"], fill_value=0)
         .rename_axis("Label")
         .reset_index(name="Count")
     )

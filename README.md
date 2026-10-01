@@ -1,138 +1,102 @@
-# Network Traffic Analysis and Anomaly Detection IDS
+# Network Traffic Analysis and Anomaly Detection
 
-![IDS overview](assets/readme/ids-overview.png)
+Hybrid network intrusion detection research prototype. A React and Vite frontend
+analyzes flow CSV files through a FastAPI service backed by a classifier and an
+autoencoder. The training and evaluation code is written in Python.
 
-Hybrid network intrusion detector for UNSW-NB15. It combines known-attack
-classification with autoencoder-based anomaly scoring and exposes the result
-through a Streamlit dashboard and FastAPI service.
+> Detection results are investigation leads. An anomalous flow is not proof of an
+> attack or of a previously unknown vulnerability.
 
-> Research prototype only. Treat detections as analyst leads, not final verdicts.
+## What the application shows
 
-## Highlights
+| Verdict | Meaning |
+| --- | --- |
+| Normal Traffic | The flow was not flagged by the anomaly rule and the classifier predicted Normal. |
+| Known Attack | The flow was not flagged by the anomaly rule and the classifier predicted an attack class. |
+| Anomalous Traffic | The calibrated anomaly rule flagged the flow for review. |
 
-- Known-attack classification and zero-day/OOD scoring.
-- Single-flow and CSV batch analysis.
-- SHAP, uncertainty, MITRE ATT&CK context, and optional LLM triage.
-- Local SQLite alert queue with analyst status and notes.
-- Reproducible training, artifact validation, and automated tests.
+The displayed **confidence** is the classifier's highest class probability;
+it is not the probability that an anomaly verdict is correct. The displayed
+**anomaly score** combines autoencoder reconstruction error and classifier
+uncertainty. A higher score alone does not determine the verdict; the model's
+calibrated decision rule does.
 
-## Quick start
+## Run the application
 
-Python 3.11 or 3.12 is recommended.
+Use Python 3.11 or 3.12 and Node.js for the frontend. In the repository root:
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate          # Windows: .venv\Scripts\activate
+source .venv/bin/activate
 python -m pip install -r requirements.txt
-```
-
-Start the dashboard:
-
-```bash
-streamlit run dashboard/app.py
-```
-
-Start the API:
-
-```bash
 export IDS_MODEL_PATH=checkpoints/ids_v14_model.pth
 export IDS_PIPELINE_PATH=checkpoints/ids_v14_pipeline.pkl
-uvicorn ids.api:app --app-dir src --host 0.0.0.0 --port 8080
+uvicorn ids.api:app --app-dir src --host 127.0.0.1 --port 8080
 ```
 
-The API provides `GET /health`, `POST /predict`, and `POST /predict-flow`.
-
-## How it works
-
-```text
-Flow CSV / JSON
-      │
-      ▼
-Schema normalization and feature engineering
-      │
-      ▼
-Classifier + contrastive backbone + autoencoder
-      │
-      ▼
-Calibrated OOD score and uncertainty
-      │
-      ├── Streamlit analyst dashboard
-      └── FastAPI inference service
-```
-
-The checked-in v14 model is the operational demo. The v15 experiment remains
-training-only until its offline and runtime OOD scoring paths are equivalent.
-
-## Training
-
-Place UNSW-NB15 CSV files in `data/`, then run:
+In a second terminal:
 
 ```bash
-python train.py \
-  --data_dir data \
-  --save_dir checkpoints \
-  --plot_dir plots \
-  --seed 42
+cd frontend
+npm ci
+npm run dev
 ```
 
-For a short synthetic run:
+Open <http://127.0.0.1:5173>. Check the API at
+<http://127.0.0.1:8080/health>. If the API runs on another port, start Vite
+with `VITE_API_URL=http://127.0.0.1:8081 npm run dev`.
+
+For a quick demo, upload `data/samples/cicflowmeter_sample.csv` or
+`data/samples/firewall_flow_sample.csv`. The browser analyzes at most the first
+100 flows; use the command line for full evaluation.
 
 ```bash
-python train.py --demo --epochs 2
+python scripts/evaluate_csv.py data/UNSW_NB15_testing-set.csv \
+  --label-col label --output-dir results/csv_eval --scores-csv
 ```
 
-Training produces a model checkpoint, preprocessing pipeline, evaluation report,
-and diagnostic plots. See [data/README.md](data/README.md) for expected inputs.
+For an external dataset, use a labeled CIC-IDS2017 flow CSV and specify its
+`Label` column. Keep the model fixed when measuring transfer to another dataset:
 
-## Project structure
+```bash
+python scripts/evaluate_csv.py /path/to/cic-ids2017.csv \
+  --label-col Label --output-dir results/external_eval --scores-csv
+```
+
+Cross-dataset results need label distribution and normalization checks. A run
+that loads successfully does not demonstrate detection quality.
+
+## Architecture
 
 ```text
-dashboard/       Streamlit interface
-src/ids/         Models, training, inference, API, and runtime helpers
-scripts/         Evaluation and maintenance commands
-tests/           Unit, API, and research-protocol tests
-checkpoints/     Demo v14 artifacts
-data/            Local datasets and small committed samples
-plots/           Reference figures
-results/         Reports and reproducibility metadata
-docs/            Architecture and operating notes
+React + Vite (frontend/) -> FastAPI (src/ids/api.py)
+                                |
+                                v
+                     Flow schema normalization
+                                |
+                                v
+                   Classifier + autoencoder
+                                |
+                                v
+                    Calibrated anomaly decision
 ```
 
-## Reference output
-
-These figures come from the checked-in demo artifacts and are illustrative, not
-current scientific benchmarks.
-
-| Confusion matrix | OOD ROC curves |
-| --- | --- |
-| ![Confusion matrix](plots/v14_confusion_matrix.png) | ![OOD ROC curves](plots/v14_roc_curves.png) |
+The `dashboard/` directory contains the older Streamlit interface and is kept
+for compatibility with existing research workflows. The React frontend is the
+primary demonstration interface. See [architecture](docs/architecture.md) and
+[operations](docs/operations.md) for further detail.
 
 ## Development
 
 ```bash
 python -m pytest -q
 python -m ruff check .
-python scripts/smoke_check.py
+cd frontend && npm run build
 ```
 
-Useful evaluation commands:
-
-```bash
-python scripts/evaluate_csv.py input.csv --output-dir results/csv_eval
-python scripts/evaluate_baselines.py
-python scripts/drift_report.py
-```
-
-## Limitations
-
-- UNSW-NB15 does not represent current production traffic.
-- A held-out attack family is only a proxy for zero-day behavior.
-- Metrics depend heavily on split, deduplication, and calibration policy.
-- Only load PyTorch and pickle artifacts from trusted sources.
-
-Further reading: [architecture](docs/architecture.md),
-[operations](docs/operations.md), and
-[CSV normalization](docs/real_world_csv.md).
+Versioned model artifacts and historical experiment reports retain their
+original field names for reproducibility. The application uses
+**Anomalous Traffic** and **anomaly detection** in its public wording.
 
 ## License
 

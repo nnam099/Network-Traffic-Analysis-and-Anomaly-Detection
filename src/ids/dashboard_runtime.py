@@ -143,7 +143,7 @@ def build_ai_context_options(
             row_dict = row.to_dict()
             options.append(AIContextOption(
                 label=(
-                    f"Zero-day log | row={int(row_dict.get('source_row', 0))} | "
+                    f"Anomaly log | row={int(row_dict.get('source_row', 0))} | "
                     f"{row_dict.get('detection', row_dict.get('predicted_class'))} | "
                     f"hybrid={float(row_dict.get('hybrid_score', 0)):.3g}"
                 ),
@@ -310,7 +310,7 @@ def triage_alert_with_fallback(result: dict[str, Any], agent: Any | None = None)
         return {
             "severity": "HIGH" if result["hybrid_score"] > 0.6 else "MEDIUM",
             "verdict": (
-                f"{'Zero-Day Candidate' if result['is_zeroday'] else result['predicted_class']} "
+                f"{'Anomalous Traffic' if result['is_zeroday'] else result['predicted_class']} "
                 f"detected - hybrid score: {result['hybrid_score']:.3f}"
             ),
             "attack_summary": (
@@ -382,7 +382,7 @@ def _correlation_keys(alert: dict[str, Any]) -> list[tuple[str, str]]:
         ("Destination IP", alert.get("dst_ip")),
         ("Service", alert.get("service")),
         ("Classifier Class", alert.get("classifier_class")),
-        ("Zero-Day Family", alert.get("zero_day_family")),
+        ("Anomaly Family", alert.get("zero_day_family")),
         ("Batch File", alert.get("source_file_hash")),
     ]
     out = []
