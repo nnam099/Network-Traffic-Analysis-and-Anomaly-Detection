@@ -1,4 +1,4 @@
-# Results
+# Evaluation Results and Reports
 
 Compact reports and reproducibility metadata live here. Per-run checkpoints,
 plots, databases, and CSV exports are generated locally and ignored by Git.

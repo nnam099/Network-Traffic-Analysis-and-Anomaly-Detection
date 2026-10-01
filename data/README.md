@@ -1,4 +1,4 @@
-# Data
+# Dataset and Input Files
 
 Put local UNSW-NB15 or flow CSV files in this directory. Large datasets are
 ignored by Git; only small parser fixtures under `samples/` are committed.

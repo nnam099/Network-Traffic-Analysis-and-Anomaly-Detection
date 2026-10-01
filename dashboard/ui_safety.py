@@ -9,7 +9,7 @@ except ModuleNotFoundError:
 
 
 SAFETY_COPY = (
-    "Zero-day/OOD labels are triage hypotheses, not final security conclusions. "
+    "Anomalous traffic labels are triage hypotheses, not final security conclusions. "
     "Confirm with packet, endpoint, firewall, SIEM and analyst context before containment."
 )
 
@@ -26,7 +26,9 @@ def render_safety_notice(level: str = "info") -> None:
 def attach_report_safety_note(report: dict[str, Any]) -> dict[str, Any]:
     enriched = dict(report)
     enriched["limitations_and_safety"] = {
-        "zero_day_candidate_meaning": "OOD hypothesis for analyst review; not a confirmed novel attack.",
+        "anomalous_traffic_meaning": "Anomaly hypothesis for analyst review; not a confirmed attack.",
+        # Backward-compatible metadata key used by the existing smoke tests and reports.
+        "zero_day_candidate_meaning": "Anomaly hypothesis for analyst review; not a confirmed attack.",
         "required_validation": [
             "Check raw flow and packet evidence.",
             "Correlate source, destination, service and time window in SIEM/firewall logs.",

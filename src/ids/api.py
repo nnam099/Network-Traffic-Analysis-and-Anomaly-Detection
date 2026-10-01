@@ -9,6 +9,7 @@ import numpy as np
 import pandas as pd
 import torch
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 from .batch_evaluator import IDSArtifacts, load_ids_artifacts, preprocess_raw_df, run_batch_scores
@@ -53,6 +54,13 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="IDS v14 Inference API", version=MODEL_VERSION, lifespan=lifespan)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_credentials=False,
+    allow_methods=["GET", "POST"],
+    allow_headers=["*"],
+)
 
 
 def _artifacts() -> IDSArtifacts:

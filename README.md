@@ -1,4 +1,4 @@
-# Zero-Day Detection AutoEncoder IDS
+# Network Traffic Analysis and Anomaly Detection IDS
 
 ![IDS overview](assets/readme/ids-overview.png)
 

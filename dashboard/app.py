@@ -15,7 +15,7 @@ from datetime import datetime
 
 # ── Page config (phai dat truoc bat ky st.* nao) ─────────────────
 st.set_page_config(
-    page_title="Zero-Day IDS",
+    page_title="Network IDS",
     page_icon="[SOC]",
     layout="wide"
 )
@@ -389,7 +389,7 @@ from views_ai import render_ai_context_card, render_question_suggestions
 from views_analysis import render_analysis_safety_notice
 from views_batch import render_batch_safety_notice, render_bulk_detection_summary, render_ground_truth_summary
 from views_ood import build_feature_table, build_score_table, enrich_ood_row
-from views_queue import queue_summary, render_queue_view
+from views_queue import queue_summary
 from views_report import render_raw_report, render_report_download
 from views_setup import render_setup_status
 from ids.alert_store import (
@@ -476,15 +476,18 @@ def _build_categorical_maps_from_sample() -> dict:
         return {}
 
 # ── Sidebar navigation ────────────────────────────────────────────
-NAV_ITEMS = ["[1] Dashboard", "[2] Analyze Alert", "[3] OOD Candidate Logs", "[4] Ask AI", "[5] Setup Guide"]
+# Keep the student-facing workflow focused on the two core IDS tasks.
+# Advanced triage, OOD logs and setup diagnostics remain available in code
+# for development, but are intentionally removed from the primary UI.
+NAV_ITEMS = ["[1] Dashboard", "[2] Analyze Traffic"]
 if "nav_page" not in st.session_state:
     st.session_state["nav_page"] = NAV_ITEMS[0]
 
 st.sidebar.markdown(
     f"""
     <div class="sidebar-brand">
-        <div class="sidebar-brand-title">Zero-Day IDS</div>
-        <div class="sidebar-brand-sub">IDS {MODEL_VERSION.upper()} | Detection | Triage | Response</div>
+        <div class="sidebar-brand-title">Network IDS</div>
+        <div class="sidebar-brand-sub">IDS {MODEL_VERSION.upper()} | Traffic Analysis</div>
     </div>
     """,
     unsafe_allow_html=True,
@@ -504,14 +507,10 @@ st.sidebar.markdown("**System Health**")
 st.sidebar.markdown(
     f"""
     <div class="health-grid">
-        <div class="health-label">SHAP</div><div>{_health(HAS_EXPLAINER)}</div>
-        <div class="health-label">MITRE</div><div>{_health(HAS_MITRE)}</div>
         <div class="health-label">CSV Normalize</div><div>{_health(HAS_LOG_NORMALIZER)}</div>
-        <div class="health-label">LLM</div><div>{_health(llm_ok, warn=HAS_LLM)}</div>
         <div class="health-label">Model</div><div>{_health(os.path.exists(MODEL_PATH))}</div>
         <div class="health-label">Pipeline</div><div>{_health(os.path.exists(PIPE_PATH))}</div>
         <div class="health-label">Data</div><div>{_health(os.path.exists(DATA_PATH))}</div>
-        <div class="health-label">Alert DB</div><div>{_health(os.path.exists(ALERT_DB_PATH), warn=True)}</div>
     </div>
     """,
     unsafe_allow_html=True,
@@ -924,8 +923,6 @@ def render_soc_header(title: str, subtitle: str):
                 </div>
                 <div class="soc-header-actions">
                     <span class="soc-badge soc-pill-orange">IDS {MODEL_VERSION.upper()}</span>
-                    <span class="soc-badge soc-pill-blue">AI TRIAGE</span>
-                    <span class="soc-badge soc-pill-green">QUEUE</span>
                 </div>
             </div>
         </div>
@@ -1059,19 +1056,18 @@ def display_result(result: dict, llm: dict):
 
 if page == "[1] Dashboard":
     render_soc_header(
-        "SOC Operations Console",
-        f"IDS {MODEL_VERSION.upper()} real-time triage workspace | Model, anomaly scoring, MITRE mapping and analyst queue",
+        "Network Intrusion Detection",
+        "Network Traffic Analysis and Anomaly Detection",
     )
 
     history = load_alert_history()
     summary = queue_summary(history)
 
-    c1, c2, c3, c4, c5 = st.columns(5)
-    c1.metric("Alert Queue", summary["alerts"])
-    c2.metric("Critical / High", summary["critical_high"])
-    c3.metric("OOD Hypotheses", summary["ood"])
-    c4.metric("Average Risk", f"{summary['average_risk']}/100")
-    c5.metric("Model Mode", "DEMO" if DEMO_MODE else MODEL_VERSION.upper())
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("Analyzed Alerts", summary["alerts"])
+    c2.metric("High-risk Alerts", summary["critical_high"])
+    c3.metric("Anomalous Traffic", summary["ood"])
+    c4.metric("Model", "DEMO" if DEMO_MODE else MODEL_VERSION.upper())
     threshold_profile = PIPELINE_META.get("threshold_profile") if isinstance(PIPELINE_META, dict) else None
     threshold_badge = "LOCAL" if threshold_profile else "ARTIFACT"
 
@@ -1081,26 +1077,23 @@ if page == "[1] Dashboard":
             <span class="soc-badge">Model: {os.path.basename(MODEL_PATH)}</span>
             <span class="soc-badge">Pipeline: {os.path.basename(PIPE_PATH)}</span>
             <span class="soc-badge">Thresholds: {threshold_badge}</span>
-            <span class="soc-badge">SHAP: {'ON' if HAS_EXPLAINER else 'OFF'}</span>
-            <span class="soc-badge">MITRE: {'ON' if HAS_MITRE else 'OFF'}</span>
-            <span class="soc-badge">LLM: {'ON' if HAS_LLM and LLM_KEY_OK else 'OFF'}</span>
         </div>
         """,
         unsafe_allow_html=True,
     )
 
-    render_queue_view(history, update_persisted_alert_status)
+    st.info("Upload a CSV to classify network flows and detect anomalous traffic.")
 
     if DEMO_MODE:
-        st.warning("Model chua duoc load. Xem tab '[4] Setup Guide' de biet cach cai dat.")
+        st.warning("Model artifacts are not loaded. Check the model and pipeline paths before analysis.")
 
 # ═════════════════════════════════════════════════════════════════
 # PAGE: Analyze Alert
 # ═════════════════════════════════════════════════════════════════
-elif page == "[2] Analyze Alert":
+elif page == "[2] Analyze Traffic":
     render_soc_header(
-        "Alert Investigation",
-        "Run single-alert triage, inspect model evidence, map hypotheses to MITRE ATT&CK, and generate response actions.",
+        "Analyze Network Traffic",
+        "Upload flow data to classify traffic and detect anomalous activity.",
     )
 
     render_analysis_safety_notice(DEMO_MODE)

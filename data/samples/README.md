@@ -1,4 +1,4 @@
-# Sample data
+# Sample Network Flow Data
 
 Small fixtures for parser and CI tests; they are not training datasets.
 
