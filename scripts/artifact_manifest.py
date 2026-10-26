@@ -9,8 +9,6 @@ from pathlib import Path
 DEFAULT_ARTIFACTS = [
     "checkpoints/ids_v14_model.pth",
     "checkpoints/ids_v14_pipeline.pkl",
-    "checkpoints/ids_v15_model.pth",
-    "checkpoints/ids_v15_pipeline.pkl",
 ]
 
 

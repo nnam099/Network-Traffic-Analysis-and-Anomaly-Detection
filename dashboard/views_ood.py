@@ -8,9 +8,22 @@ from ids.inference_runtime import risk_score, traffic_verdict
 
 
 PRIORITY_FEATURES = [
-    "true_label", "attack_cat", "label", "dur", "sbytes", "dbytes",
-    "sload", "dload", "spkts", "dpkts", "ct_srv_dst", "ct_dst_ltm",
-    "ct_src_ltm", "state_num", "proto_num", "service_num",
+    "true_label",
+    "attack_cat",
+    "label",
+    "dur",
+    "sbytes",
+    "dbytes",
+    "sload",
+    "dload",
+    "spkts",
+    "dpkts",
+    "ct_srv_dst",
+    "ct_dst_ltm",
+    "ct_src_ltm",
+    "state_num",
+    "proto_num",
+    "service_num",
 ]
 
 
@@ -33,22 +46,18 @@ def enrich_ood_row(row_scores: dict[str, Any]) -> dict[str, Any]:
 
 
 def build_feature_table(feature_row: pd.Series, search: str = "") -> pd.DataFrame:
-    feature_table = pd.DataFrame({
-        "Feature": feature_row.index.astype(str),
-        "Value": feature_row.astype(str).values,
-    })
+    feature_table = pd.DataFrame(
+        {
+            "Feature": feature_row.index.astype(str),
+            "Value": feature_row.astype(str).values,
+        }
+    )
     priority = feature_table["Feature"].isin(PRIORITY_FEATURES)
     feature_table = pd.concat([feature_table[priority], feature_table[~priority]], ignore_index=True)
     if search:
-        feature_table = feature_table[
-            feature_table["Feature"].str.contains(search, case=False, na=False)
-        ]
+        feature_table = feature_table[feature_table["Feature"].str.contains(search, case=False, na=False)]
     return feature_table
 
 
 def build_score_table(row_scores: dict[str, Any]) -> pd.DataFrame:
-    return pd.DataFrame([
-        {"Metric": key, "Value": value}
-        for key, value in row_scores.items()
-        if key != "source_row"
-    ])
+    return pd.DataFrame([{"Metric": key, "Value": value} for key, value in row_scores.items() if key != "source_row"])

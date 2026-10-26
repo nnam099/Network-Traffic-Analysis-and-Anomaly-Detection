@@ -23,12 +23,14 @@ def render_setup_status(
         f"Pipeline file ({os.path.basename(pipe_path)})": os.path.exists(pipe_path),
         f"Data file ({os.path.basename(data_path)})": os.path.exists(data_path),
         f"Alert DB ({os.path.basename(alert_db_path)})": os.path.exists(alert_db_path),
-        "API Key (Bat ky trong .env)": any([
-            os.getenv("GROQ_API_KEY"),
-            os.getenv("GEMINI_API_KEY"),
-            os.getenv("OPENAI_API_KEY"),
-            os.getenv("ANTHROPIC_API_KEY"),
-        ]),
+        "API Key (Bat ky trong .env)": any(
+            [
+                os.getenv("GROQ_API_KEY"),
+                os.getenv("GEMINI_API_KEY"),
+                os.getenv("OPENAI_API_KEY"),
+                os.getenv("ANTHROPIC_API_KEY"),
+            ]
+        ),
         "Module explainer.py": has_explainer,
         "Module mitre_mapper.py": has_mitre,
         "Module llm_agent.py": has_llm,

@@ -25,7 +25,7 @@ SCORE_COLUMNS = ["hybrid", "ae_re", "softmax", "max_prob", "fv_cluster"]
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Report score, verdict and normalization drift for an input CSV.")
     parser.add_argument("csv_path", help="UNSW/CICIDS/firewall/flow CSV to profile.")
-    parser.add_argument("--model-version", default="v14", choices=["v14", "v15"])
+    parser.add_argument("--model-version", default="v14", choices=["v14"])
     parser.add_argument("--model-path", default=str(ROOT_DIR / "checkpoints" / "ids_v14_model.pth"))
     parser.add_argument("--pipeline-path", default=str(ROOT_DIR / "checkpoints" / "ids_v14_pipeline.pkl"))
     parser.add_argument("--reference-report", default=str(ROOT_DIR / "results" / "ids_v14_results.json"))
@@ -193,8 +193,7 @@ def _score_delta(reference: dict[str, Any], current: dict[str, Any], ratio_thres
     ratio = p95.get("ratio")
     if ratio is not None and ratio > ratio_threshold:
         out["warning"] = (
-            f"{p95.get('current'):.6f} current p95 is {ratio:.2f}x the reference p95 "
-            f"for score distribution."
+            f"{p95.get('current'):.6f} current p95 is {ratio:.2f}x the reference p95 " f"for score distribution."
         )
     return out
 

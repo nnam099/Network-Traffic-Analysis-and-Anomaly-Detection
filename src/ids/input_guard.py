@@ -34,7 +34,9 @@ class CSVInputValidation:
         }
 
 
-def validate_uploaded_csv(df: pd.DataFrame, size_bytes: int | None = None, policy: CSVInputPolicy | None = None) -> CSVInputValidation:
+def validate_uploaded_csv(
+    df: pd.DataFrame, size_bytes: int | None = None, policy: CSVInputPolicy | None = None
+) -> CSVInputValidation:
     policy = policy or CSVInputPolicy()
     errors: list[str] = []
     warnings: list[str] = []
@@ -60,7 +62,9 @@ def validate_uploaded_csv(df: pd.DataFrame, size_bytes: int | None = None, polic
     if duplicate_columns:
         errors.append("CSV contains duplicate column names: " + ", ".join(duplicate_columns[:8]))
 
-    unnamed_columns = [str(col) for col in df.columns if str(col).strip() == "" or str(col).lower().startswith("unnamed:")]
+    unnamed_columns = [
+        str(col) for col in df.columns if str(col).strip() == "" or str(col).lower().startswith("unnamed:")
+    ]
     if unnamed_columns:
         warnings.append("CSV contains unnamed/index-like columns: " + ", ".join(unnamed_columns[:8]))
 

@@ -27,10 +27,7 @@ class CanonicalLabelTests(unittest.TestCase):
     def test_training_pipeline_canonicalizes_backdoor(self):
         rows = []
         for label, count, offset in [("Normal", 10, 0), ("DoS", 10, 100), ("Backdoor", 3, 200)]:
-            rows.extend(
-                {"attack_cat": label, "feature": float(offset + index)}
-                for index in range(count)
-            )
+            rows.extend({"attack_cat": label, "feature": float(offset + index)} for index in range(count))
 
         with contextlib.redirect_stdout(io.StringIO()):
             splits = prepare_splits(pd.DataFrame(rows), seed=7)

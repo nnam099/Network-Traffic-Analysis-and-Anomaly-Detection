@@ -33,10 +33,10 @@ def module_available(name: str) -> bool:
 def python_version_status(version_info: tuple[int, int, int] | None = None) -> dict:
     version = version_info or sys.version_info[:3]
     major, minor, patch = version
-    supported = (major, minor) >= (3, 11) and (major, minor) < (3, 13)
+    supported = (major, minor) >= (3, 13) and (major, minor) < (3, 14)
     return {
         "version": f"{major}.{minor}.{patch}",
-        "requirement": ">=3.11,<3.13",
+        "requirement": ">=3.13,<3.14",
         "supported": supported,
     }
 
@@ -74,8 +74,6 @@ def collect_environment() -> dict:
         "artifacts": {
             "v14_model": (ROOT_DIR / "checkpoints" / "ids_v14_model.pth").exists(),
             "v14_pipeline": (ROOT_DIR / "checkpoints" / "ids_v14_pipeline.pkl").exists(),
-            "v15_model": (ROOT_DIR / "checkpoints" / "ids_v15_model.pth").exists(),
-            "v15_pipeline": (ROOT_DIR / "checkpoints" / "ids_v15_pipeline.pkl").exists(),
         },
         "data": {
             "data_dir": (ROOT_DIR / "data").exists(),
@@ -105,7 +103,7 @@ def assess_readiness(env: dict) -> dict:
     if env.get("python_supported") is False:
         blockers.append(
             f"Unsupported Python version: {env.get('python')} "
-            f"(required {env.get('python_requirement', '>=3.11,<3.13')})"
+            f"(required {env.get('python_requirement', '>=3.13,<3.14')})"
         )
 
     packages = env.get("packages", {})
@@ -116,8 +114,6 @@ def assess_readiness(env: dict) -> dict:
     artifacts = env.get("artifacts", {})
     if not (artifacts.get("v14_model") and artifacts.get("v14_pipeline")):
         warnings.append("v14 artifacts are missing; dashboard will fall back to demo mode.")
-    if not (artifacts.get("v15_model") and artifacts.get("v15_pipeline")):
-        warnings.append("v15 artifacts are missing; keep IDS_MODEL_VERSION=v14 unless v15 is trained.")
 
     data = env.get("data", {})
     if not data.get("data_dir"):

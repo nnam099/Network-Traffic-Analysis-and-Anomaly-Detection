@@ -13,17 +13,19 @@ class AdaptiveThreshold:
         self.window_size = int(window_size)
         self.target_fpr = float(target_fpr)
         self.buffer = deque(maxlen=self.window_size)
-        self.threshold = float('inf')
+        self.threshold = float("inf")
 
     def update(self, re_scores: np.ndarray):
         scores = np.asarray(re_scores, dtype=np.float64).reshape(-1)
         scores = scores[np.isfinite(scores)]
         self.buffer.extend(float(score) for score in scores)
         if self.buffer:
-            self.threshold = float(np.quantile(
-                np.asarray(self.buffer, dtype=np.float64),
-                1.0 - self.target_fpr,
-            ))
+            self.threshold = float(
+                np.quantile(
+                    np.asarray(self.buffer, dtype=np.float64),
+                    1.0 - self.target_fpr,
+                )
+            )
         return self.threshold
 
     def __call__(self, re_score: float) -> bool:

@@ -62,10 +62,23 @@ def preprocess_dashboard_df(
             df[f"{cat}_num"] = _encode_categorical_column(df[cat], categorical_maps.get(cat))
 
     existing_numeric = [
-        col for col in df.columns
-        if col not in {
-            "attack_cat", "label", "label_binary", "srcip", "dstip",
-            "sport", "dsport", "stime", "ltime", "id", "proto", "service", "state",
+        col
+        for col in df.columns
+        if col
+        not in {
+            "attack_cat",
+            "label",
+            "label_binary",
+            "srcip",
+            "dstip",
+            "sport",
+            "dsport",
+            "stime",
+            "ltime",
+            "id",
+            "proto",
+            "service",
+            "state",
         }
     ]
     try:
@@ -124,13 +137,15 @@ def build_ai_context_options(
     options: list[AIContextOption] = []
 
     for item in (alert_history or [])[-max_history:]:
-        options.append(AIContextOption(
-            label=(
-                f"Alert history | {item.get('alert_id')} | {item.get('predicted_class')} | "
-                f"score={float(item.get('hybrid_score', 0)):.3g}"
-            ),
-            context=item,
-        ))
+        options.append(
+            AIContextOption(
+                label=(
+                    f"Alert history | {item.get('alert_id')} | {item.get('predicted_class')} | "
+                    f"score={float(item.get('hybrid_score', 0)):.3g}"
+                ),
+                context=item,
+            )
+        )
 
     if isinstance(bulk_logs, pd.DataFrame) and not bulk_logs.empty:
         logs_for_ai = bulk_logs.copy()
@@ -141,14 +156,16 @@ def build_ai_context_options(
             logs_for_ai = logs_for_ai.sort_values(sort_cols, ascending=False)
         for _, row in logs_for_ai.head(max_bulk_logs).iterrows():
             row_dict = row.to_dict()
-            options.append(AIContextOption(
-                label=(
-                    f"Anomaly log | row={int(row_dict.get('source_row', 0))} | "
-                    f"{row_dict.get('detection', row_dict.get('predicted_class'))} | "
-                    f"hybrid={float(row_dict.get('hybrid_score', 0)):.3g}"
-                ),
-                context=build_alert_context_from_log(row_dict),
-            ))
+            options.append(
+                AIContextOption(
+                    label=(
+                        f"Anomaly log | row={int(row_dict.get('source_row', 0))} | "
+                        f"{row_dict.get('detection', row_dict.get('predicted_class'))} | "
+                        f"hybrid={float(row_dict.get('hybrid_score', 0)):.3g}"
+                    ),
+                    context=build_alert_context_from_log(row_dict),
+                )
+            )
 
     return options
 
@@ -172,10 +189,18 @@ def filter_alert_history(
         if ood_filter == "Known only" and bool(alert.get("is_zeroday")):
             continue
         if query:
-            haystack = " ".join(str(alert.get(key, "")) for key in [
-                "alert_id", "predicted_class", "classifier_class", "status",
-                "source", "zero_day_family", "analyst_note",
-            ]).lower()
+            haystack = " ".join(
+                str(alert.get(key, ""))
+                for key in [
+                    "alert_id",
+                    "predicted_class",
+                    "classifier_class",
+                    "status",
+                    "source",
+                    "zero_day_family",
+                    "analyst_note",
+                ]
+            ).lower()
             if query not in haystack:
                 continue
         out.append(alert)
@@ -218,10 +243,16 @@ def build_top_batch_alerts(
 
 def extract_alert_entities(row: dict[str, Any]) -> dict[str, str]:
     return {
-        "src_ip": _first_present_value(row, ["srcip", "src_ip", "source_ip", "source.address", "sourceip", "id.orig_h"]),
-        "dst_ip": _first_present_value(row, ["dstip", "dst_ip", "destination_ip", "dest_ip", "destination.address", "id.resp_h"]),
+        "src_ip": _first_present_value(
+            row, ["srcip", "src_ip", "source_ip", "source.address", "sourceip", "id.orig_h"]
+        ),
+        "dst_ip": _first_present_value(
+            row, ["dstip", "dst_ip", "destination_ip", "dest_ip", "destination.address", "id.resp_h"]
+        ),
         "src_port": _first_present_value(row, ["sport", "src_port", "source_port", "source.port", "id.orig_p"]),
-        "dst_port": _first_present_value(row, ["dsport", "dst_port", "destination_port", "dest_port", "destination.port", "id.resp_p"]),
+        "dst_port": _first_present_value(
+            row, ["dsport", "dst_port", "destination_port", "dest_port", "destination.port", "id.resp_p"]
+        ),
         "protocol": _first_present_value(row, ["proto", "protocol", "transport", "network.transport"]),
         "service": _first_present_value(row, ["service", "app_proto", "application", "app", "protocol_name"]),
     }
@@ -237,15 +268,17 @@ def correlate_alerts(alerts: list[dict[str, Any]], min_count: int = 2) -> list[d
     for (group_type, key), members in groups.items():
         if len(members) < min_count:
             continue
-        out.append({
-            "group_type": group_type,
-            "key": key,
-            "alert_count": len(members),
-            "ood_count": sum(1 for item in members if bool(item.get("is_zeroday"))),
-            "max_risk": max(_safe_float(item.get("risk"), default=0.0) for item in members),
-            "latest_time": max(str(item.get("timestamp", "")) for item in members),
-            "alert_ids": [str(item.get("alert_id", "")) for item in members[:10]],
-        })
+        out.append(
+            {
+                "group_type": group_type,
+                "key": key,
+                "alert_count": len(members),
+                "ood_count": sum(1 for item in members if bool(item.get("is_zeroday"))),
+                "max_risk": max(_safe_float(item.get("risk"), default=0.0) for item in members),
+                "latest_time": max(str(item.get("timestamp", "")) for item in members),
+                "alert_ids": [str(item.get("alert_id", "")) for item in members[:10]],
+            }
+        )
 
     return sorted(out, key=lambda item: (item["alert_count"], item["ood_count"], item["max_risk"]), reverse=True)
 
@@ -287,9 +320,7 @@ def build_time_window_incidents(
             )
             cluster = [(event_time, alert)]
             cluster_start = event_time
-        incidents.extend(
-            _incident_from_cluster(group_type, key, cluster, window_minutes, min_alerts, max_alert_ids)
-        )
+        incidents.extend(_incident_from_cluster(group_type, key, cluster, window_minutes, min_alerts, max_alert_ids))
 
     return sorted(
         incidents,
@@ -420,26 +451,28 @@ def _incident_from_cluster(
     raw_id = f"{group_type}|{key}|{start.isoformat()}|{end.isoformat()}"
     incident_id = "INC-" + hashlib.sha1(raw_id.encode("utf-8")).hexdigest()[:10].upper()
 
-    return [{
-        "incident_id": incident_id,
-        "group_type": group_type,
-        "key": key,
-        "window_minutes": window_minutes,
-        "start_time": _format_incident_time(start),
-        "end_time": _format_incident_time(end),
-        "duration_minutes": round(max(0.0, (end - start).total_seconds() / 60), 1),
-        "alert_count": len(alerts),
-        "ood_count": sum(1 for alert in alerts if bool(alert.get("is_zeroday"))),
-        "high_count": sum(1 for alert in alerts if _alert_risk(alert) >= 70),
-        "max_risk": max_risk,
-        "severity": severity,
-        "primary_classes": classes,
-        "families": families,
-        "source_ips": source_ips,
-        "services": services,
-        "alert_ids": alert_ids[:max_alert_ids],
-        "recommended_focus": _incident_focus(group_type, key, classes, families),
-    }]
+    return [
+        {
+            "incident_id": incident_id,
+            "group_type": group_type,
+            "key": key,
+            "window_minutes": window_minutes,
+            "start_time": _format_incident_time(start),
+            "end_time": _format_incident_time(end),
+            "duration_minutes": round(max(0.0, (end - start).total_seconds() / 60), 1),
+            "alert_count": len(alerts),
+            "ood_count": sum(1 for alert in alerts if bool(alert.get("is_zeroday"))),
+            "high_count": sum(1 for alert in alerts if _alert_risk(alert) >= 70),
+            "max_risk": max_risk,
+            "severity": severity,
+            "primary_classes": classes,
+            "families": families,
+            "source_ips": source_ips,
+            "services": services,
+            "alert_ids": alert_ids[:max_alert_ids],
+            "recommended_focus": _incident_focus(group_type, key, classes, families),
+        }
+    ]
 
 
 def _parse_alert_time(alert: dict[str, Any]) -> datetime | None:
@@ -493,7 +526,9 @@ def _top_values(
     counts: dict[str, int] = {}
     for alert in alerts:
         value = alert.get(key)
-        if (value is None or str(value).strip().lower() in {"", "nan", "none", "null", "-", "unknown"}) and fallback_key:
+        if (
+            value is None or str(value).strip().lower() in {"", "nan", "none", "null", "-", "unknown"}
+        ) and fallback_key:
             value = alert.get(fallback_key)
         text = str(value or "").strip()
         if text and text.lower() not in {"normal", "nan", "none", "null", "-", "unknown"}:

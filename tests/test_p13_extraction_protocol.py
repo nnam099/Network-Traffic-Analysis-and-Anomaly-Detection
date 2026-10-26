@@ -38,9 +38,10 @@ def udp(sport=5353, dport=53, payload=b"") -> bytes:
 def ipv4(segment: bytes, protocol: int, src="10.0.0.1", dst="10.0.0.2", fragment=0) -> bytes:
     source = ipaddress.IPv4Address(src).packed
     destination = ipaddress.IPv4Address(dst).packed
-    return struct.pack(
-        "!BBHHHBBH4s4s", 0x45, 0, 20 + len(segment), 1, fragment, 64, protocol, 0, source, destination
-    ) + segment
+    return (
+        struct.pack("!BBHHHBBH4s4s", 0x45, 0, 20 + len(segment), 1, fragment, 64, protocol, 0, source, destination)
+        + segment
+    )
 
 
 def ipv6(segment: bytes, next_header: int, src="2001:db8::1", dst="2001:db8::2") -> bytes:
@@ -119,17 +120,24 @@ def test_pcapng_and_non_ethernet_fail_closed(tmp_path):
     with pytest.raises(CaptureFormatError):
         read_classic_pcap(bad)
     non_ethernet = tmp_path / "raw-ip.pcap"
-    non_ethernet.write_bytes(
-        b"\xd4\xc3\xb2\xa1" + struct.pack("<HHIIII", 2, 4, 0, 0, 65535, 101)
-    )
+    non_ethernet.write_bytes(b"\xd4\xc3\xb2\xa1" + struct.pack("<HHIIII", 2, 4, 0, 0, 65535, 101))
     with pytest.raises(CaptureFormatError):
         read_classic_pcap(non_ethernet)
 
 
-def observation(index, timestamp_ns, src="10.0.0.1", dst="10.0.0.2", sport=1234, dport=80,
-                protocol=6, length=60, flags=0x10):
+def observation(
+    index, timestamp_ns, src="10.0.0.1", dst="10.0.0.2", sport=1234, dport=80, protocol=6, length=60, flags=0x10
+):
     return PacketObservation(
-        index, timestamp_ns, 4, src, dst, protocol, sport, dport, length,
+        index,
+        timestamp_ns,
+        4,
+        src,
+        dst,
+        protocol,
+        sport,
+        dport,
+        length,
         flags if protocol == 6 else None,
     )
 
@@ -160,13 +168,18 @@ def test_all_18_features_missing_mask_and_protocol():
 
 
 def test_identity_excludes_addresses_ports_absolute_time_and_labels():
-    left = build_portable_flows([
-        observation(0, 1_000, length=60), observation(1, 2_000, length=80),
-    ])[0]
-    right = build_portable_flows([
-        observation(10, 99_001_000, src="192.0.2.1", dst="192.0.2.2", sport=9, dport=10, length=60),
-        observation(11, 99_002_000, src="192.0.2.1", dst="192.0.2.2", sport=9, dport=10, length=80),
-    ])[0]
+    left = build_portable_flows(
+        [
+            observation(0, 1_000, length=60),
+            observation(1, 2_000, length=80),
+        ]
+    )[0]
+    right = build_portable_flows(
+        [
+            observation(10, 99_001_000, src="192.0.2.1", dst="192.0.2.2", sport=9, dport=10, length=60),
+            observation(11, 99_002_000, src="192.0.2.1", dst="192.0.2.2", sport=9, dport=10, length=80),
+        ]
+    )[0]
     left_row, right_row = extract_rows([left])[0], extract_rows([right])[0]
     assert left_row.canonical_identity_v3 == right_row.canonical_identity_v3
     rules = [GroundTruthRule("label", 0, 10_000, "attack-x", "ATTACK")]
@@ -175,10 +188,12 @@ def test_identity_excludes_addresses_ports_absolute_time_and_labels():
 
 
 def test_label_join_matched_unmatched_and_conflict():
-    flows = build_portable_flows([
-        observation(0, 100),
-        observation(1, 70_000_000_100, src="10.0.0.3", dst="10.0.0.4"),
-    ])
+    flows = build_portable_flows(
+        [
+            observation(0, 100),
+            observation(1, 70_000_000_100, src="10.0.0.3", dst="10.0.0.4"),
+        ]
+    )
     rules = [
         GroundTruthRule("a", 0, 1_000, "Benign", "NORMAL"),
         GroundTruthRule("b", 0, 1_000, "Attack", "ATTACK"),
@@ -203,9 +218,10 @@ def test_deterministic_two_run_content_hash_and_audits(tmp_path):
     assert semantic_content_hash(first) == semantic_content_hash(second)
     sanity = feature_sanity(first)
     assert sanity["row_count"] == 1 and sanity["impossible_value_violations"] == 0
-    labels = join_labels(build_portable_flows(read_classic_pcap(path).packets), [
-        GroundTruthRule("normal", 0, 2_000_000_000, "Benign", "NORMAL")
-    ])
+    labels = join_labels(
+        build_portable_flows(read_classic_pcap(path).packets),
+        [GroundTruthRule("normal", 0, 2_000_000_000, "Benign", "NORMAL")],
+    )
     identities = identity_audit(first, labels)
     populations = population_audit(first, labels)
     assert identities["unique_canonical_identities"] == 1
@@ -215,7 +231,13 @@ def test_deterministic_two_run_content_hash_and_audits(tmp_path):
 def test_source_has_no_model_training_or_scaler_dependency():
     sources = "\n".join(path.read_text() for path in (ROOT / "src/ids/p13").rglob("*.py"))
     for forbidden in (
-        "import torch", "ids.p9", "load_state_dict", "optimizer.step", "RobustScaler",
-        "StandardScaler", "roc_auc", "anomaly_score",
+        "import torch",
+        "ids.p9",
+        "load_state_dict",
+        "optimizer.step",
+        "RobustScaler",
+        "StandardScaler",
+        "roc_auc",
+        "anomaly_score",
     ):
         assert forbidden not in sources

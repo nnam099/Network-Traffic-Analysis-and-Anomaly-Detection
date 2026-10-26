@@ -16,32 +16,48 @@ from ids.p12_portable_schema import PacketObservation, build_portable_flows  # n
 from ids.p13.labels import LabelJoinResult  # noqa: E402
 from ids.p13.portable_extractor import extract_rows, semantic_content_hash  # noqa: E402
 from ids.p13b_controlled import (  # noqa: E402
-    CORPUS_NAME, aggregate_corpus_sha256, file_sha256, identity_label_audit,
-    join_controlled_labels, pretty_json_bytes, verify_raw_reservation,
+    CORPUS_NAME,
+    aggregate_corpus_sha256,
+    file_sha256,
+    identity_label_audit,
+    join_controlled_labels,
+    pretty_json_bytes,
+    verify_raw_reservation,
 )
 
 
-def packet(index, timestamp, src="127.0.0.2", dst="127.0.0.3", sport=50000, dport=18080,
-           protocol=6, length=60, flags=0x10):
+def packet(
+    index, timestamp, src="127.0.0.2", dst="127.0.0.3", sport=50000, dport=18080, protocol=6, length=60, flags=0x10
+):
     return PacketObservation(
-        index, timestamp, 4, src, dst, protocol, sport, dport, length,
+        index,
+        timestamp,
+        4,
+        src,
+        dst,
+        protocol,
+        sport,
+        dport,
+        length,
         flags if protocol == 6 else None,
     )
 
 
 def schedule(start=100, end=200):
     return {
-        "scenarios": [{
-            "scenario_id": "normal_http",
-            "scenario_type": "NORMAL_HTTP",
-            "portable_label": "NORMAL",
-            "generator_host": "127.0.0.2",
-            "target_host": "127.0.0.3",
-            "ip_protocol": 6,
-            "destination_port": 18080,
-            "expected_start_ns": start,
-            "expected_end_ns": end,
-        }]
+        "scenarios": [
+            {
+                "scenario_id": "normal_http",
+                "scenario_type": "NORMAL_HTTP",
+                "portable_label": "NORMAL",
+                "generator_host": "127.0.0.2",
+                "target_host": "127.0.0.3",
+                "ip_protocol": 6,
+                "destination_port": 18080,
+                "expected_start_ns": start,
+                "expected_end_ns": end,
+            }
+        ]
     }
 
 
@@ -85,12 +101,14 @@ def test_label_join_inclusive_boundaries_unmatched_and_overlap_ambiguity():
     unmatched = build_portable_flows([packet(2, 201)])
     assert join_controlled_labels(unmatched, schedule())[0].status == "UNMATCHED"
     overlapping = schedule()
-    overlapping["scenarios"].append({
-        **overlapping["scenarios"][0],
-        "scenario_id": "attack_overlap",
-        "scenario_type": "ATTACK_HTTP",
-        "portable_label": "ATTACK",
-    })
+    overlapping["scenarios"].append(
+        {
+            **overlapping["scenarios"][0],
+            "scenario_id": "attack_overlap",
+            "scenario_type": "ATTACK_HTTP",
+            "portable_label": "ATTACK",
+        }
+    )
     assert join_controlled_labels([boundary_flows[0]], overlapping)[0].status == "AMBIGUOUS"
 
 
@@ -127,8 +145,14 @@ def test_no_model_access_or_scaling_code():
     ]
     source = "\n".join(path.read_text() for path in paths)
     for forbidden in (
-        "import torch", "ids.p9", "load_state_dict", "optimizer.step",
-        "RobustScaler", "StandardScaler", "roc_auc", "average_precision_score",
+        "import torch",
+        "ids.p9",
+        "load_state_dict",
+        "optimizer.step",
+        "RobustScaler",
+        "StandardScaler",
+        "roc_auc",
+        "average_precision_score",
     ):
         assert forbidden not in source
     assert json.loads(json.dumps({"optimizer_steps": 0}))["optimizer_steps"] == 0

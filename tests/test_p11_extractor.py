@@ -15,13 +15,17 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from ids.p11_extractor.audit import build_artifacts, validate_artifacts  # noqa: E402
 from ids.p11_extractor.categorical_features import (  # noqa: E402
-    application_candidates, protocol_token, state_candidate,
+    application_candidates,
+    protocol_token,
+    state_candidate,
 )
 from ids.p11_extractor.context_features import (  # noqa: E402
-    UnverifiedContextSemantics, historical_unsw_context_features,
+    UnverifiedContextSemantics,
+    historical_unsw_context_features,
 )
 from ids.p11_extractor.continuous_features import (  # noqa: E402
-    add_frozen_engineered_features, extract_candidate_features,
+    add_frozen_engineered_features,
+    extract_candidate_features,
 )
 from ids.p11_extractor.flow_builder import FlowBuilder  # noqa: E402
 from ids.p11_extractor.packet_reader import PacketRecord, PcapFormatError, read_pcap  # noqa: E402
@@ -29,19 +33,57 @@ from ids.p11_extractor.serialization import deterministic_json_bytes, serialized
 from ids.p11_extractor.validation import Tolerance, compare_continuous  # noqa: E402
 
 
-def packet(index, timestamp_ns, src="10.0.0.1", dst="10.0.0.2", sport=1234, dport=80,
-           protocol=6, length=60, ttl=64, flags=0x10, seq=1, ack=1, window=4096, payload=b""):
-    return PacketRecord(index, timestamp_ns, 4, src, dst, protocol, sport, dport,
-                        length, ttl, flags if protocol == 6 else None,
-                        seq if protocol == 6 else None, ack if protocol == 6 else None,
-                        window if protocol == 6 else None, payload)
+def packet(
+    index,
+    timestamp_ns,
+    src="10.0.0.1",
+    dst="10.0.0.2",
+    sport=1234,
+    dport=80,
+    protocol=6,
+    length=60,
+    ttl=64,
+    flags=0x10,
+    seq=1,
+    ack=1,
+    window=4096,
+    payload=b"",
+):
+    return PacketRecord(
+        index,
+        timestamp_ns,
+        4,
+        src,
+        dst,
+        protocol,
+        sport,
+        dport,
+        length,
+        ttl,
+        flags if protocol == 6 else None,
+        seq if protocol == 6 else None,
+        ack if protocol == 6 else None,
+        window if protocol == 6 else None,
+        payload,
+    )
 
 
 def handshake_packets():
     return [
         packet(0, 1_000_000_000, flags=0x02, seq=100, ack=0),
-        packet(1, 1_200_000_000, src="10.0.0.2", dst="10.0.0.1", sport=80, dport=1234,
-               flags=0x12, seq=900, ack=101, ttl=63, window=2048),
+        packet(
+            1,
+            1_200_000_000,
+            src="10.0.0.2",
+            dst="10.0.0.1",
+            sport=80,
+            dport=1234,
+            flags=0x12,
+            seq=900,
+            ack=101,
+            ttl=63,
+            window=2048,
+        ),
         packet(2, 1_300_000_000, flags=0x10, seq=101, ack=901),
     ]
 
@@ -143,8 +185,12 @@ def _pcap_frame() -> bytes:
 
 def test_classic_pcap_reader(tmp_path):
     frame = _pcap_frame()
-    raw = (b"\xd4\xc3\xb2\xa1" + struct.pack("<HHIIII", 2, 4, 0, 0, 65535, 1) +
-           struct.pack("<IIII", 1, 250_000, len(frame), len(frame)) + frame)
+    raw = (
+        b"\xd4\xc3\xb2\xa1"
+        + struct.pack("<HHIIII", 2, 4, 0, 0, 65535, 1)
+        + struct.pack("<IIII", 1, 250_000, len(frame), len(frame))
+        + frame
+    )
     path = tmp_path / "one.pcap"
     path.write_bytes(raw)
     packets = list(read_pcap(path))
@@ -161,8 +207,7 @@ def test_pcapng_is_not_silently_accepted(tmp_path):
 
 
 def test_feature_specific_comparison_metrics():
-    result = compare_continuous([1.0, 2.0, None], [1.0, 2.0001, 3.0],
-                                Tolerance(0.001, 0.0, "test"))
+    result = compare_continuous([1.0, 2.0, None], [1.0, 2.0001, 3.0], Tolerance(0.001, 0.0, "test"))
     assert result["exact_match_count"] == 1
     assert result["within_tolerance_count"] == 2
     assert result["nan_mismatch_count"] == 1
@@ -184,8 +229,7 @@ def test_61_field_contract_and_reference_gate():
 
 
 def test_extractor_package_has_no_torch_or_p9_imports():
-    sources = "\n".join(path.read_text() for path in
-                        (ROOT / "src/ids/p11_extractor").glob("*.py"))
+    sources = "\n".join(path.read_text() for path in (ROOT / "src/ids/p11_extractor").glob("*.py"))
     assert "import torch" not in sources
     assert "ids.p9" not in sources
     assert "roc_auc" not in sources

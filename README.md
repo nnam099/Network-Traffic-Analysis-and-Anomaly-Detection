@@ -23,7 +23,8 @@ calibrated decision rule does.
 
 ## Run the application
 
-Use Python 3.11 or 3.12 and Node.js for the frontend. In the repository root:
+Use Python 3.13 and Node.js for the frontend. Python 3.13 is required because
+the frozen P1 preprocessing contract uses Unicode 15.1.0. In the repository root:
 
 ```bash
 python -m venv .venv
@@ -55,16 +56,19 @@ python scripts/evaluate_csv.py data/UNSW_NB15_testing-set.csv \
   --label-col label --output-dir results/csv_eval --scores-csv
 ```
 
-For an external dataset, use a labeled CIC-IDS2017 flow CSV and specify its
-`Label` column. Keep the model fixed when measuring transfer to another dataset:
+A labeled external flow CSV can be scored for engineering diagnostics only:
 
 ```bash
-python scripts/evaluate_csv.py /path/to/cic-ids2017.csv \
-  --label-col Label --output-dir results/external_eval --scores-csv
+python scripts/evaluate_csv.py /path/to/external-flows.csv \
+  --label-col Label --output-dir results/csv_eval --scores-csv
 ```
 
-Cross-dataset results need label distribution and normalization checks. A run
-that loads successfully does not demonstrate detection quality.
+This is **not** cross-dataset scientific validation. The P10 audit
+([docs/p10_external_validation.md](docs/p10_external_validation.md)) found that
+CIC-IDS2017 and the other reviewed public datasets do not reproduce the frozen
+61-field semantic contract, so their scores cannot be used to claim zero-day or
+transfer performance. Treat any external run as a schema/normalization check,
+not a benchmark.
 
 ## Architecture
 
@@ -86,6 +90,26 @@ for compatibility with existing research workflows. The React frontend is the
 primary demonstration interface. See [architecture](docs/architecture.md) and
 [operations](docs/operations.md) for further detail.
 
+## Repository layout
+
+| Path | Contents |
+| --- | --- |
+| `src/ids/` | Runtime inference plus the versioned P1–P13 research protocol modules. |
+| `src/ids_v14_unswnb15.py` | Compatibility wrapper re-exporting the split v14 modules. |
+| `frontend/` | React + Vite demonstration client. |
+| `dashboard/` | Legacy Streamlit analyst workspace kept for research workflows. |
+| `scripts/` | Training, evaluation, audit and operations entry points. |
+| `tests/` | Unit, protocol and API tests (frozen artifacts are read directly). |
+| `docs/` | Architecture, operations and per-phase research protocols. |
+| `results/` | Frozen protocol reports and evidence used by tests and audits. |
+| `plots/` | Reference figures cited by the documentation. |
+| `checkpoints/` | Committed v14 demo artifacts; other checkpoints are local only. |
+| `data/` | Local datasets; only small parser fixtures under `data/samples/` are committed. |
+
+Regenerated outputs such as `results/csv_eval/`, local databases and plot
+rebuilds are ignored by Git. Frozen protocol artifacts are intentionally
+versioned because tests and audit scripts read them directly.
+
 ## Development
 
 ```bash
@@ -93,6 +117,19 @@ python -m pytest -q
 python -m ruff check .
 cd frontend && npm run build
 ```
+
+To remove local caches and build output without touching datasets, checkpoints or
+frozen protocol evidence:
+
+```bash
+./scripts/clean_local.sh
+```
+
+Do **not** run `ruff format` across the whole repository. Protocol modules under
+`src/ids/p*.py`, `src/ids/p11_extractor/`, `src/ids/p13/`, and the audit scripts
+and tests listed in the frozen result reports are bound by SHA-256 in `results/`.
+Reformatting them invalidates the recorded provenance. Format only runtime,
+dashboard and non-protocol scripts.
 
 Versioned model artifacts and historical experiment reports retain their
 original field names for reproducibility. The application uses

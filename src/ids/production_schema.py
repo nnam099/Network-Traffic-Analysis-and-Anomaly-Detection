@@ -75,9 +75,13 @@ def normalize_to_production_schema(
     out["source_row"] = np.arange(len(raw), dtype=int)
     out["flow_id"] = _first_present_series(raw, ["flow_id", "flowid", "id"], default="")
     out["src_ip"] = _pick(normalized, "srcip", raw, ["src_ip", "source_ip", "source.address", "id.orig_h"])
-    out["dst_ip"] = _pick(normalized, "dstip", raw, ["dst_ip", "destination_ip", "dest_ip", "destination.address", "id.resp_h"])
+    out["dst_ip"] = _pick(
+        normalized, "dstip", raw, ["dst_ip", "destination_ip", "dest_ip", "destination.address", "id.resp_h"]
+    )
     out["src_port"] = _pick(normalized, "sport", raw, ["src_port", "source_port", "source.port", "id.orig_p"])
-    out["dst_port"] = _pick(normalized, "dsport", raw, ["dst_port", "destination_port", "dest_port", "destination.port", "id.resp_p"])
+    out["dst_port"] = _pick(
+        normalized, "dsport", raw, ["dst_port", "destination_port", "dest_port", "destination.port", "id.resp_p"]
+    )
     out["protocol"] = _pick(normalized, "proto", raw, ["protocol", "proto", "transport"])
     out["service"] = _pick(normalized, "service", raw, ["service", "app_proto", "application"])
     out["state"] = _pick(normalized, "state", raw, ["state", "conn_state", "tcp_state"])

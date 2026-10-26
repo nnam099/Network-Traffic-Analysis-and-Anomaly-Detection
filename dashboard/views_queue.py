@@ -4,6 +4,7 @@ from collections.abc import Callable
 
 import numpy as np
 import pandas as pd
+
 try:
     import streamlit as st
 except ModuleNotFoundError:
@@ -72,21 +73,32 @@ def render_queue_view(
 
 def build_history_dataframe(alerts: list[dict]) -> pd.DataFrame:
     hist_columns = [
-        "Alert ID", "Time", "Status", "Source", "Severity", "Risk",
-        "Class", "Hybrid Score", "AE Score", "OOD Candidate",
+        "Alert ID",
+        "Time",
+        "Status",
+        "Source",
+        "Severity",
+        "Risk",
+        "Class",
+        "Hybrid Score",
+        "AE Score",
+        "OOD Candidate",
     ]
-    hist_rows = [{
-        "Alert ID": a["alert_id"],
-        "Time": a["timestamp"],
-        "Status": a.get("status", "new"),
-        "Source": a.get("source", "session"),
-        "Severity": a.get("llm_severity", "N/A"),
-        "Risk": risk_score(a, a.get("llm_severity")),
-        "Class": a["predicted_class"],
-        "Hybrid Score": round(a["hybrid_score"], 3),
-        "AE Score": round(a.get("ae_score", 0), 3),
-        "OOD Candidate": "YES" if a["is_zeroday"] else "NO",
-    } for a in alerts]
+    hist_rows = [
+        {
+            "Alert ID": a["alert_id"],
+            "Time": a["timestamp"],
+            "Status": a.get("status", "new"),
+            "Source": a.get("source", "session"),
+            "Severity": a.get("llm_severity", "N/A"),
+            "Risk": risk_score(a, a.get("llm_severity")),
+            "Class": a["predicted_class"],
+            "Hybrid Score": round(a["hybrid_score"], 3),
+            "AE Score": round(a.get("ae_score", 0), 3),
+            "OOD Candidate": "YES" if a["is_zeroday"] else "NO",
+        }
+        for a in alerts
+    ]
     hist_df = pd.DataFrame(hist_rows, columns=hist_columns)
     if not hist_df.empty:
         hist_df = hist_df.sort_values(["Risk", "Time"], ascending=[False, False])
@@ -109,34 +121,44 @@ def render_correlation_tables(filtered_history: list[dict]) -> None:
     correlations = correlate_alerts(filtered_history, min_count=2)
     if correlations:
         st.markdown("### Correlated Alert Groups")
-        corr_df = pd.DataFrame([{
-            "Group": item["group_type"],
-            "Key": item["key"],
-            "Alerts": item["alert_count"],
-            "OOD": item["ood_count"],
-            "Max Risk": int(item["max_risk"]),
-            "Latest": item["latest_time"],
-            "Sample Alert IDs": ", ".join(item["alert_ids"]),
-        } for item in correlations[:25]])
+        corr_df = pd.DataFrame(
+            [
+                {
+                    "Group": item["group_type"],
+                    "Key": item["key"],
+                    "Alerts": item["alert_count"],
+                    "OOD": item["ood_count"],
+                    "Max Risk": int(item["max_risk"]),
+                    "Latest": item["latest_time"],
+                    "Sample Alert IDs": ", ".join(item["alert_ids"]),
+                }
+                for item in correlations[:25]
+            ]
+        )
         st.dataframe(corr_df, use_container_width=True, hide_index=True)
 
     incidents = build_time_window_incidents(filtered_history, window_minutes=15, min_alerts=2)
     if incidents:
         st.markdown("### Incident Windows")
-        incident_df = pd.DataFrame([{
-            "Incident": item["incident_id"],
-            "Group": item["group_type"],
-            "Key": item["key"],
-            "Window": f"{item['start_time']} -> {item['end_time']}",
-            "Alerts": item["alert_count"],
-            "OOD": item["ood_count"],
-            "High Risk": item["high_count"],
-            "Max Risk": int(item["max_risk"]),
-            "Severity": item["severity"],
-            "Signals": ", ".join(item["primary_classes"] or item["families"]),
-            "Focus": item["recommended_focus"],
-            "Sample Alert IDs": ", ".join(item["alert_ids"]),
-        } for item in incidents[:25]])
+        incident_df = pd.DataFrame(
+            [
+                {
+                    "Incident": item["incident_id"],
+                    "Group": item["group_type"],
+                    "Key": item["key"],
+                    "Window": f"{item['start_time']} -> {item['end_time']}",
+                    "Alerts": item["alert_count"],
+                    "OOD": item["ood_count"],
+                    "High Risk": item["high_count"],
+                    "Max Risk": int(item["max_risk"]),
+                    "Severity": item["severity"],
+                    "Signals": ", ".join(item["primary_classes"] or item["families"]),
+                    "Focus": item["recommended_focus"],
+                    "Sample Alert IDs": ", ".join(item["alert_ids"]),
+                }
+                for item in incidents[:25]
+            ]
+        )
         st.dataframe(incident_df, use_container_width=True, hide_index=True)
 
 

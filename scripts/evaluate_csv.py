@@ -59,7 +59,7 @@ def add_threshold_leakage_warning(summary: dict, csv_path: str) -> None:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Evaluate IDS anomaly detection on a CSV file.")
     parser.add_argument("csv_path", help="Path to a UNSW/CICIDS/firewall/flow CSV file.")
-    parser.add_argument("--model-version", default=os.getenv("IDS_MODEL_VERSION", "v14"), choices=["v14", "v15"])
+    parser.add_argument("--model-version", default=os.getenv("IDS_MODEL_VERSION", "v14"), choices=["v14"])
     parser.add_argument("--model-path", default=os.path.join(ROOT_DIR, "checkpoints", "ids_v14_model.pth"))
     parser.add_argument("--pipeline-path", default=os.path.join(ROOT_DIR, "checkpoints", "ids_v14_pipeline.pkl"))
     parser.add_argument("--label-col", default=None, help="Optional label column for FPR/recall reporting.")

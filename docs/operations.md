@@ -12,7 +12,7 @@ Run these commands before a demo:
 
 Expected minimum state:
 
-- readiness status is `READY` or `WARN` with only expected v15 artifact warnings
+- readiness status is `READY` or `WARN` with only expected local-data warnings
 - v14 model and pipeline are present
 - smoke checks pass
 - artifact manifest verifies cleanly

@@ -40,7 +40,15 @@ def packet(
     flags: int | None = 0x10,
 ) -> PacketObservation:
     return PacketObservation(
-        index, timestamp_ns, 4, src, dst, protocol, sport, dport, length,
+        index,
+        timestamp_ns,
+        4,
+        src,
+        dst,
+        protocol,
+        sport,
+        dport,
+        length,
         flags if protocol == 6 else None,
     )
 
@@ -112,8 +120,12 @@ def test_zero_and_one_packet_edges_and_missing_semantics():
     assert values["backward_packet_count"] == 0.0
     assert values["backward_mean_packet_size_bytes"] is None
     for name in (
-        "packets_per_second", "bytes_per_second", "forward_packets_per_second",
-        "backward_packets_per_second", "forward_bytes_per_second", "backward_bytes_per_second",
+        "packets_per_second",
+        "bytes_per_second",
+        "forward_packets_per_second",
+        "backward_packets_per_second",
+        "forward_bytes_per_second",
+        "backward_bytes_per_second",
     ):
         assert values[name] is None
 
@@ -149,13 +161,19 @@ def test_state_machine_transitions_and_precedence():
     assert portable_connection_state(partial) == "TCP_PARTIAL_HANDSHAKE"
     observed = build_portable_flows([packet(0, 0, flags=0x10)])[0]
     assert portable_connection_state(observed) == "TCP_OBSERVED"
-    closed = build_portable_flows([
-        packet(0, 0, flags=0x11), reverse_packet(1, 1, flags=0x11),
-    ])[0]
+    closed = build_portable_flows(
+        [
+            packet(0, 0, flags=0x11),
+            reverse_packet(1, 1, flags=0x11),
+        ]
+    )[0]
     assert portable_connection_state(closed) == "TCP_CLOSED"
-    reset = build_portable_flows([
-        packet(0, 0, flags=0x11), reverse_packet(1, 1, flags=0x15),
-    ])[0]
+    reset = build_portable_flows(
+        [
+            packet(0, 0, flags=0x11),
+            reverse_packet(1, 1, flags=0x15),
+        ]
+    )[0]
     assert portable_connection_state(reset) == "TCP_RESET"
     udp = build_portable_flows([packet(0, 0, protocol=17, flags=None)])[0]
     assert portable_connection_state(udp) == "NOT_TCP"
@@ -207,7 +225,8 @@ def test_complete_61_mapping_compatibility_gate_and_no_training():
     assert len(mapping["rows"]) == 61
     assert mapping["keep_exact_count"] == 0
     assert {row["decision"] for row in mapping["rows"]} == {
-        "REDEFINE_PORTABLE", "DROP_NONPORTABLE",
+        "REDEFINE_PORTABLE",
+        "DROP_NONPORTABLE",
     }
     matrix = artifacts["dataset_compatibility_matrix.json"]
     assert matrix["complete_capture_family_count"] == 6

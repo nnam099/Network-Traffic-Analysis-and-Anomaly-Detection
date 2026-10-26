@@ -8,7 +8,11 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from ids.p10_external_source import (
-    CLASSIFICATIONS, OFFICIAL_SOURCES, TARGETS, build_artifacts, validate_artifacts,
+    CLASSIFICATIONS,
+    OFFICIAL_SOURCES,
+    TARGETS,
+    build_artifacts,
+    validate_artifacts,
 )
 
 

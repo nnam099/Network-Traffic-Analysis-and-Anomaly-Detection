@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import pickle
 from dataclasses import dataclass
 from datetime import datetime, timezone
+from pathlib import Path
 from typing import Any
 
 import numpy as np
@@ -21,6 +23,49 @@ from .inference_runtime import (
 )
 from .log_normalizer import normalize_real_world_logs
 
+REPO_ROOT = Path(__file__).resolve().parents[2]
+DEFAULT_MANIFEST_PATH = REPO_ROOT / "results" / "artifact_manifest.json"
+
+
+def _sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def verify_artifact_against_manifest(
+    artifact_path: str | Path,
+    manifest_path: str | Path | None = None,
+    root: str | Path | None = None,
+) -> None:
+    """Verify a local artifact against the SHA-256 manifest before unpickling."""
+    root_path = Path(root or REPO_ROOT).resolve()
+    manifest_file = Path(manifest_path or os.getenv("IDS_ARTIFACT_MANIFEST") or DEFAULT_MANIFEST_PATH).resolve()
+    if not manifest_file.exists():
+        return
+
+    resolved = Path(artifact_path).resolve()
+    try:
+        rel_key = resolved.relative_to(root_path).as_posix()
+    except ValueError:
+        return
+
+    manifest = json.loads(manifest_file.read_text(encoding="utf-8"))
+    expected = manifest.get("artifacts", {}).get(rel_key)
+    if not isinstance(expected, dict) or not expected.get("exists"):
+        return
+
+    actual_size = resolved.stat().st_size
+    expected_size = int(expected.get("size_bytes", -1))
+    if expected_size != actual_size:
+        raise ValueError(f"Artifact size mismatch for {rel_key}: expected {expected_size} bytes, got {actual_size}")
+    actual_sha = _sha256_file(resolved)
+    expected_sha = expected.get("sha256")
+    if expected_sha != actual_sha:
+        raise ValueError(f"Artifact SHA-256 mismatch for {rel_key}: expected {expected_sha}, got {actual_sha}")
+
 
 @dataclass
 class IDSArtifacts:
@@ -34,15 +79,22 @@ class IDSArtifacts:
     model_version: str
 
 
-def load_ids_artifacts(model_path: str, pipeline_path: str, model_version: str = "v14") -> IDSArtifacts:
+def load_ids_artifacts(
+    model_path: str,
+    pipeline_path: str,
+    model_version: str = "v14",
+    verify_manifest: bool = True,
+) -> IDSArtifacts:
     model_version = model_version.strip().lower()
     if model_version == "v15":
-        raise ValueError(
-            "v15 disabled: runtime does not implement KNN/ood_ensemble scoring used at evaluation time"
-        )
+        raise ValueError("v15 disabled: runtime does not implement KNN/ood_ensemble scoring used at evaluation time")
     if model_version != "v14":
         raise ValueError(f"unsupported runtime model version: {model_version}")
     from .models import IDSModel
+
+    if verify_manifest:
+        verify_artifact_against_manifest(model_path)
+        verify_artifact_against_manifest(pipeline_path)
 
     checkpoint = torch.load(model_path, map_location="cpu", weights_only=False)
     with open(pipeline_path, "rb") as handle:
@@ -98,10 +150,23 @@ def preprocess_raw_df(df_raw: pd.DataFrame, artifacts: IDSArtifacts) -> tuple[np
             df[f"{cat}_num"] = _encode_categorical_column(df[cat], categorical_maps.get(cat))
 
     existing_numeric = [
-        c for c in df.columns
-        if c not in {
-            "attack_cat", "label", "label_binary", "srcip", "dstip",
-            "sport", "dsport", "stime", "ltime", "id", "proto", "service", "state",
+        c
+        for c in df.columns
+        if c
+        not in {
+            "attack_cat",
+            "label",
+            "label_binary",
+            "srcip",
+            "dstip",
+            "sport",
+            "dsport",
+            "stime",
+            "ltime",
+            "id",
+            "proto",
+            "service",
+            "state",
         }
     ]
     try:
@@ -137,7 +202,7 @@ def run_batch_scores(raw_features: np.ndarray, artifacts: IDSArtifacts, batch_si
 
     with torch.no_grad():
         for i in range(0, len(tensor), batch_size):
-            x = tensor[i:i + batch_size]
+            x = tensor[i : i + batch_size]
             outputs = artifacts.model(x)
             logits = outputs[0] if isinstance(outputs, tuple) else outputs
             probs = torch.softmax(logits, dim=1).cpu().numpy()
@@ -154,10 +219,7 @@ def run_batch_scores(raw_features: np.ndarray, artifacts: IDSArtifacts, batch_si
     max_prob = probs_all_np.max(axis=1)
     softmax_score = 1.0 - max_prob
     pred_idx = probs_all_np.argmax(axis=1)
-    pred_class = [
-        artifacts.class_names[i] if i < len(artifacts.class_names) else "Unknown"
-        for i in pred_idx
-    ]
+    pred_class = [artifacts.class_names[i] if i < len(artifacts.class_names) else "Unknown" for i in pred_idx]
     hybrid_score = hybrid_score_from_meta(ae_all_np, max_prob, thresholds=artifacts.thresholds)
     is_zeroday, decision_rule = zero_day_decision(
         ae_all_np,
@@ -169,18 +231,20 @@ def run_batch_scores(raw_features: np.ndarray, artifacts: IDSArtifacts, batch_si
     )
     verdict = [_traffic_verdict_bool(zd, cls) for zd, cls in zip(is_zeroday, pred_class, strict=True)]
 
-    out = pd.DataFrame({
-        "predicted_class": verdict,
-        "classifier_class": pred_class,
-        "max_prob": max_prob,
-        "softmax": softmax_score,
-        "ae_re": ae_all_np,
-        "ae_score": ae_all_np,
-        "hybrid": hybrid_score,
-        "hybrid_score": hybrid_score,
-        "is_zeroday": np.asarray(is_zeroday).astype(bool),
-        "zero_day_rule": decision_rule,
-    })
+    out = pd.DataFrame(
+        {
+            "predicted_class": verdict,
+            "classifier_class": pred_class,
+            "max_prob": max_prob,
+            "softmax": softmax_score,
+            "ae_re": ae_all_np,
+            "ae_score": ae_all_np,
+            "hybrid": hybrid_score,
+            "hybrid_score": hybrid_score,
+            "is_zeroday": np.asarray(is_zeroday).astype(bool),
+            "zero_day_rule": decision_rule,
+        }
+    )
     if fv_all:
         out["fv_cluster"] = np.concatenate(fv_all, axis=0)
     return out
@@ -247,7 +311,9 @@ def summarize_scores(
             summary["normal_ood_classifier_overlap_count"] = int(normal_overlap.sum())
             summary["normal_count"] = int(normal_mask.sum())
         if bool(attack_mask.any()):
-            attack_known = scores.loc[attack_mask.values, "predicted_class"].isin(["Known-Attack", "Zero-Day Candidate"])
+            attack_known = scores.loc[attack_mask.values, "predicted_class"].isin(
+                ["Known-Attack", "Zero-Day Candidate"]
+            )
             summary["attack_detection_rate"] = round(float(attack_known.mean()), 6)
             summary["attack_count"] = int(attack_mask.sum())
 
@@ -391,7 +457,11 @@ def _labeled_evaluation(
 
     if bool(comparable_mask.any()):
         out["detection_accuracy"] = round(
-            float((predicted_verdict.loc[comparable_mask.values].values == truth_verdict.loc[comparable_mask].values).mean()),
+            float(
+                (
+                    predicted_verdict.loc[comparable_mask.values].values == truth_verdict.loc[comparable_mask].values
+                ).mean()
+            ),
             6,
         )
 
@@ -439,12 +509,16 @@ def _threshold_profile(thresholds: dict[str, Any]) -> dict[str, Any]:
     profile = {}
     for key, value in thresholds.items():
         if key == "hybrid_meta":
-            profile[key] = {
-                "type": value.get("type"),
-                "features": value.get("features"),
-                "coef": value.get("coef"),
-                "intercept": value.get("intercept"),
-            } if isinstance(value, dict) else value
+            profile[key] = (
+                {
+                    "type": value.get("type"),
+                    "features": value.get("features"),
+                    "coef": value.get("coef"),
+                    "intercept": value.get("intercept"),
+                }
+                if isinstance(value, dict)
+                else value
+            )
             continue
         try:
             profile[key] = float(value)

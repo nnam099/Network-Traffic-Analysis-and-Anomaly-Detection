@@ -281,7 +281,14 @@ class CoreSmokeTests(unittest.TestCase):
 
         readiness = assess_readiness(
             {
-                "packages": {"torch": False, "numpy": True, "pandas": True, "sklearn": True, "matplotlib": True, "dotenv": True},
+                "packages": {
+                    "torch": False,
+                    "numpy": True,
+                    "pandas": True,
+                    "sklearn": True,
+                    "matplotlib": True,
+                    "dotenv": True,
+                },
                 "artifacts": {},
                 "data": {"data_dir": True},
                 "llm": {},
@@ -290,8 +297,8 @@ class CoreSmokeTests(unittest.TestCase):
         self.assertEqual(readiness["status"], "BLOCKED")
         self.assertTrue(any("torch" in item for item in readiness["blockers"]))
 
-        self.assertTrue(python_version_status((3, 11, 9))["supported"])
-        self.assertFalse(python_version_status((3, 13, 0))["supported"])
+        self.assertTrue(python_version_status((3, 13, 0))["supported"])
+        self.assertFalse(python_version_status((3, 12, 0))["supported"])
 
     def test_resolve_paths_keeps_existing_kaggle_paths(self):
         from ids.config import resolve_paths
@@ -468,11 +475,13 @@ class CoreSmokeTests(unittest.TestCase):
         self.assertTrue(str(result.data.loc[0, "event_time"]).startswith("2026-05-19T08:00:00"))
         self.assertGreater(float(result.data.loc[0, "duration"]), 0)
 
-        overrides = pd.DataFrame({
-            "flow_id": [result.data.loc[1, "flow_id"]],
-            "analyst_label": ["suspicious"],
-            "attack_category": ["Needs review"],
-        })
+        overrides = pd.DataFrame(
+            {
+                "flow_id": [result.data.loc[1, "flow_id"]],
+                "analyst_label": ["suspicious"],
+                "attack_category": ["Needs review"],
+            }
+        )
         reviewed = apply_label_overrides(result.data, overrides)
         self.assertEqual(reviewed.loc[1, "analyst_label"], "suspicious")
         self.assertEqual(reviewed.loc[1, "attack_category"], "Needs review")
@@ -598,14 +607,16 @@ class CoreSmokeTests(unittest.TestCase):
     def test_dashboard_runtime_preprocess_aligns_features(self):
         from ids.dashboard_runtime import preprocess_dashboard_df
 
-        df = pd.DataFrame({
-            "proto": ["tcp"],
-            "service": ["http"],
-            "state": ["CON"],
-            "dur": [2.0],
-            "sbytes": [100],
-            "dbytes": [50],
-        })
+        df = pd.DataFrame(
+            {
+                "proto": ["tcp"],
+                "service": ["http"],
+                "state": ["CON"],
+                "dur": [2.0],
+                "sbytes": [100],
+                "dbytes": [50],
+            }
+        )
         result = preprocess_dashboard_df(
             df,
             ["dur", "proto_num", "service_num", "state_num", "bytes_ratio", "missing_feature"],
@@ -676,15 +687,17 @@ class CoreSmokeTests(unittest.TestCase):
             {"alert_id": "A1", "predicted_class": "Known-Attack", "hybrid_score": 0.4},
             {"alert_id": "A2", "predicted_class": "Zero-Day Candidate", "hybrid_score": 0.8},
         ]
-        bulk = pd.DataFrame({
-            "source_row": [10, 11],
-            "detection": ["Normal", "Zero-Day Candidate"],
-            "classifier_class": ["Normal", "DoS"],
-            "hybrid_score": [0.1, 0.9],
-            "ae_score": [0.1, 0.8],
-            "max_prob": [0.95, 0.4],
-            "is_zeroday": [False, True],
-        })
+        bulk = pd.DataFrame(
+            {
+                "source_row": [10, 11],
+                "detection": ["Normal", "Zero-Day Candidate"],
+                "classifier_class": ["Normal", "DoS"],
+                "hybrid_score": [0.1, 0.9],
+                "ae_score": [0.1, 0.8],
+                "max_prob": [0.95, 0.4],
+                "is_zeroday": [False, True],
+            }
+        )
 
         options = build_ai_context_options(history, bulk, max_history=1, max_bulk_logs=1)
 
@@ -763,15 +776,17 @@ class CoreSmokeTests(unittest.TestCase):
     def test_dashboard_runtime_builds_top_batch_alerts(self):
         from ids.dashboard_runtime import build_top_batch_alerts
 
-        scores = pd.DataFrame({
-            "source_row": [0, 1, 2],
-            "detection": ["Normal", "Known-Attack", "Zero-Day Candidate"],
-            "classifier_class": ["Normal", "DoS", "Normal"],
-            "hybrid_score": [0.2, 0.7, 0.6],
-            "ae_score": [0.1, 0.5, 0.9],
-            "max_prob": [0.95, 0.5, 0.3],
-            "is_zeroday": [False, False, True],
-        })
+        scores = pd.DataFrame(
+            {
+                "source_row": [0, 1, 2],
+                "detection": ["Normal", "Known-Attack", "Zero-Day Candidate"],
+                "classifier_class": ["Normal", "DoS", "Normal"],
+                "hybrid_score": [0.2, 0.7, 0.6],
+                "ae_score": [0.1, 0.5, 0.9],
+                "max_prob": [0.95, 0.5, 0.3],
+                "is_zeroday": [False, False, True],
+            }
+        )
 
         alerts = build_top_batch_alerts(scores, file_hash="abcdef123456", limit=2, timestamp="2026-05-14 10:00:00")
 
@@ -784,23 +799,27 @@ class CoreSmokeTests(unittest.TestCase):
     def test_dashboard_runtime_enriches_batch_alert_entities(self):
         from ids.dashboard_runtime import build_top_batch_alerts
 
-        scores = pd.DataFrame({
-            "source_row": [0],
-            "detection": ["Zero-Day Candidate"],
-            "classifier_class": ["DoS"],
-            "hybrid_score": [0.9],
-            "ae_score": [0.8],
-            "max_prob": [0.2],
-            "is_zeroday": [True],
-        })
-        raw = pd.DataFrame({
-            "src_ip": ["10.0.0.5"],
-            "dst_ip": ["172.16.1.10"],
-            "src_port": [52512],
-            "dst_port": [443],
-            "protocol": ["tcp"],
-            "service": ["https"],
-        })
+        scores = pd.DataFrame(
+            {
+                "source_row": [0],
+                "detection": ["Zero-Day Candidate"],
+                "classifier_class": ["DoS"],
+                "hybrid_score": [0.9],
+                "ae_score": [0.8],
+                "max_prob": [0.2],
+                "is_zeroday": [True],
+            }
+        )
+        raw = pd.DataFrame(
+            {
+                "src_ip": ["10.0.0.5"],
+                "dst_ip": ["172.16.1.10"],
+                "src_port": [52512],
+                "dst_port": [443],
+                "protocol": ["tcp"],
+                "service": ["https"],
+            }
+        )
 
         alert = build_top_batch_alerts(scores, file_hash="abcdef123456", raw_df=raw)[0]
 
@@ -813,9 +832,30 @@ class CoreSmokeTests(unittest.TestCase):
         from ids.dashboard_runtime import correlate_alerts
 
         alerts = [
-            {"alert_id": "A1", "src_ip": "10.0.0.5", "classifier_class": "DoS", "is_zeroday": True, "risk": 90, "timestamp": "2026-05-14 10:00:00"},
-            {"alert_id": "A2", "src_ip": "10.0.0.5", "classifier_class": "DoS", "is_zeroday": False, "risk": 60, "timestamp": "2026-05-14 10:01:00"},
-            {"alert_id": "A3", "src_ip": "10.0.0.8", "classifier_class": "Normal", "is_zeroday": False, "risk": 10, "timestamp": "2026-05-14 10:02:00"},
+            {
+                "alert_id": "A1",
+                "src_ip": "10.0.0.5",
+                "classifier_class": "DoS",
+                "is_zeroday": True,
+                "risk": 90,
+                "timestamp": "2026-05-14 10:00:00",
+            },
+            {
+                "alert_id": "A2",
+                "src_ip": "10.0.0.5",
+                "classifier_class": "DoS",
+                "is_zeroday": False,
+                "risk": 60,
+                "timestamp": "2026-05-14 10:01:00",
+            },
+            {
+                "alert_id": "A3",
+                "src_ip": "10.0.0.8",
+                "classifier_class": "Normal",
+                "is_zeroday": False,
+                "risk": 10,
+                "timestamp": "2026-05-14 10:02:00",
+            },
         ]
 
         groups = correlate_alerts(alerts, min_count=2)
@@ -951,15 +991,17 @@ class CoreSmokeTests(unittest.TestCase):
     def test_batch_evaluator_reports_labeled_metrics(self):
         from ids.batch_evaluator import summarize_scores
 
-        scores = pd.DataFrame({
-            "predicted_class": ["Normal", "Known-Attack", "Zero-Day Candidate", "Known-Attack"],
-            "classifier_class": ["Normal", "DoS", "Normal", "Exploits"],
-            "is_zeroday": [False, False, True, False],
-            "hybrid": [0.1, 0.7, 0.8, 0.6],
-            "ae_re": [0.1, 0.5, 0.9, 0.4],
-            "softmax": [0.05, 0.3, 0.7, 0.2],
-            "max_prob": [0.95, 0.7, 0.3, 0.8],
-        })
+        scores = pd.DataFrame(
+            {
+                "predicted_class": ["Normal", "Known-Attack", "Zero-Day Candidate", "Known-Attack"],
+                "classifier_class": ["Normal", "DoS", "Normal", "Exploits"],
+                "is_zeroday": [False, False, True, False],
+                "hybrid": [0.1, 0.7, 0.8, 0.6],
+                "ae_re": [0.1, 0.5, 0.9, 0.4],
+                "softmax": [0.05, 0.3, 0.7, 0.2],
+                "max_prob": [0.95, 0.7, 0.3, 0.8],
+            }
+        )
         raw = pd.DataFrame({"attack_cat": ["Normal", "DoS", "Shellcode", "DoS"]})
 
         summary = summarize_scores(
@@ -1059,11 +1101,13 @@ class CoreSmokeTests(unittest.TestCase):
     def test_batch_evaluator_calibrates_threshold_profile(self):
         from ids.batch_evaluator import calibrate_thresholds
 
-        scores = pd.DataFrame({
-            "hybrid": [0.1, 0.2, 0.3, 0.4],
-            "ae_re": [0.2, 0.3, 0.4, 0.5],
-            "softmax": [0.05, 0.1, 0.15, 0.2],
-        })
+        scores = pd.DataFrame(
+            {
+                "hybrid": [0.1, 0.2, 0.3, 0.4],
+                "ae_re": [0.2, 0.3, 0.4, 0.5],
+                "softmax": [0.05, 0.1, 0.15, 0.2],
+            }
+        )
         raw_df = pd.DataFrame({"label": ["Benign", "Benign", "Attack", "Attack"]})
 
         profile = calibrate_thresholds(scores, target_fpr=0.5, raw_df=raw_df)
@@ -1203,15 +1247,17 @@ class CoreSmokeTests(unittest.TestCase):
             ("Fuzzers", 1, 2.0, 10),
         ]:
             for i in range(n):
-                rows.append({
-                    "attack_cat": attack_cat,
-                    "label": label,
-                    "dur": 1.0 + i * 0.01 + offset,
-                    "sbytes": 100 + i + offset,
-                    "dbytes": 80 + i + offset,
-                    "spkts": 10 + i % 3,
-                    "dpkts": 8 + i % 4,
-                })
+                rows.append(
+                    {
+                        "attack_cat": attack_cat,
+                        "label": label,
+                        "dur": 1.0 + i * 0.01 + offset,
+                        "sbytes": 100 + i + offset,
+                        "dbytes": 80 + i + offset,
+                        "spkts": 10 + i % 3,
+                        "dpkts": 8 + i % 4,
+                    }
+                )
         df = pd.DataFrame(rows)
 
         splits = prepare_splits(

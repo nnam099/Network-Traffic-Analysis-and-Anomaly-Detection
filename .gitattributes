@@ -1,7 +1,11 @@
-*.mp4 filter=lfs diff=lfs merge=lfs -text
+# Binary artifacts are not text; keep Git diffs meaningful.
 *.pth binary
 *.pkl binary
-data/*.csv filter=lfs diff=lfs merge=lfs -text
+*.pt binary
+*.npz binary
+*.png binary
+
+# Script line endings
 *.sh text eol=lf
 *.ps1 text eol=crlf
 *.py text eol=lf
