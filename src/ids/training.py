@@ -302,6 +302,38 @@ def run_full(args):
             'thresholds': thresholds,
         }
 
+    # Build the profile that is actually shipped with the artifact. LOFO folds
+    # above are evaluation-only; this profile sees every official-train OOD
+    # family and is never used for target-held-out scoring.
+    deployment_meta = fit_hybrid_meta_learner(
+        model,
+        splits['X_meta_known'],
+        splits['X_ood_train'],
+        device,
+        seed=args.seed,
+    )
+    deployment_thresholds = calibrate(
+        model,
+        splits['X_calibration'][normal_calibration],
+        args.target_fpr,
+        device,
+        centroids,
+        hybrid_meta=deployment_meta,
+    )
+    deployment_thresholds['hybrid_meta'] = deployment_meta
+    deployment_profile = {
+        'threshold_calibration_population': 'calibration_normal',
+        'calibration_support': int(normal_calibration.sum()),
+        'ood_development_families': sorted(set(map(str, splits['y_ood_train']))),
+        'hybrid_meta': deployment_meta,
+        'thresholds': deployment_thresholds,
+        'note': (
+            'Deployment profile fitted on all official-train OOD families. '
+            'It is not used for LOFO target-held-out scoring; fold-specific '
+            'profiles remain in research_protocol.folds.'
+        ),
+    }
+
     # Official test is first accessed for scoring only after every learned
     # component, method choice and threshold has been frozen above.
     print('\n[7/8] Final official-test evaluation with frozen LOFO folds...')
@@ -450,6 +482,7 @@ def run_full(args):
         'name': 'official_70_10_10_10_lofo',
         'seed': int(args.seed),
         'selected_method': 'hybrid',
+        'deployment_profile': deployment_profile,
         'folds': fold_artifacts,
         'assertions': all_assertions,
         'lineage': lineage,
@@ -457,11 +490,11 @@ def run_full(args):
     pth_path, pipeline_path = save_artifacts(
         model,
         splits,
-        thresholds={},
+        thresholds=deployment_thresholds,
         history=history,
         centroids=centroids,
         save_dir=args.save_dir,
-        hybrid_meta=None,
+        hybrid_meta=deployment_meta,
         research_protocol=research_protocol,
     )
     os.makedirs(args.plot_dir, exist_ok=True)
@@ -534,6 +567,7 @@ def run_full(args):
         'known_split_model_input_purge': splits['known_split_model_input_purge'],
         'lineage': lineage,
         'aggregate_metrics': aggregate_metrics,
+        'deployment_profile': deployment_profile,
         'folds': fold_reports,
         'sensitivity_analysis_note': (
             'Rows whose exact post-scaling/clipping float32 model-input fingerprint '
