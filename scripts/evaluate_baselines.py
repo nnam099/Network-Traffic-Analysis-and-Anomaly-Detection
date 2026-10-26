@@ -27,7 +27,7 @@ from ids.inference_runtime import ground_truth_verdict  # noqa: E402
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Compare IDS anomaly scores against classical OOD baselines.")
     parser.add_argument("csv_path", help="UNSW/CICIDS/firewall/flow CSV to evaluate.")
-    parser.add_argument("--model-version", default="v14", choices=["v14", "v15"])
+    parser.add_argument("--model-version", default="v14", choices=["v14"])
     parser.add_argument("--model-path", default=str(ROOT_DIR / "checkpoints" / "ids_v14_model.pth"))
     parser.add_argument("--pipeline-path", default=str(ROOT_DIR / "checkpoints" / "ids_v14_pipeline.pkl"))
     parser.add_argument("--label-col", default=None, help="Optional label column for supervised metrics.")

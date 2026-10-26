@@ -37,7 +37,6 @@ ignore = [
 "dashboard/app.py" = ["BLE001"]
 "src/ids/*.py" = ["B007", "B023", "B905", "BLE001", "E401", "E701", "E702", "E722", "F401", "F841"]
 "src/ids_v14_unswnb15.py" = ["F401"]
-"src/ids_v15_unswnb15.py" = ["B007", "B023", "B905", "BLE001", "E401", "E701", "E702", "E722", "F401", "F403", "F405", "F841"]
 "tests/test_*.py" = ["B011"]
 
 [tool.ruff.format]

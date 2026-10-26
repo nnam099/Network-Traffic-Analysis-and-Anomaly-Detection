@@ -9,12 +9,6 @@
       "exists": true,
       "size_bytes": 196617,
       "sha256": "8649f6241b2bf17ae841741895a978b62abbaa8d3b07a94d7f4b6a876c582236"
-    },
-    "checkpoints/ids_v15_model.pth": {
-      "exists": false
-    },
-    "checkpoints/ids_v15_pipeline.pkl": {
-      "exists": false
     }
   }
 }

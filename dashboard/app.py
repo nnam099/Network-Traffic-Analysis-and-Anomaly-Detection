@@ -418,15 +418,9 @@ CSV_UPLOAD_MAX_COLUMNS = int(os.getenv("IDS_DASHBOARD_MAX_CSV_COLUMNS", "250"))
 CSV_PREVIEW_MAX_ROWS = int(os.getenv("IDS_DASHBOARD_PREVIEW_MAX_ROWS", "1000"))
 CSV_SESSION_RAW_MAX_ROWS = int(os.getenv("IDS_DASHBOARD_SESSION_RAW_MAX_ROWS", "100000"))
 
-# v14 is the operational default because this repo currently ships v14 artifacts.
+# v14 is the operational default because this repo ships v14 artifacts.
 MODEL_VERSION = os.getenv("IDS_MODEL_VERSION", "v14").strip().lower()
-if MODEL_VERSION == "v15":
-    st.warning(
-        "v15 disabled: runtime does not implement KNN/ood_ensemble scoring used at evaluation time. "
-        "Fallback ve v14."
-    )
-    MODEL_VERSION = "v14"
-elif MODEL_VERSION != "v14":
+if MODEL_VERSION != "v14":
     st.warning(f"IDS_MODEL_VERSION khong hop le: {MODEL_VERSION}. Fallback ve v14.")
     MODEL_VERSION = "v14"
 
@@ -582,14 +576,7 @@ def load_model():
         hidden     = checkpoint.get('hidden', 256)
         ae_hidden  = checkpoint.get('ae_hidden', 128)
 
-        if MODEL_VERSION == "v15":
-            latent_dim = checkpoint.get('latent_dim', 32)
-            model = IDSModel(
-                n_features=n_feat, n_classes=n_cls,
-                hidden=hidden, ae_hidden=ae_hidden, latent_dim=latent_dim,
-            )
-        else:
-            model = IDSModel(n_features=n_feat, n_classes=n_cls, hidden=hidden, ae_hidden=ae_hidden)
+        model = IDSModel(n_features=n_feat, n_classes=n_cls, hidden=hidden, ae_hidden=ae_hidden)
         model.load_state_dict(checkpoint['model_state_dict'])
         model.eval()
 

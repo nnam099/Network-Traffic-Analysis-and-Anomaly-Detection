@@ -95,7 +95,6 @@ primary demonstration interface. See [architecture](docs/architecture.md) and
 | --- | --- |
 | `src/ids/` | Runtime inference plus the versioned P1–P13 research protocol modules. |
 | `src/ids_v14_unswnb15.py` | Compatibility wrapper re-exporting the split v14 modules. |
-| `src/ids_v15_unswnb15.py` | Disabled v15 experiment; the runtime rejects v15 artifacts. |
 | `frontend/` | React + Vite demonstration client. |
 | `dashboard/` | Legacy Streamlit analyst workspace kept for research workflows. |
 | `scripts/` | Training, evaluation, audit and operations entry points. |
