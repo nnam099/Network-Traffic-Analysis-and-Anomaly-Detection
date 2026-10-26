@@ -1,12 +1,12 @@
-# Minimal dependency ranges for compile + unittest smoke checks.
-# Runtime deployments use the pinned lock-style versions in requirements.txt.
-torch>=2.12
-numpy>=1.24
-pandas>=1.5
-scikit-learn>=1.2
-matplotlib>=3.7
-pyyaml>=6.0
-python-dotenv>=1.2.2
-fastapi>=0.136
-httpx>=0.26
-ruff>=0.8,<0.9
+# Minimal dependency pins for compile + unittest smoke checks (Python 3.13).
+# Keep these aligned with requirements.txt when runtime pins change.
+torch==2.14.0
+numpy==2.5.3
+pandas==2.3.3
+scikit-learn==1.6.1
+matplotlib==3.11.2
+pyyaml==6.0.3
+python-dotenv==1.2.3
+fastapi==0.111.0
+httpx==0.27.0
+ruff==0.8.6

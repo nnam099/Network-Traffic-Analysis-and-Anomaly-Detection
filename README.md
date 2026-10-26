@@ -23,7 +23,8 @@ calibrated decision rule does.
 
 ## Run the application
 
-Use Python 3.11 or 3.12 and Node.js for the frontend. In the repository root:
+Use Python 3.13 and Node.js for the frontend. Python 3.13 is required because
+the frozen P1 preprocessing contract uses Unicode 15.1.0. In the repository root:
 
 ```bash
 python -m venv .venv

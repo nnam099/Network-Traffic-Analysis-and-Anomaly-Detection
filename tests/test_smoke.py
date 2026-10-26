@@ -297,8 +297,8 @@ class CoreSmokeTests(unittest.TestCase):
         self.assertEqual(readiness["status"], "BLOCKED")
         self.assertTrue(any("torch" in item for item in readiness["blockers"]))
 
-        self.assertTrue(python_version_status((3, 11, 9))["supported"])
-        self.assertFalse(python_version_status((3, 13, 0))["supported"])
+        self.assertTrue(python_version_status((3, 13, 0))["supported"])
+        self.assertFalse(python_version_status((3, 12, 0))["supported"])
 
     def test_resolve_paths_keeps_existing_kaggle_paths(self):
         from ids.config import resolve_paths

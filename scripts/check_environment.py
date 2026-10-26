@@ -33,10 +33,10 @@ def module_available(name: str) -> bool:
 def python_version_status(version_info: tuple[int, int, int] | None = None) -> dict:
     version = version_info or sys.version_info[:3]
     major, minor, patch = version
-    supported = (major, minor) >= (3, 11) and (major, minor) < (3, 13)
+    supported = (major, minor) >= (3, 13) and (major, minor) < (3, 14)
     return {
         "version": f"{major}.{minor}.{patch}",
-        "requirement": ">=3.11,<3.13",
+        "requirement": ">=3.13,<3.14",
         "supported": supported,
     }
 
@@ -103,7 +103,7 @@ def assess_readiness(env: dict) -> dict:
     if env.get("python_supported") is False:
         blockers.append(
             f"Unsupported Python version: {env.get('python')} "
-            f"(required {env.get('python_requirement', '>=3.11,<3.13')})"
+            f"(required {env.get('python_requirement', '>=3.13,<3.14')})"
         )
 
     packages = env.get("packages", {})
