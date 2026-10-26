@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hmac
 import os
 from contextlib import asynccontextmanager
 from math import isfinite
@@ -8,7 +9,7 @@ from typing import Any
 import numpy as np
 import pandas as pd
 import torch
-from fastapi import FastAPI, HTTPException
+from fastapi import Depends, FastAPI, Header, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
@@ -20,6 +21,20 @@ MODEL_VERSION = os.getenv("IDS_MODEL_VERSION", "v14").strip().lower()
 if MODEL_VERSION != "v14":
     raise RuntimeError("v15 disabled: runtime does not implement KNN/ood_ensemble scoring used at evaluation time")
 LOW_CONFIDENCE_ENTROPY = 1.5
+
+
+def verify_api_key(
+    x_api_key: str | None = Header(default=None),
+    authorization: str | None = Header(default=None),
+) -> None:
+    expected = os.getenv("IDS_API_KEY", "").strip()
+    if not expected:
+        return
+    supplied = (x_api_key or "").strip()
+    if not supplied and authorization and authorization.lower().startswith("bearer "):
+        supplied = authorization[7:].strip()
+    if not supplied or not hmac.compare_digest(supplied, expected):
+        raise HTTPException(status_code=401, detail="invalid or missing API key")
 
 
 class PredictRequest(BaseModel):
@@ -122,16 +137,18 @@ def _flow_prediction(event: dict[str, Any], artifacts: IDSArtifacts) -> dict[str
 
     row = scores.iloc[0].to_dict()
     quality = assess_normalization_quality(normalization_report)
-    severity = "HIGH" if bool(row.get("is_zeroday", False)) else "LOW"
+    low_quality = quality["level"] in {"LOW", "UNKNOWN"}
+    label = "LOW_CONFIDENCE" if low_quality else _public_verdict(row)
+    severity = "HIGH" if bool(row.get("is_zeroday", False)) and not low_quality else "LOW"
     risk = risk_score(row, severity=severity)
     return {
-        "label": _public_verdict(row),
+        "label": label,
         "classifier_class": str(row.get("classifier_class", "Unknown")),
         "confidence": float(row.get("max_prob", 0.0)),
         "ae_re": float(row.get("ae_re", row.get("ae_score", 0.0))),
         "hybrid_score": float(row.get("hybrid_score", row.get("hybrid", 0.0))),
-        "is_anomaly": bool(row.get("is_zeroday", False)),
-        "anomaly_rule": str(row.get("zero_day_rule", "")),
+        "is_anomaly": False if low_quality else bool(row.get("is_zeroday", False)),
+        "anomaly_rule": "low_normalization_coverage" if low_quality else str(row.get("zero_day_rule", "")),
         "risk": risk,
         "normalization": {
             "schema": str(normalization_report.get("schema", "unknown")),
@@ -148,7 +165,7 @@ async def health() -> dict[str, str]:
     return {"status": "ok", "model_version": MODEL_VERSION}
 
 
-@app.post("/predict")
+@app.post("/predict", dependencies=[Depends(verify_api_key)])
 async def predict(payload: PredictRequest) -> dict[str, Any]:
     row = _prediction_row(payload.features, _artifacts())
     uncertainty = row.get("uncertainty", {})
@@ -167,6 +184,6 @@ async def predict(payload: PredictRequest) -> dict[str, Any]:
     }
 
 
-@app.post("/predict/flow")
+@app.post("/predict/flow", dependencies=[Depends(verify_api_key)])
 async def predict_flow(payload: FlowPredictRequest) -> dict[str, Any]:
     return _flow_prediction(payload.event, _artifacts())

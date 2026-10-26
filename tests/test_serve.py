@@ -163,6 +163,69 @@ class ServeApiTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "IDS_MODEL_PATH does not exist"):
             load_artifacts_from_env()
 
+    def test_predict_flow_downgrades_unmapped_event_to_low_confidence(self):
+        response = self._request("POST", "/predict/flow", json={"event": {"foo": 1, "bar": "baz"}})
+
+        self.assertEqual(response.status_code, 200)
+        body = response.json()
+        self.assertEqual(body["label"], "LOW_CONFIDENCE")
+        self.assertFalse(body["is_anomaly"])
+        self.assertEqual(body["anomaly_rule"], "low_normalization_coverage")
+        self.assertEqual(body["normalization"]["quality"], "LOW")
+
+    def test_api_key_guard_enforced_when_configured(self):
+        old_key = os.environ.get("IDS_API_KEY")
+        os.environ["IDS_API_KEY"] = "test-secret-key"
+        try:
+            unauth = self._request("POST", "/predict", json={"features": [0.0] * 55})
+            self.assertEqual(unauth.status_code, 401)
+
+            wrong = self._request(
+                "POST",
+                "/predict",
+                json={"features": [0.0] * 55},
+                headers={"X-API-Key": "wrong"},
+            )
+            self.assertEqual(wrong.status_code, 401)
+
+            ok = self._request(
+                "POST",
+                "/predict",
+                json={"features": [0.0] * 55},
+                headers={"X-API-Key": "test-secret-key"},
+            )
+            self.assertEqual(ok.status_code, 200)
+
+            bearer = self._request(
+                "POST",
+                "/predict",
+                json={"features": [0.0] * 55},
+                headers={"Authorization": "Bearer test-secret-key"},
+            )
+            self.assertEqual(bearer.status_code, 200)
+
+            health = self._request("GET", "/health")
+            self.assertEqual(health.status_code, 200)
+        finally:
+            if old_key is None:
+                os.environ.pop("IDS_API_KEY", None)
+            else:
+                os.environ["IDS_API_KEY"] = old_key
+
+    def test_manifest_verification_blocks_tampered_artifact(self):
+        from ids.batch_evaluator import verify_artifact_against_manifest
+
+        artifact = Path(self.tmp.name) / "ids_v14_model.pth"
+        manifest = Path(self.tmp.name) / "manifest.json"
+        manifest.write_text(
+            '{"artifacts":{"ids_v14_model.pth":{"exists":true,"size_bytes":'
+            + str(artifact.stat().st_size)
+            + ',"sha256":"0000000000000000000000000000000000000000000000000000000000000000"}}}',
+            encoding="utf-8",
+        )
+        with self.assertRaisesRegex(ValueError, "Artifact SHA-256 mismatch"):
+            verify_artifact_against_manifest(artifact, manifest_path=manifest, root=self.tmp.name)
+
     def _write_dummy_artifacts(self, model_path: Path, pipeline_path: Path):
         n_features = 55
         n_classes = 2

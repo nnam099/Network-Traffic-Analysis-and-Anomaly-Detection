@@ -44,8 +44,9 @@ The legacy compatibility wrapper `src/ids_v14_unswnb15.py` re-exports the split 
 ## Runtime Guards
 
 - `ids.artifact_validator` checks feature count, class count, scaler metadata and threshold metadata before inference.
-- `ids.inference_runtime` contains pure verdict, anomaly decision and risk helpers used by the dashboard.
-- `ids.api` exposes `/health`, `/predict`, and `/predict/flow` for v14 artifact-backed FastAPI inference.
+- `ids.batch_evaluator.verify_artifact_against_manifest()` verifies SHA-256 and file size against `results/artifact_manifest.json` before unpickling local artifacts.
+- `ids.inference_runtime` contains pure verdict, anomaly decision and risk helpers used by the dashboard; `/predict/flow` downgrades poorly mapped events (`<3` mapped columns or low coverage) to `LOW_CONFIDENCE`.
+- `ids.api` exposes `/health`, `/predict`, and `/predict/flow` for v14 artifact-backed FastAPI inference, with optional `IDS_API_KEY` authentication (`X-API-Key` or `Authorization: Bearer`).
 - `ids.evaluator.predict_with_uncertainty()` runs Monte Carlo Dropout for served uncertainty without changing training behavior.
 - `scripts/smoke_check.py` compiles the code and runs unit smoke tests.
 - `ids.llm_agent` is lazy-initialized so importing the dashboard does not require an API key.

@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import pickle
 from dataclasses import dataclass
 from datetime import datetime, timezone
+from pathlib import Path
 from typing import Any
 
 import numpy as np
@@ -21,6 +23,49 @@ from .inference_runtime import (
 )
 from .log_normalizer import normalize_real_world_logs
 
+REPO_ROOT = Path(__file__).resolve().parents[2]
+DEFAULT_MANIFEST_PATH = REPO_ROOT / "results" / "artifact_manifest.json"
+
+
+def _sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def verify_artifact_against_manifest(
+    artifact_path: str | Path,
+    manifest_path: str | Path | None = None,
+    root: str | Path | None = None,
+) -> None:
+    """Verify a local artifact against the SHA-256 manifest before unpickling."""
+    root_path = Path(root or REPO_ROOT).resolve()
+    manifest_file = Path(manifest_path or os.getenv("IDS_ARTIFACT_MANIFEST") or DEFAULT_MANIFEST_PATH).resolve()
+    if not manifest_file.exists():
+        return
+
+    resolved = Path(artifact_path).resolve()
+    try:
+        rel_key = resolved.relative_to(root_path).as_posix()
+    except ValueError:
+        return
+
+    manifest = json.loads(manifest_file.read_text(encoding="utf-8"))
+    expected = manifest.get("artifacts", {}).get(rel_key)
+    if not isinstance(expected, dict) or not expected.get("exists"):
+        return
+
+    actual_size = resolved.stat().st_size
+    expected_size = int(expected.get("size_bytes", -1))
+    if expected_size != actual_size:
+        raise ValueError(f"Artifact size mismatch for {rel_key}: expected {expected_size} bytes, got {actual_size}")
+    actual_sha = _sha256_file(resolved)
+    expected_sha = expected.get("sha256")
+    if expected_sha != actual_sha:
+        raise ValueError(f"Artifact SHA-256 mismatch for {rel_key}: expected {expected_sha}, got {actual_sha}")
+
 
 @dataclass
 class IDSArtifacts:
@@ -34,13 +79,22 @@ class IDSArtifacts:
     model_version: str
 
 
-def load_ids_artifacts(model_path: str, pipeline_path: str, model_version: str = "v14") -> IDSArtifacts:
+def load_ids_artifacts(
+    model_path: str,
+    pipeline_path: str,
+    model_version: str = "v14",
+    verify_manifest: bool = True,
+) -> IDSArtifacts:
     model_version = model_version.strip().lower()
     if model_version == "v15":
         raise ValueError("v15 disabled: runtime does not implement KNN/ood_ensemble scoring used at evaluation time")
     if model_version != "v14":
         raise ValueError(f"unsupported runtime model version: {model_version}")
     from .models import IDSModel
+
+    if verify_manifest:
+        verify_artifact_against_manifest(model_path)
+        verify_artifact_against_manifest(pipeline_path)
 
     checkpoint = torch.load(model_path, map_location="cpu", weights_only=False)
     with open(pipeline_path, "rb") as handle:

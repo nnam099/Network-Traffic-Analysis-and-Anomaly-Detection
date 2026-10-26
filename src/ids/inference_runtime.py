@@ -223,7 +223,12 @@ def assess_normalization_quality(report: dict | None) -> dict:
     if missing_timing:
         warnings.append("Missing timing/TCP fields: " + ", ".join(missing_timing[:6]))
 
-    if mapped_count < 5:
+    if mapped_count < 3:
+        level = "LOW"
+        warnings.append("Too few source columns were mapped; prediction is not reliable.")
+    elif mapped_count < 5:
+        if level == "GOOD":
+            level = "MEDIUM"
         warnings.append("Few source columns were mapped; verify CSV schema manually.")
 
     if not warnings:
