@@ -16,9 +16,16 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from ids.p4_model_interface import (  # noqa: E402
-    CATEGORICAL_FIELDS, OOV_INDEX, FrozenVocabulary, RepresentationBackbone,
-    StructuredBatchAdapter, StructuredFeatureEncoder, StructuredModelInput,
-    architecture_config, bound_model_config, stable_hash,
+    CATEGORICAL_FIELDS,
+    OOV_INDEX,
+    FrozenVocabulary,
+    RepresentationBackbone,
+    StructuredBatchAdapter,
+    StructuredFeatureEncoder,
+    StructuredModelInput,
+    architecture_config,
+    bound_model_config,
+    stable_hash,
     vocabularies_from_manifest,
 )
 
@@ -40,9 +47,7 @@ def structured_batch(batch_size=3):
     vocabularies = vocabularies_from_manifest(manifest)
     adapter = StructuredBatchAdapter(vocabularies)
     categories = {name: [None] * batch_size for name in CATEGORICAL_FIELDS}
-    return vocabularies, adapter.transform(
-        np.zeros((batch_size, 58), dtype=np.float64), categories
-    )
+    return vocabularies, adapter.transform(np.zeros((batch_size, 58), dtype=np.float64), categories)
 
 
 def test_exact_structured_schema_and_wrong_inputs_rejected():
@@ -52,24 +57,31 @@ def test_exact_structured_schema_and_wrong_inputs_rejected():
     assert all(getattr(valid, name).dtype == torch.long for name in CATEGORICAL_FIELDS)
     with pytest.raises(ValueError, match="batch, 58"):
         StructuredModelInput(
-            torch.zeros(3, 57, dtype=torch.float64), valid.proto,
-            valid.service, valid.state,
+            torch.zeros(3, 57, dtype=torch.float64),
+            valid.proto,
+            valid.service,
+            valid.state,
         )
     with pytest.raises(TypeError, match="torch.float64"):
         StructuredModelInput(
-            torch.zeros(3, 58, dtype=torch.float32), valid.proto,
-            valid.service, valid.state,
+            torch.zeros(3, 58, dtype=torch.float32),
+            valid.proto,
+            valid.service,
+            valid.state,
         )
     with pytest.raises(TypeError, match="torch.long"):
         StructuredModelInput(
-            valid.continuous, valid.proto.float(), valid.service, valid.state,
+            valid.continuous,
+            valid.proto.float(),
+            valid.service,
+            valid.state,
         )
     with pytest.raises(TypeError):
         StructuredModelInput(valid.continuous, valid.proto, valid.service)  # type: ignore[call-arg]
     with pytest.raises(ValueError, match="ordered proto/service/state"):
-        StructuredBatchAdapter({"state": vocabularies["state"],
-                                "proto": vocabularies["proto"],
-                                "service": vocabularies["service"]})
+        StructuredBatchAdapter(
+            {"state": vocabularies["state"], "proto": vocabularies["proto"], "service": vocabularies["service"]}
+        )
 
 
 def test_vocabulary_oov_is_deterministic_immutable_and_round_trips():
@@ -100,10 +112,8 @@ def test_float64_framework_boundary_is_exact_and_categorical_never_floats():
     second = adapter.transform(source.copy(), categories)
     np.testing.assert_array_equal(first.continuous.numpy(), source)
     assert torch.equal(first.continuous, second.continuous)
-    assert all(torch.equal(getattr(first, name), getattr(second, name))
-               for name in CATEGORICAL_FIELDS)
-    assert all(not getattr(first, name).dtype.is_floating_point
-               for name in CATEGORICAL_FIELDS)
+    assert all(torch.equal(getattr(first, name), getattr(second, name)) for name in CATEGORICAL_FIELDS)
+    assert all(not getattr(first, name).dtype.is_floating_point for name in CATEGORICAL_FIELDS)
     with pytest.raises(TypeError, match="NumPy float64"):
         adapter.transform(source.astype(np.float32), categories)
     source[0, 0] = np.nan
@@ -122,9 +132,7 @@ def test_architecture_shapes_embeddings_and_flat_input_rejection():
     assert fused.shape == (5, config["fusion_input_dim"])
     assert representation.shape == (5, config["representation_dim"])
     assert representation.dtype == torch.float64
-    assert encoder.categorical_encoder.embedding_dims == config[
-        "categorical_embedding_dims"
-    ]
+    assert encoder.categorical_encoder.embedding_dims == config["categorical_embedding_dims"]
     for feature in CATEGORICAL_FIELDS:
         embedding = encoder.categorical_encoder.embeddings[feature]
         assert embedding.num_embeddings == vocabularies[feature].cardinality
@@ -138,20 +146,17 @@ def test_bound_config_matches_exact_p3_manifest_provenance():
     manifest_hash = hashlib.sha256(raw).hexdigest()
     assert manifest_hash == entry["manifest_sha256"]
     config = bound_model_config(
-        manifest, manifest_sha256=manifest_hash,
-        p3_collection_sha256=(
-            "1443746a4f024b3d7c1569ba9bbd31987933b5f9e2fb0ce6507ba5e57ddbab21"
-        ),
-        schema=schema, source_code_sha256="unit-test-source-hash",
+        manifest,
+        manifest_sha256=manifest_hash,
+        p3_collection_sha256=("1443746a4f024b3d7c1569ba9bbd31987933b5f9e2fb0ce6507ba5e57ddbab21"),
+        schema=schema,
+        source_code_sha256="unit-test-source-hash",
     )
-    payload = {key: value for key, value in config.items()
-               if key != "model_config_sha256"}
+    payload = {key: value for key, value in config.items() if key != "model_config_sha256"}
     assert stable_hash(payload) == config["model_config_sha256"]
     assert config["p3_manifest_sha256"] == manifest_hash
     assert config["schema_sha256"] == manifest["feature_schema_sha256"]
-    assert config["scaler_center_scale_sha256"] == manifest[
-        "scaler_provenance"
-    ]["scaler_center_scale_sha256"]
+    assert config["scaler_center_scale_sha256"] == manifest["scaler_provenance"]["scaler_center_scale_sha256"]
     assert config["p3_collection_sha256"] == freeze.get(
         "p3_collection_sha256",
         "1443746a4f024b3d7c1569ba9bbd31987933b5f9e2fb0ce6507ba5e57ddbab21",
@@ -161,21 +166,29 @@ def test_bound_config_matches_exact_p3_manifest_provenance():
 
 
 def test_p4_sources_and_artifacts_prohibit_training_and_metrics():
-    sources = "\n".join((ROOT / name).read_text() for name in (
-        "src/ids/p4_model_interface.py", "scripts/audit_p4_model_interface.py"
-    ))
-    for forbidden in ("torch.optim", ".backward(", "torch.save(", "roc_auc_score",
-                      "f1_score", "accuracy_score", "precision_recall_curve"):
+    sources = "\n".join(
+        (ROOT / name).read_text() for name in ("src/ids/p4_model_interface.py", "scripts/audit_p4_model_interface.py")
+    )
+    for forbidden in (
+        "torch.optim",
+        ".backward(",
+        "torch.save(",
+        "roc_auc_score",
+        "f1_score",
+        "accuracy_score",
+        "precision_recall_curve",
+    ):
         assert forbidden not in sources
     output = ROOT / "results/model_design/p4"
     if output.exists():
         names = {path.name for path in output.iterdir() if path.is_file()}
         assert names == {
-            "model_interface.json", "architecture_design.json",
-            "legacy_compatibility_audit.json", "p4_matrix.json",
+            "model_interface.json",
+            "architecture_design.json",
+            "legacy_compatibility_audit.json",
+            "p4_matrix.json",
         }
-        assert not any(path.suffix in {".pt", ".pth", ".ckpt", ".pkl"}
-                       for path in output.iterdir())
+        assert not any(path.suffix in {".pt", ".pth", ".ckpt", ".pkl"} for path in output.iterdir())
         matrix = json.loads((output / "p4_matrix.json").read_text())
         assert matrix["optimizer_steps"] == 0
         assert matrix["performance_metrics_generated"] is False

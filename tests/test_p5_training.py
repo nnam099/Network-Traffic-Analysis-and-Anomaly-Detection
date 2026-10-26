@@ -17,12 +17,22 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from ids.p4_model_interface import (  # noqa: E402
-    StructuredModelInput, bound_model_config, vocabularies_from_manifest,
+    StructuredModelInput,
+    bound_model_config,
+    vocabularies_from_manifest,
 )
 from ids.p5_training import (  # noqa: E402
-    PERMISSIONS, TRAINING_CONFIG, TrainingOnlyModel, batch_order, checked_output,
-    assert_checkpoint_provenance, require_role, set_determinism, source_hash,
-    stable_hash, validate_cell,
+    PERMISSIONS,
+    TRAINING_CONFIG,
+    TrainingOnlyModel,
+    batch_order,
+    checked_output,
+    assert_checkpoint_provenance,
+    require_role,
+    set_determinism,
+    source_hash,
+    stable_hash,
+    validate_cell,
     validate_roles,
 )
 
@@ -56,7 +66,9 @@ def test_role_manifest_rejects_overlap_and_test_consultation():
     manifest = case()
     validate_roles(manifest)
     contaminated = copy.deepcopy(manifest)
-    contaminated["roles"]["val"]["canonical_identity_hashes"][0] = contaminated["roles"]["train"]["canonical_identity_hashes"][0]
+    contaminated["roles"]["val"]["canonical_identity_hashes"][0] = contaminated["roles"]["train"][
+        "canonical_identity_hashes"
+    ][0]
     with pytest.raises(ValueError, match="overlap"):
         validate_roles(contaminated)
     contaminated = copy.deepcopy(manifest)
@@ -80,30 +92,61 @@ def test_all_frozen_cells_and_provenance_mismatch_detection():
     broken = copy.deepcopy(manifest)
     broken["vocabulary_provenance"]["vocabulary_maps"]["proto"]["value:tcp"] = 999
     from ids.p4_model_interface import vocabularies_from_manifest
+
     with pytest.raises(ValueError, match="vocabulary hash"):
         vocabularies_from_manifest(broken)
     schema = json.loads((ROOT / "results/data_quality/p3/schema_v2.json").read_text())
     broken = copy.deepcopy(manifest)
     broken["scaler_provenance"]["scaler_center"][0] += 1.0
     with pytest.raises(ValueError, match="scaler hash"):
-        bound_model_config(broken, manifest_sha256="ignored", p3_collection_sha256="ignored",
-                           schema=schema, source_code_sha256="ignored")
+        bound_model_config(
+            broken,
+            manifest_sha256="ignored",
+            p3_collection_sha256="ignored",
+            schema=schema,
+            source_code_sha256="ignored",
+        )
 
 
 def test_checkpoint_provenance_rejects_wrong_manifest_config_vocab_scaler():
     dry = validate_cell(ROOT, "Fuzzers", 42, 10042)
-    run = {**{name: dry[name] for name in (
-        "p3_manifest_sha256", "p4_model_config_sha256", "training_config_sha256",
-        "vocabulary_sha256", "scaler_sha256", "source_hash")},
-        "run_id": "p5-fuzzers-s42-m10042-smoke-a", "selected_epoch": 3,
-        "validation_selection_value": 0.5}
-    payload = {"provenance": {"target": "Fuzzers", "split_seed": 42, "model_seed": 10042,
-                              "run_id": run["run_id"], "epoch": 3,
-                              "validation_selection_value": 0.5,
-                              **{name: dry[name] for name in (
-                                  "p3_manifest_sha256", "p4_model_config_sha256",
-                                  "training_config_sha256", "vocabulary_sha256",
-                                  "scaler_sha256", "source_hash")}}}
+    run = {
+        **{
+            name: dry[name]
+            for name in (
+                "p3_manifest_sha256",
+                "p4_model_config_sha256",
+                "training_config_sha256",
+                "vocabulary_sha256",
+                "scaler_sha256",
+                "source_hash",
+            )
+        },
+        "run_id": "p5-fuzzers-s42-m10042-smoke-a",
+        "selected_epoch": 3,
+        "validation_selection_value": 0.5,
+    }
+    payload = {
+        "provenance": {
+            "target": "Fuzzers",
+            "split_seed": 42,
+            "model_seed": 10042,
+            "run_id": run["run_id"],
+            "epoch": 3,
+            "validation_selection_value": 0.5,
+            **{
+                name: dry[name]
+                for name in (
+                    "p3_manifest_sha256",
+                    "p4_model_config_sha256",
+                    "training_config_sha256",
+                    "vocabulary_sha256",
+                    "scaler_sha256",
+                    "source_hash",
+                )
+            },
+        }
+    }
     assert_checkpoint_provenance(payload, run, dry)
     for name in ("p3_manifest_sha256", "p4_model_config_sha256", "vocabulary_sha256", "scaler_sha256"):
         altered = copy.deepcopy(payload)
@@ -125,10 +168,12 @@ def test_float64_initialization_and_deterministic_batches():
     assert not np.array_equal(batch_order(99, 10042, 1), batch_order(99, 10042, 2))
     assert stable_hash(TRAINING_CONFIG) == stable_hash(json.loads(json.dumps(TRAINING_CONFIG)))
     with pytest.raises(TypeError, match="torch.float64"):
-        StructuredModelInput(torch.zeros(2, 58, dtype=torch.float32),
-                             torch.zeros(2, dtype=torch.long),
-                             torch.zeros(2, dtype=torch.long),
-                             torch.zeros(2, dtype=torch.long))
+        StructuredModelInput(
+            torch.zeros(2, 58, dtype=torch.float32),
+            torch.zeros(2, dtype=torch.long),
+            torch.zeros(2, dtype=torch.long),
+            torch.zeros(2, dtype=torch.long),
+        )
 
 
 def test_output_namespace_and_cli_default_do_not_train():
@@ -137,10 +182,22 @@ def test_output_namespace_and_cli_default_do_not_train():
     with pytest.raises(PermissionError):
         checked_output(ROOT, "official_test/results.json")
     before = set((ROOT / "results/training_protocol/p5/checkpoints").glob("*.pt"))
-    result = subprocess.run([sys.executable, str(ROOT / "scripts/train_p5_development.py"),
-                             "--target", "Fuzzers", "--split-seed", "42",
-                             "--model-seed", "10042"], cwd=ROOT,
-                            capture_output=True, text=True, check=True)
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts/train_p5_development.py"),
+            "--target",
+            "Fuzzers",
+            "--split-seed",
+            "42",
+            "--model-seed",
+            "10042",
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=True,
+    )
     assert '"optimizer_created": false' in result.stdout
     assert set((ROOT / "results/training_protocol/p5/checkpoints").glob("*.pt")) == before
     source_files, _ = source_hash(ROOT)
@@ -150,9 +207,12 @@ def test_output_namespace_and_cli_default_do_not_train():
 
 
 def test_legacy_training_cli_rejects_schema_v2_request():
-    result = subprocess.run([sys.executable, str(ROOT / "train.py"),
-                             "--schema_version", "scientific-feature-schema-v2"],
-                            cwd=ROOT, capture_output=True, text=True)
+    result = subprocess.run(
+        [sys.executable, str(ROOT / "train.py"), "--schema_version", "scientific-feature-schema-v2"],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+    )
     assert result.returncode != 0
     assert "unrecognized arguments" in result.stderr
 
@@ -171,10 +231,20 @@ def test_smoke_artifacts_if_present():
         if not path.exists():
             continue
         run = json.loads(path.read_text())
-        for name in ("p3_manifest_sha256", "p4_model_config_sha256",
-                     "training_config_sha256", "source_hash", "vocabulary_sha256",
-                     "scaler_sha256", "environment", "role_counts", "identity_counts",
-                     "epoch_history", "checkpoint_sha256", "selection_rule"):
+        for name in (
+            "p3_manifest_sha256",
+            "p4_model_config_sha256",
+            "training_config_sha256",
+            "source_hash",
+            "vocabulary_sha256",
+            "scaler_sha256",
+            "environment",
+            "role_counts",
+            "identity_counts",
+            "epoch_history",
+            "checkpoint_sha256",
+            "selection_rule",
+        ):
             assert name in run
         assert run["official_test_access"] is False
         assert run["optimizer_steps"] > 0

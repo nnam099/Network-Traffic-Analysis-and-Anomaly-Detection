@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """Streamlit dashboard for IDS alert review and triage."""
 
 import streamlit as st
@@ -14,13 +14,10 @@ import hashlib
 from datetime import datetime
 
 # ── Page config (phai dat truoc bat ky st.* nao) ─────────────────
-st.set_page_config(
-    page_title="Network IDS",
-    page_icon="[SOC]",
-    layout="wide"
-)
+st.set_page_config(page_title="Network IDS", page_icon="[SOC]", layout="wide")
 
-st.markdown("""
+st.markdown(
+    """
 <style>
     :root {
         --soc-bg: #0b0e11;
@@ -263,11 +260,14 @@ st.markdown("""
     .sev-medium { color: var(--soc-yellow); font-weight: 700; }
     .sev-low { color: var(--soc-green); font-weight: 700; }
 </style>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)
 
 # ── Them src/ vao path de import module ──────────────────────────
-SRC_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'src')
+SRC_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "src")
 sys.path.insert(0, SRC_DIR)
+
 
 # ── Kiem tra thu vien can thiet ───────────────────────────────────
 def _has_module(name: str) -> bool:
@@ -275,6 +275,7 @@ def _has_module(name: str) -> bool:
         return importlib.util.find_spec(name) is not None
     except (ImportError, AttributeError, ValueError):
         return False
+
 
 MISSING_REQUIRED = []
 try:
@@ -288,6 +289,7 @@ if not HAS_SHAP:
 
 try:
     from dotenv import load_dotenv
+
     load_dotenv()
 except ImportError:
     st.warning("[!] Thieu python-dotenv — se bo qua load .env")
@@ -295,6 +297,7 @@ except ImportError:
 LLM_PROVIDER = None
 try:
     from ids.llm_agent import LLM_PROVIDER as _LLM_PROVIDER
+
     LLM_PROVIDER = (_LLM_PROVIDER or "").lower()
 except Exception:
     LLM_PROVIDER = None
@@ -330,12 +333,14 @@ HAS_EXPLAINER = False
 if HAS_SHAP:
     try:
         from ids.explainer import SHAPExplainer
+
         HAS_EXPLAINER = True
     except ImportError:
         st.warning("[!] Khong tim thay explainer.py trong src/ - SHAP se bi tat")
 
 try:
     from ids.mitre_mapper import MITREMapper
+
     HAS_MITRE = True
 except ImportError:
     HAS_MITRE = False
@@ -343,6 +348,7 @@ except ImportError:
 
 try:
     from ids.log_normalizer import normalize_real_world_logs
+
     HAS_LOG_NORMALIZER = True
 except ImportError:
     HAS_LOG_NORMALIZER = False
@@ -351,6 +357,7 @@ except ImportError:
 
 try:
     from ids.artifact_validator import validate_artifact_contract
+
     HAS_ARTIFACT_VALIDATOR = True
 except ImportError:
     HAS_ARTIFACT_VALIDATOR = False
@@ -358,6 +365,7 @@ except ImportError:
 
 try:
     from ids.input_guard import CSVInputPolicy, validate_uploaded_csv
+
     HAS_INPUT_GUARD = True
 except ImportError:
     HAS_INPUT_GUARD = False
@@ -403,15 +411,16 @@ HAS_LLM = False
 if LLM_DEP and HAS_LLM_DEPS:
     try:
         from ids.llm_agent import SOCTriageAgent
+
         HAS_LLM = True
     except ImportError:
         st.warning("[!] Khong tim thay llm_agent.py trong src/")
 
 # ── Runtime config ────────────────────────────────────────────────
-BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
-CKPT_DIR = os.getenv("IDS_CHECKPOINT_DIR", os.path.join(BASE_DIR, 'checkpoints'))
-DATA_DIR = os.getenv("IDS_DATA_DIR", os.path.join(BASE_DIR, 'data'))
-ALERT_DB_PATH = os.getenv("IDS_ALERT_DB_PATH", os.path.join(BASE_DIR, 'results', 'alerts.sqlite3'))
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+CKPT_DIR = os.getenv("IDS_CHECKPOINT_DIR", os.path.join(BASE_DIR, "checkpoints"))
+DATA_DIR = os.getenv("IDS_DATA_DIR", os.path.join(BASE_DIR, "data"))
+ALERT_DB_PATH = os.getenv("IDS_ALERT_DB_PATH", os.path.join(BASE_DIR, "results", "alerts.sqlite3"))
 CSV_UPLOAD_MAX_BYTES = int(os.getenv("IDS_DASHBOARD_MAX_CSV_BYTES", str(50 * 1024 * 1024)))
 CSV_UPLOAD_MAX_ROWS = int(os.getenv("IDS_DASHBOARD_MAX_CSV_ROWS", "100000"))
 CSV_UPLOAD_MAX_COLUMNS = int(os.getenv("IDS_DASHBOARD_MAX_CSV_COLUMNS", "250"))
@@ -428,16 +437,17 @@ DEFAULT_MODEL = f"ids_{MODEL_VERSION}_model.pth"
 DEFAULT_PIPE = f"ids_{MODEL_VERSION}_pipeline.pkl"
 MODEL_PATH = os.getenv("IDS_MODEL_PATH", os.path.join(CKPT_DIR, DEFAULT_MODEL))
 PIPE_PATH = os.getenv("IDS_PIPELINE_PATH", os.path.join(CKPT_DIR, DEFAULT_PIPE))
-DATA_PATH = os.getenv("IDS_SAMPLE_DATA_PATH", os.path.join(DATA_DIR, 'UNSW_NB15_training-set.csv'))
+DATA_PATH = os.getenv("IDS_SAMPLE_DATA_PATH", os.path.join(DATA_DIR, "UNSW_NB15_training-set.csv"))
 THRESHOLD_PROFILE_PATH = os.getenv("IDS_THRESHOLD_PROFILE", os.path.join(CKPT_DIR, "local_thresholds.json"))
 
 # CLASS_NAMES se duoc load tu label_encoder sau khi model load
 # De tranh sai thu tu do LabelEncoder sort theo alphabet
-CLASS_NAMES  = ["Normal", "DoS", "Exploits", "Reconnaissance", "Generic"]  # fallback
+CLASS_NAMES = ["Normal", "DoS", "Exploits", "Reconnaissance", "Generic"]  # fallback
 AE_THRESHOLD = 0.5
 HYBRID_THRESHOLD = 0.5
 PIPELINE_THRESHOLDS = None
 PIPELINE_META = {}
+
 
 def _load_threshold_profile(path: str) -> dict | None:
     if not path or not os.path.exists(path):
@@ -449,25 +459,27 @@ def _load_threshold_profile(path: str) -> dict | None:
         raise ValueError("threshold profile missing thresholds dict")
     return profile
 
+
 def _build_categorical_maps_from_sample() -> dict:
     if not os.path.exists(DATA_PATH):
         return {}
     try:
         cols = pd.read_csv(DATA_PATH, nrows=1).columns
-        usecols = [c for c in ['proto', 'service', 'state'] if c in cols]
+        usecols = [c for c in ["proto", "service", "state"] if c in cols]
         if not usecols:
             return {}
         df = pd.read_csv(DATA_PATH, usecols=usecols)
         maps = {}
         for col in usecols:
-            values = df[col].astype(str).fillna('unk')
+            values = df[col].astype(str).fillna("unk")
             classes = sorted(values.unique().tolist())
-            if 'unk' not in classes:
-                classes.append('unk')
+            if "unk" not in classes:
+                classes.append("unk")
             maps[col] = {v: i for i, v in enumerate(classes)}
         return maps
     except Exception:
         return {}
+
 
 # ── Sidebar navigation ────────────────────────────────────────────
 # Keep the student-facing workflow focused on the two core IDS tasks.
@@ -489,12 +501,14 @@ st.sidebar.markdown(
 
 page = st.sidebar.radio("Navigation", NAV_ITEMS, key="nav_page")
 
+
 def _health(value, warn=False):
     if value:
         return '<span class="health-ok">OK</span>'
     if warn:
         return '<span class="health-warn">WARN</span>'
     return '<span class="health-bad">OFF</span>'
+
 
 llm_ok = HAS_LLM and LLM_KEY_OK
 st.sidebar.markdown("**System Health**")
@@ -511,17 +525,18 @@ st.sidebar.markdown(
 )
 st.sidebar.caption(f"Model version: {MODEL_VERSION.upper()}")
 
+
 # ── Pipeline guard/autogen ─────────────────────────────────────────
 def ensure_pipeline():
     if os.path.exists(PIPE_PATH):
         try:
-            with open(PIPE_PATH, 'rb') as f:
+            with open(PIPE_PATH, "rb") as f:
                 pipeline = pickle.load(f)
-            if not pipeline.get('categorical_maps'):
+            if not pipeline.get("categorical_maps"):
                 maps = _build_categorical_maps_from_sample()
                 if maps:
-                    pipeline['categorical_maps'] = maps
-                    pipeline['categorical_maps_source'] = 'sample_data_fallback'
+                    pipeline["categorical_maps"] = maps
+                    pipeline["categorical_maps_source"] = "sample_data_fallback"
             return pipeline
         except Exception as e:
             st.warning(f"[!] Loi doc pipeline: {e}")
@@ -541,24 +556,25 @@ def ensure_pipeline():
             df = clean_df(df)
             splits = prepare_splits(df, seed=42)
         pipeline = {
-            'scaler':        splits['scaler'],
-            'label_encoder': splits['label_encoder'],
-            'feat_cols':     splits['feat_cols'],
-            'feature_names': splits.get('feature_names', splits['feat_cols']),
-            'known_cats':    splits['known_cats'],
-            'zd_cats':       splits['zd_cats'],
-            'categorical_maps': splits.get('categorical_maps', {}),
-            'version':       MODEL_VERSION,
-            'n_features':    splits['n_features'],
-            'n_classes':     splits['n_classes'],
+            "scaler": splits["scaler"],
+            "label_encoder": splits["label_encoder"],
+            "feat_cols": splits["feat_cols"],
+            "feature_names": splits.get("feature_names", splits["feat_cols"]),
+            "known_cats": splits["known_cats"],
+            "zd_cats": splits["zd_cats"],
+            "categorical_maps": splits.get("categorical_maps", {}),
+            "version": MODEL_VERSION,
+            "n_features": splits["n_features"],
+            "n_classes": splits["n_classes"],
         }
-        with open(PIPE_PATH, 'wb') as f:
+        with open(PIPE_PATH, "wb") as f:
             pickle.dump(pipeline, f)
         st.success("[OK] Pipeline da duoc tao va luu")
         return pipeline
     except Exception as e:
         st.error(f"Loi tao pipeline: {e}")
         return None
+
 
 # ── Load model (cache) ─────────────────────────────────────────────
 @st.cache_resource
@@ -570,14 +586,14 @@ def load_model():
         train_mod = __import__(f"ids_{MODEL_VERSION}_unswnb15", fromlist=["IDSModel"])
         IDSModel = train_mod.IDSModel
 
-        checkpoint = torch.load(MODEL_PATH, map_location='cpu', weights_only=False)
-        n_feat     = checkpoint['n_features']
-        n_cls      = checkpoint['n_classes']
-        hidden     = checkpoint.get('hidden', 256)
-        ae_hidden  = checkpoint.get('ae_hidden', 128)
+        checkpoint = torch.load(MODEL_PATH, map_location="cpu", weights_only=False)
+        n_feat = checkpoint["n_features"]
+        n_cls = checkpoint["n_classes"]
+        hidden = checkpoint.get("hidden", 256)
+        ae_hidden = checkpoint.get("ae_hidden", 128)
 
         model = IDSModel(n_features=n_feat, n_classes=n_cls, hidden=hidden, ae_hidden=ae_hidden)
-        model.load_state_dict(checkpoint['model_state_dict'])
+        model.load_state_dict(checkpoint["model_state_dict"])
         model.eval()
 
         pipeline = ensure_pipeline()
@@ -591,11 +607,13 @@ def load_model():
                 st.warning(f"[Artifact] {warning}")
             validation.raise_for_errors()
 
-        PIPELINE_THRESHOLDS = dict(pipeline.get('thresholds') or {})
-        hybrid_meta = pipeline.get('hybrid_meta') or checkpoint.get('hybrid_meta') or PIPELINE_THRESHOLDS.get('hybrid_meta')
+        PIPELINE_THRESHOLDS = dict(pipeline.get("thresholds") or {})
+        hybrid_meta = (
+            pipeline.get("hybrid_meta") or checkpoint.get("hybrid_meta") or PIPELINE_THRESHOLDS.get("hybrid_meta")
+        )
         if hybrid_meta:
-            PIPELINE_THRESHOLDS['hybrid_meta'] = hybrid_meta
-            pipeline['hybrid_meta'] = hybrid_meta
+            PIPELINE_THRESHOLDS["hybrid_meta"] = hybrid_meta
+            pipeline["hybrid_meta"] = hybrid_meta
         PIPELINE_META = pipeline
         threshold_profile = _load_threshold_profile(THRESHOLD_PROFILE_PATH)
         if threshold_profile is not None:
@@ -607,9 +625,9 @@ def load_model():
                 f"(target FPR={threshold_profile.get('target_fpr', 'N/A')})"
             )
 
-        scaler        = pipeline['scaler']
-        feature_names = pipeline.get('feature_names', pipeline.get('feat_cols', []))
-        label_encoder = pipeline['label_encoder']
+        scaler = pipeline["scaler"]
+        feature_names = pipeline.get("feature_names", pipeline.get("feat_cols", []))
+        label_encoder = pipeline["label_encoder"]
 
         return model, scaler, feature_names, label_encoder
 
@@ -617,31 +635,35 @@ def load_model():
         st.error(f"Loi load model: {e}")
         return None, None, None, None
 
+
 model, scaler, feature_names, label_encoder = load_model()
 
 if PIPELINE_THRESHOLDS:
-    AE_THRESHOLD = float(PIPELINE_THRESHOLDS.get('ae_re', AE_THRESHOLD))
-    HYBRID_THRESHOLD = float(PIPELINE_THRESHOLDS.get('hybrid', HYBRID_THRESHOLD))
+    AE_THRESHOLD = float(PIPELINE_THRESHOLDS.get("ae_re", AE_THRESHOLD))
+    HYBRID_THRESHOLD = float(PIPELINE_THRESHOLDS.get("hybrid", HYBRID_THRESHOLD))
 
 # Lay CLASS_NAMES dung thu tu tu label_encoder (tranh sai do sort alphabet)
 if label_encoder is not None:
     CLASS_NAMES = list(label_encoder.classes_)
 
+
 def _uploaded_file_hash(uploaded_file) -> str:
     return hashlib.sha256(uploaded_file.getvalue()).hexdigest()
 
+
 def _reset_bulk_results_for_new_file(file_hash: str) -> None:
-    if st.session_state.get('bulk_source_file_hash') == file_hash:
+    if st.session_state.get("bulk_source_file_hash") == file_hash:
         return
     for key in [
-        'bulk_result_df',
-        'bulk_raw_df',
-        'bulk_source_file_hash',
-        'last_log_normalization_report',
-        'bulk_score_summary',
+        "bulk_result_df",
+        "bulk_raw_df",
+        "bulk_source_file_hash",
+        "last_log_normalization_report",
+        "bulk_score_summary",
     ]:
         st.session_state.pop(key, None)
-    st.session_state['current_upload_file_hash'] = file_hash
+    st.session_state["current_upload_file_hash"] = file_hash
+
 
 def _zero_day_decision(ae_score, max_prob, hybrid_score):
     return runtime_zero_day_decision(
@@ -653,14 +675,18 @@ def _zero_day_decision(ae_score, max_prob, hybrid_score):
         hybrid_threshold=HYBRID_THRESHOLD,
     )
 
+
 def _hybrid_score(ae_score, max_prob):
     return runtime_hybrid_score_from_meta(ae_score, max_prob, thresholds=PIPELINE_THRESHOLDS)
+
 
 def _traffic_verdict(is_zeroday, classifier_class) -> str:
     return runtime_traffic_verdict(is_zeroday, classifier_class)
 
+
 def _ground_truth_verdict(label) -> str:
     return runtime_ground_truth_verdict(label)
+
 
 def preprocess_raw_df(df_raw: pd.DataFrame, feat_cols: list) -> np.ndarray:
     """
@@ -669,6 +695,7 @@ def preprocess_raw_df(df_raw: pd.DataFrame, feat_cols: list) -> np.ndarray:
     """
     normalizer = None
     if HAS_LOG_NORMALIZER and normalize_real_world_logs is not None:
+
         def normalizer(frame):
             return normalize_real_world_logs(frame, expected_features=feat_cols)
 
@@ -680,7 +707,7 @@ def preprocess_raw_df(df_raw: pd.DataFrame, feat_cols: list) -> np.ndarray:
         normalizer=normalizer,
     )
     if result.normalization_report is not None:
-        st.session_state['last_log_normalization_report'] = result.normalization_report
+        st.session_state["last_log_normalization_report"] = result.normalization_report
     return result.features
 
 
@@ -689,11 +716,9 @@ def load_background(_scaler, _feature_names):
     if not os.path.exists(DATA_PATH):
         return None
     try:
-        df        = pd.read_csv(DATA_PATH)
-        label_col = 'label' if 'label' in df.columns else df.columns[-1]
-        normal    = df[df[label_col] == 0].sample(
-            min(200, len(df[df[label_col] == 0])), random_state=42
-        )
+        df = pd.read_csv(DATA_PATH)
+        label_col = "label" if "label" in df.columns else df.columns[-1]
+        normal = df[df[label_col] == 0].sample(min(200, len(df[df[label_col] == 0])), random_state=42)
         bg_arr = preprocess_raw_df(normal, _feature_names or [])
         if bg_arr.shape[1] == 0:
             st.warning("[SHAP] Khong tim thay feature khop — SHAP se bi tat")
@@ -704,33 +729,34 @@ def load_background(_scaler, _feature_names):
         return None
 
 
-
 @st.cache_resource
 def get_components(_model, _scaler, _feature_names, _bg):
     comps = {}
     if HAS_EXPLAINER and _model and _scaler and _bg is not None:
         try:
-            comps['explainer'] = SHAPExplainer(_model, _scaler, _feature_names, _bg)
+            comps["explainer"] = SHAPExplainer(_model, _scaler, _feature_names, _bg)
         except Exception as e:
             st.warning(f"SHAP init loi: {type(e).__name__}: {e}")
     if HAS_MITRE:
-        comps['mapper'] = MITREMapper()
+        comps["mapper"] = MITREMapper()
     if HAS_LLM:
-        comps['agent'] = SOCTriageAgent()
+        comps["agent"] = SOCTriageAgent()
     return comps
 
+
 # ── Demo mode neu chua co model ───────────────────────────────────
-DEMO_MODE = (model is None or scaler is None)
+DEMO_MODE = model is None or scaler is None
+
 
 def mock_inference(n_features=49):
     """Tao du lieu gia lap de demo khi chua co model."""
-    ae_score     = float(np.random.uniform(0.3, 0.95))
-    max_prob     = float(np.random.uniform(0.4, 0.99))
-    pred_idx     = int(np.random.randint(0, len(CLASS_NAMES)))
+    ae_score = float(np.random.uniform(0.3, 0.95))
+    max_prob = float(np.random.uniform(0.4, 0.99))
+    pred_idx = int(np.random.randint(0, len(CLASS_NAMES)))
     classifier_class = CLASS_NAMES[pred_idx]
     hybrid_score = float(np.asarray(_hybrid_score(ae_score, max_prob)).reshape(-1)[0])
-    is_zeroday   = ae_score > AE_THRESHOLD and max_prob < 0.6
-    verdict       = _traffic_verdict(is_zeroday, classifier_class)
+    is_zeroday = ae_score > AE_THRESHOLD and max_prob < 0.6
+    verdict = _traffic_verdict(is_zeroday, classifier_class)
 
     # SHAP gia lap
     if feature_names:
@@ -740,28 +766,31 @@ def mock_inference(n_features=49):
 
     shap_summary_lines = []
     for fname in fnames:
-        sv  = float(np.random.uniform(-0.3, 0.3))
-        fv  = float(np.random.uniform(0, 100))
+        sv = float(np.random.uniform(-0.3, 0.3))
+        fv = float(np.random.uniform(0, 100))
         dir_str = "tang nguy co" if sv > 0 else "giam nguy co"
         shap_summary_lines.append(f"  - {fname}: gia_tri={fv:.2f}, SHAP={sv:+.4f} ({dir_str})")
 
     shap_summary = "\n".join(shap_summary_lines)
 
     return {
-        "alert_id"       : str(uuid.uuid4())[:8].upper(),
-        "timestamp"      : datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "hybrid_score"   : hybrid_score,
-        "ae_score"       : ae_score,
-        "max_prob"       : max_prob,
+        "alert_id": str(uuid.uuid4())[:8].upper(),
+        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "hybrid_score": hybrid_score,
+        "ae_score": ae_score,
+        "max_prob": max_prob,
         "predicted_class": verdict,
         "classifier_class": classifier_class,
-        "is_zeroday"     : is_zeroday,
-        "shap_summary"   : shap_summary,
-        "mitre_summary"  : "MITRE mapping: [T1595] Active Scanning (Reconnaissance)",
-        "top_features"   : [(fnames[i], np.random.uniform(-0.3,0.3), np.random.uniform(0,100)) for i in range(min(5,len(fnames)))],
-        "probs"          : np.random.dirichlet(np.ones(len(CLASS_NAMES))).tolist(),
-        "demo_mode"      : True,
+        "is_zeroday": is_zeroday,
+        "shap_summary": shap_summary,
+        "mitre_summary": "MITRE mapping: [T1595] Active Scanning (Reconnaissance)",
+        "top_features": [
+            (fnames[i], np.random.uniform(-0.3, 0.3), np.random.uniform(0, 100)) for i in range(min(5, len(fnames)))
+        ],
+        "probs": np.random.dirichlet(np.ones(len(CLASS_NAMES))).tolist(),
+        "demo_mode": True,
     }
+
 
 def run_full_pipeline(raw_features: np.ndarray, comps: dict):
     """Chay toan bo pipeline that: IDS -> SHAP -> MITRE -> LLM."""
@@ -770,21 +799,21 @@ def run_full_pipeline(raw_features: np.ndarray, comps: dict):
     tensor = torch.FloatTensor(scaled)
     with torch.no_grad():
         outputs = model(tensor)
-        logits  = outputs[0] if isinstance(outputs, tuple) else outputs
-        probs   = torch.softmax(logits, dim=1).numpy()[0]
+        logits = outputs[0] if isinstance(outputs, tuple) else outputs
+        probs = torch.softmax(logits, dim=1).numpy()[0]
 
-    max_prob   = float(probs.max())
-    pred_idx   = int(probs.argmax())
+    max_prob = float(probs.max())
+    pred_idx = int(probs.argmax())
     pred_class = CLASS_NAMES[pred_idx] if pred_idx < len(CLASS_NAMES) else "Unknown"
 
     # AE score tu AutoEncoder
     with torch.no_grad():
-        if hasattr(model, 'ae'):
+        if hasattr(model, "ae"):
             ae_score = float(model.ae.recon_error(tensor).mean().item())
-        elif hasattr(model, 'vae'):
+        elif hasattr(model, "vae"):
             ae_score = float(model.vae.recon_error(tensor).mean().item())
-        elif hasattr(model, 'autoencoder'):
-            recon    = model.autoencoder(tensor)
+        elif hasattr(model, "autoencoder"):
+            recon = model.autoencoder(tensor)
             ae_score = float(torch.mean((tensor - recon) ** 2).item())
         else:
             ae_score = float(1.0 - max_prob + np.random.uniform(0, 0.1))
@@ -795,49 +824,51 @@ def run_full_pipeline(raw_features: np.ndarray, comps: dict):
     verdict = _traffic_verdict(is_zeroday, pred_class)
 
     result = {
-        "alert_id"       : str(uuid.uuid4())[:8].upper(),
-        "timestamp"      : datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "hybrid_score"   : hybrid_score,
-        "ae_score"       : ae_score,
-        "max_prob"       : max_prob,
+        "alert_id": str(uuid.uuid4())[:8].upper(),
+        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "hybrid_score": hybrid_score,
+        "ae_score": ae_score,
+        "max_prob": max_prob,
         "predicted_class": verdict,
         "classifier_class": pred_class,
-        "is_zeroday"     : is_zeroday,
-        "zero_day_rule"   : decision_rule,
-        "probs"          : probs.tolist(),
-        "demo_mode"      : False,
+        "is_zeroday": is_zeroday,
+        "zero_day_rule": decision_rule,
+        "probs": probs.tolist(),
+        "demo_mode": False,
     }
 
     # 2. SHAP
-    if 'explainer' in comps:
+    if "explainer" in comps:
         try:
-            shap_res = comps['explainer'].explain_alert(raw_features)
-            result['shap_summary']  = shap_res['summary_text']
-            result['top_features']  = shap_res['top_features']
-            result['shap_values']   = shap_res['shap_values']
+            shap_res = comps["explainer"].explain_alert(raw_features)
+            result["shap_summary"] = shap_res["summary_text"]
+            result["top_features"] = shap_res["top_features"]
+            result["shap_values"] = shap_res["shap_values"]
         except Exception as e:
-            result['shap_summary'] = f"SHAP loi: {e}"
-            result['top_features'] = []
+            result["shap_summary"] = f"SHAP loi: {e}"
+            result["top_features"] = []
     else:
-        result['shap_summary'] = "SHAP chua duoc kich hoat"
-        result['top_features'] = []
+        result["shap_summary"] = "SHAP chua duoc kich hoat"
+        result["top_features"] = []
 
     # 3. MITRE
-    if 'mapper' in comps:
+    if "mapper" in comps:
         try:
-            mapper = comps['mapper']
+            mapper = comps["mapper"]
             if is_zeroday:
-                mitre_res = mapper.map_zeroday(ae_score, result.get('top_features', []))
+                mitre_res = mapper.map_zeroday(ae_score, result.get("top_features", []))
             else:
-                mitre_res = mapper.map_known_attack(pred_idx, class_names=CLASS_NAMES, top_features=result.get('top_features', []))
-            result['mitre_result']  = mitre_res
-            result['mitre_summary'] = mapper.format_for_llm(mitre_res)
+                mitre_res = mapper.map_known_attack(
+                    pred_idx, class_names=CLASS_NAMES, top_features=result.get("top_features", [])
+                )
+            result["mitre_result"] = mitre_res
+            result["mitre_summary"] = mapper.format_for_llm(mitre_res)
         except Exception as e:
-            result['mitre_summary'] = f"MITRE loi: {e}"
-            result['mitre_result']  = None
+            result["mitre_summary"] = f"MITRE loi: {e}"
+            result["mitre_result"] = None
     else:
-        result['mitre_summary'] = "MITRE chua duoc kich hoat"
-        result['mitre_result']  = None
+        result["mitre_summary"] = "MITRE chua duoc kich hoat"
+        result["mitre_result"] = None
 
     return result
 
@@ -855,14 +886,18 @@ def run_batch_inference(raw_features: np.ndarray, batch_size: int = 512) -> pd.D
         batch_size=batch_size,
     )
 
+
 def severity_rank(severity: str) -> int:
     return runtime_severity_rank(severity)
+
 
 def severity_class(severity: str) -> str:
     return runtime_severity_class(severity)
 
+
 def risk_score(result: dict, severity: str | None = None) -> int:
     return runtime_risk_score(result, severity)
+
 
 def load_alert_history(force: bool = False) -> list[dict]:
     if force or not st.session_state.get("alert_history_loaded"):
@@ -874,6 +909,7 @@ def load_alert_history(force: bool = False) -> list[dict]:
             st.session_state["alert_history"] = st.session_state.get("alert_history", [])
             st.warning(f"Khong load duoc alert store: {e}")
     return st.session_state.get("alert_history", [])
+
 
 def persist_alert(result: dict, llm: dict | None = None, source: str = "single") -> None:
     if result.get("demo_mode"):
@@ -890,6 +926,7 @@ def persist_alert(result: dict, llm: dict | None = None, source: str = "single")
         if not any(item.get("alert_id") == result.get("alert_id") for item in history):
             history.append(result)
 
+
 def update_persisted_alert_status(alert_id: str, status: str, analyst_note: str = "") -> None:
     try:
         alert_store_update_alert_status(ALERT_DB_PATH, alert_id, status, analyst_note)
@@ -897,6 +934,7 @@ def update_persisted_alert_status(alert_id: str, status: str, analyst_note: str 
         st.session_state["alert_history_loaded"] = True
     except Exception as e:
         st.warning(f"Khong cap nhat duoc alert store: {e}")
+
 
 def render_soc_header(title: str, subtitle: str):
     st.markdown(
@@ -917,26 +955,30 @@ def render_soc_header(title: str, subtitle: str):
         unsafe_allow_html=True,
     )
 
+
 def build_alert_context_from_log(row_scores: dict) -> dict:
     return runtime_build_alert_context_from_log(row_scores)
 
+
 def get_llm_analysis(result: dict, comps: dict):
     """Goi LLM triage agent."""
-    return runtime_triage_alert_with_fallback(result, comps.get('agent'))
+    return runtime_triage_alert_with_fallback(result, comps.get("agent"))
+
 
 # ── Display result ────────────────────────────────────────────────
+
 
 # ═════════════════════════════════════════════════════════════════
 # PAGE: Dashboard
 # ═════════════════════════════════════════════════════════════════
 def display_result(result: dict, llm: dict):
     """SOC-style alert detail view. Overrides the earlier basic renderer."""
-    sev = str(llm.get('severity', 'HIGH')).upper()
+    sev = str(llm.get("severity", "HIGH")).upper()
     risk = risk_score(result, sev)
 
-    render_safety_notice(level="warning" if result.get('is_zeroday') else "info")
+    render_safety_notice(level="warning" if result.get("is_zeroday") else "info")
 
-    if result.get('demo_mode'):
+    if result.get("demo_mode"):
         st.info("DEMO SANDBOX - Du lieu gia lap, khong dung de ket luan an ninh.")
 
     st.markdown(
@@ -956,33 +998,32 @@ def display_result(result: dict, llm: dict):
     col1.metric("Risk Score", f"{risk}/100")
     col2.metric("Hybrid", f"{result['hybrid_score']:.3f}")
     col3.metric("AE / VAE", f"{result['ae_score']:.3f}")
-    col4.metric("Detection", result['predicted_class'])
-    col5.metric("Classifier", result.get('classifier_class', result['predicted_class']))
+    col4.metric("Detection", result["predicted_class"])
+    col5.metric("Classifier", result.get("classifier_class", result["predicted_class"]))
 
     tab1, tab2, tab3, tab4, tab5 = st.tabs(["Triage", "Model Evidence", "MITRE ATT&CK", "Response", "Raw Report"])
 
     with tab1:
         st.markdown("**Attack Summary**")
-        st.write(llm.get('attack_summary', 'N/A'))
+        st.write(llm.get("attack_summary", "N/A"))
         a, b, c = st.columns(3)
         a.metric("Severity", sev)
-        b.metric("False Positive Risk", llm.get('false_positive_risk', 'N/A'))
+        b.metric("False Positive Risk", llm.get("false_positive_risk", "N/A"))
         c.metric("MITRE Confidence", (result.get("mitre_result") or {}).get("confidence", "N/A"))
         st.markdown("**Analyst Note**")
-        st.write(llm.get('analyst_note', 'N/A'))
-        if llm.get('false_positive_reason'):
+        st.write(llm.get("analyst_note", "N/A"))
+        if llm.get("false_positive_reason"):
             st.caption(f"False-positive rationale: {llm['false_positive_reason']}")
 
     with tab2:
-        prob_df = pd.DataFrame({
-            "Class": CLASS_NAMES[:len(result['probs'])],
-            "Probability": [round(p, 4) for p in result['probs']]
-        })
+        prob_df = pd.DataFrame(
+            {"Class": CLASS_NAMES[: len(result["probs"])], "Probability": [round(p, 4) for p in result["probs"]]}
+        )
         st.markdown("**Class Probabilities**")
         st.dataframe(prob_df.sort_values("Probability", ascending=False), use_container_width=True, hide_index=True)
         st.bar_chart(prob_df.set_index("Class"))
 
-        feats = result.get('top_features', [])
+        feats = result.get("top_features", [])
         if feats:
             df_shap = pd.DataFrame(feats, columns=["Feature", "SHAP Value", "Actual Value"])
             df_shap["SHAP Value"] = df_shap["SHAP Value"].round(4)
@@ -991,26 +1032,31 @@ def display_result(result: dict, llm: dict):
             st.dataframe(df_shap, use_container_width=True, hide_index=True)
             st.bar_chart(df_shap.set_index("Feature")["SHAP Value"])
         else:
-            st.write(result.get('shap_summary', 'SHAP chua chay'))
+            st.write(result.get("shap_summary", "SHAP chua chay"))
 
     with tab3:
-        mitre = result.get('mitre_result')
+        mitre = result.get("mitre_result")
         if mitre:
-            techniques = mitre.get('techniques') or mitre.get('suspected_techniques', [])
+            techniques = mitre.get("techniques") or mitre.get("suspected_techniques", [])
             st.markdown(
                 f"**Mode:** `{mitre.get('mapping_mode', 'unknown')}` | "
                 f"**Primary tactic:** `{mitre.get('primary_tactic', 'N/A')}` | "
                 f"**Confidence:** `{mitre.get('confidence', 'LOW')}`"
             )
             if techniques:
-                mitre_df = pd.DataFrame([{
-                    "Technique": f"{t['id']} - {t['name']}",
-                    "Tactic": t.get('tactic', ''),
-                    "Confidence": t.get('confidence', ''),
-                    "Rationale": t.get('rationale', ''),
-                    "Evidence": ", ".join(t.get('evidence', [])),
-                    "ATT&CK": t.get('url', f"https://attack.mitre.org/techniques/{t['id']}/"),
-                } for t in techniques])
+                mitre_df = pd.DataFrame(
+                    [
+                        {
+                            "Technique": f"{t['id']} - {t['name']}",
+                            "Tactic": t.get("tactic", ""),
+                            "Confidence": t.get("confidence", ""),
+                            "Rationale": t.get("rationale", ""),
+                            "Evidence": ", ".join(t.get("evidence", [])),
+                            "ATT&CK": t.get("url", f"https://attack.mitre.org/techniques/{t['id']}/"),
+                        }
+                        for t in techniques
+                    ]
+                )
                 st.dataframe(mitre_df, use_container_width=True, hide_index=True)
                 checks = []
                 for t in techniques:
@@ -1021,11 +1067,11 @@ def display_result(result: dict, llm: dict):
                     st.dataframe(pd.DataFrame(checks), use_container_width=True, hide_index=True)
             st.caption(mitre.get("coverage_note", ""))
         else:
-            st.write(result.get('mitre_summary', 'MITRE chua chay'))
+            st.write(result.get("mitre_summary", "MITRE chua chay"))
 
     with tab4:
-        mitre = result.get('mitre_result') or {}
-        actions = list(llm.get('recommended_actions', []))
+        mitre = result.get("mitre_result") or {}
+        actions = list(llm.get("recommended_actions", []))
         for t in mitre.get("techniques", []) or mitre.get("suspected_techniques", []):
             actions.extend(t.get("response_actions", []))
         actions = list(dict.fromkeys(actions))
@@ -1037,8 +1083,8 @@ def display_result(result: dict, llm: dict):
     with tab5:
         render_raw_report(result, llm)
 
-    st.session_state['last_alert'] = result
-    st.session_state['last_llm'] = llm
+    st.session_state["last_alert"] = result
+    st.session_state["last_llm"] = llm
 
 
 if page == "[1] Dashboard":
@@ -1086,11 +1132,11 @@ elif page == "[2] Analyze Traffic":
     render_analysis_safety_notice(DEMO_MODE)
 
     bg_data = None
-    comps   = {}
+    comps = {}
 
     if not DEMO_MODE:
         bg_data = load_background(scaler, feature_names)
-        comps   = get_components(model, scaler, feature_names, bg_data)
+        comps = get_components(model, scaler, feature_names, bg_data)
 
     mode = st.radio(
         "Input source",
@@ -1108,17 +1154,17 @@ elif page == "[2] Analyze Traffic":
                 if DEMO_MODE:
                     with st.spinner("Dang phan tich (DEMO)..."):
                         result = mock_inference()
-                        llm    = get_llm_analysis(result, comps)
+                        llm = get_llm_analysis(result, comps)
                 else:
                     with st.spinner("Dang phan tich... (SHAP mat ~30 giay)"):
                         df = pd.read_csv(DATA_PATH)
-                        label_col = 'label' if 'label' in df.columns else df.columns[-1]
-                        pool   = df[df[label_col] == 1] if prefer_attack else df
+                        label_col = "label" if "label" in df.columns else df.columns[-1]
+                        pool = df[df[label_col] == 1] if prefer_attack else df
                         sample = pool.sample(1, random_state=np.random.randint(0, 9999))
                         # Tien xu ly dung nhu luc train (encode + engineer features)
-                        raw    = preprocess_raw_df(sample, feature_names or [])
+                        raw = preprocess_raw_df(sample, feature_names or [])
                         result = run_full_pipeline(raw, comps)
-                        llm    = get_llm_analysis(result, comps)
+                        llm = get_llm_analysis(result, comps)
 
                 display_result(result, llm)
 
@@ -1127,8 +1173,8 @@ elif page == "[2] Analyze Traffic":
     elif mode == "Nhap thu cong (demo)":
         st.info("Score sandbox chi de minh hoa rule; khong luu vao analyst queue.")
         col1, col2 = st.columns(2)
-        ae_val  = col1.slider("AE Reconstruction Error", 0.0, 1.0, 0.75, 0.01)
-        max_p   = col2.slider("Classifier Max Probability", 0.0, 1.0, 0.45, 0.01)
+        ae_val = col1.slider("AE Reconstruction Error", 0.0, 1.0, 0.75, 0.01)
+        max_p = col2.slider("Classifier Max Probability", 0.0, 1.0, 0.45, 0.01)
         atk_cls = st.selectbox("Predicted Class", CLASS_NAMES)
 
         if st.button("Phan tich", type="primary"):
@@ -1137,20 +1183,20 @@ elif page == "[2] Analyze Traffic":
             is_zd = bool(is_zd)
             verdict = _traffic_verdict(is_zd, atk_cls)
             result = {
-                "alert_id"       : str(uuid.uuid4())[:8].upper(),
-                "timestamp"      : datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                "hybrid_score"   : hybrid,
-                "ae_score"       : ae_val,
-                "max_prob"       : max_p,
+                "alert_id": str(uuid.uuid4())[:8].upper(),
+                "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                "hybrid_score": hybrid,
+                "ae_score": ae_val,
+                "max_prob": max_p,
                 "predicted_class": verdict,
                 "classifier_class": atk_cls,
-                "is_zeroday"     : is_zd,
-                "zero_day_rule"   : decision_rule,
-                "shap_summary"   : "Manual input - khong co SHAP data",
-                "mitre_summary"  : "",
-                "top_features"   : [],
-                "probs"          : [1/len(CLASS_NAMES)] * len(CLASS_NAMES),
-                "demo_mode"      : True,
+                "is_zeroday": is_zd,
+                "zero_day_rule": decision_rule,
+                "shap_summary": "Manual input - khong co SHAP data",
+                "mitre_summary": "",
+                "top_features": [],
+                "probs": [1 / len(CLASS_NAMES)] * len(CLASS_NAMES),
+                "demo_mode": True,
             }
             if HAS_MITRE:
                 mapper = MITREMapper()
@@ -1161,8 +1207,8 @@ elif page == "[2] Analyze Traffic":
                         CLASS_NAMES.index(atk_cls) if atk_cls in CLASS_NAMES else 1,
                         class_names=CLASS_NAMES,
                     )
-                result['mitre_result']  = mr
-                result['mitre_summary'] = mapper.format_for_llm(mr)
+                result["mitre_result"] = mr
+                result["mitre_summary"] = mapper.format_for_llm(mr)
 
             with st.spinner("LLM dang phan tich..."):
                 llm = get_llm_analysis(result, comps)
@@ -1218,9 +1264,7 @@ elif page == "[2] Analyze Traffic":
             st.caption(f"File: {uploaded.name} | SHA256: {file_hash[:12]}")
             if input_validation is not None:
                 if input_validation.ok:
-                    st.success(
-                        f"CSV input OK: {input_validation.rows:,} rows x {input_validation.columns:,} columns"
-                    )
+                    st.success(f"CSV input OK: {input_validation.rows:,} rows x {input_validation.columns:,} columns")
                 else:
                     st.error("CSV input khong hop le: " + "; ".join(input_validation.errors))
                 for warning in input_validation.warnings[:4]:
@@ -1253,7 +1297,7 @@ elif page == "[2] Analyze Traffic":
                     st.warning("DEMO MODE khong ho tro phan tich toan bo file.")
                 else:
                     raw = preprocess_raw_df(raw_df, feature_names or [])
-                    norm_report = st.session_state.get('last_log_normalization_report')
+                    norm_report = st.session_state.get("last_log_normalization_report")
                     if isinstance(norm_report, dict):
                         with st.expander("Bao cao chuan hoa CSV", expanded=True):
                             c1, c2, c3, c4 = st.columns(4)
@@ -1261,9 +1305,14 @@ elif page == "[2] Analyze Traffic":
                             c2.metric("Rows", norm_report.get("rows", len(raw_df)))
                             c3.metric("Mapped cols", len(norm_report.get("mapped_columns", {})))
                             cov = norm_report.get("feature_coverage")
-                            c4.metric("Feature coverage", f"{float(cov) * 100:.1f}%" if isinstance(cov, (int, float)) else "N/A")
+                            c4.metric(
+                                "Feature coverage",
+                                f"{float(cov) * 100:.1f}%" if isinstance(cov, (int, float)) else "N/A",
+                            )
                             if norm_report.get("missing_core_features"):
-                                st.caption("Missing core features: " + ", ".join(norm_report["missing_core_features"][:12]))
+                                st.caption(
+                                    "Missing core features: " + ", ".join(norm_report["missing_core_features"][:12])
+                                )
                             if norm_report.get("derived_columns"):
                                 st.caption("Derived features: " + ", ".join(norm_report["derived_columns"][:18]))
                             quality = runtime_assess_normalization_quality(norm_report)
@@ -1289,7 +1338,11 @@ elif page == "[2] Analyze Traffic":
                             result_df = result_df.copy()
                             result_df.insert(0, "source_row", np.arange(len(result_df)))
                             family_col = next(
-                                (c for c in ["true_label", "attack_cat", "zero_day_family", "label"] if c in raw_df.columns),
+                                (
+                                    c
+                                    for c in ["true_label", "attack_cat", "zero_day_family", "label"]
+                                    if c in raw_df.columns
+                                ),
                                 None,
                             )
                             if family_col:
@@ -1299,7 +1352,9 @@ elif page == "[2] Analyze Traffic":
                                 result_df["zero_day_family"] = ""
                                 result_df["ground_truth"] = ""
                             result_df["detection"] = result_df.apply(
-                                lambda r: _traffic_verdict(r["is_zeroday"], r.get("classifier_class", r.get("predicted_class", "Unknown"))),
+                                lambda r: _traffic_verdict(
+                                    r["is_zeroday"], r.get("classifier_class", r.get("predicted_class", "Unknown"))
+                                ),
                                 axis=1,
                             )
                             if "ground_truth" in result_df.columns:
@@ -1308,7 +1363,7 @@ elif page == "[2] Analyze Traffic":
                                     result_df["detection"].astype(str) == result_df["ground_truth"].astype(str),
                                     np.nan,
                                 )
-                            st.session_state['bulk_score_summary'] = {
+                            st.session_state["bulk_score_summary"] = {
                                 "ae_min": float(result_df["ae_score"].min()),
                                 "ae_median": float(result_df["ae_score"].median()),
                                 "ae_max": float(result_df["ae_score"].max()),
@@ -1317,22 +1372,24 @@ elif page == "[2] Analyze Traffic":
                                 "hybrid_max": float(result_df["hybrid_score"].max()),
                                 "hybrid_threshold": HYBRID_THRESHOLD,
                                 "ae_threshold": AE_THRESHOLD,
-                                "decision_rule": str(result_df["zero_day_rule"].iloc[0]) if "zero_day_rule" in result_df else "unknown",
+                                "decision_rule": str(result_df["zero_day_rule"].iloc[0])
+                                if "zero_day_rule" in result_df
+                                else "unknown",
                             }
-                            st.session_state['bulk_result_df'] = result_df
+                            st.session_state["bulk_result_df"] = result_df
                             if len(raw_df) <= CSV_SESSION_RAW_MAX_ROWS:
-                                st.session_state['bulk_raw_df'] = raw_df.reset_index(drop=True)
+                                st.session_state["bulk_raw_df"] = raw_df.reset_index(drop=True)
                             else:
-                                st.session_state['bulk_raw_df'] = None
+                                st.session_state["bulk_raw_df"] = None
                                 st.warning(
                                     "Raw CSV khong duoc giu trong session_state vi vuot "
                                     f"{CSV_SESSION_RAW_MAX_ROWS:,} dong. Bang diem van duoc giu, "
                                     "nhung chi tiet raw feature sau khi chuyen trang se bi gioi han."
                                 )
-                            st.session_state['bulk_source_file_hash'] = file_hash
+                            st.session_state["bulk_source_file_hash"] = file_hash
 
-            result_df = st.session_state.get('bulk_result_df')
-            result_hash = st.session_state.get('bulk_source_file_hash')
+            result_df = st.session_state.get("bulk_result_df")
+            result_hash = st.session_state.get("bulk_source_file_hash")
             if isinstance(result_df, pd.DataFrame) and not result_df.empty and result_hash == file_hash:
                 st.success(f"Da phan tich {len(result_df):,} dong.")
 
@@ -1343,10 +1400,10 @@ elif page == "[2] Analyze Traffic":
                         file_hash=file_hash,
                         limit=int(persist_top_n),
                         timestamp=datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                        raw_df=st.session_state.get('bulk_raw_df'),
+                        raw_df=st.session_state.get("bulk_raw_df"),
                     )
                     if batch_alerts:
-                        st.session_state['last_alert'] = batch_alerts[0]
+                        st.session_state["last_alert"] = batch_alerts[0]
                     persist_key = f"{file_hash}:{int(persist_top_n)}"
                     if batch_alerts and st.session_state.get("bulk_alert_saved_hash") != persist_key:
                         for alert in batch_alerts:
@@ -1376,16 +1433,16 @@ elif page == "[2] Analyze Traffic":
 
                 render_bulk_detection_summary(result_df)
                 render_ground_truth_summary(result_df)
-                score_summary = st.session_state.get('bulk_score_summary')
+                score_summary = st.session_state.get("bulk_score_summary")
                 if isinstance(score_summary, dict):
                     with st.expander("Kiem tra score va nguong phat hien", expanded=False):
                         st.json(score_summary)
 
                 st.download_button(
                     "Download ket qua (CSV)",
-                    data=result_df.to_csv(index=False).encode('utf-8'),
+                    data=result_df.to_csv(index=False).encode("utf-8"),
                     file_name="ids_bulk_results.csv",
-                    mime="text/csv"
+                    mime="text/csv",
                 )
 
 # ═════════════════════════════════════════════════════════════════
@@ -1397,8 +1454,8 @@ elif page == "[3] OOD Candidate Logs":
         "Anomaly flags are hypotheses for analyst review. Dataset family values are optional reference metadata.",
     )
 
-    result_df = st.session_state.get('bulk_result_df')
-    raw_df = st.session_state.get('bulk_raw_df')
+    result_df = st.session_state.get("bulk_result_df")
+    raw_df = st.session_state.get("bulk_raw_df")
 
     if not isinstance(result_df, pd.DataFrame) or result_df.empty:
         st.info("Chua co batch log. Vao Analyze Alert -> Upload CSV -> Phan tich TOAN BO file truoc.")
@@ -1413,13 +1470,12 @@ elif page == "[3] OOD Candidate Logs":
                     (c for c in ["true_label", "attack_cat", "zero_day_family", "label"] if c in raw_df.columns),
                     None,
                 )
-            logs["zero_day_family"] = (
-                raw_df[family_col].astype(str).reset_index(drop=True)
-                if family_col else ""
-            )
+            logs["zero_day_family"] = raw_df[family_col].astype(str).reset_index(drop=True) if family_col else ""
         # Luon recompute de dam bao nhat quan voi is_zeroday moi nhat
         logs["detection"] = logs.apply(
-            lambda r: _traffic_verdict(r.get("is_zeroday"), r.get("classifier_class", r.get("predicted_class", "Unknown"))),
+            lambda r: _traffic_verdict(
+                r.get("is_zeroday"), r.get("classifier_class", r.get("predicted_class", "Unknown"))
+            ),
             axis=1,
         )
 
@@ -1448,11 +1504,17 @@ elif page == "[3] OOD Candidate Logs":
         if selected_class != "All":
             view_df = view_df[view_df.get("classifier_class", view_df["predicted_class"]).astype(str) == selected_class]
         view_df = view_df[view_df["hybrid_score"] >= min_score].copy()
-        view_df["risk"] = view_df.apply(lambda r: risk_score({
-            "hybrid_score": r.get("hybrid_score", 0),
-            "ae_score": r.get("ae_score", 0),
-            "is_zeroday": bool(r.get("is_zeroday", False)),
-        }, "HIGH" if r.get("is_zeroday", False) else "MEDIUM"), axis=1)
+        view_df["risk"] = view_df.apply(
+            lambda r: risk_score(
+                {
+                    "hybrid_score": r.get("hybrid_score", 0),
+                    "ae_score": r.get("ae_score", 0),
+                    "is_zeroday": bool(r.get("is_zeroday", False)),
+                },
+                "HIGH" if r.get("is_zeroday", False) else "MEDIUM",
+            ),
+            axis=1,
+        )
         view_df = view_df.sort_values(["risk", "hybrid_score", "ae_score"], ascending=False)
 
         left_col, right_col = st.columns([1.55, 1.0], gap="large")
@@ -1463,10 +1525,22 @@ elif page == "[3] OOD Candidate Logs":
             if view_df.empty:
                 st.info("Khong co log nao khop filter hien tai.")
             else:
-                display_cols = [c for c in [
-                    "source_row", "detection", "ground_truth", "correct_vs_ground_truth", "classifier_class",
-                    "risk", "hybrid_score", "ae_score", "max_prob", "is_zeroday"
-                ] if c in view_df.columns]
+                display_cols = [
+                    c
+                    for c in [
+                        "source_row",
+                        "detection",
+                        "ground_truth",
+                        "correct_vs_ground_truth",
+                        "classifier_class",
+                        "risk",
+                        "hybrid_score",
+                        "ae_score",
+                        "max_prob",
+                        "is_zeroday",
+                    ]
+                    if c in view_df.columns
+                ]
                 try:
                     event = st.dataframe(
                         view_df[display_cols],
@@ -1583,13 +1657,22 @@ elif page == "[3] OOD Candidate Logs":
                             f"**Confidence:** `{mitre_res.get('confidence', 'LOW')}`"
                         )
                         if techniques:
-                            st.dataframe(pd.DataFrame([{
-                                "Technique": f"{t['id']} - {t['name']}",
-                                "Tactic": t.get("tactic", ""),
-                                "Confidence": t.get("confidence", ""),
-                                "Rationale": t.get("rationale", ""),
-                                "ATT&CK": t.get("url", ""),
-                            } for t in techniques]), use_container_width=True, hide_index=True)
+                            st.dataframe(
+                                pd.DataFrame(
+                                    [
+                                        {
+                                            "Technique": f"{t['id']} - {t['name']}",
+                                            "Tactic": t.get("tactic", ""),
+                                            "Confidence": t.get("confidence", ""),
+                                            "Rationale": t.get("rationale", ""),
+                                            "ATT&CK": t.get("url", ""),
+                                        }
+                                        for t in techniques
+                                    ]
+                                ),
+                                use_container_width=True,
+                                hide_index=True,
+                            )
                         st.caption(mitre_res.get("coverage_note", ""))
                     else:
                         st.warning("MITRE module chua duoc kich hoat.")
@@ -1619,17 +1702,17 @@ elif page == "[4] Ask AI":
             st.session_state["messages"] = []
             st.rerun()
 
-    if 'last_alert' not in st.session_state:
+    if "last_alert" not in st.session_state:
         st.warning("Chua co alert/log nao. Hay phan tich 1 alert hoac upload CSV batch truoc.")
         st.stop()
 
-    last = st.session_state['last_alert']
+    last = st.session_state["last_alert"]
     render_ai_context_card(last)
     render_question_suggestions()
 
     st.markdown("---")
 
-    if 'messages' not in st.session_state:
+    if "messages" not in st.session_state:
         st.session_state.messages = []
 
     for msg in st.session_state.messages:
@@ -1638,7 +1721,7 @@ elif page == "[4] Ask AI":
             st.write(f"**{role_label}:** {msg['content']}")
 
     # Xu ly cau hoi tu goi y
-    pending = st.session_state.pop('pending_question', None)
+    pending = st.session_state.pop("pending_question", None)
 
     question = st.chat_input("Hoi AI ve alert nay...") or pending
 
@@ -1694,7 +1777,8 @@ ZeroDay-Detection-AutoEncoder-IDS/
     """)
 
     st.markdown("### Buoc 2: Export model tu IDS v14")
-    st.code("""
+    st.code(
+        """
 # QUAN TRONG: Phai save dung format sau de dashboard load duoc
 import pickle, torch
 
@@ -1718,21 +1802,30 @@ with open('checkpoints/ids_v14_pipeline.pkl', 'wb') as f:
     pickle.dump(pipeline, f)
 
 print("Da luu model va pipeline!")
-    """, language="python")
+    """,
+        language="python",
+    )
 
     st.markdown("### Buoc 3: Cau hinh API Key cho LLM")
-    st.markdown("1. LLM mac dinh tat bang `LLM_PROVIDER=none`; day chi la tro ly phan tich, khong phai engine quyet dinh verdict.")
+    st.markdown(
+        "1. LLM mac dinh tat bang `LLM_PROVIDER=none`; day chi la tro ly phan tich, khong phai engine quyet dinh verdict."
+    )
     st.markdown("2. Neu can LLM, dang ky API Key tai nha cung cap ban chon va set provider trong `.env`.")
     st.markdown("3. Tao file `.env` trong thu muc goc va them key tuong ung:")
-    st.code("LLM_PROVIDER=groq\nGROQ_API_KEY=gsk_...\n# GEMINI_API_KEY=AIzaSy...\n# OPENAI_API_KEY=sk-...", language="bash")
+    st.code(
+        "LLM_PROVIDER=groq\nGROQ_API_KEY=gsk_...\n# GEMINI_API_KEY=AIzaSy...\n# OPENAI_API_KEY=sk-...", language="bash"
+    )
 
     st.markdown("**Ghi chu:** Neu thieu pipeline, app se co gang tao tu data/ khi khoi dong.")
 
     st.markdown("### Buoc 4: Chay app")
-    st.code("""
+    st.code(
+        """
 cd dashboard
 streamlit run app.py
-    """, language="bash")
+    """,
+        language="bash",
+    )
 
     render_setup_status(
         MODEL_PATH,

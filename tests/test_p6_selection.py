@@ -16,11 +16,24 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from ids.p6_selection import (  # noqa: E402
-    SCORERS, TIE_TOLERANCE, alert_mask, calibration_artifact, centroid_distance,
-    checked_train_source, choose_scorer, development_auroc, fit_centroids,
-    fit_known_threshold, identity_means, output_path, require_p6_role,
-    softmax_state_hash, softmax_uncertainty, validate_p6_cell,
-    verify_calibration_artifact, verify_scorer_states,
+    SCORERS,
+    TIE_TOLERANCE,
+    alert_mask,
+    calibration_artifact,
+    centroid_distance,
+    checked_train_source,
+    choose_scorer,
+    development_auroc,
+    fit_centroids,
+    fit_known_threshold,
+    identity_means,
+    output_path,
+    require_p6_role,
+    softmax_state_hash,
+    softmax_uncertainty,
+    validate_p6_cell,
+    verify_calibration_artifact,
+    verify_scorer_states,
 )
 from ids.p5_training import _state_digest, file_hash  # noqa: E402
 
@@ -78,10 +91,13 @@ def test_centroids_train_only_order_float64_hash_and_orientation():
         fit_centroids(rows, labels, role="val", checkpoint_state_hash="checkpoint")
     with pytest.raises(TypeError):
         fit_centroids(rows[:, :31], labels, role="train", checkpoint_state_hash="checkpoint")
-    states = {"checkpoint_state_sha256": "checkpoint", "states": {
-        "negative_max_softmax": {"scorer_state_sha256": softmax_state_hash("checkpoint")},
-        "nearest_centroid_l2": {"scorer_state_sha256": digest,
-                                "centroids_float64": centers.tolist()}}}
+    states = {
+        "checkpoint_state_sha256": "checkpoint",
+        "states": {
+            "negative_max_softmax": {"scorer_state_sha256": softmax_state_hash("checkpoint")},
+            "nearest_centroid_l2": {"scorer_state_sha256": digest, "centroids_float64": centers.tolist()},
+        },
+    }
     np.testing.assert_array_equal(verify_scorer_states(states, "checkpoint"), centers)
     with pytest.raises(ValueError, match="checkpoint"):
         verify_scorer_states(states, "altered")
@@ -101,17 +117,14 @@ def test_identity_mean_order_and_duplicate_invariance():
     keys2, means2 = identity_means(scores[order], [identities[i] for i in order])
     assert keys2 == keys
     np.testing.assert_array_equal(means2, means)
-    keys3, means3 = identity_means(np.array([1, 3, 5, 7, 1, 5], dtype=np.float64),
-                                  identities + ["b", "b"])
+    keys3, means3 = identity_means(np.array([1, 3, 5, 7, 1, 5], dtype=np.float64), identities + ["b", "b"])
     assert len(keys3) == len(keys)
     assert means3[0] == means[0]
 
 
 def test_canonical_identity_auroc_and_tie_rule():
-    assert development_auroc(np.array([0.0, 0.1], dtype=np.float64),
-                             np.array([0.9, 1.0], dtype=np.float64)) == 1.0
-    assert development_auroc(np.array([0.9, 1.0], dtype=np.float64),
-                             np.array([0.0, 0.1], dtype=np.float64)) == 0.0
+    assert development_auroc(np.array([0.0, 0.1], dtype=np.float64), np.array([0.9, 1.0], dtype=np.float64)) == 1.0
+    assert development_auroc(np.array([0.9, 1.0], dtype=np.float64), np.array([0.0, 0.1], dtype=np.float64)) == 0.0
     with pytest.raises(ValueError):
         development_auroc(np.array([np.nan], dtype=np.float64), np.array([1.0], dtype=np.float64))
     assert choose_scorer(0.7, 0.8)["selected_scorer"] == SCORERS[1]
@@ -135,11 +148,14 @@ def test_known_only_quantile_strict_comparison_and_provenance():
         fit_known_threshold(scores, identities, role="surrogate_ood")
     dry = validate_p6_cell(ROOT, "Fuzzers", 42)
     role = {"role": "calibration", "row_ids": list(range(100)), "identities": identities}
-    artifact = calibration_artifact(ROOT, dry, role, "negative_max_softmax", "scorer",
-                                    "checkpoint", scores)
+    artifact = calibration_artifact(ROOT, dry, role, "negative_max_softmax", "scorer", "checkpoint", scores)
     verify_calibration_artifact(artifact, dry, role, "checkpoint", "scorer")
-    for field in ("checkpoint_state_sha256", "scorer_state_sha256",
-                  "calibration_row_ids_sha256", "calibration_identity_sha256"):
+    for field in (
+        "checkpoint_state_sha256",
+        "scorer_state_sha256",
+        "calibration_row_ids_sha256",
+        "calibration_identity_sha256",
+    ):
         altered = copy.deepcopy(artifact)
         altered[field] = "altered"
         with pytest.raises(ValueError, match="provenance"):
@@ -190,10 +206,11 @@ def test_complete_matrix_artifacts_and_provenance_if_present():
         assert diagnostics["label"] == "DEVELOPMENT_DIAGNOSTIC_ONLY"
         dry = validate_p6_cell(ROOT, target, seed)
         manifest = frozen_case(target, seed)
-        role = {"row_ids": manifest["roles"]["calibration"]["row_ids"],
-                "identities": manifest["roles"]["calibration"]["canonical_identity_hashes"]}
+        role = {
+            "row_ids": manifest["roles"]["calibration"]["row_ids"],
+            "identities": manifest["roles"]["calibration"]["canonical_identity_hashes"],
+        }
         scorer_hash = states["states"][selection["selected_scorer"]]["scorer_state_sha256"]
-        verify_calibration_artifact(calibration, dry, role,
-                                    run["checkpoint_state_sha256"], scorer_hash)
+        verify_calibration_artifact(calibration, dry, role, run["checkpoint_state_sha256"], scorer_hash)
         assert calibration["calibration_identity_count"] == cell["calibration_identity_count"]
         assert calibration["threshold"] == cell["threshold"]

@@ -104,7 +104,7 @@ def run_batch_inference(
 
     with torch.no_grad():
         for i in range(0, len(tensor), batch_size):
-            x = tensor[i:i + batch_size]
+            x = tensor[i : i + batch_size]
             outputs = model(x)
             logits = outputs[0] if isinstance(outputs, tuple) else outputs
             probs = torch.softmax(logits, dim=1).detach().cpu().numpy()
@@ -132,15 +132,17 @@ def run_batch_inference(
     is_zeroday = np.asarray(is_zeroday).astype(bool)
     verdict = [traffic_verdict(zd, cls) for zd, cls in zip(is_zeroday, pred_class, strict=True)]
 
-    return pd.DataFrame({
-        "predicted_class": verdict,
-        "classifier_class": pred_class,
-        "max_prob": max_prob,
-        "ae_score": ae_arr,
-        "hybrid_score": hybrid_score,
-        "is_zeroday": is_zeroday,
-        "zero_day_rule": decision_rule,
-    })
+    return pd.DataFrame(
+        {
+            "predicted_class": verdict,
+            "classifier_class": pred_class,
+            "max_prob": max_prob,
+            "ae_score": ae_arr,
+            "hybrid_score": hybrid_score,
+            "is_zeroday": is_zeroday,
+            "zero_day_rule": decision_rule,
+        }
+    )
 
 
 def traffic_verdict(is_zeroday, classifier_class) -> str:

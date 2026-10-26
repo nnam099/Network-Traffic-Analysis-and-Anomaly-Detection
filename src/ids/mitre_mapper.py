@@ -147,23 +147,31 @@ CLASS_TO_TECHNIQUES = {
 FEATURE_RULES = [
     (
         {"sbytes", "dbytes", "sload", "dload", "log_total_bytes", "log_sbytes", "log_dbytes"},
-        [("T1030", 0.72, "Byte and load features are dominant, suggesting abnormal transfer volume."),
-         ("T1498", 0.66, "High traffic asymmetry or volume can represent network DoS pressure.")],
+        [
+            ("T1030", 0.72, "Byte and load features are dominant, suggesting abnormal transfer volume."),
+            ("T1498", 0.66, "High traffic asymmetry or volume can represent network DoS pressure."),
+        ],
     ),
     (
         {"ct_srv_dst", "ct_dst_ltm", "ct_src_ltm", "ct_srv_src", "ct_dst_src_ltm", "ct_dst_sport_ltm"},
-        [("T1046", 0.76, "Connection-count features are dominant, suggesting service discovery or scanning."),
-         ("T1595", 0.70, "Repeated destination/service probing is consistent with active scanning.")],
+        [
+            ("T1046", 0.76, "Connection-count features are dominant, suggesting service discovery or scanning."),
+            ("T1595", 0.70, "Repeated destination/service probing is consistent with active scanning."),
+        ],
     ),
     (
         {"dur", "sintpkt", "dintpkt", "intpkt_ratio", "intpkt_diff"},
-        [("T1132", 0.52, "Timing and duration anomalies can indicate encoded or staged C2 traffic."),
-         ("T1071", 0.50, "Application protocol abuse should be checked for repeated timing patterns.")],
+        [
+            ("T1132", 0.52, "Timing and duration anomalies can indicate encoded or staged C2 traffic."),
+            ("T1071", 0.50, "Application protocol abuse should be checked for repeated timing patterns."),
+        ],
     ),
     (
         {"tcprtt", "synack", "ackdat", "handshake_ratio", "incomplete_tcp", "state_num"},
-        [("T1190", 0.58, "Handshake and TCP-state anomalies can accompany service exploitation attempts."),
-         ("T1498", 0.55, "Incomplete TCP patterns may also indicate protocol-level DoS behavior.")],
+        [
+            ("T1190", 0.58, "Handshake and TCP-state anomalies can accompany service exploitation attempts."),
+            ("T1498", 0.55, "Incomplete TCP patterns may also indicate protocol-level DoS behavior."),
+        ],
     ),
 ]
 
@@ -207,8 +215,9 @@ class MITREMapper:
     def __init__(self):
         self.mapping = CLASS_TO_TECHNIQUES
 
-    def map_known_attack(self, class_idx: int, class_names: Sequence[str] | None = None,
-                         top_features=None, max_items: int = 4) -> dict | None:
+    def map_known_attack(
+        self, class_idx: int, class_names: Sequence[str] | None = None, top_features=None, max_items: int = 4
+    ) -> dict | None:
         class_names = list(class_names or CLASS_NAMES)
         if class_idx < 0 or class_idx >= len(class_names):
             class_name = "Generic"
@@ -237,8 +246,9 @@ class MITREMapper:
         feature_based = self._map_features(top_shap_features)
         if not feature_based:
             feature_based = [
-                _technique(tech_id, min(confidence + ae_score * 0.15, 0.75), rationale,
-                           evidence=[f"ae_score:{ae_score:.3f}"])
+                _technique(
+                    tech_id, min(confidence + ae_score * 0.15, 0.75), rationale, evidence=[f"ae_score:{ae_score:.3f}"]
+                )
                 for tech_id, confidence, rationale in self.mapping["Zero-Day"]
             ]
         else:

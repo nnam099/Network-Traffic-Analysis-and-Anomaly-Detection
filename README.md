@@ -124,6 +124,12 @@ frozen protocol evidence:
 ./scripts/clean_local.sh
 ```
 
+Do **not** run `ruff format` across the whole repository. Protocol modules under
+`src/ids/p*.py`, `src/ids/p11_extractor/`, `src/ids/p13/`, and the audit scripts
+and tests listed in the frozen result reports are bound by SHA-256 in `results/`.
+Reformatting them invalidates the recorded provenance. Format only runtime,
+dashboard and non-protocol scripts.
+
 Versioned model artifacts and historical experiment reports retain their
 original field names for reproducibility. The application uses
 **Anomalous Traffic** and **anomaly detection** in its public wording.

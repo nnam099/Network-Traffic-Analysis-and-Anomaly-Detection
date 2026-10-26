@@ -193,8 +193,7 @@ def _score_delta(reference: dict[str, Any], current: dict[str, Any], ratio_thres
     ratio = p95.get("ratio")
     if ratio is not None and ratio > ratio_threshold:
         out["warning"] = (
-            f"{p95.get('current'):.6f} current p95 is {ratio:.2f}x the reference p95 "
-            f"for score distribution."
+            f"{p95.get('current'):.6f} current p95 is {ratio:.2f}x the reference p95 " f"for score distribution."
         )
     return out
 

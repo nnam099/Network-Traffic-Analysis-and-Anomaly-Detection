@@ -5,15 +5,16 @@ import os, random
 import numpy as np
 import torch
 
+
 @dataclass
 class CFG:
-    data_dir: str = '/kaggle/input'
-    save_dir: str = '/kaggle/working/checkpoints_v14'
-    plot_dir: str = '/kaggle/working/plots_v14'
-    train_files: str = ''
-    calibration_files: str = ''
-    test_files: str = ''
-    report_path: str = ''
+    data_dir: str = "/kaggle/input"
+    save_dir: str = "/kaggle/working/checkpoints_v14"
+    plot_dir: str = "/kaggle/working/plots_v14"
+    train_files: str = ""
+    calibration_files: str = ""
+    test_files: str = ""
+    report_path: str = ""
     demo: bool = False
 
     # Training
@@ -44,32 +45,32 @@ class CFG:
 
 
 def resolve_paths(cfg):
-    base_dir   = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-    local_data = os.path.join(base_dir, 'data')
-    local_ckpt = os.path.join(base_dir, 'checkpoints')
-    local_plot = os.path.join(base_dir, 'plots')
+    base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+    local_data = os.path.join(base_dir, "data")
+    local_ckpt = os.path.join(base_dir, "checkpoints")
+    local_plot = os.path.join(base_dir, "plots")
 
-    if getattr(cfg, 'data_dir', None):
+    if getattr(cfg, "data_dir", None):
         if (not os.path.exists(cfg.data_dir)) and os.path.exists(local_data):
             cfg.data_dir = local_data
 
     if (
-        getattr(cfg, 'save_dir', None)
-        and str(cfg.save_dir).startswith('/kaggle/')
-        and not os.path.exists('/kaggle/working')
+        getattr(cfg, "save_dir", None)
+        and str(cfg.save_dir).startswith("/kaggle/")
+        and not os.path.exists("/kaggle/working")
     ):
         cfg.save_dir = local_ckpt
     if (
-        getattr(cfg, 'plot_dir', None)
-        and str(cfg.plot_dir).startswith('/kaggle/')
-        and not os.path.exists('/kaggle/working')
+        getattr(cfg, "plot_dir", None)
+        and str(cfg.plot_dir).startswith("/kaggle/")
+        and not os.path.exists("/kaggle/working")
     ):
         cfg.plot_dir = local_plot
     return cfg
 
 
 def seed_everything(seed: int):
-    os.environ['PYTHONHASHSEED'] = str(seed)
+    os.environ["PYTHONHASHSEED"] = str(seed)
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
@@ -85,21 +86,22 @@ def seed_everything(seed: int):
 def get_config():
     in_nb = False
     try:
-        shell = get_ipython().__class__.__name__   # noqa
-        in_nb = shell in ('ZMQInteractiveShell', 'Shell')
+        shell = get_ipython().__class__.__name__  # noqa
+        in_nb = shell in ("ZMQInteractiveShell", "Shell")
     except NameError:
         pass
     if in_nb:
         return resolve_paths(CFG)
     import argparse
+
     p = argparse.ArgumentParser()
     for k, v in vars(CFG).items():
-        if k.startswith('_'):
+        if k.startswith("_"):
             continue
         if isinstance(v, bool):
-            p.add_argument(f'--{k}', action='store_true', default=v)
+            p.add_argument(f"--{k}", action="store_true", default=v)
         elif v is not None:
-            p.add_argument(f'--{k}', type=type(v), default=v)
+            p.add_argument(f"--{k}", type=type(v), default=v)
     args = p.parse_args()
     for k, v in vars(args).items():
         setattr(CFG, k, v)

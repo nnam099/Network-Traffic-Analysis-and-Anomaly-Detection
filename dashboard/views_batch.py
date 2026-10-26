@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import pandas as pd
+
 try:
     import streamlit as st
 except ModuleNotFoundError:
@@ -22,11 +23,14 @@ def render_bulk_detection_summary(result_df: pd.DataFrame) -> None:
     st.metric("Anomalous traffic", zd_cnt)
     st.metric("Anomaly rate", f"{(zd_cnt / total * 100):.2f}%" if total else "0.00%")
     verdict_counts = (
-        result_df["detection"].replace({
-            "Normal": "Normal Traffic",
-            "Known-Attack": "Known Attack",
-            "Zero-Day Candidate": "Anomalous Traffic",
-        })
+        result_df["detection"]
+        .replace(
+            {
+                "Normal": "Normal Traffic",
+                "Known-Attack": "Known Attack",
+                "Zero-Day Candidate": "Anomalous Traffic",
+            }
+        )
         .value_counts()
         .reindex(["Normal Traffic", "Known Attack", "Anomalous Traffic"], fill_value=0)
         .rename_axis("Label")

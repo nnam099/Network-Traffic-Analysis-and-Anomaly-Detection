@@ -32,7 +32,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--pipeline-path", default=str(ROOT_DIR / "checkpoints" / "ids_v14_pipeline.pkl"))
     parser.add_argument("--label-col", default=None, help="Optional label column for supervised metrics.")
     parser.add_argument("--target-fpr", type=float, default=0.05)
-    parser.add_argument("--train-ratio", type=float, default=0.50, help="Chronological prefix used as baseline reference.")
+    parser.add_argument(
+        "--train-ratio", type=float, default=0.50, help="Chronological prefix used as baseline reference."
+    )
     parser.add_argument("--max-rows", type=int, default=None)
     parser.add_argument("--max-fit-rows", type=int, default=10000, help="Cap expensive baseline fitting rows.")
     parser.add_argument("--batch-size", type=int, default=512)
@@ -136,7 +138,9 @@ def main() -> int:
 
     print(f"Report: {report_path}")
     for item in report["ranking"][:5]:
-        print(f"{item['method']}: AUROC={item.get('auroc')} OOD={item.get('ood_detection_rate')} FPR={item.get('normal_fpr')}")
+        print(
+            f"{item['method']}: AUROC={item.get('auroc')} OOD={item.get('ood_detection_rate')} FPR={item.get('normal_fpr')}"
+        )
     return 0
 
 
@@ -169,7 +173,9 @@ def _sample_fit_rows(values: np.ndarray, max_rows: int, seed: int) -> np.ndarray
     return values[idx]
 
 
-def _baseline_scores(fit_X: np.ndarray, all_X: np.ndarray, args: argparse.Namespace) -> tuple[dict[str, np.ndarray], list[str]]:
+def _baseline_scores(
+    fit_X: np.ndarray, all_X: np.ndarray, args: argparse.Namespace
+) -> tuple[dict[str, np.ndarray], list[str]]:
     out: dict[str, np.ndarray] = {}
     skipped: list[str] = []
 
@@ -271,14 +277,16 @@ def _rank_methods(methods: dict[str, dict]) -> list[dict]:
 
     ranked = []
     for name, metrics in sorted(methods.items(), key=key, reverse=True):
-        ranked.append({
-            "method": name,
-            "auroc": metrics.get("auroc"),
-            "auprc": metrics.get("auprc"),
-            "ood_detection_rate": metrics.get("ood_detection_rate"),
-            "normal_fpr": metrics.get("normal_fpr"),
-            "alert_rate": metrics.get("alert_rate"),
-        })
+        ranked.append(
+            {
+                "method": name,
+                "auroc": metrics.get("auroc"),
+                "auprc": metrics.get("auprc"),
+                "ood_detection_rate": metrics.get("ood_detection_rate"),
+                "normal_fpr": metrics.get("normal_fpr"),
+                "alert_rate": metrics.get("alert_rate"),
+            }
+        )
     return ranked
 
 

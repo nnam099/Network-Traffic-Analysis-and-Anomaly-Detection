@@ -53,9 +53,7 @@ class ServeApiTests(unittest.TestCase):
             # directly without a cross-thread event-loop bridge.
             async with app.router.lifespan_context(app):
                 transport = httpx.ASGITransport(app=app)
-                async with httpx.AsyncClient(
-                    transport=transport, base_url="http://testserver"
-                ) as client:
+                async with httpx.AsyncClient(transport=transport, base_url="http://testserver") as client:
                     return await client.request(method, path, **kwargs)
 
         return asyncio.run(run_request())
@@ -105,9 +103,7 @@ class ServeApiTests(unittest.TestCase):
         self.assertIn("finite numeric", response.json()["detail"])
 
     def test_predict_rejects_non_numeric_feature_values(self):
-        response = self._request(
-            "POST", "/predict", json={"features": ["not-a-number"] * 55}
-        )
+        response = self._request("POST", "/predict", json={"features": ["not-a-number"] * 55})
 
         self.assertEqual(response.status_code, 422)
 

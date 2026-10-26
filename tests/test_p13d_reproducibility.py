@@ -49,10 +49,7 @@ def test_session_b_double_extraction_and_implementation_binding():
     assert first["semantic_content_sha256"] == second["semantic_content_sha256"]
     assert audit["status"] == "P13D_SESSION_B_DETERMINISM_PASS"
     assert binding["status"] == "PASS"
-    assert all(
-        item["matches_frozen_commit"]
-        for item in binding["scientific_source_bindings"].values()
-    )
+    assert all(item["matches_frozen_commit"] for item in binding["scientific_source_bindings"].values())
 
 
 def test_cross_session_label_conflict_is_surfaced_without_relabeling():
